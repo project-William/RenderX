@@ -1,17 +1,16 @@
-#include <iostream>
-#include "RenderX.h"
-
+#include "Application.h"
 using namespace renderx;
+
+//#define RENDERX in preprocesser
+#ifdef RENDERX_DLL
 
 int main(int argc,char** argv)
 {
-	graphics::Window window = graphics::Window::Create();
-
-	while (!window.Closed())
-	{
-		window.Clear();
-		window.OnUpdate();
-	}
+	Application* app = new Application();
+	app->Run();
+	delete app;
 	
 	return 0;
 }
+
+#endif //RENDERX

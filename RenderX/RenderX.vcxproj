@@ -155,10 +155,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="include\events\Event.h" />
     <ClInclude Include="include\graphics\Window.h" />
+    <ClInclude Include="include\utils\Log.h" />
     <ClInclude Include="RenderX.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\events\Event.cpp" />
     <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="vendor\glad\glad.c" />
   </ItemGroup>

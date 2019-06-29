@@ -5,11 +5,11 @@ namespace renderx {
 		
 		Window* Window::m_Instance = nullptr;
 
-		Window& Window::Create()
+		Window* Window::Create()
 		{
 			if(m_Instance==nullptr)
 				m_Instance = new Window();
-			return *m_Instance;
+			return m_Instance;
 		}
 
 		Window::~Window()
@@ -21,17 +21,20 @@ namespace renderx {
 		Window::Window()
 		{
 			if (!__init())
-				std::cout << "failed to initialize window" << std::endl;
-			else std::cout << "Success!" << std::endl;
+				RDX_INIT_ERROR(__init(), "Init failed");
+			else 
+				RDX_INIT_SUCCESS(__init(), "Init successfully");
 		}
 
 		bool Window::__init()
 		{
 			if (glfwInit() != GLFW_TRUE)
 			{
-				std::cout << "Failed to initialize the glfw" << std::endl;
+				RDX_INIT_ERROR(glfwInit(), "Init failed");
 				return false;
 			}
+			else
+				RDX_INIT_SUCCESS(glfwInit(), "Init successfully");
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -45,6 +48,10 @@ namespace renderx {
 			);
 
 			glfwMakeContextCurrent(m_WinPros.glWindowPtr);
+			//glfwSetWindowUserPointer(m_WinPros.glWindowPtr, &m_Event);
+
+
+
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
