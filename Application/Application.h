@@ -8,6 +8,12 @@ class Application
 {
 private:
 	std::unique_ptr<graphics::Window> m_Window;
+
+	graphics::Imgui* gui;
+private:
+
+
+
 public:
 	Application();
 	~Application();

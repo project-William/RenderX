@@ -1,7 +1,9 @@
 #pragma once
 #include <memory>
-#include "include/utils/Log.h"
+#include <sstream>
+#include <fstream>
 
+#include "utils/Log.h"
 
 #ifdef RENDERX_DLL
 	#define REN_API __declspec(dllimport)

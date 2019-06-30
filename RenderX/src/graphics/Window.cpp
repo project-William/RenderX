@@ -1,4 +1,4 @@
-#include "..//..//include/graphics/Window.h"
+#include "graphics/Window.h"
 
 namespace renderx {
 	namespace graphics {
@@ -48,9 +48,6 @@ namespace renderx {
 			);
 
 			glfwMakeContextCurrent(m_WinPros.glWindowPtr);
-			//glfwSetWindowUserPointer(m_WinPros.glWindowPtr, &m_Event);
-
-
 
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
