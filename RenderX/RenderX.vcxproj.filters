@@ -63,6 +63,15 @@
     <ClInclude Include="src\graphics\shader\ShaderProgram.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\Layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\imgui\ImguiLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\LayerStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\Window.cpp">
@@ -89,8 +98,14 @@
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\graphics\shadersrc\basicVertexShader.vert" />
+    <ClCompile Include="src\graphics\Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\LayerStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -30,4 +30,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shadersrc\basicFragmentShader.frag" />
+    <None Include="shadersrc\basicVertexShader.vert" />
+  </ItemGroup>
 </Project>

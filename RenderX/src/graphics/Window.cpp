@@ -1,5 +1,5 @@
 #include "graphics/Window.h"
-
+#include <direct.h>
 namespace renderx {
 	namespace graphics {
 		
@@ -25,8 +25,6 @@ namespace renderx {
 			else 
 				RDX_INIT_SUCCESS(init(), "Init successfully");
 
-
-			vs = new VertexShader("RenderX/Text.txt");
 		}
 
 		bool Window::init()

@@ -13,7 +13,6 @@ namespace renderx {
 			Buffer* m_VBuffer;
 			Buffer* m_Ebuffer;
 
-
 			GLuint m_VertexArray;
 
 		public:
@@ -28,7 +27,7 @@ namespace renderx {
 			void Bind()const;
 			void Unbind()const;
 
-			void SetupVertexArray();
+			void SetupVertexArray(unsigned int stride, const void* offset);
 
 
 		};

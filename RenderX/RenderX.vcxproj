@@ -160,6 +160,8 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="include\graphics\Imgui.h" />
+    <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
+    <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\shader\FragmentShader.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\shader\ShaderProgram.h" />
@@ -172,12 +174,16 @@
     <ClInclude Include="include\utils\FileUtils.h" />
     <ClInclude Include="include\utils\Log.h" />
     <ClInclude Include="RenderX.h" />
+    <ClInclude Include="include\graphics\Layer.h" />
     <ClInclude Include="src\graphics\shader\ShaderProgram.cpp" />
     <ClInclude Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="src\graphics\Imgui.cpp" />
+    <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
+    <ClCompile Include="src\graphics\Layer.cpp" />
+    <ClCompile Include="src\graphics\LayerStack.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\Buffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp" />
@@ -189,9 +195,6 @@
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{0a2545b2-64c8-4013-a4fe-a5a47810390a}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\graphics\shadersrc\basicVertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

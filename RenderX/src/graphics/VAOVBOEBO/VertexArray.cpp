@@ -8,6 +8,7 @@ namespace renderx {
 			:m_Ebuffer(nullptr), m_VBuffer(nullptr)
 		{
 			glGenVertexArrays(1, &m_VertexArray);
+			glBindVertexArray(m_VertexArray);
 		}
 
 
@@ -39,8 +40,10 @@ namespace renderx {
 			glBindVertexArray(0);
 		}
 
-		void VertexArray::SetupVertexArray()
+		void VertexArray::SetupVertexArray(unsigned int stride,const void* offset)
 		{
+			glEnableVertexAttribArray(0);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, offset);
 		}
 
 

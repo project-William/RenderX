@@ -19,7 +19,6 @@ namespace renderx {
 			static Window* m_Instance;
 			Window();
 			bool init();
-			VertexShader* vs;
 		public:
 			~Window();
 			static Window* Create();

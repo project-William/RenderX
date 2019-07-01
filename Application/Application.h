@@ -11,7 +11,9 @@ private:
 
 	graphics::Imgui* gui;
 	
+	graphics::ImguiLayer* imgui;
 
+	graphics::LayerStack* layerstack;
 private:
 
 
