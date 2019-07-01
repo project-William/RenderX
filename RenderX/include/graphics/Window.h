@@ -1,7 +1,6 @@
 #pragma once
 #include "..//..//Core.h"
-
-
+#include "shader/VertexShader.h"
 namespace renderx {
 	namespace graphics {
 
@@ -19,7 +18,8 @@ namespace renderx {
 			WinPros m_WinPros;
 			static Window* m_Instance;
 			Window();
-			bool __init();
+			bool init();
+			VertexShader* vs;
 		public:
 			~Window();
 			static Window* Create();

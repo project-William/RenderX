@@ -27,28 +27,40 @@
     <ClInclude Include="include\utils\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\utils\FileUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\Imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Buffer.h">
+    <ClInclude Include="include\graphics\VAOVBOEBO\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\VertexBuffer.h">
+    <ClInclude Include="include\graphics\VAOVBOEBO\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\IndexBuffer.h">
+    <ClInclude Include="include\graphics\VAOVBOEBO\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\VertexArray.h">
+    <ClInclude Include="include\graphics\VAOVBOEBO\VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\render\VertexArray.cpp">
+    <ClInclude Include="src\graphics\VAOVBOEBO\VertexArray.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shader\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shader\VertexShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shader\FragmentShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\shader\ShaderProgram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\shader\ShaderProgram.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,14 +80,17 @@
     <ClCompile Include="src\utils\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Buffer.cpp">
+    <ClCompile Include="src\graphics\VAOVBOEBO\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\VertexBuffer.cpp">
+    <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\IndexBuffer.cpp">
+    <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\graphics\shadersrc\basicVertexShader.vert" />
   </ItemGroup>
 </Project>

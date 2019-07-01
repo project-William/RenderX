@@ -1,4 +1,4 @@
-#include "graphics/render/VertexBuffer.h"
+#include "graphics/VAOVBOEBO/VertexBuffer.h"
 
 
 namespace renderx {

@@ -20,13 +20,16 @@ namespace renderx {
 
 		Window::Window()
 		{
-			if (!__init())
-				RDX_INIT_ERROR(__init(), "Init failed");
+			if (!init())
+				RDX_INIT_ERROR(init(), "Init failed");
 			else 
-				RDX_INIT_SUCCESS(__init(), "Init successfully");
+				RDX_INIT_SUCCESS(init(), "Init successfully");
+
+
+			vs = new VertexShader("RenderX/Text.txt");
 		}
 
-		bool Window::__init()
+		bool Window::init()
 		{
 			if (glfwInit() != GLFW_TRUE)
 			{

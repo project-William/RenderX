@@ -6,6 +6,7 @@ Application::Application()
 
 
 	gui = new graphics::Imgui();
+
 }
 
 Application::~Application()

@@ -1,5 +1,5 @@
 #pragma once
-#include "graphics/render/VertexArray.h"
+#include "graphics/VAOVBOEBO/VertexArray.h"
 
 
 namespace renderx {
