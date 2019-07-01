@@ -2,6 +2,10 @@
 
 namespace renderx {
 	namespace graphics {
+		Buffer::Buffer()
+		{}
 
+		Buffer::~Buffer()
+		{}
 	}
 }

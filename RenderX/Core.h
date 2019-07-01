@@ -2,8 +2,9 @@
 #include <memory>
 #include <sstream>
 #include <fstream>
-
-#include "utils/Log.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>	
+#include "include/utils/Log.h"
 
 #ifdef RENDERX_DLL
 	#define REN_API __declspec(dllimport)
