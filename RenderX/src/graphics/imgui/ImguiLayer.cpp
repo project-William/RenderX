@@ -9,7 +9,19 @@ namespace renderx {
 
 		}
 
-		ImguiLayer::ImguiLayer(GLFWwindow* window)
+		ImguiLayer::ImguiLayer(WinPros winData)
+			:m_WinData(winData)
+		{
+			
+		}
+
+
+		ImguiLayer::~ImguiLayer()
+		{
+
+		}
+
+		void ImguiLayer::SetUpImguiLayer()
 		{
 			ImGui::CreateContext();
 			ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -21,7 +33,8 @@ namespace renderx {
 			//io.ConfigViewportsNoTaskBarIcon = true;
 
 			// Setup Dear ImGui style
-			ImGui::StyleColorsDark();
+			//ImGui::StyleColorsDark();
+			ImGui::StyleColorsLight();
 			//ImGui::StyleColorsClassic();
 
 			// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
@@ -33,24 +46,21 @@ namespace renderx {
 			}
 
 			// Setup Platform/Renderer bindings
-			ImGui_ImplGlfw_InitForOpenGL(window, true);
+			ImGui_ImplGlfw_InitForOpenGL(m_WinData.glWindowPtr, true);
 			ImGui_ImplOpenGL3_Init("#version 410");
 		}
 
 
-		ImguiLayer::~ImguiLayer()
-		{
-
-		}
-
 		void ImguiLayer::OnAttach()
 		{
-
+			SetUpImguiLayer();
 		}
 
 		void ImguiLayer::OnDetach()
 		{
-
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplGlfw_Shutdown();
+			ImGui::DestroyContext();
 		}
 
 
@@ -73,14 +83,13 @@ namespace renderx {
 				ImGui::ShowDemoWindow(&show_demo_window);
 		}
 		
-		void ImguiLayer::End(GLFWwindow* window)
+		void ImguiLayer::End()
 		{
-			ImGui::Render();
-
 			ImGuiIO& io = ImGui::GetIO();
-			int display_w, display_h;
-			glfwGetFramebufferSize(window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
+			io.DisplaySize = ImVec2((float)m_WinData.win_Width, (float)m_WinData.win_Height);
+
+
+			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)

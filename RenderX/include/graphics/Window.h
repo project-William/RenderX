@@ -19,11 +19,13 @@ namespace renderx {
 			static Window* m_Instance;
 			Window();
 			bool init();
+			Window& operator=(const Window& other) = delete;
+			Window(const Window& other) = delete;
 		public:
 			~Window();
 			static Window* Create();
 
-			inline GLFWwindow*& GetWinPtr() { return m_WinPros.glWindowPtr; }
+			inline GLFWwindow* GetWinPtr() { return m_WinPros.glWindowPtr; }
 			inline unsigned int GetWinWidth()const { return m_WinPros.win_Width; }
 			inline unsigned int GetWinHeight()const { return m_WinPros.win_Height; }
 			inline Window* GetWinClassPtr()const { return m_Instance; }

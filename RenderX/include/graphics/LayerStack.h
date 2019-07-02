@@ -15,13 +15,9 @@ namespace renderx {
 			LayerStack();
 			~LayerStack();
 
-
 			void ShowLayer() const;
-
 			void PushLayer(Layer* layer);
 
 		};
-
-
 	}
 }
