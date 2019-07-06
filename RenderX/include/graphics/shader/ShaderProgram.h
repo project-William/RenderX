@@ -14,6 +14,7 @@ namespace renderx {
 			GLuint m_ShaderProgram;
 		public:
 			ShaderProgram();
+			~ShaderProgram();
 			ShaderProgram(const std::string& v_filepath, const std::string& f_filepath);
 
 			void BindShaderProgram() const;

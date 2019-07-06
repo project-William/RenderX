@@ -25,6 +25,13 @@ namespace renderx {
 
 		}
 
+
+		ShaderProgram::~ShaderProgram()
+		{
+			delete m_Shader.first;
+			delete m_Shader.second;
+		}
+
 		void ShaderProgram::BindShaderProgram()const
 		{
 			glUseProgram(m_ShaderProgram);
@@ -37,7 +44,6 @@ namespace renderx {
 		{
 			glUseProgram(0);
 		}
-
 
 
 	}

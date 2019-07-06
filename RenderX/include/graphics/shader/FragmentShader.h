@@ -44,7 +44,5 @@ namespace renderx {
 	
 			inline ShaderData GetShaderData()const { return m_FragmentShader; }
 		};
-
-
 	}
 }
