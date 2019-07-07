@@ -7,18 +7,14 @@ namespace renderx {
 		class REN_API VertexBuffer :public Buffer
 		{
 		private:
-			GLuint m_VertexBufferID;
+			GLuint m_VertexBuffer;
 		public:
 			VertexBuffer();
+			VertexBuffer(unsigned int size, const void* data);
 			~VertexBuffer();
-
-			inline GLuint GetBuffer()const override { return m_VertexBufferID; }
 
 			void Bind()const override;
 			void Unbind()const override;
-
-			void AddData(unsigned int size, const void* data)override;
 		};
-
 	}
 }

@@ -171,8 +171,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shadersrc\basicFragmentShader.frag" />
-    <None Include="shadersrc\basicVertexShader.vert" />
+    <None Include="shader\fragment.frag" />
+    <None Include="shader\vertex.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

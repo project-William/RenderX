@@ -1,30 +1,34 @@
 #pragma once
-#include "..//Layer.h"
-#include "..//shader/ShaderProgram.h"
+#include "..//..//..//Core.h"	
+#include "..//..//utils/FileUtils.h"
 #include "..//VAOVBOEBO/VertexArray.h"
 
 namespace renderx {
-	namespace  graphics {
+	namespace graphics {
 
 		class REN_API Render
 		{
 		private:
-			ShaderProgram* m_ShaderProgram;
-			VertexArray* m_VertexArray;
+			GLuint m_ShaderProgram;
+			VertexArray* m_VArray;
+			float vertices[9] = {
+				-0.5f,-0.5f,0.0f,
+				 0.5f,-0.5f,0.0f,
+				 0.0f, 0.5f,0.0f,
+			};
 		public:
 			Render();
-			Render(const std::string& vfile,const std::string& ffile);
 			~Render();
 
-			void SetUp();
+			void RenderAttrib();
 
-			Render& operator=(const Render& other) = delete;
-			Render(const Render& other) = delete;
+			void use();
 
-			inline VertexArray& GetVertexArray()const { return *m_VertexArray; }
-			inline ShaderProgram& GetShaderProgram()const { return *m_ShaderProgram; }
+			void Build();
+			void Draw();
 
 		};
+
 
 	}
 }

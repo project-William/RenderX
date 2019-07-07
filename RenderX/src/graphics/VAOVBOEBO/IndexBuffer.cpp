@@ -5,31 +5,34 @@ namespace renderx {
 	namespace graphics {
 
 		IndexBuffer::IndexBuffer()
-			:m_IndexBufferID(0)
+			:m_IndexBuffer(0)
 		{
-			glGenBuffers(1, &m_IndexBufferID);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID);
+
 		}
 
 		IndexBuffer::~IndexBuffer()
 		{
-			glDeleteBuffers(1, &m_IndexBufferID);
+			glDeleteBuffers(1, &m_IndexBuffer);
+		}
+
+		IndexBuffer::IndexBuffer(unsigned int size, const void* data)
+			: m_IndexBuffer(0)
+		{
+			glGenBuffers(1, &m_IndexBuffer);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 		}
 
 
 		void IndexBuffer::Bind()const
 		{
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
 		}
-
+		
 		void IndexBuffer::Unbind()const
 		{
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 
-		void IndexBuffer::AddData(unsigned int size, const void* data)
-		{
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
-		}
 	}
 }

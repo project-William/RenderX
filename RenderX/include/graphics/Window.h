@@ -1,6 +1,6 @@
 #pragma once
 #include "..//..//Core.h"
-#include "shader/VertexShader.h"
+
 namespace renderx {
 	namespace graphics {
 

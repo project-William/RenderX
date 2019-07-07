@@ -13,6 +13,8 @@ private:
 	graphics::ImguiLayer* imgui;
 
 	graphics::LayerStack* layerstack;
+
+	graphics::Render* render;
 private:
 
 

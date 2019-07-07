@@ -31,7 +31,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shadersrc\basicFragmentShader.frag" />
-    <None Include="shadersrc\basicVertexShader.vert" />
+    <None Include="shader\fragment.frag" />
+    <None Include="shader\vertex.vert" />
   </ItemGroup>
 </Project>

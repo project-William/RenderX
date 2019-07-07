@@ -162,11 +162,6 @@
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\render\Render.h" />
-    <ClInclude Include="include\graphics\render\RenderLayer.h" />
-    <ClInclude Include="include\graphics\shader\FragmentShader.h" />
-    <ClInclude Include="include\graphics\shader\Shader.h" />
-    <ClInclude Include="include\graphics\shader\ShaderProgram.h" />
-    <ClInclude Include="include\graphics\shader\VertexShader.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\Buffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\IndexBuffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\VertexArray.h" />
@@ -176,8 +171,6 @@
     <ClInclude Include="include\utils\Log.h" />
     <ClInclude Include="RenderX.h" />
     <ClInclude Include="include\graphics\Layer.h" />
-    <ClInclude Include="src\graphics\shader\ShaderProgram.cpp" />
-    <ClInclude Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
@@ -185,9 +178,8 @@
     <ClCompile Include="src\graphics\Layer.cpp" />
     <ClCompile Include="src\graphics\LayerStack.cpp" />
     <ClCompile Include="src\graphics\render\Render.cpp" />
-    <ClCompile Include="src\graphics\render\RenderLayer.cpp" />
-    <ClCompile Include="src\graphics\VAOVBOEBO\Buffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />
+    <ClCompile Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp" />
     <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />

@@ -11,6 +11,11 @@ Application::Application()
 
 
 	layerstack->PushLayer(imgui);
+
+	render = new graphics::Render();
+
+	render->Build();
+
 }
 
 Application::~Application()
@@ -19,7 +24,7 @@ Application::~Application()
 
 void Application::Run()
 {
-
+	render->use();
 
 	while (!m_Window->Closed())
 	{
@@ -29,7 +34,7 @@ void Application::Run()
 		
 		imgui->Begin();
 
-
+		render->Draw();
 		layerstack->ShowLayer();
 
 

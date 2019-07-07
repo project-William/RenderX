@@ -1,35 +1,35 @@
 #include "graphics/VAOVBOEBO/VertexBuffer.h"
 
-
 namespace renderx {
 	namespace graphics {
-
 		VertexBuffer::VertexBuffer()
-			:m_VertexBufferID(0)
+			:m_VertexBuffer(0)
 		{
-			glGenBuffers(1, &m_VertexBufferID);
-			glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
+
+		}
+
+
+		VertexBuffer::VertexBuffer(unsigned int size, const void* data)
+			:m_VertexBuffer(0)
+		{
+			glGenBuffers(1, &m_VertexBuffer);
+			glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+			glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 		}
 
 		VertexBuffer::~VertexBuffer()
 		{
-			glDeleteBuffers(1, &m_VertexBufferID);
+			glDeleteBuffers(1, &m_VertexBuffer);
 		}
 
-		void VertexBuffer::Bind()const 
+		void VertexBuffer::Bind()const
 		{
-			glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
+			glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
 		}
 
-		void VertexBuffer::Unbind()const 
+		void VertexBuffer::Unbind()const
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
-
-		void VertexBuffer::AddData(unsigned int size, const void* data)
-		{
-			glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
-		}
-
 	}
 }
