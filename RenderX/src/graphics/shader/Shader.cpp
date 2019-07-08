@@ -44,25 +44,55 @@ namespace renderx {
 			const char* shader_src = file.c_str();
 			glShaderSource(shader, 1, &shader_src, NULL);
 			glCompileShader(shader);
+			CheckShaderError("shader", shader);
 			return shader;
 		}
 
 		GLuint& Shader::CreateShaderProgram()
 		{
-			GLuint vertexShader = CreateShader(m_VFilePath, GL_VERTEX_SHADER);
-			GLuint fragmentShader = CreateShader(m_FFilePath, GL_FRAGMENT_SHADER);
-			std::cout << vertexShader << std::endl;
-			std::cout << fragmentShader << std::endl;
+			GLuint vertexShader = CreateShader(m_Source.vertexSource, GL_VERTEX_SHADER);
+			GLuint fragmentShader = CreateShader(m_Source.fragmentSource, GL_FRAGMENT_SHADER);
+
 			m_ShaderProgram = glCreateProgram();
 			std::cout << m_Source.vertexSource << std::endl;
 			std::cout << m_Source.fragmentSource << std::endl;
 			glAttachShader(m_ShaderProgram, vertexShader);
 			glAttachShader(m_ShaderProgram, fragmentShader);
 			glLinkProgram(m_ShaderProgram);
+			CheckShaderError("program", m_ShaderProgram);
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);
 
 			return m_ShaderProgram;
+		}
+
+
+		void Shader::CheckShaderError(const std::string& name, GLuint shader)
+		{
+			if (name == "program")
+			{
+				int success;
+				glGetProgramiv(shader, GL_LINK_STATUS, &success);
+				if (!success)
+				{
+					char infoLog[1024];
+					glGetProgramInfoLog(m_ShaderProgram, 1024, NULL, infoLog);
+					std::cout << "Error:" << "program:" << infoLog << std::endl;
+				}
+				else std::cout << "Shader program created successfully!" << std::endl;
+			}
+			else 
+			{
+				int success;
+				glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+				if (!success)
+				{
+					char infoLog[1024];
+					glGetShaderInfoLog(m_ShaderProgram, 1024, NULL, infoLog);
+					std::cout << "Error:" << "program:" << infoLog << std::endl;
+				}
+				else std::cout << "Shader created successfully!" << std::endl;
+			}
 		}
 	}
 }

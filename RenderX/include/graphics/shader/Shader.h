@@ -32,6 +32,7 @@ namespace renderx {
 
 			GLuint CreateShader(const std::string& file, int type);
 			GLuint& CreateShaderProgram();
+			void CheckShaderError(const std::string& name, GLuint shader);
 		};
 
 
