@@ -13,9 +13,6 @@ Application::Application()
 	layerstack->PushLayer(imgui);
 
 	render = new graphics::Render();
-
-	render->Build();
-
 }
 
 Application::~Application()

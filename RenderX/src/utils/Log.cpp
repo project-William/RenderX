@@ -6,7 +6,7 @@ namespace renderx {
 		{
 			std::cout << "[function:" << func;
 			std::cout << "] [File:" << file;
-			std::cout << "] [Line:" << line << "]";
+			std::cout << "] [Line:" << line << "]" << std::endl;
 			va_list args;
 			va_start(args, format);
 			vprintf(format, args);

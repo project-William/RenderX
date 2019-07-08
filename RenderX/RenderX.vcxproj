@@ -162,6 +162,7 @@
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\render\Render.h" />
+    <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\Buffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\IndexBuffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\VertexArray.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="src\graphics\Layer.cpp" />
     <ClCompile Include="src\graphics\LayerStack.cpp" />
     <ClCompile Include="src\graphics\render\Render.cpp" />
+    <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp" />
