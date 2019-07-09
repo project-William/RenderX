@@ -1,7 +1,7 @@
 #pragma once
 #include "..//VAOVBOEBO/VertexArray.h"
 #include "..//shader/Shader.h"
-
+#include "..//VAOVBOEBO/BufferLayout.h"
 namespace renderx {
 	namespace graphics {
 
@@ -11,6 +11,7 @@ namespace renderx {
 			GLuint m_ShaderProgram;
 			Shader* m_Shader;
 			VertexArray* m_VArray;
+			BufferLayout  m_Layout;
 			float vertices[9] = {
 				-0.5f,-0.5f,0.0f,
 				 0.5f,-0.5f,0.0f,

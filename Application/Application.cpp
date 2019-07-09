@@ -32,8 +32,8 @@ void Application::Run()
 		imgui->Begin();
 
 		render->Draw();
-		layerstack->ShowLayer();
-
+		//layerstack->ShowLayer();
+		imgui->ImguiWindow();
 
 		imgui->End();
 

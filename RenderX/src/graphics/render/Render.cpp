@@ -8,7 +8,8 @@ namespace renderx {
 		{
 			m_VArray = new VertexArray(sizeof(vertices), vertices);
 			m_Shader = new Shader("shader/vertex.vert", "shader/fragment.frag");
-			m_VArray->AddBuffer(12, 0);
+			m_Layout = { { ShaderDataType::FLOAT3,"VertexPos" } };
+			m_VArray->AddBufferLayout(m_Layout);
 		}
 
 		Render::~Render()

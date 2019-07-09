@@ -1,6 +1,8 @@
 #pragma once
 #include "Buffer.h"
 
+#include "BufferLayout.h"
+
 namespace renderx {
 	namespace graphics {
 

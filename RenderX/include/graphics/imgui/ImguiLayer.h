@@ -26,6 +26,7 @@ namespace renderx {
 			
 			void Begin();
 			void ShowDemo();
+			void ImguiWindow();
 			void End();
 		public:
 

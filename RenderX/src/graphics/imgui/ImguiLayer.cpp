@@ -83,6 +83,51 @@ namespace renderx {
 				ImGui::ShowDemoWindow(&show_demo_window);
 		}
 		
+		void ImguiLayer::ImguiWindow()
+		{
+			ImGuiWindowFlags window_flags = false;
+
+			bool show = false;
+			if (!ImGui::Begin("RenderX", &show, window_flags))
+			{
+				// Early out if the window is collapsed, as an optimization.
+				ImGui::End();
+				return;
+			}
+
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.65f);
+
+
+			if (ImGui::BeginMenuBar())
+			{
+				if (ImGui::BeginMenu("Menu"))
+				{
+					ImGui::MenuItem("Main", NULL, &show);
+					ImGui::EndMenu();
+				}
+
+				if (ImGui::BeginMenu("Examples"))
+				{
+					ImGui::MenuItem("Main menu bar", NULL, &show);
+					ImGui::MenuItem("Console", NULL, &show);
+					ImGui::MenuItem("Log", NULL, &show);
+					ImGui::MenuItem("Simple layout", NULL, &show);
+					ImGui::MenuItem("Property editor", NULL, &show);
+					ImGui::EndMenu();
+				}
+
+
+				ImGui::EndMenuBar();
+			}
+
+
+
+			ImGui::End();
+		}
+
+
+
+
 		void ImguiLayer::End()
 		{
 			ImGuiIO& io = ImGui::GetIO();

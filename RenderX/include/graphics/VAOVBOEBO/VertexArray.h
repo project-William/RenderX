@@ -1,5 +1,7 @@
 #pragma once
 #include "VertexBuffer.h"
+#include "BufferLayout.h"
+
 
 namespace renderx {
 	namespace graphics {
@@ -9,6 +11,7 @@ namespace renderx {
 		private:
 			GLuint m_VertexArray;
 			VertexBuffer* m_Vbuffer;
+			BufferLayout m_Layout;
 
 		public:
 			VertexArray();
@@ -16,7 +19,9 @@ namespace renderx {
 			~VertexArray();
 
 			void AddBuffer(unsigned int stride, const void* offset);
-			
+			void AddBufferLayout(const BufferLayout& layout);
+
+
 			void BindVertexArray()const;
 			void UnbindVertexArray()const;
 
