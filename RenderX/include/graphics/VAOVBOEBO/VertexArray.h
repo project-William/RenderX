@@ -18,13 +18,10 @@ namespace renderx {
 			VertexArray(unsigned int size, const void* data);
 			~VertexArray();
 
-			void AddBuffer(unsigned int stride, const void* offset);
 			void AddBufferLayout(const BufferLayout& layout);
-
 
 			void BindVertexArray()const;
 			void UnbindVertexArray()const;
-
 
 		};
 		

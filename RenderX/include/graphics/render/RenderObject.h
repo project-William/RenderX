@@ -1,6 +1,6 @@
 #pragma once
-#include "Render.h"
-
+#include "..//shader/Shader.h"
+#include "..//VAOVBOEBO/VertexArray.h"
 
 namespace renderx {
 	namespace graphics {
@@ -24,13 +24,11 @@ namespace renderx {
 		};
 
 
-
-
 		class REN_API RenderObject
 		{
 		public:
-			RenderObject();
-			virtual ~RenderObject();
+			RenderObject() {}
+			virtual ~RenderObject() {}
 
 			virtual void BindObject() const = 0;
 			virtual void UnbindObject() const = 0;

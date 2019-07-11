@@ -4,6 +4,7 @@ namespace renderx {
 	namespace graphics {
 
 		Shader::Shader()
+			:m_VFilePath(), m_FFilePath(), m_ShaderProgram(0)
 		{
 
 		}
@@ -14,7 +15,7 @@ namespace renderx {
 		}
 
 		Shader::Shader(const std::string& vfile, const std::string& ffile)
-			:m_VFilePath(vfile),m_FFilePath(ffile)
+			:m_VFilePath(vfile),m_FFilePath(ffile),m_ShaderProgram(0)
 		{
 			m_Source= GetShaderSource();
 			m_ShaderProgram = CreateShaderProgram();

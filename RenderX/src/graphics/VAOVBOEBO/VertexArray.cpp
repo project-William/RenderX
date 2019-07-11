@@ -21,12 +21,6 @@ namespace renderx {
 			delete m_Vbuffer;
 		}
 
-		void VertexArray::AddBuffer(unsigned int stride, const void* offset)
-		{
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, offset);
-		}
-
 		void VertexArray::AddBufferLayout(const BufferLayout& layout)
 		{
 			m_Vbuffer->Bind();

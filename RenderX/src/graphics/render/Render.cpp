@@ -4,43 +4,21 @@ namespace renderx {
 	namespace graphics {
 
 		Render::Render()
-			:m_VArray(nullptr),m_Shader(nullptr)
+			:m_render(nullptr)
 		{
-			m_VArray = new VertexArray(sizeof(vertices), vertices);
-			m_Shader = new Shader("shader/vertex.vert", "shader/fragment.frag");
-			m_Layout = { { ShaderDataType::FLOAT3,"VertexPos" } };
-			m_VArray->AddBufferLayout(m_Layout);
+			m_render = new RenderShape();
 		}
 
 		Render::~Render()
 		{
-			delete m_VArray;
-			delete m_Shader;
+			delete m_render;
 		}
 
-
-		void Render::Build()
-		{
-			
-		}
-
-		void Render::RenderAttrib()
-		{
-			
-		}
-
-
-		void Render::use()
-		{
-			m_Shader->BindShaderProgram();
-		}
 
 		void Render::Draw()
 		{
-			m_VArray->BindVertexArray();
-			glDrawArrays(GL_TRIANGLES, 0, 6);
+			m_render->Draw();
 		}
 
-	
 	}
 }

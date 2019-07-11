@@ -21,7 +21,6 @@ Application::~Application()
 
 void Application::Run()
 {
-	render->use();
 
 	while (!m_Window->Closed())
 	{
