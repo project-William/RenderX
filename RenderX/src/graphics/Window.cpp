@@ -72,7 +72,7 @@ namespace renderx {
 
 		bool Window::Closed()const
 		{
-			return glfwWindowShouldClose(m_WinPros.glWindowPtr);
+			return glfwWindowShouldClose(m_WinPros.glWindowPtr) == 1;
 		}
 
 		void Window::OnUpdate()const

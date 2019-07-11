@@ -33,8 +33,8 @@ namespace renderx {
 			//io.ConfigViewportsNoTaskBarIcon = true;
 
 			// Setup Dear ImGui style
-			//ImGui::StyleColorsDark();
-			ImGui::StyleColorsLight();
+			ImGui::StyleColorsDark();
+			//ImGui::StyleColorsLight();
 			//ImGui::StyleColorsClassic();
 
 			// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
@@ -88,39 +88,19 @@ namespace renderx {
 			ImGuiWindowFlags window_flags = false;
 
 			bool show = false;
-			if (!ImGui::Begin("RenderX", &show, window_flags))
+			if (!ImGui::Begin("RenderX Settings", &show, window_flags))
 			{
 				// Early out if the window is collapsed, as an optimization.
 				ImGui::End();
 				return;
 			}
 
-			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.65f);
+			ImGui::Text("This is RenderX settings:");
 
-
-			if (ImGui::BeginMenuBar())
+			if (ImGui::Button("Background"))
 			{
-				if (ImGui::BeginMenu("Menu"))
-				{
-					ImGui::MenuItem("Main", NULL, &show);
-					ImGui::EndMenu();
-				}
 
-				if (ImGui::BeginMenu("Examples"))
-				{
-					ImGui::MenuItem("Main menu bar", NULL, &show);
-					ImGui::MenuItem("Console", NULL, &show);
-					ImGui::MenuItem("Log", NULL, &show);
-					ImGui::MenuItem("Simple layout", NULL, &show);
-					ImGui::MenuItem("Property editor", NULL, &show);
-					ImGui::EndMenu();
-				}
-
-
-				ImGui::EndMenuBar();
 			}
-
-
 
 			ImGui::End();
 		}

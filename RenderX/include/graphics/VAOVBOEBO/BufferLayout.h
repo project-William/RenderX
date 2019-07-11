@@ -54,6 +54,7 @@ namespace renderx {
 
 			inline GLuint GetElementCount()const { return Count; }
 			inline GLuint GetElementSize()const { return Size; }
+
 		private:
 
 			std::string Name;
