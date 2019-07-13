@@ -10,8 +10,7 @@ namespace renderx {
 
 		RenderShape::~RenderShape()
 		{
-			delete m_VAO_Tri;
-			delete m_Shader_Tri;
+
 		}
 
 

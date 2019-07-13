@@ -9,12 +9,11 @@ class Application
 private:
 	std::unique_ptr<graphics::Window> m_Window;
 
-	
 	graphics::ImguiLayer* imgui;
+	graphics::RenderLayer* renderLayer;
 
-	graphics::LayerStack* layerstack;
+	graphics::LayerList* layerList;
 
-	graphics::Render* render;
 private:
 
 

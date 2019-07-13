@@ -31,7 +31,6 @@ namespace renderx {
 
 			void OnAttach() override;
 			void OnDetach() override;
-
 			void OnImguiLayer() override;
 
 		};

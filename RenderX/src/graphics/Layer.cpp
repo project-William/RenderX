@@ -23,11 +23,6 @@ namespace renderx {
 
 		}
 
-		void Layer::OnUpdate()
-		{
-
-		}
-
 		void Layer::OnImguiLayer()
 		{
 

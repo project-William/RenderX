@@ -11,17 +11,11 @@ namespace renderx {
 
 		LayerList::~LayerList()
 		{
-
+			for (auto& layer : m_LayerList)
+				delete layer;
 		}
 
-
-		void LayerList::PushLayer(Layer* layer)
-		{
-			m_LayerList.push_back(layer);
-		}
-
-
-		void LayerList::ShowLayer()const
+		void LayerList::RenderLayers()const
 		{
 			for (auto& layer : m_LayerList)
 				layer->OnImguiLayer();

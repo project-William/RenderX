@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
+    <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\render\Render.h" />
     <ClInclude Include="include\graphics\render\RenderLayer.h" />
@@ -182,7 +183,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\graphics\Layer.cpp" />
-    <ClCompile Include="src\graphics\LayerStack.cpp" />
+    <ClCompile Include="src\graphics\LayerList.cpp" />
     <ClCompile Include="src\graphics\render\Render.cpp" />
     <ClCompile Include="src\graphics\render\RenderLayer.cpp" />
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />

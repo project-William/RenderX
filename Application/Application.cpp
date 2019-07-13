@@ -4,15 +4,15 @@ Application::Application()
 {
 	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 
-	layerstack = new graphics::LayerStack();
-
+	renderLayer = new graphics::RenderLayer();
+	//
 	imgui = new graphics::ImguiLayer(m_Window->GetWinPros());
 	imgui->OnAttach();
 
+	layerList = new graphics::LayerList();
+	layerList->PushBackLayer(imgui);
+	layerList->PushBackLayer(renderLayer);
 
-	layerstack->PushLayer(imgui);
-
-	render = new graphics::Render();
 }
 
 Application::~Application()
@@ -30,9 +30,7 @@ void Application::Run()
 		
 		imgui->Begin();
 
-		render->Draw();
-		//layerstack->ShowLayer();
-		imgui->ImguiWindow();
+		layerList->RenderLayers();
 
 		imgui->End();
 
