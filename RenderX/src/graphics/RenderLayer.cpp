@@ -1,18 +1,18 @@
-#include "graphics/render/RenderLayer.h"
+#include "graphics/RenderLayer.h"
 
 namespace renderx {
 	namespace graphics {
 
 		RenderLayer::RenderLayer()
-			:m_Render(nullptr)
+			:m_Render(nullptr)//,m_FrameBuffer(nullptr)
 		{
 			m_Render = new Render();
 		}
 
 		RenderLayer::RenderLayer(WinPros winPros)
-			:m_Render(nullptr),m_WinData(winPros)
+			: m_Render(nullptr), m_WinData(winPros)//, m_FrameBuffer(nullptr)
 		{
-			
+			m_Render = new Render();
 		}
 
 		RenderLayer::~RenderLayer()
@@ -30,21 +30,20 @@ namespace renderx {
 
 		}
 
-		void RenderLayer::OnImguiLayer(std::function<void()> func)
+
+		void RenderLayer::OnImguiLayer()
 		{
-			
 			ImGuiWindowFlags window_flags = false;
 
 			bool show = true;
 			if (!ImGui::Begin("RenderX Settings", &show, window_flags))
 			{
 				// Early out if the window is collapsed, as an optimization.
-				func();
 				m_Render->Draw();
 				ImGui::End();
 				return;
 			}
-
+			
 			ImGui::End();
 		}
 	}

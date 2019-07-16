@@ -1,10 +1,15 @@
 #include "Application.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 Application::Application()
 {
 	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 
-	renderLayer = new graphics::RenderLayer();
+	auto& winPros = m_Window->GetWinPros();
+
+	renderLayer = new graphics::RenderLayer(m_Window->GetWinPros());
 	//
 	imgui = new graphics::ImguiLayer(m_Window->GetWinPros());
 
@@ -13,8 +18,9 @@ Application::Application()
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);
+
+	framebuffer = new graphics::FrameBuffer(m_Window->GetWinWidth(), m_Window->GetWinHeight());
 	
-	framebuffer = new graphics::FrameBuffer();
 }
 
 Application::~Application()
@@ -23,23 +29,32 @@ Application::~Application()
 
 void Application::Run()
 {
-	
+
+
 	while (!m_Window->Closed())
-	{
-		//framebuffer->BindFrameBuffer();
+	{	
+		framebuffer->BindFrameBuffer();
+		imgui->Begin();
+
+		renderLayer->OnImguiLayer();
+
+		imgui->End();
+		//glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+		//glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
 		//glClear(GL_COLOR_BUFFER_BIT);
 		//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 
 		//clear buffers
+		framebuffer->UnbindFrameBuffer();
 		m_Window->Clear();
+		//
+		//imgui->Begin();
 
-		
-		imgui->Begin();
-
-		layerList->RenderLayers();
-
-		imgui->End();
-		
+		//layerList->RenderLayers();
+		//renderLayer->OnImguiLayer();
+		renderLayer->OnAttach();
+		//imgui->End();
+		//
 		//swap buffers
 		m_Window->OnUpdate();
 	}

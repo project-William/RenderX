@@ -29,7 +29,8 @@ namespace renderx {
 			inline unsigned int GetWinWidth()const { return m_WinPros.win_Width; }
 			inline unsigned int GetWinHeight()const { return m_WinPros.win_Height; }
 			inline Window* GetWinClassPtr()const { return m_Instance; }
-			inline WinPros GetWinPros()const { return m_WinPros; }
+			inline const WinPros& GetWinPros()const { return m_WinPros; }
+
 
 			void OnUpdate()const;
 			void Clear()const;

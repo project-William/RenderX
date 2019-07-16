@@ -18,9 +18,8 @@ namespace renderx {
 
 			void BufferStorage(unsigned int width,unsigned int height);
 
+			inline const GLuint& GetRenderBuffer()const { return m_RenderBufferID; }
 
 		};
-
-
 	}
 }

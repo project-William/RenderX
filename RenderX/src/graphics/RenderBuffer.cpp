@@ -29,6 +29,5 @@ namespace renderx {
 		{
 			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
 		}
-
 	}
 }

@@ -1,6 +1,8 @@
 #pragma once
-#include "..//Layer.h"
-#include "Render.h"
+#include "Layer.h"
+#include "render/Render.h"
+#include "FrameBuffer.h"
+
 namespace renderx {
 	namespace graphics {
 
@@ -15,6 +17,7 @@ namespace renderx {
 			RenderLayer(WinPros winPros);
 			~RenderLayer();
 
+			
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer()override;
