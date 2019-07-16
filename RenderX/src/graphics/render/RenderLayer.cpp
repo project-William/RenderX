@@ -9,6 +9,12 @@ namespace renderx {
 			m_Render = new Render();
 		}
 
+		RenderLayer::RenderLayer(WinPros winPros)
+			:m_Render(nullptr),m_WinData(winPros)
+		{
+			
+		}
+
 		RenderLayer::~RenderLayer()
 		{
 			delete m_Render;
@@ -26,9 +32,19 @@ namespace renderx {
 
 		void RenderLayer::OnImguiLayer()
 		{
+			ImGuiWindowFlags window_flags = false;
 			m_Render->Draw();
+
+			bool show = true;
+			if (!ImGui::Begin("RenderX Settings", &show, window_flags))
+			{
+				// Early out if the window is collapsed, as an optimization.
+                
+				ImGui::End();
+				return;
+			}
+
+			ImGui::End();
 		}
-
-
 	}
 }

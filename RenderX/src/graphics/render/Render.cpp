@@ -14,7 +14,6 @@ namespace renderx {
 			delete m_render;
 		}
 
-
 		void Render::Draw()
 		{
 			m_render->Draw();

@@ -7,3 +7,5 @@
 #include "include/graphics/LayerList.h"
 
 #include "include/graphics/render/RenderLayer.h"
+
+#include "include/graphics/FrameBuffer.h"

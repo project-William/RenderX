@@ -7,12 +7,14 @@ Application::Application()
 	renderLayer = new graphics::RenderLayer();
 	//
 	imgui = new graphics::ImguiLayer(m_Window->GetWinPros());
+
 	imgui->OnAttach();
 
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);
-
+	
+	framebuffer = new graphics::FrameBuffer();
 }
 
 Application::~Application()
@@ -21,9 +23,13 @@ Application::~Application()
 
 void Application::Run()
 {
-
+	
 	while (!m_Window->Closed())
 	{
+		//framebuffer->BindFrameBuffer();
+		//glClear(GL_COLOR_BUFFER_BIT);
+		//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+
 		//clear buffers
 		m_Window->Clear();
 
@@ -33,8 +39,7 @@ void Application::Run()
 		layerList->RenderLayers();
 
 		imgui->End();
-
-
+		
 		//swap buffers
 		m_Window->OnUpdate();
 	}

@@ -125,9 +125,5 @@ namespace renderx {
 				glfwMakeContextCurrent(backup_current_context);
 			}
 		}
-
-
-
-
 	}
 }

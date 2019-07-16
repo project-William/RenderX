@@ -9,10 +9,13 @@ class Application
 private:
 	std::unique_ptr<graphics::Window> m_Window;
 
-	graphics::ImguiLayer* imgui;
-	graphics::RenderLayer* renderLayer;
+	graphics::ImguiLayer* imgui = nullptr;
 
-	graphics::LayerList* layerList;
+	graphics::RenderLayer* renderLayer = nullptr;
+
+	graphics::LayerList* layerList = nullptr;
+
+	graphics::FrameBuffer* framebuffer = nullptr;
 
 private:
 

@@ -1,5 +1,5 @@
 #include "graphics/Window.h"
-#include <direct.h>
+
 namespace renderx {
 	namespace graphics {
 		
