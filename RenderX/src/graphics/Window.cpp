@@ -49,14 +49,27 @@ namespace renderx {
 			);
 
 			glfwMakeContextCurrent(m_WinPros.glWindowPtr);
+			glfwSetWindowUserPointer(m_WinPros.glWindowPtr,&m_WinPros);
+			glfwSetWindowSizeCallback(m_WinPros.glWindowPtr, [](GLFWwindow* window, int width, int height)
+			{
+				WinPros& data = *(WinPros*)glfwGetWindowUserPointer(window);
+				data.win_Height = height;
+				data.win_Width = width;
+				glViewport(0, 0, data.win_Width, data.win_Height);
+			});
 
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
-				std::cout << "Failed to initialize the glad" << std::endl;
+				RDX_INIT_ERROR(gladLoadGLLoader, "Failed to initialize GLAD!");
 				glfwTerminate();
 				return false;
 			}
+			else
+				RDX_INIT_SUCCESS(gladLoadGLLoader, "GLAD initialized successfully!");
+
+			
+
 
 			return true;
 
@@ -66,7 +79,7 @@ namespace renderx {
 		void Window::Clear()const
 		{
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+			glClearColor(1.0f, 1.0f, 0.1f, 1.0f);
 		}
 
 

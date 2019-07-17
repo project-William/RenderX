@@ -182,6 +182,8 @@
     <ClInclude Include="RenderX.h" />
     <ClInclude Include="include\graphics\Layer.h" />
     <ClInclude Include="include\graphics\FrameBuffer.h" />
+    <ClInclude Include="include\events\AppEvent.h" />
+    <ClInclude Include="include\events\Event.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />

@@ -31,6 +31,7 @@ namespace renderx {
 			if (CheckInit())
 				RDX_INIT_SUCCESS(CheckInit(), "Framebuffer initialized successfully!");
 			else RDX_INIT_ERROR(CheckInit(), "Failed to initialize framebuffer!");
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 
 		FrameBuffer::~FrameBuffer()

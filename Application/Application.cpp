@@ -19,7 +19,6 @@ Application::Application()
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);
 
-	framebuffer = new graphics::FrameBuffer(m_Window->GetWinWidth(), m_Window->GetWinHeight());
 	
 }
 
@@ -33,29 +32,30 @@ void Application::Run()
 
 	while (!m_Window->Closed())
 	{	
-		framebuffer->BindFrameBuffer();
-		imgui->Begin();
-
-		renderLayer->OnImguiLayer();
-
-		imgui->End();
-		//glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-		//glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
-		//glClear(GL_COLOR_BUFFER_BIT);
-		//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-
-		//clear buffers
-		framebuffer->UnbindFrameBuffer();
-		m_Window->Clear();
+		//renderLayer->GetFrameBuffer()->BindFrameBuffer();
+		//imgui->Begin();
+		//renderLayer->TestDraw();
+		//
+		//imgui->End();
+		//
+		////clear buffers
+		//renderLayer->GetFrameBuffer()->UnbindFrameBuffer();
+		//m_Window->Clear();
 		//
 		//imgui->Begin();
 
 		//layerList->RenderLayers();
 		//renderLayer->OnImguiLayer();
-		renderLayer->OnAttach();
+		//renderLayer->TestDraw();
+		
 		//imgui->End();
 		//
 		//swap buffers
+		m_Window->Clear();
+		
+		renderLayer->OnAttach();
+		std::cout << m_Window->GetWinWidth() << " " << m_Window->GetWinHeight() << std::endl;
+
 		m_Window->OnUpdate();
 	}
 
