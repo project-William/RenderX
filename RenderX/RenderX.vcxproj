@@ -170,6 +170,8 @@
     <ClInclude Include="include\graphics\render\RenderShape.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\Buffer.h" />
+    <ClInclude Include="include\graphics\texture\stb_image.h" />
+    <ClInclude Include="include\graphics\texture\Texture.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\BufferLayout.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\IndexBuffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\VertexArray.h" />
@@ -193,6 +195,7 @@
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />
     <ClCompile Include="src\graphics\render\RenderShape.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
+    <ClCompile Include="src\graphics\texture\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />

@@ -4,27 +4,23 @@ namespace renderx {
 	namespace graphics {
 
 		FrameBuffer::FrameBuffer()
-			:m_FrameBufferID(0),m_RenderBuffer(nullptr)
+			:m_FrameBufferID(0),m_RenderBuffer(nullptr),m_Texture(nullptr)
 		{
 
 		}
 
 
 		FrameBuffer::FrameBuffer(unsigned int width, unsigned int height)
-			:m_FrameBufferID(0),m_RenderBuffer(nullptr)
+			:m_FrameBufferID(0),m_RenderBuffer(nullptr), m_Texture(nullptr)
 		{
 			glGenFramebuffers(1, &m_FrameBufferID);
 			glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBufferID);
 			m_RenderBuffer = new RenderBuffer();
 			m_RenderBuffer->BufferStorage(width, height);
 
-			unsigned int texColorBuffer;
-			glGenTextures(1, &texColorBuffer);
-			glBindTexture(GL_TEXTURE_2D, texColorBuffer);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+			m_Texture = new Texture(width, height);
+			auto texColorBuffer = m_Texture->GetTexRef();
+			
 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColorBuffer, 0);
 
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, 

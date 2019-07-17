@@ -1,10 +1,11 @@
 #pragma once
-#include "..//Core.h"
+#include "..//..//..//Core.h"
+
 
 namespace renderx {
 	namespace graphics {
 
-		enum class REN_API TexWrap
+		enum REN_API TexWrap
 		{
 			REPEAT				= GL_REPEAT,
 			MIRRORED_REPEAT		= GL_MIRRORED_REPEAT,
@@ -28,6 +29,7 @@ namespace renderx {
 			Texture(const std::string& name, std::string& filepath);
 			~Texture();
 
+			inline const GLuint& GetTexRef()const { return m_Texture; }
 			inline GLuint GetTexture()const { return m_Texture; }
 			inline int GetTextureWidth()const { return m_Width; }
 			inline int GetTextureHeight()const { return m_Height; }
@@ -39,8 +41,5 @@ namespace renderx {
 		private:
 			GLuint Load();
 		};
-
-
-
 	}
 }
