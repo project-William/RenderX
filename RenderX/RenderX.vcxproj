@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="include\events\AppEvent.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
@@ -182,7 +183,6 @@
     <ClInclude Include="RenderX.h" />
     <ClInclude Include="include\graphics\Layer.h" />
     <ClInclude Include="include\graphics\FrameBuffer.h" />
-    <ClInclude Include="include\events\AppEvent.h" />
     <ClInclude Include="include\events\Event.h" />
   </ItemGroup>
   <ItemGroup>

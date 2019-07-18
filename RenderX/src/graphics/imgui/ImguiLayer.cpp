@@ -9,8 +9,8 @@ namespace renderx {
 
 		}
 
-		ImguiLayer::ImguiLayer(WinPros winData)
-			:m_WinData(winData)
+		ImguiLayer::ImguiLayer(GLFWwindow* window, WinData winData)
+			:m_WinData(winData),m_Window(window)
 		{
 			
 		}
@@ -46,7 +46,7 @@ namespace renderx {
 			}
 
 			// Setup Platform/Renderer bindings
-			ImGui_ImplGlfw_InitForOpenGL(m_WinData.glWindowPtr, true);
+			ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 			ImGui_ImplOpenGL3_Init("#version 410");
 		}
 

@@ -8,12 +8,13 @@ namespace renderx {
 		class REN_API ImguiLayer:public Layer
 		{
 		private:
-			WinPros m_WinData;
+			WinData m_WinData;
+			GLFWwindow* m_Window = nullptr;
 		public:
 			ImguiLayer();
 			~ImguiLayer();
 
-			ImguiLayer(WinPros winData);
+			ImguiLayer(GLFWwindow* window, WinData windata);
 		private:
 			void SetUpImguiLayer();
 

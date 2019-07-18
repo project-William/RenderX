@@ -7,23 +7,25 @@ Application::Application()
 {
 	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 
-	auto& winPros = m_Window->GetWinPros();
+	auto& WinData = m_Window->GetWinData();
 
-	renderLayer = new graphics::RenderLayer(m_Window->GetWinPros());
+	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	//
-	imgui = new graphics::ImguiLayer(m_Window->GetWinPros());
+	imgui = new graphics::ImguiLayer(m_Window->GetWinPtr(), m_Window->GetWinData());
 
 	imgui->OnAttach();
 
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
-	layerList->PushBackLayer(renderLayer);
+	layerList->PushBackLayer(renderLayer);	
 
-	
 }
 
 Application::~Application()
 {
+	delete imgui;
+	delete renderLayer;
+	delete layerList;
 }
 
 void Application::Run()

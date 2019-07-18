@@ -10,11 +10,11 @@ namespace renderx {
 		{
 		private:
 			Render* m_Render;
-			WinPros m_WinData;
+			WinData m_WinData;
 			FrameBuffer* m_FrameBuffer;
 		public:
 			RenderLayer();
-			RenderLayer(WinPros winPros);
+			RenderLayer(WinData WinData);
 			~RenderLayer();
 
 

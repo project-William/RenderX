@@ -8,7 +8,9 @@ namespace renderx {
 		{
 			NONE = 0,
 			WindowResized,
-			WindowClosed
+			WindowClosed,
+			KeyTyped,
+			MouseMoved
 		};
 
 		class REN_API Event

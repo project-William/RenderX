@@ -9,8 +9,8 @@ namespace renderx {
 			m_Render = new Render();
 		}
 
-		RenderLayer::RenderLayer(WinPros winPros)
-			: m_Render(nullptr), m_WinData(winPros)//, m_FrameBuffer(nullptr)
+		RenderLayer::RenderLayer(WinData WinData)
+			: m_Render(nullptr), m_WinData(WinData)//, m_FrameBuffer(nullptr)
 		{
 			m_Render = new Render();
 			m_FrameBuffer = new FrameBuffer(m_WinData.win_Width, m_WinData.win_Height);

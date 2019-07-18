@@ -14,7 +14,7 @@ namespace renderx {
 
 		Window::~Window()
 		{
-			glfwDestroyWindow(m_WinPros.glWindowPtr);
+			glfwDestroyWindow(m_WinData.glWindowPtr);
 		}
 
 
@@ -40,24 +40,27 @@ namespace renderx {
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-			m_WinPros.glWindowPtr = glfwCreateWindow(
-				m_WinPros.win_Width,
-				m_WinPros.win_Height,
-				m_WinPros.win_Title.c_str(),
+			m_WinData.glWindowPtr = glfwCreateWindow(
+				m_WinData.win_Width,
+				m_WinData.win_Height,
+				m_WinData.win_Title.c_str(),
 				nullptr,
 				nullptr
 			);
 
-			glfwMakeContextCurrent(m_WinPros.glWindowPtr);
-			glfwSetWindowUserPointer(m_WinPros.glWindowPtr,&m_WinPros);
-			glfwSetWindowSizeCallback(m_WinPros.glWindowPtr, [](GLFWwindow* window, int width, int height)
+			glfwMakeContextCurrent(m_WinData.glWindowPtr);
+			glfwSetWindowUserPointer(m_WinData.glWindowPtr,&m_WinData);
+
+			glfwSetWindowSizeCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, int width, int height)
 			{
-				WinPros& data = *(WinPros*)glfwGetWindowUserPointer(window);
-				data.win_Height = height;
+				WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
 				data.win_Width = width;
-				glViewport(0, 0, data.win_Width, data.win_Height);
+				data.win_Height = height;
+				events::WindowResizedEvent event(width, height);
 			});
 
+
+		
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
@@ -67,12 +70,8 @@ namespace renderx {
 			}
 			else
 				RDX_INIT_SUCCESS(gladLoadGLLoader, "GLAD initialized successfully!");
-
-			
-
-
+		
 			return true;
-
 		}
 
 
@@ -85,12 +84,12 @@ namespace renderx {
 
 		bool Window::Closed()const
 		{
-			return glfwWindowShouldClose(m_WinPros.glWindowPtr) == 1;
+			return glfwWindowShouldClose(m_WinData.glWindowPtr) == 1;
 		}
 
 		void Window::OnUpdate()const
 		{
-			glfwSwapBuffers(m_WinPros.glWindowPtr);
+			glfwSwapBuffers(m_WinData.glWindowPtr);
 			glfwPollEvents();
 		}
 

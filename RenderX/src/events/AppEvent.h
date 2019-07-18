@@ -15,7 +15,7 @@ namespace renderx {
 			WindowResizedEvent(unsigned int width, unsigned int height)
 				:m_Width(width),m_Height(height)
 			{
-				glViewport(0, 0, width, height);
+				glViewport(0, 0, m_Width, m_Height);
 			}
 			~WindowResizedEvent(){}
 
@@ -26,28 +26,6 @@ namespace renderx {
 			EVENT_NAME_TYPE(WindowResized)
 
 		};
-
-
-		class REN_API KeyTypeEvent :public Event
-		{
-		private:
-			unsigned int m_KeyCode;
-			KeyTypeEvent():m_KeyCode(0){}
-			KeyTypeEvent(unsigned int keycode)
-				:m_KeyCode(keycode)
-			{
-
-			}
-
-			~KeyTypeEvent(){}
-			inline unsigned int GetKeyCode()const { return m_KeyCode; }
-
-			EVENT_CLASS_TYPE(KeyTyped)
-			EVENT_NAME_TYPE(KeyTyped)
-
-		};
-
-
 
 	}
 }

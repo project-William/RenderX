@@ -11,8 +11,7 @@ namespace renderx {
 
 		LayerList::~LayerList()
 		{
-			for (auto& layer : m_LayerList)
-				delete layer;
+			
 		}
 
 		void LayerList::RenderLayers()const
