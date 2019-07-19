@@ -32,28 +32,24 @@ namespace renderx {
 
 		}
 
-		void RenderLayer::TestDraw()
+		void RenderLayer::TestDraw(int width, int height)
 		{
 			ImGuiWindowFlags window_flags = false;
 			bool show = true;
 
-			ImGui::SetNextWindowSize(ImVec2(1200, 800));
+			//ImGui::SetNextWindowSize(ImVec2(800, 600));
+			
 
-			ImGui::Begin("RenderX Settings");
+			ImGui::Begin("RenderX Viewport");
 			{
-				// Early out if the window is collapsed, as an optimization.
 				ImVec2 pos = ImGui::GetCursorScreenPos();
 				std::cout << pos.x << "    " << pos.y << std::endl;
-				m_Render->Draw();
-				glViewport(0, 0, 1200, 800);
-				auto tex = m_FrameBuffer->GetRendered();
-				//glViewport(0, 0, 600, 360);
-				ImGui::GetWindowDrawList()->AddImage((void*)tex, 
-					ImVec2(ImGui::GetItemRectMin().x + pos.x,
-						ImGui::GetItemRectMin().y + pos.y),
-					ImVec2(pos.x + 1200, pos.y + 800),
+				ImGui::GetWindowDrawList()->AddImage((void*)m_FrameBuffer->GetRendered(), 
+					ImVec2(pos.x, pos.y),
+					ImVec2(pos.x + ImGui::GetWindowWidth(), pos.y + ImGui::GetWindowHeight()),
 					ImVec2(0, 1), ImVec2(1, 0));
 			}
+
 			ImGui::End();
 		}
 

@@ -34,29 +34,39 @@ void Application::Run()
 
 	while (!m_Window->Closed())
 	{	
-		//renderLayer->GetFrameBuffer()->BindFrameBuffer();
+		m_Window->Clear();
+		m_Window->ClearColor();
+		renderLayer->GetFrameBuffer()->BindFrameBuffer();
 		//imgui->Begin();
+		m_Window->Clear();
+		m_Window->ClearColor();
+		renderLayer->OnAttach();
 		//renderLayer->TestDraw();
-		//
+		//imgui->OnImguiLayer();
 		//imgui->End();
+		
+		//clear buffers
+		//m_Window->OnUpdate();
+		renderLayer->GetFrameBuffer()->UnbindFrameBuffer();
+		imgui->Begin();
+		renderLayer->TestDraw(m_Window->GetWinWidth(), m_Window->GetWinHeight());
+		imgui->OnImguiLayer();
+
+
+		imgui->End();
 		//
-		////clear buffers
-		//renderLayer->GetFrameBuffer()->UnbindFrameBuffer();
-		//m_Window->Clear();
-		//
-		//imgui->Begin();
 
 		//layerList->RenderLayers();
 		//renderLayer->OnImguiLayer();
 		//renderLayer->TestDraw();
-		
+		//imgui->OnImguiLayer();
 		//imgui->End();
 		//
 		//swap buffers
-		m_Window->Clear();
+		//m_Window->Clear();
 		
-		renderLayer->OnAttach();
-		std::cout << m_Window->GetWinWidth() << " " << m_Window->GetWinHeight() << std::endl;
+		//renderLayer->OnAttach();
+		//std::cout << m_Window->GetWinWidth() << " " << m_Window->GetWinHeight() << std::endl;
 
 		m_Window->OnUpdate();
 	}

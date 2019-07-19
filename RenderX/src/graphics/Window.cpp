@@ -17,14 +17,12 @@ namespace renderx {
 			glfwDestroyWindow(m_WinData.glWindowPtr);
 		}
 
-
 		Window::Window()
 		{
 			if (!init())
 				RDX_INIT_ERROR(init(), "Init failed");
 			else 
 				RDX_INIT_SUCCESS(init(), "Init successfully");
-
 		}
 
 		bool Window::init()
@@ -36,8 +34,8 @@ namespace renderx {
 			}
 			else
 				RDX_INIT_SUCCESS(glfwInit(), "Init successfully");
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 			m_WinData.glWindowPtr = glfwCreateWindow(
@@ -57,11 +55,9 @@ namespace renderx {
 				data.win_Width = width;
 				data.win_Height = height;
 				events::WindowResizedEvent event(width, height);
+				
 			});
-
-
-		
-
+			
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
 				RDX_INIT_ERROR(gladLoadGLLoader, "Failed to initialize GLAD!");
@@ -78,7 +74,11 @@ namespace renderx {
 		void Window::Clear()const
 		{
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(1.0f, 1.0f, 0.1f, 1.0f);
+		}
+		
+		void Window::ClearColor()const
+		{
+			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		}
 
 

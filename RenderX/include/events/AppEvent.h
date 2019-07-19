@@ -32,6 +32,7 @@ namespace renderx {
 		{
 		private:
 			unsigned int m_KeyCode;
+		public:
 			KeyTypeEvent():m_KeyCode(0){}
 			KeyTypeEvent(unsigned int keycode)
 				:m_KeyCode(keycode)
@@ -46,6 +47,13 @@ namespace renderx {
 			EVENT_NAME_TYPE(KeyTyped)
 
 		};
+
+		class REN_API WindowClosed :public Event
+		{
+		private:
+
+		};
+
 
 
 

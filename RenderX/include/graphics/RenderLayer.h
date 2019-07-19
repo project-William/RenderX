@@ -20,7 +20,7 @@ namespace renderx {
 
 			inline FrameBuffer* GetFrameBuffer()const { return m_FrameBuffer; }
 
-			void TestDraw();
+			void TestDraw(int width, int height);
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer() override;

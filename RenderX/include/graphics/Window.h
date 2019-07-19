@@ -1,6 +1,5 @@
 #pragma once
 #include "..//..//Core.h"
-
 #include "..//events/AppEvent.h"
 
 namespace renderx {
@@ -8,20 +7,20 @@ namespace renderx {
 
 		struct REN_API WinData
 		{
-			unsigned int win_Width = 1280, win_Height = 720;
+			unsigned int win_Width, win_Height;
 			std::string win_Title = "RenderX";
 			GLFWwindow* glWindowPtr = nullptr;
 
-			WinData(unsigned int width = 1280, unsigned int height = 720)
+			WinData(unsigned int width = 1200, unsigned int height = 800)
 				:win_Width(width),win_Height(height),win_Title("RenderX")
 			{ }
 
 		};
 
-
 		class REN_API Window
 		{
 		private:
+
 			WinData m_WinData;
 			static Window* m_Instance;
 			Window();
@@ -41,6 +40,7 @@ namespace renderx {
 
 			void OnUpdate()const;
 			void Clear()const;
+			void ClearColor()const;
 			bool Closed()const;
 		};
 	}
