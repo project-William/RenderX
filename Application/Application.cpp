@@ -32,6 +32,8 @@ void Application::Run()
 {
 	auto& WinData = m_Window->GetWinData();
 
+	
+
 	while (!m_Window->Closed())
 	{	
 		//bind framebuffer
@@ -45,12 +47,15 @@ void Application::Run()
 		//unbind framebuffer
 		framebuffer->UnbindFrameBuffer();
 		imgui->Begin();
-		renderLayer->TestDraw(m_Window->GetWinWidth(), m_Window->GetWinHeight(), framebuffer->GetRendered());
+		renderLayer->TestDraw(m_Window->GetWinData(),framebuffer->GetRendered());
 		imgui->OnImguiLayer();
 
 
 		imgui->End();
-		//
+		
+		//std::cout << m_Window->GetCursorPosX() << "   " << m_Window->GetCursorPosY() << std::endl;
+
+
 		framebuffer->DelFramebufferTex();
 		m_Window->OnUpdate();
 	}

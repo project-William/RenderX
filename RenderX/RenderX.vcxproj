@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="include\events\AppEvent.h" />
+    <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />

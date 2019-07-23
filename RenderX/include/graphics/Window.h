@@ -1,6 +1,7 @@
 #pragma once
 #include "..//..//Core.h"
 #include "..//events/AppEvent.h"
+#include "..//events/MouseEvent.h"
 
 namespace renderx {
 	namespace graphics {
@@ -14,6 +15,8 @@ namespace renderx {
 			WinData(unsigned int width = 1200, unsigned int height = 800)
 				:win_Width(width),win_Height(height),win_Title("RenderX")
 			{ }
+
+			float xpos, ypos;
 
 		};
 
@@ -30,6 +33,12 @@ namespace renderx {
 		public:
 			~Window();
 			static Window* Create();
+
+			//cursor position
+			inline float GetCursorPosX()const { return m_WinData.xpos; }
+			inline float GetCursorPosY()const { return m_WinData.ypos; }
+
+
 
 			inline GLFWwindow* GetWinPtr()const { return m_WinData.glWindowPtr; }
 			inline unsigned int GetWinWidth()const { return m_WinData.win_Width; }

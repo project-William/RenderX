@@ -4,13 +4,13 @@ namespace renderx {
 	namespace graphics {
 
 		RenderLayer::RenderLayer()
-			:m_Render(nullptr) ,m_FrameBuffer(nullptr)
+			:m_Render(nullptr) 
 		{
 			m_Render = new Render();
 		}
 
 		RenderLayer::RenderLayer(WinData& WinData)
-			: m_Render(nullptr), m_WinData(WinData), m_FrameBuffer(nullptr)
+			: m_Render(nullptr), m_WinData(WinData)
 		{
 			m_Render = new Render();
 		}
@@ -18,7 +18,6 @@ namespace renderx {
 		RenderLayer::~RenderLayer()
 		{
 			delete m_Render;
-			delete m_FrameBuffer;
 		}
 
 		void RenderLayer::OnAttach()
@@ -30,24 +29,15 @@ namespace renderx {
 		{
 		}
 
-		void RenderLayer::NewFrameBuffer(WinData& windata)
-		{
-			m_FrameBuffer = new FrameBuffer(windata.win_Width, windata.win_Height);
-		}
-
-		void RenderLayer::DeleteFrameBuffer()
-		{
-			delete m_FrameBuffer;
-		}
-
-		void RenderLayer::TestDraw(int width, int height, const GLuint& texture)
+		void RenderLayer::TestDraw(const WinData& windata, const GLuint& texture)
 		{
 
 			ImGui::Begin("RenderX Viewport");
 			{
+				ImVec2 p = ImGui::GetCursorPos();
 				ImVec2 pos = ImGui::GetCursorScreenPos();
-				std::cout << pos.x << "    " << pos.y << std::endl;
-				//ImGui::GetWindowViewport();
+				//std::cout << pos.x << "    " << pos.y << std::endl;
+				ImGui::GetWindowViewport();
 				ImGui::GetWindowDrawList()->AddImage((void*)texture, 
 					ImVec2(pos.x, pos.y),
 					ImVec2(pos.x + ImGui::GetWindowWidth(), pos.y + ImGui::GetWindowHeight()),

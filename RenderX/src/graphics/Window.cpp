@@ -58,6 +58,18 @@ namespace renderx {
 				
 			});
 			
+			glfwSetCursorPosCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, double xPos, double yPos)
+			{
+				WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
+				data.xpos = xPos;
+				data.ypos = yPos;
+				events::MouseMovedEvent event((float)xPos, (float)yPos);
+			});
+
+
+
+
+
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
 				RDX_INIT_ERROR(gladLoadGLLoader, "Failed to initialize GLAD!");
