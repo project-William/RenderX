@@ -4,34 +4,28 @@ namespace renderx {
 	namespace graphics {
 
 		FrameBuffer::FrameBuffer()
-			:m_FrameBufferID(0),m_RenderBuffer(nullptr),m_Texture(nullptr)
+			:m_FrameBufferID(0),m_RenderBuffer(nullptr), m_Texture(nullptr)
 		{
 
 		}
 
 
-		FrameBuffer::FrameBuffer(unsigned int width, unsigned int height)
-			:m_FrameBufferID(0),m_RenderBuffer(nullptr), m_Texture(nullptr)
+		FrameBuffer::FrameBuffer(int width, int height)
+			:m_FrameBufferID(0),m_RenderBuffer(nullptr),m_Texture(nullptr)
 		{
 			glGenFramebuffers(1, &m_FrameBufferID);
 			glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBufferID);
+
+			
 			m_RenderBuffer = new RenderBuffer();
 			m_RenderBuffer->BufferStorage(width, height);
-
-			m_Texture = new Texture(width, height);
-			auto texColorBuffer = m_Texture->GetTexRef();
-			
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColorBuffer, 0);
-
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, 
 									  GL_DEPTH_ATTACHMENT, 
 									  GL_RENDERBUFFER, 
 									  m_RenderBuffer->GetRenderBuffer());
 
-			if (CheckInit())
-				RDX_INIT_SUCCESS(CheckInit(), "Framebuffer initialized successfully!");
-			else RDX_INIT_ERROR(CheckInit(), "Failed to initialize framebuffer!");
-			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+			
+			m_RenderBuffer->Unbind();
 		}
 
 		FrameBuffer::~FrameBuffer()
@@ -48,6 +42,24 @@ namespace renderx {
 		void FrameBuffer::UnbindFrameBuffer() 
 		{
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+
+		void FrameBuffer::UpdateFramebufferTex(int width,int height)
+		{
+			m_Texture = new Texture(width, height);
+
+			auto texture = m_Texture->GetTexture();
+
+			glFramebufferTexture2D(GL_FRAMEBUFFER,
+				GL_COLOR_ATTACHMENT0,
+				GL_TEXTURE_2D,
+				texture, 0);
+
+		}
+
+		void FrameBuffer::DelFramebufferTex()
+		{
+			delete m_Texture;
 		}
 
 		bool FrameBuffer::CheckInit()

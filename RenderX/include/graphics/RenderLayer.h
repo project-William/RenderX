@@ -14,13 +14,14 @@ namespace renderx {
 			FrameBuffer* m_FrameBuffer;
 		public:
 			RenderLayer();
-			RenderLayer(WinData WinData);
+			RenderLayer(WinData& WinData);
 			~RenderLayer();
 
-
+			void NewFrameBuffer(WinData& windata);
+			void DeleteFrameBuffer();
 			inline FrameBuffer* GetFrameBuffer()const { return m_FrameBuffer; }
 
-			void TestDraw(int width, int height);
+			void TestDraw(int width, int height, const GLuint& texture);
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer() override;

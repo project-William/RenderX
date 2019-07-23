@@ -7,7 +7,6 @@ Application::Application()
 {
 	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 
-	auto& WinData = m_Window->GetWinData();
 
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	//
@@ -18,6 +17,7 @@ Application::Application()
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);	
+	framebuffer = new graphics::FrameBuffer(m_Window->GetWinWidth(),m_Window->GetWinHeight());
 
 }
 
@@ -30,47 +30,44 @@ Application::~Application()
 
 void Application::Run()
 {
-
+	auto& WinData = m_Window->GetWinData();
 
 	while (!m_Window->Closed())
 	{	
+		//bind framebuffer
 		m_Window->Clear();
-		m_Window->ClearColor();
-		renderLayer->GetFrameBuffer()->BindFrameBuffer();
-		//imgui->Begin();
+		framebuffer->BindFrameBuffer();
+		framebuffer->UpdateFramebufferTex(m_Window->GetWinWidth(),m_Window->GetWinHeight());
 		m_Window->Clear();
 		m_Window->ClearColor();
 		renderLayer->OnAttach();
-		//renderLayer->TestDraw();
-		//imgui->OnImguiLayer();
-		//imgui->End();
 		
-		//clear buffers
-		//m_Window->OnUpdate();
-		renderLayer->GetFrameBuffer()->UnbindFrameBuffer();
+		//unbind framebuffer
+		framebuffer->UnbindFrameBuffer();
 		imgui->Begin();
-		renderLayer->TestDraw(m_Window->GetWinWidth(), m_Window->GetWinHeight());
+		renderLayer->TestDraw(m_Window->GetWinWidth(), m_Window->GetWinHeight(), framebuffer->GetRendered());
 		imgui->OnImguiLayer();
 
 
 		imgui->End();
 		//
-
-		//layerList->RenderLayers();
-		//renderLayer->OnImguiLayer();
-		//renderLayer->TestDraw();
-		//imgui->OnImguiLayer();
-		//imgui->End();
-		//
-		//swap buffers
-		//m_Window->Clear();
-		
-		//renderLayer->OnAttach();
-		//std::cout << m_Window->GetWinWidth() << " " << m_Window->GetWinHeight() << std::endl;
-
+		framebuffer->DelFramebufferTex();
 		m_Window->OnUpdate();
 	}
 
-
 	imgui->OnDetach();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

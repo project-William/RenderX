@@ -15,8 +15,9 @@ private:
 
 	graphics::LayerList* layerList = nullptr;
 
-private:
+	graphics::FrameBuffer* framebuffer;
 
+private:
 
 
 public:

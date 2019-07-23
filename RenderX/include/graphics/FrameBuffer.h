@@ -11,14 +11,16 @@ namespace renderx {
 		private:
 			GLuint m_FrameBufferID;
 			RenderBuffer* m_RenderBuffer;
-			Texture* m_Texture;
+			Texture *m_Texture;
 		public:
 			FrameBuffer();
-			FrameBuffer(unsigned int width,unsigned int height);
+			FrameBuffer(int width, int height);
 			~FrameBuffer();
 
 			void BindFrameBuffer();
 			void UnbindFrameBuffer();
+			void DelFramebufferTex();
+			void UpdateFramebufferTex(int width, int height);
 
 			inline const GLuint& GetRendered()const { return m_Texture->GetTexRef(); }
 			inline const GLuint& GetFrameBufferID()const { return m_FrameBufferID; }

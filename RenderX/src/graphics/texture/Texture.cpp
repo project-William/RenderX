@@ -8,7 +8,7 @@ namespace renderx {
 		Texture::Texture()
 			:m_Width(0), m_Height(0), m_Filepath("NULL")
 		{
-			
+
 		}
 
 		Texture::Texture(int width, int height)
