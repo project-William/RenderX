@@ -17,7 +17,9 @@ Application::Application()
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);	
-	framebuffer = new graphics::FrameBuffer(m_Window->GetWinWidth(),m_Window->GetWinHeight());
+	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
+
+	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
 
 }
 
@@ -26,6 +28,7 @@ Application::~Application()
 	delete imgui;
 	delete renderLayer;
 	delete layerList;
+	delete framebuffer;
 }
 
 void Application::Run()
@@ -39,15 +42,17 @@ void Application::Run()
 		//bind framebuffer
 		m_Window->Clear();
 		framebuffer->BindFrameBuffer();
-		framebuffer->UpdateFramebufferTex(m_Window->GetWinWidth(),m_Window->GetWinHeight());
+		framebuffer->UpdateFramebufferTex(WinData);
+		
 		m_Window->Clear();
 		m_Window->ClearColor();
-		renderLayer->OnAttach();
+		cube->Draw();
 		
-		//unbind framebuffer
+		//default framebuffer
 		framebuffer->UnbindFrameBuffer();
+		
 		imgui->Begin();
-		renderLayer->TestDraw(m_Window->GetWinData(),framebuffer->GetRendered());
+		renderLayer->TestDraw(WinData,framebuffer->GetRendered());
 		imgui->OnImguiLayer();
 
 
@@ -57,6 +62,7 @@ void Application::Run()
 
 
 		framebuffer->DelFramebufferTex();
+
 		m_Window->OnUpdate();
 	}
 

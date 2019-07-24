@@ -167,9 +167,9 @@
     <ClInclude Include="include\graphics\RenderBuffer.h" />
     <ClInclude Include="include\graphics\render\Render.h" />
     <ClInclude Include="include\graphics\RenderLayer.h" />
+    <ClInclude Include="include\graphics\render\RenderCube.h" />
     <ClInclude Include="include\graphics\render\RenderModel.h" />
     <ClInclude Include="include\graphics\render\RenderObject.h" />
-    <ClInclude Include="include\graphics\render\RenderShape.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\Buffer.h" />
     <ClInclude Include="include\graphics\texture\stb_image.h" />
@@ -195,8 +195,8 @@
     <ClCompile Include="src\graphics\RenderBuffer.cpp" />
     <ClCompile Include="src\graphics\RenderLayer.cpp" />
     <ClCompile Include="src\graphics\render\Render.cpp" />
+    <ClCompile Include="src\graphics\render\RenderCube.cpp" />
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />
-    <ClCompile Include="src\graphics\render\RenderShape.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\graphics\texture\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />

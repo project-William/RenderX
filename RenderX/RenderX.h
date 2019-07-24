@@ -10,3 +10,5 @@
 #include "include/graphics/RenderLayer.h"
 
 #include "include/graphics/FrameBuffer.h"
+
+#include "include/graphics/render/RenderCube.h"

@@ -9,6 +9,7 @@ namespace renderx {
 		class REN_API RenderLayer:public Layer
 		{
 		private:
+			
 			Render* m_Render;
 			WinData m_WinData;
 		public:
@@ -16,7 +17,9 @@ namespace renderx {
 			RenderLayer(WinData& WinData);
 			~RenderLayer();
 
-
+			void RenderSkybox();
+			void RenderShape(const std::string& vspath, const std::string& fspath);
+			void RenderModel();
 			void TestDraw(const WinData& windata, const GLuint& texture);
 			void OnAttach() override;
 			void OnDetach() override;

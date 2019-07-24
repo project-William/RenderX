@@ -6,13 +6,11 @@ namespace renderx {
 		RenderLayer::RenderLayer()
 			:m_Render(nullptr) 
 		{
-			m_Render = new Render();
 		}
 
 		RenderLayer::RenderLayer(WinData& WinData)
 			: m_Render(nullptr), m_WinData(WinData)
 		{
-			m_Render = new Render();
 		}
 
 		RenderLayer::~RenderLayer()
@@ -20,9 +18,23 @@ namespace renderx {
 			delete m_Render;
 		}
 
+		void RenderLayer::RenderSkybox()
+		{
+
+		}
+
+		void RenderLayer::RenderShape(const std::string& vspath,const std::string& fspath)
+		{
+		}
+
+		void RenderLayer::RenderModel()
+		{
+
+		}
+
+
 		void RenderLayer::OnAttach()
 		{
-			m_Render->Draw();
 		}
 
 		void RenderLayer::OnDetach()

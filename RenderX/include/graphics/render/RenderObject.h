@@ -23,6 +23,13 @@ namespace renderx {
 			};
 		};
 
+		struct REN_API RenderData
+		{
+			std::unique_ptr<Shader> m_Shader = nullptr;
+			std::unique_ptr<VertexArray> m_VAO = nullptr;
+			BufferLayout m_Layout;
+		};
+
 
 		class REN_API RenderObject
 		{

@@ -2,8 +2,7 @@
 #include "..//VAOVBOEBO/VertexArray.h"
 #include "..//shader/Shader.h"
 #include "..//VAOVBOEBO/BufferLayout.h"
-
-#include "RenderShape.h"
+#include "..//render/RenderObject.h"
 
 namespace renderx {
 	namespace graphics {
@@ -12,9 +11,10 @@ namespace renderx {
 		{
 		private:
 			RenderObject* m_render;
-
+			RenderObject* m_Renderer;
 		public:
 			Render();
+			Render(const std::string& vspath, const std::string& fspath);
 			~Render();
 
 			void Draw();

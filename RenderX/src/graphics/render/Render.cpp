@@ -6,7 +6,12 @@ namespace renderx {
 		Render::Render()
 			:m_render(nullptr)
 		{
-			m_render = new RenderShape();
+			
+		}
+
+		Render::Render(const std::string& vspath, const std::string& fspath)
+		{
+			
 		}
 
 		Render::~Render()

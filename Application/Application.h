@@ -17,6 +17,8 @@ private:
 
 	graphics::FrameBuffer* framebuffer;
 
+	graphics::RenderCube* cube;
+
 private:
 
 

@@ -61,8 +61,8 @@ namespace renderx {
 			glfwSetCursorPosCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, double xPos, double yPos)
 			{
 				WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
-				data.xpos = xPos;
-				data.ypos = yPos;
+				data.mouse_xpos = xPos;
+				data.mouse_ypos = yPos;
 				events::MouseMovedEvent event((float)xPos, (float)yPos);
 			});
 

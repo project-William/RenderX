@@ -9,14 +9,14 @@ namespace renderx {
 		struct REN_API WinData
 		{
 			unsigned int win_Width, win_Height;
-			std::string win_Title = "RenderX";
+			std::string win_Title;
 			GLFWwindow* glWindowPtr = nullptr;
 
 			WinData(unsigned int width = 1200, unsigned int height = 800)
 				:win_Width(width),win_Height(height),win_Title("RenderX")
 			{ }
 
-			float xpos, ypos;
+			float mouse_xpos, mouse_ypos;
 
 		};
 
@@ -35,8 +35,8 @@ namespace renderx {
 			static Window* Create();
 
 			//cursor position
-			inline float GetCursorPosX()const { return m_WinData.xpos; }
-			inline float GetCursorPosY()const { return m_WinData.ypos; }
+			inline float GetCursorPosX()const { return m_WinData.mouse_xpos; }
+			inline float GetCursorPosY()const { return m_WinData.mouse_ypos; }
 
 
 

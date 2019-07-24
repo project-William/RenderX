@@ -10,7 +10,7 @@ namespace renderx {
 		}
 
 
-		FrameBuffer::FrameBuffer(int width, int height)
+		FrameBuffer::FrameBuffer(const WinData& windata)
 			:m_FrameBufferID(0),m_RenderBuffer(nullptr),m_Texture(nullptr)
 		{
 			glGenFramebuffers(1, &m_FrameBufferID);
@@ -18,7 +18,7 @@ namespace renderx {
 
 			
 			m_RenderBuffer = new RenderBuffer();
-			m_RenderBuffer->BufferStorage(width, height);
+			m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height);
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, 
 									  GL_DEPTH_ATTACHMENT, 
 									  GL_RENDERBUFFER, 
@@ -44,9 +44,9 @@ namespace renderx {
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 
-		void FrameBuffer::UpdateFramebufferTex(int width,int height)
+		void FrameBuffer::UpdateFramebufferTex(const WinData& windata)
 		{
-			m_Texture = new Texture(width, height);
+			m_Texture = new Texture(windata.win_Width, windata.win_Height);
 
 			auto texture = m_Texture->GetTexture();
 

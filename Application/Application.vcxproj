@@ -171,6 +171,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shader\cubeFragment.frag" />
+    <None Include="shader\cubeVertex.vert" />
     <None Include="shader\fragment.frag" />
     <None Include="shader\vertex.vert" />
   </ItemGroup>
