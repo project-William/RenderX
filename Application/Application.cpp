@@ -46,14 +46,19 @@ void Application::Run()
 		
 		m_Window->Clear();
 		m_Window->ClearColor();
-		cube->Draw();
+		cube->Draw(WinData);
 		
 		//default framebuffer
 		framebuffer->UnbindFrameBuffer();
 		
 		imgui->Begin();
 		renderLayer->TestDraw(WinData,framebuffer->GetRendered());
-		imgui->OnImguiLayer();
+		//imgui setting window
+		imgui->SettingWindowBegin();
+
+		cube->Color(WinData);
+
+		imgui->SettingWindowEnd();
 
 
 		imgui->End();

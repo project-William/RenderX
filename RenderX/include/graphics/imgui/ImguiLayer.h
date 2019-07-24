@@ -14,6 +14,8 @@ namespace renderx {
 			ImguiLayer();
 			~ImguiLayer();
 
+
+
 			ImguiLayer(GLFWwindow* window, WinData windata);
 		private:
 			void SetUpImguiLayer();
@@ -23,6 +25,11 @@ namespace renderx {
 			void Begin();
 			void ShowDemo();
 			void ImguiWindow();
+
+			void SettingWindowBegin();
+
+			void SettingWindowEnd();
+
 			void End();
 		public:
 

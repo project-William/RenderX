@@ -22,6 +22,10 @@ namespace renderx {
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 			m_RenderData->m_Shader = std::unique_ptr<Shader>(new Shader(vspath, fspath));
 
+			//default properties
+			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+			m_Trans.model = glm::mat4(1.0f);
+			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 		}
 
 		RenderCube::~RenderCube()
@@ -40,14 +44,55 @@ namespace renderx {
 			m_RenderData->m_Shader->UnbindShaderProgram();
 		}
 
-		void RenderCube::Draw()
+		void RenderCube::Draw(const WinData& windata)
 		{
 			m_RenderData->m_VAO->BindVertexArray();
 			m_RenderData->m_Shader->BindShaderProgram();
+			m_Trans.view = glm::mat4(1.0f);
+			m_Trans.view = glm::translate(m_Trans.view, m_Trans.position);
+			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
+			m_Trans.model = glm::mat4(1.0f);
+			m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
+			m_Trans.projection = glm::mat4(1.0f);
+			m_Trans.projection = glm::perspective(glm::radians(m_Trans.perspective_radians),
+				(float)windata.win_Width / (float)windata.win_Height,
+				0.1f, 100.0f);
+			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+			m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 			m_RenderData->m_VAO->UnbindVertexArray();
 		}
 
+		void RenderCube::Color(const WinData& windata)
+		{
+			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
+			ImGui::SliderAngle("fov", &m_Trans.perspective_radians, 30.0f, 90.0f);
+			
+			ImGui::SliderFloat3("Position", &m_Trans.position[0], -10.0f, 2.0f);
+
+
+		}
+
+
+		void RenderCube::Position()
+		{
+			
+		}
+
+		void RenderCube::Rotation()
+		{
+
+		}
+
+		void RenderCube::Scale()
+		{
+
+		}
+
+		void RenderCube::RenderProperties()
+		{
+
+		}
 
 	}
 

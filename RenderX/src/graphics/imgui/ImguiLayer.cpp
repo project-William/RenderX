@@ -33,8 +33,8 @@ namespace renderx {
 			//io.ConfigViewportsNoTaskBarIcon = true;
 
 			// Setup Dear ImGui style
-			ImGui::StyleColorsDark();
-			//ImGui::StyleColorsLight();
+			//ImGui::StyleColorsDark();
+			ImGui::StyleColorsLight();
 			//ImGui::StyleColorsClassic();
 
 			// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
@@ -86,27 +86,27 @@ namespace renderx {
 		void ImguiLayer::ImguiWindow()
 		{
 			ImGuiWindowFlags window_flags = false;
-
+			glm::vec4 vec4;
 			bool show = false;
-			if (!ImGui::Begin("RenderX Settings", &show, window_flags))
-			{
-				// Early out if the window is collapsed, as an optimization.
-				ImGui::End();
-				return;
-			}
+			ImGui::Begin("Graphics Settings");
+			ImGui::ColorEdit4("objectcolor", &vec4[0]);
 
-			ImGui::Text("This is RenderX settings:");
 
-			if (ImGui::Button("Background"))
-			{
-
-			}
 
 			ImGui::End();
 		}
 
 
+		void ImguiLayer::SettingWindowBegin()
+		{
+			ImGui::Begin("Graphics Settings");
+		}
 
+
+		void ImguiLayer::SettingWindowEnd()
+		{
+			ImGui::End();
+		}
 
 		void ImguiLayer::End()
 		{

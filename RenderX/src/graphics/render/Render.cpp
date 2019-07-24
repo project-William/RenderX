@@ -21,7 +21,6 @@ namespace renderx {
 
 		void Render::Draw()
 		{
-			m_render->Draw();
 		}
 
 	}

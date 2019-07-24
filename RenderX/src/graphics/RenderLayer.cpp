@@ -6,11 +6,13 @@ namespace renderx {
 		RenderLayer::RenderLayer()
 			:m_Render(nullptr) 
 		{
+
 		}
 
 		RenderLayer::RenderLayer(WinData& WinData)
 			: m_Render(nullptr), m_WinData(WinData)
 		{
+
 		}
 
 		RenderLayer::~RenderLayer()

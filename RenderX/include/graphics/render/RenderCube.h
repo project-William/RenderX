@@ -1,7 +1,6 @@
 #pragma once
 #include "RenderObject.h"
 
-
 namespace renderx {
 	namespace graphics {
 
@@ -14,10 +13,16 @@ namespace renderx {
 
 			void BindObject() const override;
 			void UnbindObject() const override;
-			void Draw() override;
+			void Draw(const WinData& windata) override;
+			void Position() override;
+			void Rotation() override;
+			void Scale() override;
+			void Color(const WinData& windata);
+			void RenderProperties() override;
 
 		private:
 			RenderData *m_RenderData;
+			Transformation m_Trans;
 			const std::vector<float> m_CubeData =
 			{
 				-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,

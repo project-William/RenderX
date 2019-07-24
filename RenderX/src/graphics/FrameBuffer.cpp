@@ -37,6 +37,7 @@ namespace renderx {
 		void FrameBuffer::BindFrameBuffer()
 		{
 			glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBufferID);
+			glEnable(GL_DEPTH_TEST);
 		}
 		
 		void FrameBuffer::UnbindFrameBuffer() 
