@@ -170,6 +170,7 @@
     <ClInclude Include="include\graphics\render\RenderModel.h" />
     <ClInclude Include="include\graphics\render\RenderObject.h" />
     <ClInclude Include="include\graphics\render\RenderSkybox.h" />
+    <ClInclude Include="include\graphics\render\RenderSphere.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\Buffer.h" />
     <ClInclude Include="include\graphics\texture\stb_image.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="src\graphics\render\RenderCube.cpp" />
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />
     <ClCompile Include="src\graphics\render\RenderSkybox.cpp" />
+    <ClCompile Include="src\graphics\render\RenderSphere.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\graphics\texture\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />

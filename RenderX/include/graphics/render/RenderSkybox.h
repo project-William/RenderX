@@ -14,7 +14,6 @@ namespace renderx {
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
 			void RenderProperties() override;
-		private:
 			void Position(const glm::vec3& position) override;
 			void Rotation(const float radians, const glm::vec3& axis) override;
 			void Scale(const float scale) override;

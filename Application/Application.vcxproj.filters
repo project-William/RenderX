@@ -35,6 +35,8 @@
     <None Include="shader\vertex.vert" />
     <None Include="shader\cubeVertex.vert" />
     <None Include="shader\cubeFragment.frag" />
+    <None Include="shader\sphereVertex.vert" />
+    <None Include="shader\sphereFragment.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\wall.jpg">

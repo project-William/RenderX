@@ -1,7 +1,7 @@
 #pragma once
 #include "VertexBuffer.h"
 #include "BufferLayout.h"
-
+#include "IndexBuffer.h"
 
 namespace renderx {
 	namespace graphics {
@@ -10,13 +10,14 @@ namespace renderx {
 		{
 		private:
 			GLuint m_VertexArray;
-			VertexBuffer* m_Vbuffer;
+			VertexBuffer* m_Vertexbuffer;
 			BufferLayout m_Layout;
-
+			IndexBuffer* m_IndexBuffer;
 		public:
 			VertexArray();
 			VertexArray(unsigned int size, const void* data);
 			~VertexArray();
+			void AddEbo(unsigned int indices_size, const void* indices_data);
 
 			void AddBufferLayout(const BufferLayout& layout);
 

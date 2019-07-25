@@ -37,11 +37,13 @@ namespace renderx {
 		void RenderCube::BindObject() const
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
+			m_RenderData->m_VAO->BindVertexArray();
 		}
 
 		void RenderCube::UnbindObject()const
 		{
 			m_RenderData->m_Shader->UnbindShaderProgram();
+			m_RenderData->m_VAO->UnbindVertexArray();
 		}
 
 		void RenderCube::Draw(const WinData& windata)

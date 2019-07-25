@@ -11,6 +11,12 @@ namespace renderx {
 			std::unique_ptr<VertexArray> m_VAO;
 			BufferLayout m_Layout;
 
+			std::vector<glm::vec3> m_Positions;
+			std::vector<glm::vec2> m_UV;
+			std::vector<glm::vec3> m_Normals;
+			std::vector<unsigned int> m_Indices;
+
+
 			RenderData()
 				:m_Shader(nullptr), m_VAO(nullptr)
 			{

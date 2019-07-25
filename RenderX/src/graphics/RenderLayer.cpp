@@ -47,6 +47,7 @@ namespace renderx {
 
 		void RenderLayer::RenderShape(const std::string& vspath,const std::string& fspath)
 		{
+
 		}
 
 		void RenderLayer::RenderModel()

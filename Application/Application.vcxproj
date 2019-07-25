@@ -174,6 +174,8 @@
     <None Include="shader\cubeFragment.frag" />
     <None Include="shader\cubeVertex.vert" />
     <None Include="shader\fragment.frag" />
+    <None Include="shader\sphereFragment.frag" />
+    <None Include="shader\sphereVertex.vert" />
     <None Include="shader\vertex.vert" />
   </ItemGroup>
   <ItemGroup>

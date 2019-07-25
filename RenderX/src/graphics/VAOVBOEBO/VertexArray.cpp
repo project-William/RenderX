@@ -4,13 +4,15 @@ namespace renderx {
 	namespace graphics {
 
 		VertexArray::VertexArray()
-			:m_Vbuffer(nullptr),m_VertexArray(0)
+			:m_Vertexbuffer(nullptr),m_VertexArray(0),m_IndexBuffer(0)
 		{
 
 		}
 
 		VertexArray::VertexArray(unsigned int size, const void* data)
-			:m_VertexArray(0),m_Vbuffer(new VertexBuffer(size, data))
+			:m_VertexArray(0),
+			 m_Vertexbuffer(new VertexBuffer(size, data)),
+			 m_IndexBuffer(new IndexBuffer())
 		{
 			glGenVertexArrays(1, &m_VertexArray);
 		}
@@ -18,12 +20,20 @@ namespace renderx {
 		VertexArray::~VertexArray()
 		{
 			glDeleteVertexArrays(1, &m_VertexArray);
-			delete m_Vbuffer;
+			delete m_Vertexbuffer;
+			delete m_IndexBuffer;
+		}
+
+		void VertexArray::AddEbo(unsigned int indices_size, const void* indices_data)
+		{
+			delete m_IndexBuffer;
+			m_IndexBuffer = new IndexBuffer(indices_size, indices_data);
 		}
 
 		void VertexArray::AddBufferLayout(const BufferLayout& layout)
 		{
-			m_Vbuffer->Bind();
+			m_Vertexbuffer->Bind();
+			m_IndexBuffer->Bind();
 			BindVertexArray();
 
 			GLuint index = 0;
@@ -51,7 +61,8 @@ namespace renderx {
 		void VertexArray::UnbindVertexArray()const
 		{
 			glBindVertexArray(0);
-			m_Vbuffer->Unbind();
+			m_Vertexbuffer->Unbind();
+			m_IndexBuffer->Unbind();
 		}
 
 	}

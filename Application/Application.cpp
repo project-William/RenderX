@@ -19,8 +19,8 @@ Application::Application()
 	layerList->PushBackLayer(renderLayer);	
 	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
 
-	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
-
+	//cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
+	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 }
 
 Application::~Application()
@@ -46,8 +46,8 @@ void Application::Run()
 		
 		m_Window->Clear();
 		m_Window->ClearColor();
-		cube->Draw(WinData);
-		
+		//cube->Draw(WinData);
+		sphere->Draw(WinData);
 		//default framebuffer
 		framebuffer->UnbindFrameBuffer();
 		
@@ -56,7 +56,7 @@ void Application::Run()
 		//imgui setting window
 		imgui->SettingWindowBegin();
 
-		cube->Color(WinData);
+		//cube->Color(WinData);
 
 		imgui->SettingWindowEnd();
 

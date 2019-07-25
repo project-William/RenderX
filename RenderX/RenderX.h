@@ -12,3 +12,5 @@
 #include "include/graphics/FrameBuffer.h"
 
 #include "include/graphics/render/RenderCube.h"
+
+#include "include/graphics/render/RenderSphere.h"

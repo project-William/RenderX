@@ -19,6 +19,8 @@ private:
 
 	graphics::RenderCube* cube;
 
+	graphics::RenderSphere* sphere;
+
 private:
 
 

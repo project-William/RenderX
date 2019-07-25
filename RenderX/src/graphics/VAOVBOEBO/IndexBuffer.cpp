@@ -10,11 +10,6 @@ namespace renderx {
 
 		}
 
-		IndexBuffer::~IndexBuffer()
-		{
-			glDeleteBuffers(1, &m_IndexBuffer);
-		}
-
 		IndexBuffer::IndexBuffer(unsigned int size, const void* data)
 			: m_IndexBuffer(0)
 		{
@@ -23,6 +18,10 @@ namespace renderx {
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 		}
 
+		IndexBuffer::~IndexBuffer()
+		{
+			glDeleteBuffers(1, &m_IndexBuffer);
+		}
 
 		void IndexBuffer::Bind()const
 		{
