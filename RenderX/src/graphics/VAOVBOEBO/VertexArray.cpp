@@ -51,6 +51,7 @@ namespace renderx {
 		void VertexArray::UnbindVertexArray()const
 		{
 			glBindVertexArray(0);
+			m_Vbuffer->Unbind();
 		}
 
 	}

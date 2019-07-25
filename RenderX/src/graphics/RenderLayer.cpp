@@ -9,8 +9,8 @@ namespace renderx {
 
 		}
 
-		RenderLayer::RenderLayer(WinData& WinData)
-			: m_Render(nullptr), m_WinData(WinData)
+		RenderLayer::RenderLayer(const WinData& windata)
+			: m_Render(nullptr)
 		{
 
 		}
@@ -19,6 +19,26 @@ namespace renderx {
 		{
 			delete m_Render;
 		}
+
+
+		void RenderLayer::PushFrontRenderer(RenderObject* renderer)
+		{
+			m_Renderers.push_front(renderer);
+		}
+
+		void RenderLayer::PushBackRenderer(RenderObject* renderer)
+		{
+			m_Renderers.push_back(renderer);
+		}
+
+		void RenderLayer::DoRendering(const WinData& windata)
+		{
+			for (auto renderer : m_Renderers)
+			{
+				renderer->Draw(windata);
+			}
+		}
+
 
 		void RenderLayer::RenderSkybox()
 		{
@@ -69,7 +89,6 @@ namespace renderx {
 			if (!ImGui::Begin("RenderX Settings", &show, window_flags))
 			{
 				// Early out if the window is collapsed, as an optimization.
-				m_Render->Draw();
 				ImGui::End();
 				return;
 			}

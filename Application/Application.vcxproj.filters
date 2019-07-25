@@ -36,4 +36,12 @@
     <None Include="shader\cubeVertex.vert" />
     <None Include="shader\cubeFragment.frag" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="texture\wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

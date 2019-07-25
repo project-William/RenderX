@@ -176,6 +176,10 @@
     <None Include="shader\fragment.frag" />
     <None Include="shader\vertex.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="texture\container.jpg" />
+    <Image Include="texture\wall.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

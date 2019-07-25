@@ -38,14 +38,11 @@ namespace renderx {
 			inline float GetCursorPosX()const { return m_WinData.mouse_xpos; }
 			inline float GetCursorPosY()const { return m_WinData.mouse_ypos; }
 
-
-
 			inline GLFWwindow* GetWinPtr()const { return m_WinData.glWindowPtr; }
 			inline unsigned int GetWinWidth()const { return m_WinData.win_Width; }
 			inline unsigned int GetWinHeight()const { return m_WinData.win_Height; }
 			inline Window* GetWinClassPtr()const { return m_Instance; }
 			inline WinData& GetWinData() { return m_WinData; }
-
 
 			void OnUpdate()const;
 			void Clear()const;

@@ -8,17 +8,21 @@ namespace renderx {
 		{
 		public:
 			RenderCube();
-			virtual ~RenderCube();
+			~RenderCube();
 			RenderCube(const std::string& vspath, const std::string& fspath);
 
 			void BindObject() const override;
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
-			void Position() override;
-			void Rotation() override;
-			void Scale() override;
+			void Position(const glm::vec3& position) override;
+			void Rotation(const float radians, const glm::vec3& axis) override;
+			void Scale(const float scale) override;
 			void Color(const WinData& windata);
 			void RenderProperties() override;
+
+			inline RenderData* GetRenderData()const { return m_RenderData; }
+
+
 
 		private:
 			RenderData *m_RenderData;

@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <math.h>	
 #include <sstream>
 #include <fstream>
 #include <utility>
