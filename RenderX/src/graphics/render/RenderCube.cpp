@@ -13,14 +13,20 @@ namespace renderx {
 			:m_RenderData(nullptr)
 		{
 			m_RenderData = new RenderData();
-			m_RenderData->m_VAO = std::unique_ptr<VertexArray>(
-				new VertexArray(sizeof(float) * m_CubeData.size(), &m_CubeData[0]));
-			m_RenderData->m_Layout = { 
+			
+			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
+			(
+				new VertexArray(sizeof(float) * m_CubeData.size(), &m_CubeData[0])
+			);
+			
+			m_RenderData->m_Layout = 
+			{ 
 				{ ShaderDataType::FLOAT3, "VertexPos" },
 				{ ShaderDataType::FLOAT2, "TexCoords" }
 			};
+			
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
-			m_RenderData->m_Shader = std::unique_ptr<Shader>(new Shader(vspath, fspath));
+			m_RenderData->m_Shader = std::shared_ptr<Shader>(new Shader(vspath, fspath));
 
 			//default properties
 			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);

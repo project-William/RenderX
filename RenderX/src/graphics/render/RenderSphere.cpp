@@ -12,17 +12,28 @@ namespace renderx {
 			:X_SEGMENTS(64),Y_SEGMENTS(64),m_PI(3.1415926535)
 		{
 			m_RenderData = new RenderData();
-			m_RenderData->m_Shader = std::unique_ptr<Shader>(new Shader(vsfile, fsfile));
+			m_RenderData->m_Shader = std::shared_ptr<Shader>(new Shader(vsfile, fsfile));
 			CreateSphere();
-			m_RenderData->m_VAO = std::unique_ptr<VertexArray>(new VertexArray(
-				sizeof(float) * m_SphereData.size(), &m_SphereData[0]));
-			m_RenderData->m_VAO->AddEbo(sizeof(unsigned int) * m_RenderData->m_Indices.size(),
-				&m_RenderData->m_Indices[0]);
-			m_RenderData->m_Layout = {
+			
+			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
+			(
+				new VertexArray
+				( sizeof(float) * m_SphereData.size(), &m_SphereData[0])
+			);
+			
+			m_RenderData->m_VAO->AddEbo
+			(
+				sizeof(unsigned int) * m_RenderData->m_Indices.size(),
+				&m_RenderData->m_Indices[0]
+			);
+			
+			m_RenderData->m_Layout = 
+			{
 				{ ShaderDataType::FLOAT3, "VertexPos" },
 				{ ShaderDataType::FLOAT2, "TexCoords" },
 				{ ShaderDataType::FLOAT3, "Normals" }
 			};
+			
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 
 			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);

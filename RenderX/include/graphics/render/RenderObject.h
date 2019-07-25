@@ -7,8 +7,8 @@ namespace renderx {
 
 		struct REN_API RenderData
 		{
-			std::unique_ptr<Shader> m_Shader;
-			std::unique_ptr<VertexArray> m_VAO;
+			std::shared_ptr<Shader> m_Shader;
+			std::shared_ptr<VertexArray> m_VAO;
 			BufferLayout m_Layout;
 
 			std::vector<glm::vec3> m_Positions;
