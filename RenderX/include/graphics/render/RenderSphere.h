@@ -16,6 +16,8 @@ namespace renderx {
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
 			void RenderProperties() override;
+			void Color(const WinData& windata);
+
 
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }

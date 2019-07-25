@@ -18,5 +18,5 @@ void main()
     WorldPos = vec3(u_model * vec4(VertexPos, 1.0));
     Normal = mat3(u_model) * Normals;   
 
-    gl_Position =  vec4(VertexPos, 1.0);
+    gl_Position = u_projection*u_view*u_model*vec4(VertexPos, 1.0);
 }

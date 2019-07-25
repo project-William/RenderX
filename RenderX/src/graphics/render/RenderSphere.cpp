@@ -12,6 +12,7 @@ namespace renderx {
 			:X_SEGMENTS(64),Y_SEGMENTS(64),m_PI(3.1415926535)
 		{
 			m_RenderData = new RenderData();
+			m_RenderData->m_Shader = std::unique_ptr<Shader>(new Shader(vsfile, fsfile));
 			CreateSphere();
 			m_RenderData->m_VAO = std::unique_ptr<VertexArray>(new VertexArray(
 				sizeof(float) * m_SphereData.size(), &m_SphereData[0]));
@@ -23,7 +24,10 @@ namespace renderx {
 				{ ShaderDataType::FLOAT3, "Normals" }
 			};
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
-			m_RenderData->m_Shader = std::unique_ptr<Shader>(new Shader(vsfile, fsfile));
+
+			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+			m_Trans.model = glm::mat4(1.0f);
+			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 		}
 
 		RenderSphere::~RenderSphere()
@@ -49,30 +53,39 @@ namespace renderx {
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_VAO->BindVertexArray();
-
-
+			
 			//set view matrix
 			m_Trans.view = glm::mat4(1.0f);
-			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f,0.0f,-3.0f));
+			m_Trans.view = glm::translate(m_Trans.view, m_Trans.position);
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 			//set model matrix
 			m_Trans.model = glm::mat4(1.0f);
 			m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
 			//set projection matrix
 			m_Trans.projection = glm::mat4(1.0f);
-			m_Trans.projection = glm::perspective(glm::radians(45.0f),
+			m_Trans.projection = glm::perspective(glm::radians(m_Trans.perspective_radians),
 				(float)windata.win_Width / (float)windata.win_Height,
 				0.1f, 100.0f);
 			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
-			
+			m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
+
 			glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
-			m_RenderData->m_VAO->UnbindVertexArray();
+
+		}
+
+		void RenderSphere::Color(const WinData& windata)
+		{
+			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
+
+			ImGui::SliderFloat3("Position", &m_Trans.position[0], -10.0f, 2.0f);
 		}
 
 		void RenderSphere::RenderProperties()
 		{
 
+	
 		}
+
 
 		void RenderSphere::Position(const glm::vec3& position)
 		{

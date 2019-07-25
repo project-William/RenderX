@@ -15,6 +15,7 @@ namespace renderx {
 			 m_IndexBuffer(new IndexBuffer())
 		{
 			glGenVertexArrays(1, &m_VertexArray);
+			glBindVertexArray(m_VertexArray);
 		}
 
 		VertexArray::~VertexArray()
@@ -32,9 +33,9 @@ namespace renderx {
 
 		void VertexArray::AddBufferLayout(const BufferLayout& layout)
 		{
+			BindVertexArray();
 			m_Vertexbuffer->Bind();
 			m_IndexBuffer->Bind();
-			BindVertexArray();
 
 			GLuint index = 0;
 			GLuint offset = 0;
