@@ -7,6 +7,7 @@ namespace renderx {
 
 		enum REN_API TexWrap
 		{
+			NONE				= 0,
 			REPEAT				= GL_REPEAT,
 			MIRRORED_REPEAT		= GL_MIRRORED_REPEAT,
 			CLAMP_TO_EDGE		= GL_CLAMP_TO_EDGE,
@@ -16,7 +17,7 @@ namespace renderx {
 		class REN_API Texture
 		{
 		private:
-			TexWrap m_TexWrapMode;
+			TexWrap m_TexWrapMode=TexWrap::NONE;
 			GLuint m_Texture;
 			std::string m_Name;
 			std::string m_Filepath;

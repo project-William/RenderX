@@ -19,7 +19,7 @@ namespace renderx {
 				:win_Width(width),win_Height(height),win_Title("RenderX")
 			{ }
 
-			float mouse_xpos, mouse_ypos;
+			float mouse_xpos = 0, mouse_ypos = 0;
 
 			std::function<void(events::Event&)> EventCallback;
 			

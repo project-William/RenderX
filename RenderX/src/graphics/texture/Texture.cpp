@@ -6,13 +6,15 @@ namespace renderx {
 	namespace graphics {
 
 		Texture::Texture()
-			:m_Width(0), m_Height(0), m_Filepath("NULL")
+			:m_Width(0), m_Height(0), m_Filepath("NULL"),m_Bits(0),
+			m_Texture(0)
 		{
 
 		}
 
 		Texture::Texture(int width, int height)
-			: m_Width(width), m_Height(height), m_Filepath("NULL")
+			: m_Width(width), m_Height(height), m_Filepath("NULL"),m_Bits(0),
+			m_Texture(0)
 		{
 			glGenTextures(1, &m_Texture);
 			glBindTexture(GL_TEXTURE_2D, m_Texture);
