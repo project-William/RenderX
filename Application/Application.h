@@ -21,8 +21,27 @@ private:
 
 	graphics::RenderSphere* sphere;
 
+
+	bool m_Running = true;
+	bool m_WindowResized_flag = false;
+
+
 private:
 
+	void OnEvent(events::Event& e);
+	
+	bool OnWindowResizedEvent(events::WindowResizedEvent& e);
+	bool OnWindowClosedEvent(events::WindowClosedEvent& e);
+	bool OnWindowMovedEvent(events::WindowMovedEvent& e);
+	
+	bool OnMouseButtonPressed(events::MousePressedEvent& e);
+	bool OnMouseButtonReleased(events::MouseRelasedEvent& e);
+	bool OnMouseMovedEvent(events::MouseMovedEvent& e);
+	bool OnMouseScrollEvent(events::MouseScrollEvent& e);
+	
+	bool OnKeyPressedEvent(events::KeyPressedEvent& e);
+	bool OnKeyReleasedEvent(events::KeyReleasedEvent& e);
+	
 
 public:
 	Application();

@@ -4,7 +4,7 @@ namespace renderx {
 	namespace graphics {
 
 		RenderLayer::RenderLayer()
-			:m_Render(nullptr) 
+			:m_Render(nullptr)
 		{
 
 		}
@@ -45,7 +45,7 @@ namespace renderx {
 
 		}
 
-		void RenderLayer::RenderShape(const std::string& vspath,const std::string& fspath)
+		void RenderLayer::RenderShape(const std::string& vspath, const std::string& fspath)
 		{
 
 		}
@@ -72,11 +72,11 @@ namespace renderx {
 				ImVec2 p = ImGui::GetCursorPos();
 				ImVec2 pos = ImGui::GetCursorScreenPos();
 				//std::cout << pos.x << "    " << pos.y << std::endl;
-				ImGui::GetWindowViewport();
-				ImGui::GetWindowDrawList()->AddImage((void*)texture, 
+				ImGui::GetWindowDrawList()->AddImage((void*)texture,
 					ImVec2(pos.x, pos.y),
 					ImVec2(pos.x + ImGui::GetWindowWidth(), pos.y + ImGui::GetWindowHeight()),
 					ImVec2(0, 1), ImVec2(1, 0));
+				ImGui::GetWindowViewport();
 			}
 
 			ImGui::End();
@@ -93,7 +93,7 @@ namespace renderx {
 				ImGui::End();
 				return;
 			}
-			
+
 			ImGui::End();
 		}
 	}

@@ -2,9 +2,12 @@
 #include "..//..//Core.h"
 #include "..//events/AppEvent.h"
 #include "..//events/MouseEvent.h"
+#include "..//events/KeyboardEvent.h"
 
 namespace renderx {
+	
 	namespace graphics {
+
 
 		struct REN_API WinData
 		{
@@ -17,6 +20,16 @@ namespace renderx {
 			{ }
 
 			float mouse_xpos, mouse_ypos;
+
+			std::function<void(events::Event&)> EventCallback;
+			
+			void OnEvent(events::Event& e)
+			{
+				if (EventCallback)
+				{
+					EventCallback(e);
+				}
+			}
 
 		};
 
@@ -44,6 +57,12 @@ namespace renderx {
 			inline Window* GetWinClassPtr()const { return m_Instance; }
 			inline WinData& GetWinData() { return m_WinData; }
 
+			inline void SetEventCallback(const std::function<void(events::Event&)>& callback)
+			{
+				m_WinData.EventCallback = callback;
+			}
+
+			void OnWindowResized();
 			void OnUpdate()const;
 			void Clear()const;
 			void ClearColor()const;

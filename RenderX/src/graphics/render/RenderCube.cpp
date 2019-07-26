@@ -74,6 +74,14 @@ namespace renderx {
 			m_RenderData->m_VAO->UnbindVertexArray();
 		}
 
+		void RenderCube::Draw()
+		{
+			m_RenderData->m_VAO->BindVertexArray();
+			m_RenderData->m_Shader->BindShaderProgram();
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+			m_RenderData->m_VAO->UnbindVertexArray();
+		}
+
 		void RenderCube::Color(const WinData& windata)
 		{
 			ImGui::ColorEdit4("Color", &m_Trans.color[0]);

@@ -9,7 +9,6 @@ namespace renderx {
 		{
 		public:
 			static void LogInit(const char* func, const char* file, int line, const char* format, ...);
-
 		};
 	}
 }

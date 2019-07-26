@@ -19,7 +19,7 @@ namespace renderx {
 			void Scale(const float scale) override;
 			void Color(const WinData& windata);
 			void RenderProperties() override;
-
+			void Draw();
 			inline RenderData* GetRenderData()const { return m_RenderData; }
 
 

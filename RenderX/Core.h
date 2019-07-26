@@ -30,12 +30,16 @@
 	#define REN_API __declspec(dllexport)
 #endif // RENDERX
 
+
 #define VALUE(x) (1<<x)
+
+#define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
 
 #define RDX_INIT_ERROR(x,...) if(!(x)) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
 
 #define RDX_INIT_SUCCESS(x,...) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
 
+#define RDX_EVENT_LOG(x,log) renderx::utils::Log::LogEvent( #x, log)	
 
 
 

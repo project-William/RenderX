@@ -49,25 +49,64 @@ namespace renderx {
 			glfwMakeContextCurrent(m_WinData.glWindowPtr);
 			glfwSetWindowUserPointer(m_WinData.glWindowPtr,&m_WinData);
 
+
 			glfwSetWindowSizeCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, int width, int height)
 			{
-				WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
+				WinData& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
 				data.win_Width = width;
 				data.win_Height = height;
 				events::WindowResizedEvent event(width, height);
-				
+				data.OnEvent(event);
+			});
+
+
+			glfwSetWindowCloseCallback(m_WinData.glWindowPtr, [](GLFWwindow* window)
+			{
+				WinData& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
+				events::WindowClosedEvent event;
+				data.OnEvent(event);
 			});
 			
 			glfwSetCursorPosCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, double xPos, double yPos)
 			{
-				WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
+				WinData& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
 				data.mouse_xpos = xPos;
 				data.mouse_ypos = yPos;
 				events::MouseMovedEvent event((float)xPos, (float)yPos);
+				data.OnEvent(event);
 			});
 
 
+			glfwSetKeyCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+			{
+				WinData& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
+				static int repeatCount = 0;
 
+				switch (action)
+				{
+					case GLFW_PRESS:
+					{
+						events::KeyPressedEvent event(key, repeatCount);
+						data.OnEvent(event);
+						break;
+					}
+						
+					case GLFW_RELEASE:
+					{
+						events::KeyReleasedEvent event(key);
+						data.OnEvent(event);
+						break;
+					}
+						
+					case GLFW_REPEAT:
+					{
+						repeatCount++;
+						events::KeyPressedEvent event(key, repeatCount);
+						data.OnEvent(event);
+						break;
+					}
+				}
+			});
 
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
@@ -97,6 +136,11 @@ namespace renderx {
 		bool Window::Closed()const
 		{
 			return glfwWindowShouldClose(m_WinData.glWindowPtr) == 1;
+		}
+
+		void Window::OnWindowResized()
+		{
+			glViewport(0, 0, m_WinData.win_Width, m_WinData.win_Height);
 		}
 
 		void Window::OnUpdate()const

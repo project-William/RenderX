@@ -12,7 +12,7 @@ namespace renderx {
 		}
 
 		Texture::Texture(int width, int height)
-			: m_Width(width), m_Height(width), m_Filepath("NULL")
+			: m_Width(width), m_Height(height), m_Filepath("NULL")
 		{
 			glGenTextures(1, &m_Texture);
 			glBindTexture(GL_TEXTURE_2D, m_Texture);

@@ -22,40 +22,44 @@ namespace renderx {
 			inline const unsigned int GetWidth()const { return m_Width; }
 			inline const unsigned int GetHeight()const { return m_Height; }
 					
-			EVENT_CLASS_TYPE(WindowResized)
-			EVENT_NAME_TYPE(WindowResized)
+			EVENT_CLASS_TYPE(RX_WINDOW_RESIZE)
+			EVENT_NAME_TYPE(RX_WINDOW_RESIZE)
 
+			EVENT_CATEGORY_TYPE(RX_EVENT_CATEGORY_WINDOW)
 		};
 
 
-		class REN_API KeyTypeEvent :public Event
+		class REN_API WindowClosedEvent :public Event
+		{
+		public:
+			WindowClosedEvent(){}
+
+			EVENT_CLASS_TYPE(RX_WINDOW_CLOSE)
+			EVENT_NAME_TYPE(RX_WINDOW_CLOSE)
+
+			EVENT_CATEGORY_TYPE(RX_EVENT_CATEGORY_WINDOW)
+		};
+
+
+		class REN_API WindowMovedEvent :public Event
 		{
 		private:
-			unsigned int m_KeyCode;
+			int m_Xpos, m_Ypos;
 		public:
-			KeyTypeEvent():m_KeyCode(0){}
-			KeyTypeEvent(unsigned int keycode)
-				:m_KeyCode(keycode)
+			WindowMovedEvent(int xpos, int ypos)
+				:m_Xpos(xpos), m_Ypos(ypos)
 			{
 
 			}
 
-			~KeyTypeEvent(){}
-			inline unsigned int GetKeyCode()const { return m_KeyCode; }
+			inline int GetWindowXpos()const { return m_Xpos; }
+			inline int GetWindowYpos()const { return m_Ypos; }
 
-			EVENT_CLASS_TYPE(KeyTyped)
-			EVENT_NAME_TYPE(KeyTyped)
 
+			EVENT_CLASS_TYPE(RX_WINDOW_MOVE)
+			EVENT_NAME_TYPE(RX_WINDOW_MOVE)
+			EVENT_CATEGORY_TYPE(RX_EVENT_CATEGORY_WINDOW)
 		};
-
-		class REN_API WindowClosed :public Event
-		{
-		private:
-
-		};
-
-
-
 
 	}
 }

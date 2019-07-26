@@ -12,5 +12,6 @@ namespace renderx {
 			vprintf(format, args);
 			va_end(args);
 		}
+
 	}
 }
