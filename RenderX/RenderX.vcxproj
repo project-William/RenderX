@@ -159,7 +159,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
-    <ClInclude Include="include\events\AppEvent.h" />
+    <ClInclude Include="include\entity\DefualtCamera.h" />
+    <ClInclude Include="include\entity\Entity.h" />
+    <ClInclude Include="include\entity\FPSCamera.h" />
+    <ClInclude Include="include\events\WindowEvent.h" />
     <ClInclude Include="include\events\KeyboardEvent.h" />
     <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
@@ -197,6 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="src\entity\DefaultCamera.cpp" />
+    <ClCompile Include="src\entity\FPSCamera.cpp" />
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\graphics\Layer.cpp" />

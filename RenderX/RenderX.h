@@ -1,7 +1,7 @@
 #pragma once
 
 /* events headers */
-#include "include/events/AppEvent.h"
+#include "include/events/WindowEvent.h"
 #include "include/events/Event.h"
 #include "include/events/KeyboardEvent.h"
 #include "include/events/MouseEvent.h"
