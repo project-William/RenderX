@@ -56,7 +56,6 @@ void Application::Run()
 		framebuffer->UpdateFramebufferData(WinData,m_WindowResized_flag);
 		m_Window->Clear();
 		m_Window->ClearColor();
-
 		//begin scene
 		sphere->Draw(WinData);
 		//cube->Draw(WinData);
@@ -73,11 +72,11 @@ void Application::Run()
 		sphere->Color(WinData);
 		
 		imgui->SettingWindowEnd();
-	
-		imgui->End();		
 		
-		m_Window->OnUpdate();
+		imgui->End();		
+
 		m_WindowResized_flag = false;
+		m_Window->OnUpdate();
 	}
 
 	imgui->OnDetach();
@@ -134,7 +133,6 @@ void Application::OnEvent(events::Event& e)
 			handled = dispatcher.Dispatch<events::MouseMovedEvent>(BIND_EVENT(Application::OnMouseMovedEvent));
 		}
 		
-
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::MousePressedEvent>(BIND_EVENT(Application::OnMouseButtonPressed));
@@ -149,7 +147,6 @@ void Application::OnEvent(events::Event& e)
 		{
 			handled = dispatcher.Dispatch<events::MouseScrollEvent>(BIND_EVENT(Application::OnMouseScrollEvent));
 		}
-
 	}
 }
 
@@ -204,13 +201,13 @@ bool Application::OnMouseScrollEvent(events::MouseScrollEvent& e)
 
 bool Application::OnKeyPressedEvent(events::KeyPressedEvent& e)
 {
-	//utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
+	utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
 	return true;
 }
 
 bool Application::OnKeyReleasedEvent(events::KeyReleasedEvent& e)
 {
-	//m_Keyboard->OnEvent(e);
+	utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
 	return true;
 }
 

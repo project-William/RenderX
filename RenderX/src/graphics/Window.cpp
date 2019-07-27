@@ -172,8 +172,8 @@ namespace renderx {
 
 		void Window::OnUpdate()const
 		{
-			glfwPollEvents();
 			glfwSwapBuffers(m_WinData.glWindowPtr);
+			glfwPollEvents();
 		}
 
 	}

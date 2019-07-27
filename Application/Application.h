@@ -23,7 +23,7 @@ private:
 
 
 	std::shared_ptr<utils::Mouse> m_Mouse;
-	utils::Keyboard* m_Keyboard;
+	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;

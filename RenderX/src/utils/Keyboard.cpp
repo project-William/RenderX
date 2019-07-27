@@ -3,7 +3,7 @@
 namespace renderx {
 	namespace utils {
 
-		Keyboard* Keyboard::ms_Keyboard = nullptr;
+		std::shared_ptr<Keyboard> Keyboard::ms_Keyboard = nullptr;
 		
 		Keyboard::Keyboard()
 			:m_Keys(nullptr)
@@ -17,11 +17,11 @@ namespace renderx {
 			delete m_Keys;
 		}
 
-		Keyboard* Keyboard::Create()
+		std::shared_ptr<Keyboard> Keyboard::Create()
 		{
 			if (!ms_Keyboard)
 			{
-				ms_Keyboard = new Keyboard();
+				ms_Keyboard = std::shared_ptr<Keyboard>(new Keyboard());
 				return ms_Keyboard;
 			}
 			return ms_Keyboard;

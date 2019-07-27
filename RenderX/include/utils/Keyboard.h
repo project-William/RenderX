@@ -142,17 +142,22 @@ namespace renderx {
 		{
 		private:
 			std::vector<bool>* m_Keys;
-			static Keyboard* ms_Keyboard;
+
+			static std::shared_ptr<Keyboard> ms_Keyboard;
+
 			Keyboard();
+
 		public:
+
 			~Keyboard();
-			static Keyboard* Create();
+
+			static std::shared_ptr<Keyboard> Create();
 			
+			static std::shared_ptr<Keyboard>& GetKeyboardInstance() { return ms_Keyboard; }
+
 			void OnEvent(events::KeyPressedEvent& event);
 			
 			void OnEvent(events::KeyReleasedEvent& event);
-
-			static Keyboard* GetKeyboardInstance() { return ms_Keyboard; }
 
 			
 			inline bool GetKeyCode(int keycode)
