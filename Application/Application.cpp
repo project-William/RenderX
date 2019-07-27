@@ -6,8 +6,15 @@
 
 Application::Application()
 {
+	m_Keyboard = utils::Keyboard::Create();
+	m_Mouse = utils::Mouse::Create();
+	
 	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
+
+
+
+
 	
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	
@@ -88,16 +95,19 @@ void Application::OnEvent(events::Event& e)
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::WindowResizedEvent>(BIND_EVENT(Application::OnWindowResizedEvent));
+			EVENT_LOG(events::WindowResizedEvent, "Window resized!");
 		}
 
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::WindowClosedEvent>(BIND_EVENT(Application::OnWindowClosedEvent));
+			EVENT_LOG(events::WindowClosedEvent, "Window colsed!");
 		}
 
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::WindowMovedEvent>(BIND_EVENT(Application::OnWindowMovedEvent));
+			EVENT_LOG(events::WindowMovedEvent, "Window moved!");
 		}
 	}
 
@@ -106,11 +116,13 @@ void Application::OnEvent(events::Event& e)
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::KeyPressedEvent>(BIND_EVENT(Application::OnKeyPressedEvent));
+			EVENT_LOG(events::KeyPressedEvent, "KeyPressed!");
 		}
 
 		if (!handled)
 		{
 			handled = dispatcher.Dispatch<events::KeyReleasedEvent>(BIND_EVENT(Application::OnKeyReleasedEvent));
+			EVENT_LOG(events::KeyPressedEvent, "KeyReleased!");
 		}
 
 	}
@@ -164,32 +176,42 @@ bool Application::OnWindowMovedEvent(events::WindowMovedEvent& e)
 
 bool Application::OnMouseButtonPressed(events::MousePressedEvent& e)
 {
-	return false;
+	utils::Mouse::GetMouseInstance()->OnEvent(e);
+	EVENT_LOG(events::MousePressedEvent, "Mouse Pressed!");
+	return true;
 }
 
 bool Application::OnMouseButtonReleased(events::MouseRelasedEvent& e)
 {
-	return false;
+	utils::Mouse::GetMouseInstance()->OnEvent(e);
+	EVENT_LOG(events::MouseRelasedEvent, "Mouse Released!");
+	return true;
 }
 
 bool Application::OnMouseMovedEvent(events::MouseMovedEvent& e)
 {
-	return false;
+	utils::Mouse::GetMouseInstance()->OnEvent(e);
+	EVENT_LOG(events::MouseMovedEvent, "Mouse Moved!");
+	return true;
 }
 
 bool Application::OnMouseScrollEvent(events::MouseScrollEvent& e)
 {
-	return false;
+	utils::Mouse::GetMouseInstance()->OnEvent(e);
+	EVENT_LOG(events::MouseScrollEvent, "Mouse Scroll moved!");
+	return true;
 }
 
 bool Application::OnKeyPressedEvent(events::KeyPressedEvent& e)
 {
-	return false;
+	//utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
+	return true;
 }
 
 bool Application::OnKeyReleasedEvent(events::KeyReleasedEvent& e)
 {
-	return false;
+	//m_Keyboard->OnEvent(e);
+	return true;
 }
 
 

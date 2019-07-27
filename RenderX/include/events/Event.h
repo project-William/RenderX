@@ -22,7 +22,7 @@ namespace renderx {
 		};
 
 
-		enum EventCategory
+		enum REN_API EventCategory
 		{
 			NONE = 0,
 			RX_EVENT_CATEGORY_INPUT = VALUE(0),

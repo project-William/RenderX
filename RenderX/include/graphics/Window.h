@@ -66,7 +66,6 @@ namespace renderx {
 			void OnUpdate()const;
 			void Clear()const;
 			void ClearColor()const;
-			bool Closed()const;
 		};
 	}
 }

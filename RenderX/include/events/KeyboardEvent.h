@@ -12,12 +12,7 @@ namespace renderx {
 			KeyboardEvent(int keycode)
 				:m_KeyCode(keycode)
 			{
-				if (keycode < 100)
-					m_KeyCode = keycode;
-				else if (keycode > 250 && keycode< 320)
-					m_KeyCode = keycode - 150;
-				else if (keycode >= 320)
-					m_KeyCode = keycode - 320;
+				
 			}
 
 			virtual ~KeyboardEvent()

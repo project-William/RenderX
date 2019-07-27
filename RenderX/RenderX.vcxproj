@@ -194,7 +194,6 @@
     <ClInclude Include="include\graphics\Layer.h" />
     <ClInclude Include="include\graphics\FrameBuffer.h" />
     <ClInclude Include="include\events\Event.h" />
-    <ClInclude Include="src\utils\Mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
@@ -222,6 +221,7 @@
     <ClCompile Include="src\utils\Input.cpp" />
     <ClCompile Include="src\utils\Keyboard.cpp" />
     <ClCompile Include="src\utils\Log.cpp" />
+    <ClCompile Include="src\utils\Mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">

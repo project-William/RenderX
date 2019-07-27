@@ -22,6 +22,9 @@ private:
 	graphics::RenderSphere* sphere;
 
 
+	std::shared_ptr<utils::Mouse> m_Mouse;
+	utils::Keyboard* m_Keyboard;
+	
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;
 

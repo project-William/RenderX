@@ -7,8 +7,11 @@ namespace renderx {
 
 		Window* Window::Create()
 		{
-			if(m_Instance==nullptr)
+			if (m_Instance == nullptr)
+			{
 				m_Instance = new Window();
+				return m_Instance;
+			}
 			return m_Instance;
 		}
 
@@ -86,6 +89,7 @@ namespace renderx {
 				{
 					case GLFW_PRESS:
 					{
+						repeatCount = 1;
 						events::KeyPressedEvent event(key, repeatCount);
 						data.OnEvent(event);
 						break;
@@ -93,6 +97,7 @@ namespace renderx {
 						
 					case GLFW_RELEASE:
 					{
+						repeatCount = 0;
 						events::KeyReleasedEvent event(key);
 						data.OnEvent(event);
 						break;
@@ -108,6 +113,34 @@ namespace renderx {
 				}
 			});
 
+
+			glfwSetMouseButtonCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, int button, int action, int mods) 
+			{
+				auto& data= *static_cast<WinData*>(glfwGetWindowUserPointer(window));
+				switch (action)
+				{
+					case GLFW_PRESS:
+					{
+						events::MousePressedEvent event(button);
+						data.OnEvent(event);
+						break;
+					}
+
+					case GLFW_RELEASE:
+					{
+						events::MouseRelasedEvent event(button);
+						data.OnEvent(event);
+						break;
+					}
+				}
+			});
+
+			glfwSetScrollCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, double xOffset, double yOffset) 
+			{
+				auto& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
+				events::MouseScrollEvent event((float)xOffset, (float)yOffset);
+				data.OnEvent(event);
+			});
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
@@ -132,12 +165,6 @@ namespace renderx {
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		}
 
-
-		bool Window::Closed()const
-		{
-			return glfwWindowShouldClose(m_WinData.glWindowPtr) == 1;
-		}
-
 		void Window::OnWindowResized()
 		{
 			glViewport(0, 0, m_WinData.win_Width, m_WinData.win_Height);
@@ -145,8 +172,8 @@ namespace renderx {
 
 		void Window::OnUpdate()const
 		{
-			glfwSwapBuffers(m_WinData.glWindowPtr);
 			glfwPollEvents();
+			glfwSwapBuffers(m_WinData.glWindowPtr);
 		}
 
 	}

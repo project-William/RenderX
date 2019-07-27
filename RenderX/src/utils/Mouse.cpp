@@ -1,4 +1,3 @@
-#pragma once
 #include "utils/Mouse.h"
 
 namespace renderx {
@@ -7,10 +6,6 @@ namespace renderx {
 		std::shared_ptr<Mouse> Mouse::ms_Mouse = nullptr;
 
 		Mouse::Mouse()
-			:m_ScrollSensitivity(0.1), m_ScrollOffset(glm::vec2(0.0f)),
-			 m_LastPosition(glm::vec2(0.0f)), m_Position(glm::vec2(0.0f)),
-			 m_LeftButton(false), m_RightButton(false), 
-			 m_MiddleButton(false),m_MouseSensitivity(0.1)
 		{
 
 		}
@@ -19,10 +14,10 @@ namespace renderx {
 		{
 
 		}
-		
+
 		std::shared_ptr<Mouse> Mouse::Create()
 		{
-			if (!ms_Mouse)
+			if (ms_Mouse == nullptr)
 			{
 				ms_Mouse = std::shared_ptr<Mouse>(new Mouse());
 				return ms_Mouse;
@@ -32,48 +27,51 @@ namespace renderx {
 
 		void Mouse::OnEvent(events::MouseMovedEvent& event)
 		{
-			m_LastPosition = m_Position;
-			
-			float xoffset = event.GetMouseXPos() - m_Position.x;
-			float yoffset = event.GetMouseYPos() - m_Position.y;
+			m_LastPosition = m_CurrentPosition;
+
+			float xoffset = event.GetMouseXPos() - m_CurrentPosition.x;
+			float yoffset = event.GetMouseYPos() - m_CurrentPosition.y;
 
 			xoffset *= m_MouseSensitivity;
 			yoffset *= m_MouseSensitivity;
 
-			m_Position.x += xoffset;
-			m_Position.y += yoffset;
-
+			m_CurrentPosition.x += xoffset;
+			m_CurrentPosition.y += yoffset;
+		
 		}
 
 		void Mouse::OnEvent(events::MousePressedEvent& event)
 		{
-			if (event.GetMouseButton() == RX_MOUSE_LEFT)
+			if (event.GetMouseButton() == MouseButton::RX_LEFT_BUTTON)
 			{
 				m_LeftButton = true;
 			}
-			else if (event.GetMouseButton() == RX_MOUSE_MIDDLE)
-			{
-				m_MiddleButton = true;
-			}
-			else if (event.GetMouseButton() == RX_MOUSE_RIGHT)
+			else if (event.GetMouseButton() == MouseButton::RX_RIGHT_BUTTON)
 			{
 				m_RightButton = true;
 			}
+			else if (event.GetMouseButton() == MouseButton::RX_MIDDLE_BUTTON)
+			{
+				m_MiddleButton = true;
+			}
 		}
+
+
 
 		void Mouse::OnEvent(events::MouseRelasedEvent& event)
 		{
-			if (event.GetMouseButton() == RX_MOUSE_LEFT)
+
+			if (event.GetMouseButton() == MouseButton::RX_LEFT_BUTTON)
 			{
 				m_LeftButton = false;
 			}
-			else if (event.GetMouseButton() == RX_MOUSE_MIDDLE)
-			{
-				m_MiddleButton = false;
-			}
-			else if (event.GetMouseButton() == RX_MOUSE_RIGHT)
+			else if (event.GetMouseButton() == MouseButton::RX_RIGHT_BUTTON)
 			{
 				m_RightButton = false;
+			}
+			else if (event.GetMouseButton() == MouseButton::RX_MIDDLE_BUTTON)
+			{
+				m_MiddleButton = false;
 			}
 		}
 
@@ -81,13 +79,13 @@ namespace renderx {
 		{
 			float xoffset = event.GetXOffset() * m_ScrollSensitivity;
 			float yoffset = event.GetYOffset() * m_ScrollSensitivity;
-			
+
 			m_ScrollOffset = glm::vec2(xoffset, yoffset);
 		}
 
-		void Mouse::Update()
+		void Mouse::UpdateMouse()
 		{
-			m_LastPosition = m_Position;
+			m_LastPosition = m_CurrentPosition;
 			m_ScrollOffset = glm::vec2(0.0f);
 		}
 

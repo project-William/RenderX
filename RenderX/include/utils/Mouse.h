@@ -1,5 +1,5 @@
 #pragma once
-#include "..//Core.h"
+#include "..//..//Core.h"
 #include "..//events/MouseEvent.h"
 
 namespace renderx {
@@ -7,57 +7,43 @@ namespace renderx {
 
 		enum REN_API MouseButton
 		{
-			RX_MOUSE_LEFT = 0,
-			RX_MOUSE_RIGHT,
-			RX_MOUSE_MIDDLE
+			RX_LEFT_BUTTON,
+			RX_RIGHT_BUTTON,
+			RX_MIDDLE_BUTTON
 		};
-
 
 		class REN_API Mouse
 		{
 		private:
-			bool m_LeftButton;
-			bool m_RightButton;
-			bool m_MiddleButton;
+			bool m_LeftButton = false;
+			bool m_RightButton = false;
+			bool m_MiddleButton = false;
 
-			float m_ScrollSensitivity;
-			float m_MouseSensitivity;
+			glm::vec2 m_CurrentPosition = glm::vec2(0.0f);
+			glm::vec2 m_LastPosition = glm::vec2(0.0f);
+			glm::vec2 m_ScrollOffset = glm::vec2(0.0f);
 
-			glm::vec2 m_Position;
-			glm::vec2 m_LastPosition;
-			glm::vec2 m_ScrollOffset;
+			float m_ScrollSensitivity = 0.1;
+			float m_MouseSensitivity = 0.1;
+
 
 			static std::shared_ptr<Mouse> ms_Mouse;
 			Mouse();
-			~Mouse();
-			
 		public:
-
+			~Mouse();
 			static std::shared_ptr<Mouse> Create();
 
-			static const std::shared_ptr<Mouse>& GetMouseInstance() { return ms_Mouse; }
-			
-			inline bool IsLeftButtonPressed()const { return m_LeftButton; }
-			
-			inline bool IsRightButtonPressed()const { return m_RightButton; }
-			
-			inline bool IsMiddleButtonPressed()const { return m_MiddleButton; }
+			static std::shared_ptr<Mouse>& GetMouseInstance() { return ms_Mouse; }
 
 			void OnEvent(events::MouseMovedEvent& event);
-
+			
 			void OnEvent(events::MousePressedEvent& event);
 			
 			void OnEvent(events::MouseRelasedEvent& event);
 			
 			void OnEvent(events::MouseScrollEvent& event);
 
-			void Update();
-			
-			inline const glm::vec2& GetPosition()const { return m_Position; }
-
-			inline const glm::vec2& GetLastPosition()const { return m_LastPosition; }
-			
-			inline const glm::vec2& GetScrollOffset()const { return m_ScrollOffset; }
+			void UpdateMouse();
 
 		};
 
