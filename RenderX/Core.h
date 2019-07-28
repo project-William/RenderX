@@ -30,7 +30,6 @@
 	#define REN_API __declspec(dllexport)
 #endif // RENDERX
 
-
 #define VALUE(x) (1<<x)
 
 #define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)

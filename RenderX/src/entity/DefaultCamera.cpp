@@ -30,7 +30,7 @@ namespace renderx {
 
 		glm::mat4 DefaultCamera::GetViewMatrix()
 		{
-
+			return glm::mat4();
 		}
 
 		glm::mat4 DefaultCamera::GetProjectionMatrix()

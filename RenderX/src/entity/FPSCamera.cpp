@@ -3,17 +3,9 @@
 namespace renderx {
 	namespace entity {
 
-		FPSCamera::FPSCamera(glm::vec3 position = glm::vec3(0.0f),
-						     glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
-						     float yaw = YAW, float pitch = PITCH)
+		FPSCamera::FPSCamera()
 		{
-			m_CameraAttrib.Euler_Pitch = pitch;
-			m_CameraAttrib.Euler_Yaw = yaw;
-			m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, -1.0f);
-			m_CameraAttrib.MouseSensivitity = SENSITIVITY;
-			m_CameraAttrib.Position = position;
-			m_CameraAttrib.WorldUp = up;
-			UpdateCameraMatrix();
+			
 		}
 
 		FPSCamera::~FPSCamera()
@@ -38,7 +30,17 @@ namespace renderx {
 
 		glm::mat4 FPSCamera::GetViewMatrix()
 		{
-			
+			return glm::mat4();
+		}
+
+		glm::mat4 FPSCamera::GetProjectionMatrix()
+		{
+			return glm::mat4();
+		}
+
+		glm::mat4 FPSCamera::GetModelMatrix()
+		{
+			return glm::mat4();
 		}
 
 		void FPSCamera::UpdateCameraMatrix()

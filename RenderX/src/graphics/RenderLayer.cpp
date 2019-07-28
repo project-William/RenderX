@@ -66,7 +66,6 @@ namespace renderx {
 
 		void RenderLayer::TestDraw(const WinData& windata, const GLuint& texture)
 		{
-
 			ImGui::Begin("RenderX Viewport");
 			{
 				ImVec2 p = ImGui::GetCursorPos();

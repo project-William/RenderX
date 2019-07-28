@@ -5,13 +5,7 @@
 namespace renderx {
 	namespace entity {
 
-		// Default camera values
-		const float YAW = -90.0f;
-		const float PITCH = 0.0f;
-		const float SPEED = 2.5f;
-		const float SENSITIVITY = 0.1f;
-		const float ZOOM = 45.0f;
-
+		
 		//camera movement
 		enum REN_API CameraMovement
 		{
@@ -24,20 +18,21 @@ namespace renderx {
 		//camera attributes
 		struct REN_API CameraAttributes
 		{
-			glm::vec3 Position;
-			glm::vec3 Front;
-			glm::vec3 Up;
-			glm::vec3 Right;
-			glm::vec3 WorldUp;
+			glm::vec3 Position = glm::vec3(0.0f);
+			glm::vec3 Front = glm::vec3(0.0f);
+			glm::vec3 Up = glm::vec3(0.0f);
+			glm::vec3 Right = glm::vec3(0.0f);
+			glm::vec3 WorldUp = glm::vec3(0.0f);
 
-			float Euler_Yaw;
-			float Euler_Pitch;
+			float Euler_Yaw = 0;
+			float Euler_Pitch = 0;
 
-			float MovementSpeed;
-			float MouseSensivitity;
+			float MovementSpeed = 0;
+			float MouseSensivitity = 0;
 
 			float Zoom;
 		};
+
 
 
 		class REN_API Entity
@@ -54,7 +49,6 @@ namespace renderx {
 
 			virtual void DisableObject() = 0;
 
-			virtual glm::mat4 GetViewMatrix() = 0;
 
 		};
 	}

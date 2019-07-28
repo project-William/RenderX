@@ -13,9 +13,6 @@ Application::Application()
 	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
 
 
-
-
-	
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	
 	imgui = new graphics::ImguiLayer(m_Window->GetWinPtr(), m_Window->GetWinData());
@@ -64,14 +61,16 @@ void Application::Run()
 		framebuffer->UnbindFrameBuffer();
 		imgui->Begin();
 		
-		renderLayer->TestDraw(WinData,framebuffer->GetRendered());
-		//imgui setting window
+		//renderLayer->TestDraw(WinData,framebuffer->GetRendered());
 		imgui->SettingWindowBegin();
-		
-		//cube->Color(WinData);
+		imgui->SettingWindow();
 		sphere->Color(WinData);
-		
+
 		imgui->SettingWindowEnd();
+		
+		imgui->TestDraw(WinData ,framebuffer->GetRendered());
+		//cube->Color(WinData);
+		
 		
 		imgui->End();		
 

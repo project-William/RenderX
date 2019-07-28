@@ -35,7 +35,7 @@ namespace renderx {
 
 			Transformation()
 				:perspective_radians(45.0f),
-				 position(glm::vec3(0.0f, 0.0f, -3.0f)),
+				 position(glm::vec3(0.0f, 0.0f, 0.0f)),
 				 model(glm::mat4(1.0f)),
 				 view(glm::mat4(1.0f)),
 				 projection(glm::mat4(1.0f)),
