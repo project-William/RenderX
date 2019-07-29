@@ -26,11 +26,11 @@ Application::Application()
 
 	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
-
 	skybox = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
 
 	imguiLog = new graphics::ImguiLog();
 	imguisetwindow=new graphics::ImguiSetWindow();
+	imguiSceneWindow = new graphics::ImguiSceneWindow();
 
 }
 
@@ -72,7 +72,10 @@ void Application::Run()
 		sphere->Color(WinData);
 		imguisetwindow->EndSetWindow();
 		//imgui draw window
-		imgui->TestDraw(WinData ,framebuffer->GetRendered());
+		//imgui->TestDraw(WinData ,framebuffer->GetRendered());
+		imguiSceneWindow->BeginSceneWindow();
+		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
+		imguiSceneWindow->EndSceneWindow();
 
 		//imgui log window
 		imguiLog->BeginLog();

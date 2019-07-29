@@ -23,10 +23,6 @@ namespace renderx {
 
 			void Begin();
 
-			void SettingWindowBegin();
-			void SettingWindow();
-			void SettingWindowEnd();
-
 			void End();
 			void TestDraw(const WinData& windata,const GLuint& texture);
 
@@ -35,8 +31,6 @@ namespace renderx {
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer() override;
-		private:
-			void DockSpace(bool& m_Open);
 
 		};
 

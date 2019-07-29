@@ -30,7 +30,7 @@ private:
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
-
+	graphics::ImguiSceneWindow* imguiSceneWindow;
 
 
 	bool m_Running = true;

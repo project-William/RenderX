@@ -19,6 +19,7 @@
 #include "include/graphics/imgui/ImguiLayer.h"
 #include "include/graphics/imgui/ImguiLog.h"
 #include "include/graphics/imgui/ImguiSetWindow.h"
+#include "include/graphics/imgui/ImguiSceneWindow.h"
 
 //render headers
 #include "include/graphics/render/DirectLight.h"

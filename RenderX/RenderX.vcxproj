@@ -167,6 +167,7 @@
     <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLog.h" />
+    <ClInclude Include="include\graphics\imgui\ImguiSceneWindow.h" />
     <ClInclude Include="include\graphics\imgui\ImguiSetWindow.h" />
     <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLog.cpp" />
+    <ClCompile Include="src\graphics\imgui\ImguiSceneWindow.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiSetWindow.cpp" />
     <ClCompile Include="src\graphics\Layer.cpp" />
     <ClCompile Include="src\graphics\LayerList.cpp" />
