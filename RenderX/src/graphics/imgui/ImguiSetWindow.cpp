@@ -1,7 +1,7 @@
 #include "graphics/imgui/ImguiSetWindow.h"
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 		ImguiSetWindow::ImguiSetWindow()
 		{
 

@@ -2,7 +2,7 @@
 #include "..//..//..//Core.h"
 #include "..//Window.h"
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 
 		class REN_API ImguiSceneWindow
 		{
@@ -13,7 +13,7 @@ namespace renderx {
 			void BeginSceneWindow();
 			void EndSceneWindow();
 
-			void SceneWindow(const WinData& windata,const GLuint& texture);
+			void SceneWindow(const graphics::WinData& windata,const GLuint& texture);
 
 
 		};

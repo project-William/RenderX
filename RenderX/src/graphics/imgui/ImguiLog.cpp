@@ -1,7 +1,7 @@
 #include "graphics/imgui/ImguiLog.h"
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 
 		ImguiLog::ImguiLog()
 		{

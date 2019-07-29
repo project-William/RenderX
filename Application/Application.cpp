@@ -15,7 +15,7 @@ Application::Application()
 
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	
-	imgui = new graphics::ImguiLayer(m_Window->GetWinPtr(), m_Window->GetWinData());
+	imgui = new ui::ImguiLayer(m_Window->GetWinData());
 
 	imgui->OnAttach();
 
@@ -28,9 +28,9 @@ Application::Application()
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 	skybox = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
 
-	imguiLog = new graphics::ImguiLog();
-	imguisetwindow=new graphics::ImguiSetWindow();
-	imguiSceneWindow = new graphics::ImguiSceneWindow();
+	imguiLog = new ui::ImguiLog();
+	imguisetwindow=new ui::ImguiSetWindow();
+	imguiSceneWindow = new ui::ImguiSceneWindow();
 
 }
 
@@ -72,7 +72,6 @@ void Application::Run()
 		sphere->Color(WinData);
 		imguisetwindow->EndSetWindow();
 		//imgui draw window
-		//imgui->TestDraw(WinData ,framebuffer->GetRendered());
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
 		imguiSceneWindow->EndSceneWindow();
@@ -86,7 +85,6 @@ void Application::Run()
 				
 		m_Window->OnUpdate();
 	}
-
 	imgui->OnDetach();
 }
 

@@ -3,19 +3,19 @@
 
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 
-		class REN_API ImguiLayer:public Layer
+		class REN_API ImguiLayer :public graphics::Layer
 		{
 		private:
-			WinData m_WinData;
+			graphics::WinData m_WinData;
 			GLFWwindow* m_Window = nullptr;
 			bool m_Open = true;
 		public:
 			ImguiLayer();
 			~ImguiLayer();
 
-			ImguiLayer(GLFWwindow* window, WinData windata);
+			ImguiLayer(const graphics::WinData& windata);
 		private:
 			void SetUpImguiLayer();
 			
@@ -24,7 +24,6 @@ namespace renderx {
 			void Begin();
 
 			void End();
-			void TestDraw(const WinData& windata,const GLuint& texture);
 
 		public:
 

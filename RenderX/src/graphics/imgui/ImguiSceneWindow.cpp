@@ -1,7 +1,7 @@
 #include "graphics/imgui/ImguiSceneWindow.h"
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 
 
 
@@ -25,7 +25,8 @@ namespace renderx {
 			ImGui::End();
 		}
 
-		void ImguiSceneWindow::SceneWindow(const WinData& windata, const GLuint& texture)
+		void ImguiSceneWindow::SceneWindow(const graphics::WinData& windata, 
+										   const GLuint& texture)
 		{
 			{
 				ImVec2 pos = ImGui::GetCursorScreenPos();

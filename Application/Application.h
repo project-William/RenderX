@@ -9,7 +9,7 @@ class Application
 private:
 	std::unique_ptr<graphics::Window> m_Window;
 
-	graphics::ImguiLayer* imgui = nullptr;
+	ui::ImguiLayer* imgui = nullptr;
 
 	graphics::RenderLayer* renderLayer = nullptr;
 
@@ -23,14 +23,14 @@ private:
 
 	entity::RenderSkybox* skybox;
 
-	graphics::ImguiLog* imguiLog;
+	ui::ImguiLog* imguiLog;
 
-	graphics::ImguiSetWindow* imguisetwindow;
+	ui::ImguiSetWindow* imguisetwindow;
 
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
-	graphics::ImguiSceneWindow* imguiSceneWindow;
+	ui::ImguiSceneWindow* imguiSceneWindow;
 
 
 	bool m_Running = true;

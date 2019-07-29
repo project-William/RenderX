@@ -2,16 +2,17 @@
 
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 
 		ImguiLayer::ImguiLayer()
 		{
 
 		}
 
-		ImguiLayer::ImguiLayer(GLFWwindow* window, WinData winData)
-			:m_WinData(winData),m_Window(window)
+		ImguiLayer::ImguiLayer(const graphics::WinData& windata)
+			:m_WinData(windata)
 		{
+
 		}
 
 
@@ -54,7 +55,7 @@ namespace renderx {
 			}
 
 			// Setup Platform/Renderer bindings
-			ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+			ImGui_ImplGlfw_InitForOpenGL(m_WinData.glWindowPtr, true);
 			ImGui_ImplOpenGL3_Init("#version 410");
 		}
 
@@ -76,25 +77,6 @@ namespace renderx {
 		{
 		}
 
-
-			
-		void ImguiLayer::TestDraw(const WinData& windata, const GLuint& texture)
-		{
-
-			ImGui::Begin("RenderX Viewport");
-			{
-				ImVec2 p = ImGui::GetCursorPos();
-				ImVec2 pos = ImGui::GetCursorScreenPos();
-				//std::cout << pos.x << "    " << pos.y << std::endl;
-				ImGui::GetWindowDrawList()->AddImage((void*)texture,
-					ImVec2(pos.x, pos.y),
-					ImVec2(pos.x + ImGui::GetWindowWidth(), pos.y + ImGui::GetWindowHeight()),
-					ImVec2(0, 1), ImVec2(1, 0));
-				ImGui::GetWindowViewport();
-			}
-
-			ImGui::End();
-		}
 
 		void ImguiLayer::End()
 		{

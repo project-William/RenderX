@@ -2,7 +2,7 @@
 #include "..//..//..//Core.h"
 
 namespace renderx {
-	namespace graphics {
+	namespace ui {
 		
 		class REN_API ImguiLog
 		{

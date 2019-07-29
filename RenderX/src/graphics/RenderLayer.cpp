@@ -64,23 +64,7 @@ namespace renderx {
 		{
 		}
 
-		void RenderLayer::TestDraw(const WinData& windata, const GLuint& texture)
-		{
-			ImGui::Begin("RenderX Viewport");
-			{
-				ImVec2 p = ImGui::GetCursorPos();
-				ImVec2 pos = ImGui::GetCursorScreenPos();
-				//std::cout << pos.x << "    " << pos.y << std::endl;
-				ImGui::GetWindowDrawList()->AddImage((void*)texture,
-					ImVec2(pos.x, pos.y),
-					ImVec2(pos.x + ImGui::GetWindowWidth(), pos.y + ImGui::GetWindowHeight()),
-					ImVec2(0, 1), ImVec2(1, 0));
-				ImGui::GetWindowViewport();
-			}
-
-			ImGui::End();
-		}
-
+	
 		void RenderLayer::OnImguiLayer()
 		{
 			ImGuiWindowFlags window_flags = false;

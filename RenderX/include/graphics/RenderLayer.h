@@ -27,7 +27,6 @@ namespace renderx {
 			void RenderSkybox();
 			void RenderShape(const std::string& vspath, const std::string& fspath);
 			void RenderModel();
-			void TestDraw(const WinData& windata, const GLuint& texture);
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer() override;
