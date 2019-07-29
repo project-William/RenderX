@@ -30,6 +30,8 @@ Application::Application()
 	skybox = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
 
 	imguiLog = new graphics::ImguiLog();
+	imguisetwindow=new graphics::ImguiSetWindow();
+
 }
 
 Application::~Application()
@@ -65,10 +67,10 @@ void Application::Run()
 		imgui->Begin();
 		
 		//imgui setting window
-		imgui->SettingWindowBegin();
-		imgui->SettingWindow();
+		imguisetwindow->BeginSetWindow();
+		imguisetwindow->GraphicsSettingWindow();
 		sphere->Color(WinData);
-		imgui->SettingWindowEnd();
+		imguisetwindow->EndSetWindow();
 		//imgui draw window
 		imgui->TestDraw(WinData ,framebuffer->GetRendered());
 

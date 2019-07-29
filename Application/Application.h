@@ -25,6 +25,8 @@ private:
 
 	graphics::ImguiLog* imguiLog;
 
+	graphics::ImguiSetWindow* imguisetwindow;
+
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
