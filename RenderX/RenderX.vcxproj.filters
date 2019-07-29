@@ -90,9 +90,6 @@
     <ClInclude Include="include\graphics\render\RenderCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\RenderSkybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\render\RenderSphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -136,6 +133,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\texture\CubemapTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\RenderSkybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\imgui\ImguiLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -194,9 +197,6 @@
     <ClCompile Include="src\graphics\render\RenderCube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\RenderSkybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\render\RenderSphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,6 +228,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\texture\CubemapTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\RenderSkybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\imgui\ImguiLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

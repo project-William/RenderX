@@ -1,6 +1,6 @@
 #pragma once
 #pragma once
-#include "..//Core.h"
+#include "..//..//Core.h"
 
 namespace renderx {
 	namespace entity {
@@ -45,9 +45,9 @@ namespace renderx {
 
 			virtual void OnUpdate() = 0;
 
-			virtual void EnableObject() = 0;
+			virtual void EnableObject() const = 0;
 
-			virtual void DisableObject() = 0;
+			virtual void DisableObject() const = 0;
 
 
 		};

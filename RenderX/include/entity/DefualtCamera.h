@@ -13,8 +13,8 @@ namespace renderx {
 			~DefaultCamera();
 
 			void OnUpdate() override;
-			void EnableObject() override;
-			void DisableObject() override;
+			void EnableObject() const override;
+			void DisableObject() const override;
 
 			glm::mat4 GetViewMatrix();
 			glm::mat4 GetProjectionMatrix();

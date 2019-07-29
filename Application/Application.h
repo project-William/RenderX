@@ -21,9 +21,9 @@ private:
 
 	graphics::RenderSphere* sphere;
 
-	graphics::RenderSkybox* skybox;
+	entity::RenderSkybox* skybox;
 
-
+	graphics::ImguiLog* imguiLog;
 
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;

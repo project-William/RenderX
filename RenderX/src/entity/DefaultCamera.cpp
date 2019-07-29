@@ -18,15 +18,17 @@ namespace renderx {
 
 		}
 
-		void DefaultCamera::EnableObject()
+		void DefaultCamera::EnableObject() const 
 		{
 
 		}
 
-		void DefaultCamera::DisableObject()
+		void DefaultCamera::DisableObject() const
 		{
 
 		}
+
+		
 
 		glm::mat4 DefaultCamera::GetViewMatrix()
 		{

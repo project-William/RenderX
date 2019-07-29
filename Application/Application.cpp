@@ -27,8 +27,9 @@ Application::Application()
 	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 
-	skybox = new graphics::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
+	skybox = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
 
+	imguiLog = new graphics::ImguiLog();
 }
 
 Application::~Application()
@@ -63,15 +64,18 @@ void Application::Run()
 		framebuffer->UnbindFrameBuffer();
 		imgui->Begin();
 		
-		//renderLayer->TestDraw(WinData,framebuffer->GetRendered());
+		//imgui setting window
 		imgui->SettingWindowBegin();
 		imgui->SettingWindow();
 		sphere->Color(WinData);
-		
 		imgui->SettingWindowEnd();
-		
+		//imgui draw window
 		imgui->TestDraw(WinData ,framebuffer->GetRendered());
-		//cube->Color(WinData);
+
+		//imgui log window
+		imguiLog->BeginLog();
+		imguiLog->EndLog();
+
 		imgui->End();		
 		m_WindowResized_flag = false;
 				

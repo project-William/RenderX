@@ -1,25 +1,25 @@
-#include "graphics/render/RenderSkybox.h"
+#include "entity/RenderSkybox.h"
 
 namespace renderx {
-	namespace graphics {
+	namespace entity {
 
 		RenderSkybox::RenderSkybox(const std::string& vsfile,const std::string& fsfile)
 			:m_Cubemap(nullptr)
 		{
-			m_Cubemap = std::unique_ptr<CubemapTexture>(new CubemapTexture(m_Faces.m_faces));
-			m_RenderData = new RenderData();
-			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
+			m_Cubemap = std::unique_ptr<graphics::CubemapTexture>(new graphics::CubemapTexture(m_Faces.m_faces));
+			m_RenderData = new graphics::RenderData();
+			m_RenderData->m_VAO = std::shared_ptr<graphics::VertexArray>
 			(
-				new VertexArray(sizeof(float)*m_SkyboxVertices.size(), &m_SkyboxVertices[0])
+				new graphics::VertexArray(sizeof(float)*m_SkyboxVertices.size(), &m_SkyboxVertices[0])
 			);
 
 			m_RenderData->m_Layout =
 			{
-				{ ShaderDataType::FLOAT3,"VertexPos" }
+				{ graphics::ShaderDataType::FLOAT3,"VertexPos" }
 			};
 
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
-			m_RenderData->m_Shader = std::shared_ptr<Shader>(new Shader(vsfile, fsfile));
+			m_RenderData->m_Shader = std::shared_ptr<graphics::Shader>(new graphics::Shader(vsfile, fsfile));
 			m_RenderData->m_Shader->SetInt("u_Skybox", 0);
 		}
 
@@ -29,23 +29,28 @@ namespace renderx {
 		}
 
 
-		void RenderSkybox::BindObject() const
+		void RenderSkybox::EnableObject() const
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_VAO->BindVertexArray();
 		}
 
-		void RenderSkybox::UnbindObject() const
+		void RenderSkybox::DisableObject() const
 		{
 			m_RenderData->m_Shader->UnbindShaderProgram();
 			m_RenderData->m_VAO->UnbindVertexArray();
 		}
 
+		void RenderSkybox::OnUpdate()
+		{
 
-		void RenderSkybox::Draw(const WinData& windata)
+		}
+
+
+		void RenderSkybox::Draw(const graphics::WinData& windata)
 		{
 			glDepthMask(GL_FALSE);
-			BindObject();
+			EnableObject();
 			
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 
@@ -57,31 +62,9 @@ namespace renderx {
 			m_Cubemap->BindCubemapTexture();
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 
-			UnbindObject();
+			DisableObject();
 			glDepthMask(GL_TRUE);
 		}
-
-		void RenderSkybox::RenderProperties()
-		{
-
-		}
-
-		void RenderSkybox::Position(const glm::vec3& position)
-		{
-
-		}
-
-		void RenderSkybox::Rotation(const float radians, const glm::vec3& axis)
-		{
-
-		}
-
-		void RenderSkybox::Scale(const float scale)
-		{
-
-		}
-
-	
 
 
 	}

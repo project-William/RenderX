@@ -166,6 +166,7 @@
     <ClInclude Include="include\events\KeyboardEvent.h" />
     <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
+    <ClInclude Include="include\graphics\imgui\ImguiLog.h" />
     <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\RenderBuffer.h" />
@@ -177,7 +178,7 @@
     <ClInclude Include="include\graphics\render\RenderLight.h" />
     <ClInclude Include="include\graphics\render\RenderModel.h" />
     <ClInclude Include="include\graphics\render\RenderObject.h" />
-    <ClInclude Include="include\graphics\render\RenderSkybox.h" />
+    <ClInclude Include="include\entity\RenderSkybox.h" />
     <ClInclude Include="include\graphics\render\RenderSphere.h" />
     <ClInclude Include="include\graphics\render\SpotLight.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="src\entity\FPSCamera.cpp" />
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
+    <ClCompile Include="src\graphics\imgui\ImguiLog.cpp" />
     <ClCompile Include="src\graphics\Layer.cpp" />
     <ClCompile Include="src\graphics\LayerList.cpp" />
     <ClCompile Include="src\graphics\RenderBuffer.cpp" />
@@ -215,7 +217,7 @@
     <ClCompile Include="src\graphics\render\PointLight.cpp" />
     <ClCompile Include="src\graphics\render\RenderCube.cpp" />
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />
-    <ClCompile Include="src\graphics\render\RenderSkybox.cpp" />
+    <ClCompile Include="src\entity\RenderSkybox.cpp" />
     <ClCompile Include="src\graphics\render\RenderSphere.cpp" />
     <ClCompile Include="src\graphics\render\SpotLight.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />

@@ -17,6 +17,7 @@
 
 //imgui(UI) header
 #include "include/graphics/imgui/ImguiLayer.h"
+#include "include/graphics/imgui/ImguiLog.h"
 
 //render headers
 #include "include/graphics/render/DirectLight.h"
@@ -26,8 +27,14 @@
 #include "include/graphics/render/RenderLight.h"
 #include "include/graphics/render/RenderModel.h"
 #include "include/graphics/render/RenderObject.h"
-#include "include/graphics/render/RenderSkybox.h"
 #include "include/graphics/render/RenderSphere.h"
+
+//entity headers
+#include "include/entity/DefualtCamera.h"
+#include "include/entity/Entity.h"
+#include "include/entity/FPSCamera.h"
+#include "include/entity/RenderSkybox.h"
+
 
 //shader header
 #include "include/graphics/shader/Shader.h"

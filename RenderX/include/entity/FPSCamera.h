@@ -14,8 +14,8 @@ namespace renderx {
 			~FPSCamera();
 
 			void OnUpdate() override;
-			void EnableObject() override;
-			void DisableObject() override;
+			void EnableObject() const override;
+			void DisableObject() const override;
 
 
 

@@ -18,12 +18,12 @@ namespace renderx {
 
 		}
 
-		void FPSCamera::EnableObject()
+		void FPSCamera::EnableObject() const 
 		{
 
 		}
 
-		void FPSCamera::DisableObject()
+		void FPSCamera::DisableObject() const
 		{
 
 		}
