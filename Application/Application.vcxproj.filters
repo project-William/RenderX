@@ -37,6 +37,8 @@
     <None Include="shader\cubeFragment.frag" />
     <None Include="shader\sphereVertex.vert" />
     <None Include="shader\sphereFragment.frag" />
+    <None Include="shader\cubemapFragment.frag" />
+    <None Include="shader\cubemapVertex.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\wall.jpg">
@@ -45,5 +47,11 @@
     <Image Include="texture\container.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\ame_iceflats\iceflats_bk.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_dn.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_ft.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_lf.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_rt.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_up.tga" />
   </ItemGroup>
 </Project>

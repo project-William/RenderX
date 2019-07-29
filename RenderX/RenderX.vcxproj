@@ -170,6 +170,7 @@
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\RenderBuffer.h" />
     <ClInclude Include="include\graphics\RenderLayer.h" />
+    <ClInclude Include="include\graphics\RenderScene.h" />
     <ClInclude Include="include\graphics\render\DirectLight.h" />
     <ClInclude Include="include\graphics\render\PointLight.h" />
     <ClInclude Include="include\graphics\render\RenderCube.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="include\graphics\render\SpotLight.h" />
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\Buffer.h" />
+    <ClInclude Include="include\graphics\texture\CubemapTexture.h" />
     <ClInclude Include="include\graphics\texture\stb_image.h" />
     <ClInclude Include="include\graphics\texture\Texture.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\BufferLayout.h" />
@@ -208,6 +210,7 @@
     <ClCompile Include="src\graphics\LayerList.cpp" />
     <ClCompile Include="src\graphics\RenderBuffer.cpp" />
     <ClCompile Include="src\graphics\RenderLayer.cpp" />
+    <ClCompile Include="src\graphics\RenderScene.cpp" />
     <ClCompile Include="src\graphics\render\DirectLight.cpp" />
     <ClCompile Include="src\graphics\render\PointLight.cpp" />
     <ClCompile Include="src\graphics\render\RenderCube.cpp" />
@@ -216,6 +219,7 @@
     <ClCompile Include="src\graphics\render\RenderSphere.cpp" />
     <ClCompile Include="src\graphics\render\SpotLight.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
+    <ClCompile Include="src\graphics\texture\CubemapTexture.cpp" />
     <ClCompile Include="src\graphics\texture\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />

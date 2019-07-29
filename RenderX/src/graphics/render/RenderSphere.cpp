@@ -17,8 +17,7 @@ namespace renderx {
 			
 			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
 			(
-				new VertexArray
-				( sizeof(float) * m_SphereData.size(), &m_SphereData[0])
+				new VertexArray( sizeof(float) * m_SphereData.size(), &m_SphereData[0])
 			);
 			
 			m_RenderData->m_VAO->AddEbo
@@ -36,7 +35,7 @@ namespace renderx {
 			
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 
-			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+			m_Trans.color = glm::vec4(0.6f, 0.0f, 0.6f, 1.0f);
 			m_Trans.model = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 		}

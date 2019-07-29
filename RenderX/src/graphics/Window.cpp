@@ -151,6 +151,8 @@ namespace renderx {
 			else
 				RDX_INIT_SUCCESS(gladLoadGLLoader, "GLAD initialized successfully!");
 		
+
+			glEnable(GL_DEPTH_TEST);
 			return true;
 		}
 
@@ -162,7 +164,7 @@ namespace renderx {
 		
 		void Window::ClearColor()const
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+			glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
 		}
 
 		void Window::OnWindowResized()

@@ -29,7 +29,7 @@ namespace renderx {
 			m_RenderData->m_Shader = std::shared_ptr<Shader>(new Shader(vspath, fspath));
 
 			//default properties
-			m_Trans.color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+			m_Trans.color = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
 			m_Trans.model = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 		}
@@ -54,8 +54,7 @@ namespace renderx {
 
 		void RenderCube::Draw(const WinData& windata)
 		{
-			m_RenderData->m_VAO->BindVertexArray();
-			m_RenderData->m_Shader->BindShaderProgram();
+			BindObject();
 			//set view matrix
 			m_Trans.view = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, m_Trans.position);
@@ -71,7 +70,7 @@ namespace renderx {
 			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
 			m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
-			m_RenderData->m_VAO->UnbindVertexArray();
+			UnbindObject();
 		}
 
 		void RenderCube::Draw()

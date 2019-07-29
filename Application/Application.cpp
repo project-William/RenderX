@@ -27,7 +27,7 @@ Application::Application()
 	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 
-	
+	skybox = new graphics::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
 
 }
 
@@ -37,6 +37,7 @@ Application::~Application()
 	delete renderLayer;
 	delete layerList;
 	delete framebuffer;
+	delete skybox;
 }
 
 void Application::Run()
@@ -54,6 +55,7 @@ void Application::Run()
 		m_Window->Clear();
 		m_Window->ClearColor();
 		//begin scene
+		skybox->Draw(WinData);
 		sphere->Draw(WinData);
 		//cube->Draw(WinData);
 		//end scene
@@ -65,16 +67,14 @@ void Application::Run()
 		imgui->SettingWindowBegin();
 		imgui->SettingWindow();
 		sphere->Color(WinData);
-
+		
 		imgui->SettingWindowEnd();
 		
 		imgui->TestDraw(WinData ,framebuffer->GetRendered());
 		//cube->Color(WinData);
-		
-		
 		imgui->End();		
-
 		m_WindowResized_flag = false;
+				
 		m_Window->OnUpdate();
 	}
 

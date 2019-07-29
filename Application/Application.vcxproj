@@ -172,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\cubeFragment.frag" />
+    <None Include="shader\cubemapFragment.frag" />
+    <None Include="shader\cubemapVertex.vert" />
     <None Include="shader\cubeVertex.vert" />
     <None Include="shader\fragment.frag" />
     <None Include="shader\sphereFragment.frag" />
@@ -179,6 +181,12 @@
     <None Include="shader\vertex.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="texture\ame_iceflats\iceflats_bk.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_dn.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_ft.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_lf.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_rt.tga" />
+    <Image Include="texture\ame_iceflats\iceflats_up.tga" />
     <Image Include="texture\container.jpg" />
     <Image Include="texture\wall.jpg" />
   </ItemGroup>

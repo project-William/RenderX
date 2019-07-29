@@ -39,7 +39,7 @@ namespace renderx {
 				 model(glm::mat4(1.0f)),
 				 view(glm::mat4(1.0f)),
 				 projection(glm::mat4(1.0f)),
-				 color(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f))
+				 color(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f))
 			{
 
 			}

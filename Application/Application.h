@@ -21,10 +21,16 @@ private:
 
 	graphics::RenderSphere* sphere;
 
+	graphics::RenderSkybox* skybox;
+
+
 
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
+
+
+
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;
 
