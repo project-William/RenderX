@@ -6,19 +6,19 @@
 
 Application::Application()
 {
+
+	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
 	m_Keyboard = utils::Keyboard::Create();
 	m_Mouse = utils::Mouse::Create();
-	
-	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
-	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
 
+	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
 
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
 	
 	imgui = new ui::ImguiLayer(m_Window->GetWinData());
 
 	imgui->OnAttach();
-
+	
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);	
@@ -32,6 +32,7 @@ Application::Application()
 	imguisetwindow=new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
 
+	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 3.0f));
 }
 
 Application::~Application()
@@ -58,7 +59,7 @@ void Application::Run()
 		m_Window->Clear();
 		m_Window->ClearColor();
 		//begin scene
-		skybox->Draw(WinData);
+		skybox->Draw(WinData,camera);
 		sphere->Draw(WinData);
 		//cube->Draw(WinData);
 		//end scene
@@ -69,20 +70,31 @@ void Application::Run()
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
+		sphere->SphereSetting(WinData, camera);
 		sphere->Color(WinData);
 		imguisetwindow->EndSetWindow();
+		//movement
+		//sphere->GetTrans().view = camera->GetViewMatrix();
+		
+		
 		//imgui draw window
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
 		imguiSceneWindow->EndSceneWindow();
-
+		//keyboard movement
+		
 		//imgui log window
 		imguiLog->BeginLog();
 		imguiLog->EndLog();
-
+		
 		imgui->End();		
 		m_WindowResized_flag = false;
-				
+		//framebuffer->UnbindFrameBuffer();
+		//skybox->Draw(WinData,camera);
+		//
+		//sphere->Draw(WinData);
+		//sphere->SphereSetting(WinData,camera);
+
 		m_Window->OnUpdate();
 	}
 	imgui->OnDetach();

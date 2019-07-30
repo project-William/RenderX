@@ -2,6 +2,9 @@
 #include "..//shader/Shader.h"
 #include "..//VAOVBOEBO/VertexArray.h"
 #include "..//Window.h"
+#include "..//..//entity/FPSCamera.h"
+#include "..//..//entity/DefualtCamera.h"
+
 namespace renderx {
 	namespace graphics {
 

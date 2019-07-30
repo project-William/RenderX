@@ -29,13 +29,13 @@ namespace renderx {
 		}
 
 
-		void RenderSkybox::EnableObject() const
+		void RenderSkybox::EnableObject() 
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_VAO->BindVertexArray();
 		}
 
-		void RenderSkybox::DisableObject() const
+		void RenderSkybox::DisableObject() 
 		{
 			m_RenderData->m_Shader->UnbindShaderProgram();
 			m_RenderData->m_VAO->UnbindVertexArray();
@@ -47,11 +47,12 @@ namespace renderx {
 		}
 
 
-		void RenderSkybox::Draw(const graphics::WinData& windata)
+		void RenderSkybox::Draw(const graphics::WinData& windata,FPSCamera* camera)
 		{
 			glDepthMask(GL_FALSE);
 			EnableObject();
 			
+			m_Trans.view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 
 			m_Trans.projection = glm::perspective(glm::radians(45.0f), 

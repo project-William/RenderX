@@ -16,11 +16,13 @@ namespace renderx {
 			void Draw(const WinData& windata) override;
 			void RenderProperties() override;
 			void Color(const WinData& windata);
-
+			void SphereSetting(const WinData& windata, entity::FPSCamera* camera);
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
 			inline const unsigned int GetIndexCount()const { return m_IndexCount; }
 		
+			inline Transformation& GetTrans() { return m_Trans; }
+
 			void Position(const glm::vec3& position) override;
 			void Rotation(const float radians, const glm::vec3& axis) override;
 			void Scale(const float scale) override;
@@ -33,6 +35,8 @@ namespace renderx {
 			const float m_PI;
 			std::vector<float> m_SphereData;
 			RenderData* m_RenderData;
+			
+			bool m_Open_Camera = false;
 
 		private:
 			void CreateSphere();

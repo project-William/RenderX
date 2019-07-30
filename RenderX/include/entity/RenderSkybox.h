@@ -14,8 +14,8 @@ namespace renderx {
 				"texture/ame_iceflats/iceflats_bk.tga",
 				"texture/ame_iceflats/iceflats_up.tga",
 				"texture/ame_iceflats/iceflats_dn.tga",
+				"texture/ame_iceflats/iceflats_rt.tga",
 				"texture/ame_iceflats/iceflats_lf.tga",
-				"texture/ame_iceflats/iceflats_rt.tga"
 			};
 			
 		};
@@ -27,9 +27,9 @@ namespace renderx {
 			RenderSkybox(const std::string& vsfile, const std::string& fsfile);
 			~RenderSkybox();
 
-			void EnableObject() const override;
-			void DisableObject() const override;
-			void Draw(const graphics::WinData& windata);
+			void EnableObject() override;
+			void DisableObject() override;
+			void Draw(const graphics::WinData& windata, FPSCamera* camera);
 			void OnUpdate() override;
 		private:
 			CubemapFaces m_Faces;

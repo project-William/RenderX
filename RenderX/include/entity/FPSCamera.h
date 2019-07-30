@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
-
+#include "..//utils/Keyboard.h"
+#include "..//utils/Mouse.h"
 
 namespace renderx {
 	namespace entity {
@@ -8,25 +9,40 @@ namespace renderx {
 		class REN_API FPSCamera :public Entity
 		{
 		private:
-			
+			CameraAttributes m_CameraAttrib;
+			float m_DeltaTime = 0.1f;
+			bool m_First_Mouse = true;
 		public:
-			FPSCamera();
+			FPSCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), 
+				glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), 
+				float yaw = -90, float pitch = 0) 
+			{
+				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, -1.0f);
+				m_CameraAttrib.MouseSensivitity = 0.1f;
+				m_CameraAttrib.MovementSpeed = 0.1f;
+				m_CameraAttrib.Zoom = 45.0f;
+				m_CameraAttrib.Position = position;
+				m_CameraAttrib.WorldUp = up;
+				m_CameraAttrib.Euler_Yaw = yaw;
+				m_CameraAttrib.Euler_Pitch = pitch;
+				OnUpdate();
+			}
+
+			FPSCamera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+
 			~FPSCamera();
 
-			void OnUpdate() override;
-			void EnableObject() const override;
-			void DisableObject() const override;
-
-
+			void EnableObject()  override;
+			void DisableObject() override;
 
 			glm::mat4 GetViewMatrix();
-			glm::mat4 GetProjectionMatrix();
-			glm::mat4 GetModelMatrix();
-			
 
+
+			void ProcessMouseScrollInput();
+			void ProcessKeyboardInput();
+			void ProcessMouseInput();
 		private:
-			void UpdateCameraMatrix();
-
+			void OnUpdate() override;
 		};
 
 	}

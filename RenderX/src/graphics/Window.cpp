@@ -51,8 +51,7 @@ namespace renderx {
 
 			glfwMakeContextCurrent(m_WinData.glWindowPtr);
 			glfwSetWindowUserPointer(m_WinData.glWindowPtr,&m_WinData);
-
-
+			
 			glfwSetWindowSizeCallback(m_WinData.glWindowPtr, [](GLFWwindow* window, int width, int height)
 			{
 				WinData& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
@@ -139,6 +138,8 @@ namespace renderx {
 			{
 				auto& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
 				events::MouseScrollEvent event((float)xOffset, (float)yOffset);
+
+				std::cout << yOffset << std::endl;
 				data.OnEvent(event);
 			});
 

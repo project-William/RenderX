@@ -9,30 +9,30 @@ namespace renderx {
 		}
 
 		RenderSphere::RenderSphere(const std::string& vsfile, const std::string& fsfile)
-			:X_SEGMENTS(64),Y_SEGMENTS(64),m_PI(3.1415926535)
+			: X_SEGMENTS(64), Y_SEGMENTS(64), m_PI(3.1415926535)
 		{
 			m_RenderData = new RenderData();
 			m_RenderData->m_Shader = std::shared_ptr<Shader>(new Shader(vsfile, fsfile));
 			CreateSphere();
-			
+
 			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
-			(
-				new VertexArray( sizeof(float) * m_SphereData.size(), &m_SphereData[0])
-			);
-			
+				(
+					new VertexArray(sizeof(float) * m_SphereData.size(), &m_SphereData[0])
+					);
+
 			m_RenderData->m_VAO->AddEbo
 			(
 				sizeof(unsigned int) * m_RenderData->m_Indices.size(),
 				&m_RenderData->m_Indices[0]
 			);
-			
-			m_RenderData->m_Layout = 
+
+			m_RenderData->m_Layout =
 			{
 				{ ShaderDataType::FLOAT3, "VertexPos" },
 				{ ShaderDataType::FLOAT2, "TexCoords" },
 				{ ShaderDataType::FLOAT3, "Normals" }
 			};
-			
+
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 
 			m_Trans.color = glm::vec4(0.6f, 0.0f, 0.6f, 1.0f);
@@ -63,10 +63,10 @@ namespace renderx {
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_VAO->BindVertexArray();
-			
+
 			//set view matrix
-			m_Trans.view = glm::mat4(1.0f);
-			m_Trans.view = glm::translate(m_Trans.view, m_Trans.position-glm::vec3(0.0f,0.0f,5.0f));
+			//m_Trans.view = glm::mat4(1.0f);
+			//m_Trans.view = glm::translate(m_Trans.view, m_Trans.position-glm::vec3(0.0f,0.0f,5.0f));
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 			//set model matrix
 			m_Trans.model = glm::mat4(1.0f);
@@ -81,6 +81,29 @@ namespace renderx {
 
 			glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
 
+		}
+
+		void RenderSphere::SphereSetting(const WinData& windata, entity::FPSCamera* camera)
+		{
+			ImGui::Checkbox("FPS Camera", &m_Open_Camera);
+
+			if (m_Open_Camera)
+			{
+				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+				camera->EnableObject();
+				m_Trans.view = camera->GetViewMatrix();
+
+				auto keyboard = utils::Keyboard::GetKeyboardInstance();
+				if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
+				{
+					m_Open_Camera = false;
+				}
+			}
+			else
+			{
+				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+				m_Trans.view = camera->GetViewMatrix();
+			}
 		}
 
 		void RenderSphere::Color(const WinData& windata)

@@ -1,6 +1,7 @@
 #pragma once
 #include "..//..//Core.h"
 #include "..//events/MouseEvent.h"
+#include "..//graphics/Window.h"
 
 namespace renderx {
 	namespace utils {
@@ -19,11 +20,11 @@ namespace renderx {
 			bool m_RightButton = false;
 			bool m_MiddleButton = false;
 
-			glm::vec2 m_CurrentPosition = glm::vec2(0.0f);
+			glm::vec2 m_CurrentPosition;
 			glm::vec2 m_LastPosition = glm::vec2(0.0f);
 			glm::vec2 m_ScrollOffset = glm::vec2(0.0f);
 
-			float m_ScrollSensitivity = 0.1;
+			float m_ScrollSensitivity = 0.5;
 			float m_MouseSensitivity = 0.1;
 
 
@@ -34,6 +35,16 @@ namespace renderx {
 			static std::shared_ptr<Mouse> Create();
 
 			static std::shared_ptr<Mouse>& GetMouseInstance() { return ms_Mouse; }
+
+			inline glm::vec2& GetMouseLastPosition() { return m_LastPosition; }
+
+			inline glm::vec2& GetMouseCurrentPosition() { return m_CurrentPosition; }
+
+			inline glm::vec2 GetMouseScrollOffset()const { return m_ScrollOffset; }
+
+			inline float GetMouseSensitivity()const { return m_MouseSensitivity; }
+
+			inline float GetScrollSensitivity()const { return m_ScrollSensitivity; }
 
 			void OnEvent(events::MouseMovedEvent& event);
 			

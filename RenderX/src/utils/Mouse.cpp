@@ -7,7 +7,6 @@ namespace renderx {
 
 		Mouse::Mouse()
 		{
-
 		}
 
 		Mouse::~Mouse()

@@ -18,12 +18,12 @@ namespace renderx {
 
 		}
 
-		void DefaultCamera::EnableObject() const 
+		void DefaultCamera::EnableObject()  
 		{
 
 		}
 
-		void DefaultCamera::DisableObject() const
+		void DefaultCamera::DisableObject() 
 		{
 
 		}
@@ -43,6 +43,14 @@ namespace renderx {
 		glm::mat4 DefaultCamera::GetModelMatrix()
 		{
 			return glm::mat4();
+		}
+
+		void DefaultCamera::ProcessInputMouse()
+		{
+		}
+
+		void DefaultCamera::ProcessInputKeyboard()
+		{
 		}
 
 

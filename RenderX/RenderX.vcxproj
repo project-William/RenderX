@@ -165,6 +165,7 @@
     <ClInclude Include="include\events\WindowEvent.h" />
     <ClInclude Include="include\events\KeyboardEvent.h" />
     <ClInclude Include="include\events\MouseEvent.h" />
+    <ClInclude Include="include\graphics\EntityLayer.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLog.h" />
     <ClInclude Include="include\graphics\imgui\ImguiSceneWindow.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="src\entity\DefaultCamera.cpp" />
     <ClCompile Include="src\entity\FPSCamera.cpp" />
+    <ClCompile Include="src\graphics\EntityLayer.cpp" />
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLog.cpp" />

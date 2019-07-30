@@ -147,6 +147,9 @@
     <ClInclude Include="include\graphics\imgui\ImguiSceneWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\EntityLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\Window.cpp">
@@ -246,6 +249,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\imgui\ImguiSceneWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\EntityLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
