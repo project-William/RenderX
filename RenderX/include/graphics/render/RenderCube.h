@@ -14,14 +14,13 @@ namespace renderx {
 			void BindObject() const override;
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
-			void Position(const glm::vec3& position) override;
-			void Rotation(const float radians, const glm::vec3& axis) override;
-			void Scale(const float scale) override;
+		
 			void Color(const WinData& windata);
-			void RenderProperties() override;
+			void RenderProperties() override {};
 			void Draw();
 			inline RenderData* GetRenderData()const { return m_RenderData; }
-
+			
+			inline Transformation& GetTrans() override { return m_Trans; }
 
 
 		private:

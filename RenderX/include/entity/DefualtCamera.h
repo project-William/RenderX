@@ -1,6 +1,6 @@
 #pragma once
-#include "Entity.h"
 
+#include "Entity.h"
 namespace renderx {
 	namespace entity {
 
@@ -14,7 +14,7 @@ namespace renderx {
 			void EnableObject() override;
 			void DisableObject() override;
 
-			glm::mat4 GetViewMatrix();
+			glm::mat4 GetViewMatrix() ;
 			glm::mat4 GetProjectionMatrix();
 			glm::mat4 GetModelMatrix();
 

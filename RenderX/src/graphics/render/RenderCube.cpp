@@ -88,27 +88,6 @@ namespace renderx {
 			ImGui::SliderFloat3("Position", &m_Trans.position[0], -10.0f, 2.0f);
 		}
 
-
-		void RenderCube::Position(const glm::vec3& position)
-		{
-			m_Trans.view = glm::translate(m_Trans.view, position);
-		}
-
-		void RenderCube::Rotation(const float radians, const glm::vec3& axis)
-		{
-			m_Trans.model = glm::rotate(m_Trans.model, glm::radians(radians), axis);
-		}
-
-		void RenderCube::Scale(const float scale)
-		{
-			
-		}
-
-		void RenderCube::RenderProperties()
-		{
-
-		}
-
 	}
 
 }

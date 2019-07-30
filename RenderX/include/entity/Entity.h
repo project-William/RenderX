@@ -50,8 +50,6 @@ namespace renderx {
 			virtual void EnableObject() = 0;
 
 			virtual void DisableObject() = 0;
-
-
 		};
 	}
 }

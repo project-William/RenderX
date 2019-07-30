@@ -59,11 +59,8 @@ namespace renderx {
 			virtual void BindObject() const = 0;
 			virtual void UnbindObject() const = 0;
 			virtual void Draw(const WinData& windata) = 0;
-			virtual void Position(const glm::vec3& position) = 0;
-			virtual void Rotation(const float radians, const glm::vec3& axis) = 0;
-			virtual void Scale(const float scale) = 0;
 			virtual void RenderProperties() = 0;
-
+			virtual inline Transformation& GetTrans() = 0;
 		};
 
 

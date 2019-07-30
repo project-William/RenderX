@@ -10,7 +10,6 @@
 #include <unordered_set>
 #include <direct.h>
 #include <functional>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -29,6 +28,7 @@
 #else
 	#define REN_API __declspec(dllexport)
 #endif // RENDERX
+
 
 #define VALUE(x) (1<<x)
 

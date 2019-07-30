@@ -10,8 +10,8 @@ namespace renderx {
 			RenderScene();
 			~RenderScene();
 
-			void SceneBegin();
-			void SceneEnd();
+			static void SceneBegin();
+			static void SceneEnd();
 
 		private:
 

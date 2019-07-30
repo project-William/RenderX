@@ -14,18 +14,17 @@ namespace renderx {
 			void BindObject() const override;
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
+
 			void RenderProperties() override;
 			void Color(const WinData& windata);
 			void SphereSetting(const WinData& windata, entity::FPSCamera* camera);
+			void PhongModel();
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
 			inline const unsigned int GetIndexCount()const { return m_IndexCount; }
 		
-			inline Transformation& GetTrans() { return m_Trans; }
+			inline Transformation& GetTrans() override { return m_Trans; }
 
-			void Position(const glm::vec3& position) override;
-			void Rotation(const float radians, const glm::vec3& axis) override;
-			void Scale(const float scale) override;
 		private:
 			
 			Transformation m_Trans;
@@ -37,7 +36,7 @@ namespace renderx {
 			RenderData* m_RenderData;
 			
 			bool m_Open_Camera = false;
-
+			bool m_Phong_model = true;
 		private:
 			void CreateSphere();
 		};

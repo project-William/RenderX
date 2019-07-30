@@ -173,8 +173,10 @@
     <ClInclude Include="include\graphics\LayerList.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
     <ClInclude Include="include\graphics\RenderBuffer.h" />
+    <ClInclude Include="include\graphics\Renderers.h" />
     <ClInclude Include="include\graphics\RenderLayer.h" />
     <ClInclude Include="include\graphics\RenderScene.h" />
+    <ClInclude Include="include\graphics\render\BasicLight.h" />
     <ClInclude Include="include\graphics\render\DirectLight.h" />
     <ClInclude Include="include\graphics\render\PointLight.h" />
     <ClInclude Include="include\graphics\render\RenderCube.h" />
@@ -219,6 +221,7 @@
     <ClCompile Include="src\graphics\RenderBuffer.cpp" />
     <ClCompile Include="src\graphics\RenderLayer.cpp" />
     <ClCompile Include="src\graphics\RenderScene.cpp" />
+    <ClCompile Include="src\graphics\render\BasicLight.cpp" />
     <ClCompile Include="src\graphics\render\DirectLight.cpp" />
     <ClCompile Include="src\graphics\render\PointLight.cpp" />
     <ClCompile Include="src\graphics\render\RenderCube.cpp" />

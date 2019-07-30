@@ -34,6 +34,7 @@ private:
 	
 	ui::ImguiSceneWindow* imguiSceneWindow;
 
+	graphics::BasicLight* basicLight;
 
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;

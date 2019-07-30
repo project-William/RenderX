@@ -12,10 +12,11 @@ namespace renderx {
 			CameraAttributes m_CameraAttrib;
 			float m_DeltaTime = 0.1f;
 			bool m_First_Mouse = true;
+					
 		public:
 			FPSCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), 
 				glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), 
-				float yaw = -90, float pitch = 0) 
+				float yaw = -90, float pitch = 0)
 			{
 				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, -1.0f);
 				m_CameraAttrib.MouseSensivitity = 0.1f;
@@ -28,21 +29,20 @@ namespace renderx {
 				OnUpdate();
 			}
 
-			FPSCamera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
-
 			~FPSCamera();
+
+			inline CameraAttributes GetCameraAttrib()const { return m_CameraAttrib; }
+
 
 			void EnableObject()  override;
 			void DisableObject() override;
-
 			glm::mat4 GetViewMatrix();
 
-
+		private:
+			void OnUpdate() override;
 			void ProcessMouseScrollInput();
 			void ProcessKeyboardInput();
 			void ProcessMouseInput();
-		private:
-			void OnUpdate() override;
 		};
 
 	}

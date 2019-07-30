@@ -21,9 +21,7 @@ namespace renderx {
 			virtual void UnbindObject() const override {}
 			virtual void Draw(const WinData& windata) override {}
 			virtual void RenderProperties() override {}
-			virtual void Position(const glm::vec3& position) override {}
-			virtual void Rotation(const float radians, const glm::vec3& axis) override {}
-			virtual void Scale(const float scale) override {}
+			
 		};
 
 

@@ -33,6 +33,9 @@ Application::Application()
 	imguiSceneWindow = new ui::ImguiSceneWindow();
 
 	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 3.0f));
+
+	basicLight = new graphics::BasicLight(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(1.0f));
+
 }
 
 Application::~Application()
@@ -48,7 +51,6 @@ void Application::Run()
 {
 	auto& WinData = m_Window->GetWinData();
 
-	//input = new utils::Input(WinData);
 
 	while (m_Running)
 	{	
@@ -59,9 +61,14 @@ void Application::Run()
 		m_Window->Clear();
 		m_Window->ClearColor();
 		//begin scene
+		graphics::RenderScene::SceneBegin();
+
 		skybox->Draw(WinData,camera);
 		sphere->Draw(WinData);
+
 		//cube->Draw(WinData);
+		
+		graphics::RenderScene::SceneEnd();
 		//end scene
 		/***************************default framebuffer*******************************/
 		framebuffer->UnbindFrameBuffer();
@@ -72,10 +79,10 @@ void Application::Run()
 		imguisetwindow->GraphicsSettingWindow();
 		sphere->SphereSetting(WinData, camera);
 		sphere->Color(WinData);
+		sphere->PhongModel();
 		imguisetwindow->EndSetWindow();
 		//movement
 		//sphere->GetTrans().view = camera->GetViewMatrix();
-		
 		
 		//imgui draw window
 		imguiSceneWindow->BeginSceneWindow();

@@ -3,15 +3,6 @@
 namespace renderx {
 	namespace entity {
 
-		FPSCamera::FPSCamera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
-		{
-			m_CameraAttrib.Position = glm::vec3(posX, posY, posZ);
-			m_CameraAttrib.WorldUp = glm::vec3(upX, upY, upZ);
-			m_CameraAttrib.Euler_Yaw = yaw;
-			m_CameraAttrib.Euler_Pitch = pitch;
-			OnUpdate();
-		}
-
 		FPSCamera::~FPSCamera()
 		{
 
@@ -31,8 +22,8 @@ namespace renderx {
 
 		void FPSCamera::EnableObject()  
 		{
-			ProcessMouseInput();
 			ProcessMouseScrollInput();
+			ProcessMouseInput();
 			ProcessKeyboardInput();
 		}
 
@@ -63,7 +54,6 @@ namespace renderx {
 					m_First_Mouse = false;
 				}
 
-				std::cout << CurrentPosition.x << " " << CurrentPosition.y << std::endl;
 				float xoffset = CurrentPosition.x - LastPosition.x;
 				float yoffset = -CurrentPosition.y + LastPosition.y;
 
@@ -87,7 +77,7 @@ namespace renderx {
 
 		void FPSCamera::ProcessMouseScrollInput()
 		{
-			auto mouse = utils::Mouse::GetMouseInstance();
+			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
 
 			if (m_CameraAttrib.Zoom>= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
 				m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
@@ -98,7 +88,6 @@ namespace renderx {
 
 			std::cout << mouse->GetMouseScrollOffset().y << std::endl;
 
-			mouse->UpdateMouse();
 		}
 
 		void FPSCamera::ProcessKeyboardInput()

@@ -72,13 +72,14 @@ namespace renderx {
 			m_Trans.model = glm::mat4(1.0f);
 			m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
 			//set projection matrix
-			m_Trans.projection = glm::mat4(1.0f);
-			m_Trans.projection = glm::perspective(glm::radians(m_Trans.perspective_radians),
-				(float)windata.win_Width / (float)windata.win_Height,
-				0.1f, 100.0f);
+			//m_Trans.projection = glm::mat4(1.0f);
+			//m_Trans.projection = glm::perspective(glm::radians(m_Trans.perspective_radians),
+			//	(float)windata.win_Width / (float)windata.win_Height,
+			//	0.1f, 100.0f);
 			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+			
+			//fragment uniform variables
 			m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
-
 			glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
 
 		}
@@ -86,12 +87,18 @@ namespace renderx {
 		void RenderSphere::SphereSetting(const WinData& windata, entity::FPSCamera* camera)
 		{
 			ImGui::Checkbox("FPS Camera", &m_Open_Camera);
-
+			
 			if (m_Open_Camera)
 			{
 				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 				camera->EnableObject();
 				m_Trans.view = camera->GetViewMatrix();
+				m_Trans.projection = glm::perspective
+				(
+					glm::radians(camera->GetCameraAttrib().Zoom),
+					(float)windata.win_Width/(float)windata.win_Height,
+					0.1f,100.0f
+				);
 
 				auto keyboard = utils::Keyboard::GetKeyboardInstance();
 				if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
@@ -103,36 +110,32 @@ namespace renderx {
 			{
 				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 				m_Trans.view = camera->GetViewMatrix();
+				m_Trans.projection = glm::perspective
+				(
+					glm::radians(45.0f),
+					(float)windata.win_Width / (float)windata.win_Height,
+					0.1f, 100.0f
+				);
 			}
+		}
+
+
+		void RenderSphere::PhongModel()
+		{
+
+			m_RenderData->m_Shader->SetVec3("u_lightColor", 1.0f,1.0f,1.0f);
+			m_RenderData->m_Shader->SetVec3("u_lightPos", 3.0f, -10.0f, 3.0f);
 		}
 
 		void RenderSphere::Color(const WinData& windata)
 		{
 			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
-
-			ImGui::SliderFloat3("Position", &m_Trans.position[0], -5.0f, 5.0f);
 		}
 
 		void RenderSphere::RenderProperties()
 		{
 
 	
-		}
-
-
-		void RenderSphere::Position(const glm::vec3& position)
-		{
-
-		}
-
-		void RenderSphere::Rotation(const float radians, const glm::vec3& axis)
-		{
-
-		}
-
-		void RenderSphere::Scale(const float scale)
-		{
-
 		}
 
 

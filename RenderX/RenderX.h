@@ -14,6 +14,8 @@
 #include "include/graphics/RenderBuffer.h"
 #include "include/graphics/RenderLayer.h"
 #include "include/graphics/Window.h"
+#include "include/graphics/EntityLayer.h"
+#include "include/graphics/RenderScene.h"
 
 //imgui(UI) header
 #include "include/graphics/imgui/ImguiLayer.h"
@@ -30,6 +32,7 @@
 #include "include/graphics/render/RenderModel.h"
 #include "include/graphics/render/RenderObject.h"
 #include "include/graphics/render/RenderSphere.h"
+#include "include/graphics/render/BasicLight.h"
 
 //entity headers
 #include "include/entity/DefualtCamera.h"

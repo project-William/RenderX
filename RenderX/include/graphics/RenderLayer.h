@@ -25,7 +25,6 @@ namespace renderx {
 
 
 			void RenderSkybox();
-			void RenderShape(const std::string& vspath, const std::string& fspath);
 			void RenderModel();
 			void OnAttach() override;
 			void OnDetach() override;
