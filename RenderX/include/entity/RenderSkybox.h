@@ -12,8 +12,8 @@ namespace renderx {
 			{
 				"texture/ame_iceflats/iceflats_ft.tga",
 				"texture/ame_iceflats/iceflats_bk.tga",
-				"texture/ame_iceflats/iceflats_up.tga",
 				"texture/ame_iceflats/iceflats_dn.tga",
+				"texture/ame_iceflats/iceflats_up.tga",
 				"texture/ame_iceflats/iceflats_rt.tga",
 				"texture/ame_iceflats/iceflats_lf.tga",
 			};

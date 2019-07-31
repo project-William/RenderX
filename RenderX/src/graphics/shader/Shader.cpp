@@ -44,7 +44,7 @@ namespace renderx {
 			glUniform1f(glGetUniformLocation(m_ShaderProgram, name.c_str()), value);
 		}
 
-		void Shader::SetVec2(const std::string& name, glm::vec2& value) const 
+		void Shader::SetVec2(const std::string& name, const glm::vec2& value) const 
 		{
 			glUniform2fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, &value[0]);
 		}
@@ -54,7 +54,7 @@ namespace renderx {
 			glUniform2f(glGetUniformLocation(m_ShaderProgram, name.c_str()), x, y);
 		}
 
-		void Shader::SetVec3(const std::string& name, glm::vec3& value) const 
+		void Shader::SetVec3(const std::string& name, const glm::vec3& value) const 
 		{
 			glUniform3fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, &value[0]);
 		}
@@ -64,7 +64,7 @@ namespace renderx {
 			glUniform3f(glGetUniformLocation(m_ShaderProgram, name.c_str()), x, y, z);
 		}
 
-		void Shader::SetVec4(const std::string& name, glm::vec4& value) const 
+		void Shader::SetVec4(const std::string& name, const glm::vec4& value) const 
 		{
 			glUniform4fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, &value[0]);
 		}
@@ -74,17 +74,17 @@ namespace renderx {
 			glUniform4f(glGetUniformLocation(m_ShaderProgram, name.c_str()), x, y, z, w);
 		}
 
-		void Shader::SetMat2(const std::string& name, glm::mat2& mat) const 
+		void Shader::SetMat2(const std::string& name, const glm::mat2& mat) const 
 		{
 			glUniformMatrix2fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 		}
 
-		void Shader::SetMat3(const std::string& name, glm::mat3& mat) const 
+		void Shader::SetMat3(const std::string& name, const glm::mat3& mat) const 
 		{
 			glUniformMatrix3fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 		}
 
-		void Shader::SetMat4(const std::string& name, glm::mat4& mat) const 
+		void Shader::SetMat4(const std::string& name, const glm::mat4& mat) const 
 		{
 			glUniformMatrix4fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 		}

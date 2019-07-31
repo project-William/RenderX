@@ -4,6 +4,8 @@
 #include "..//Window.h"
 #include "..//..//entity/FPSCamera.h"
 #include "..//..//entity/DefualtCamera.h"
+#include "BasicLight.h"
+
 
 namespace renderx {
 	namespace graphics {

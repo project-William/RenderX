@@ -120,11 +120,13 @@ namespace renderx {
 		}
 
 
-		void RenderSphere::PhongModel()
+		void RenderSphere::PhongModel(RenderLight* light,entity::FPSCamera* camera)
 		{
-
-			m_RenderData->m_Shader->SetVec3("u_lightColor", 1.0f,1.0f,1.0f);
-			m_RenderData->m_Shader->SetVec3("u_lightPos", 3.0f, -10.0f, 3.0f);
+			m_RenderData->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
+			m_RenderData->m_Shader->SetVec3("u_lightPos", 3.0f,-3.0f,3.0f);
+			m_RenderData->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
+			m_RenderData->m_Shader->SetFloat("u_Shineness", light->GetShineness());
+			ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f,128.0f);
 		}
 
 		void RenderSphere::Color(const WinData& windata)

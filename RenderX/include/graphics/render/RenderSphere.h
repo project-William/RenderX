@@ -18,7 +18,7 @@ namespace renderx {
 			void RenderProperties() override;
 			void Color(const WinData& windata);
 			void SphereSetting(const WinData& windata, entity::FPSCamera* camera);
-			void PhongModel();
+			void PhongModel(RenderLight* light, entity::FPSCamera* camera);
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
 			inline const unsigned int GetIndexCount()const { return m_IndexCount; }

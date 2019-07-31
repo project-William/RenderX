@@ -7,7 +7,7 @@ namespace renderx {
 
 
 		BasicLight::BasicLight(const glm::vec3& position, const glm::vec3& color)
-			:m_Position(position),m_LightColor(color)
+			:m_Position(position),m_LightColor(color),m_Shineness(32)
 		{
 
 		}
@@ -15,23 +15,6 @@ namespace renderx {
 		BasicLight::~BasicLight()
 		{
 
-		}
-
-		void BasicLight::BindObject() const
-		{
-
-		}
-
-		void BasicLight::UnbindObject() const
-		{
-		}
-
-		void BasicLight::Draw(const WinData& windata)
-		{
-		}
-
-		void BasicLight::RenderProperties()
-		{
 		}
 
 	}

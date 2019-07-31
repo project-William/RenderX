@@ -78,8 +78,8 @@ void Application::Run()
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
 		sphere->SphereSetting(WinData, camera);
+		sphere->PhongModel(basicLight, camera);
 		sphere->Color(WinData);
-		sphere->PhongModel();
 		imguisetwindow->EndSetWindow();
 		//movement
 		//sphere->GetTrans().view = camera->GetViewMatrix();

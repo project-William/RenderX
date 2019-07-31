@@ -11,6 +11,7 @@ uniform vec3 u_viewPos;
 uniform vec3 u_lightPos;
 uniform vec3 u_lightColor;
 
+uniform float u_Shineness;
 
 void main()
 {
@@ -23,13 +24,13 @@ void main()
     vec3 diffuse = diff * u_lightColor;
     
     // specular
-    //float specularStrength = 0.5;
-    //vec3 viewDir = normalize(viewPos - FragPos);
-    //vec3 reflectDir = reflect(-lightDir, norm);  
-    //float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-    //vec3 specular = specularStrength * spec * lightColor;  
+    float specular_Strength = 0.5;
+    vec3 viewDir = normalize(u_viewPos - fragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);  
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shineness);
+    vec3 specular = specular_Strength * spec * u_lightColor;  
 
-	vec4 result=(vec4(ambient,1.0)+vec4(diffuse,1.0f))*u_color;
+	vec4 result=(vec4(ambient,1.0)+vec4(diffuse,1.0f)+vec4(specular,1.0f))*u_color;
 
 	FragColor=result;
 }

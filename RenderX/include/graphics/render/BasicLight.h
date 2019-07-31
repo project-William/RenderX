@@ -1,29 +1,23 @@
 #pragma once
-#include "RenderObject.h"
+#include "RenderLight.h"
 
 namespace renderx {
 	namespace graphics {
 
-		class REN_API BasicLight:public RenderObject
+		class REN_API BasicLight:public RenderLight
 		{
 		public:
 			BasicLight(const glm::vec3& position, const glm::vec3& color);
 			~BasicLight();
 
-			inline glm::vec3 GetLightPosition()const { return m_Position; }
-			inline glm::vec3 GetLightColor()const { return m_LightColor; }
-
-
-			void BindObject() const override;
-			void UnbindObject() const override;
-			void Draw(const WinData& windata) override;
-			void RenderProperties() override;
-			inline Transformation& GetTrans() override { return m_Trans; }
+			inline glm::vec3 GetLightPosition()const override { return m_Position; }
+			inline glm::vec3 GetLightColor()const override { return m_LightColor; }
+			inline float GetShineness()const override { return m_Shineness; }
+			inline float& GetShinenessRef() override { return m_Shineness; }
 		private:
 			glm::vec3 m_Position;
 			glm::vec3 m_LightColor;
-
-			Transformation m_Trans;
+			float m_Shineness;
 		};
 
 

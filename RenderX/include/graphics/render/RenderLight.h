@@ -1,27 +1,20 @@
 #pragma once
-#include "RenderObject.h"
+#include "..//..//..//Core.h"
 
 namespace renderx {
 	namespace graphics {
+	
 		
-		struct REN_API LightData
-		{
-			glm::vec3 L_Position;
-		};
-
-
-		
-		class REN_API RenderLight :public RenderObject
+		class REN_API RenderLight
 		{
 		public:
 			RenderLight() {}
 			virtual ~RenderLight() {}
 
-			virtual void BindObject() const override {}
-			virtual void UnbindObject() const override {}
-			virtual void Draw(const WinData& windata) override {}
-			virtual void RenderProperties() override {}
-			
+			virtual inline glm::vec3 GetLightPosition()const = 0;
+			virtual inline glm::vec3 GetLightColor() const = 0;
+			virtual inline float GetShineness()const = 0;
+			virtual inline float& GetShinenessRef() = 0;
 		};
 
 

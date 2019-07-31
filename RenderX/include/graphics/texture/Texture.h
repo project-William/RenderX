@@ -39,9 +39,6 @@ namespace renderx {
 			void BindTexture()const;
 			void UnbindTexture()const;
 
-			void SetFrameBufferTexture(int width, int height);
-
-
 		private:
 			GLuint Load();
 		};

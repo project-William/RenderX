@@ -24,9 +24,6 @@
 #include "include/graphics/imgui/ImguiSceneWindow.h"
 
 //render headers
-#include "include/graphics/render/DirectLight.h"
-#include "include/graphics/render/PointLight.h"
-#include "include/graphics/render/SpotLight.h"
 #include "include/graphics/render/RenderCube.h"
 #include "include/graphics/render/RenderLight.h"
 #include "include/graphics/render/RenderModel.h"
