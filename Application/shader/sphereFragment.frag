@@ -15,11 +15,14 @@ uniform float u_Shineness;
 
 void main()
 {
-    float ambient_strength=0.5f;
+	//change the y-axis of light position
+	vec3 lightPos=vec3(u_lightPos.x,-u_lightPos.y,u_lightPos.z);
+ 
+	float ambient_strength=0.5f;
 	vec3 ambient=ambient_strength*u_lightColor;
 
 	vec3 norm = normalize(normals);
-    vec3 lightDir = normalize(u_lightPos - fragPos);
+    vec3 lightDir = normalize(lightPos - fragPos);
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = diff * u_lightColor;
     

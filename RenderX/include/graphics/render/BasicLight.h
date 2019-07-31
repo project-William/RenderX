@@ -7,6 +7,7 @@ namespace renderx {
 		class REN_API BasicLight:public RenderLight
 		{
 		public:
+			BasicLight();
 			BasicLight(const glm::vec3& position, const glm::vec3& color);
 			~BasicLight();
 
@@ -14,6 +15,13 @@ namespace renderx {
 			inline glm::vec3 GetLightColor()const override { return m_LightColor; }
 			inline float GetShineness()const override { return m_Shineness; }
 			inline float& GetShinenessRef() override { return m_Shineness; }
+			inline glm::vec3& GetLightPositionRef() override { return m_Position; }
+			inline glm::vec3& GetLightColorRef()override { return m_LightColor; }
+
+			
+
+
+
 		private:
 			glm::vec3 m_Position;
 			glm::vec3 m_LightColor;

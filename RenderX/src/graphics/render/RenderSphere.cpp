@@ -45,7 +45,6 @@ namespace renderx {
 			delete m_RenderData;
 		}
 
-
 		void RenderSphere::BindObject() const
 		{
 			m_RenderData->m_Shader->BindShaderProgram();
@@ -123,10 +122,15 @@ namespace renderx {
 		void RenderSphere::PhongModel(RenderLight* light,entity::FPSCamera* camera)
 		{
 			m_RenderData->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
-			m_RenderData->m_Shader->SetVec3("u_lightPos", 3.0f,-3.0f,3.0f);
+			m_RenderData->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
 			m_RenderData->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
 			m_RenderData->m_Shader->SetFloat("u_Shineness", light->GetShineness());
+			
 			ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f,128.0f);
+			ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
+			ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -10, 10);
+			ImGui::SliderFloat("Y-axis", &light->GetLightPositionRef().y, -10, 10);
+			ImGui::SliderFloat("Z-axis", &light->GetLightPositionRef().z, -10, 10);
 		}
 
 		void RenderSphere::Color(const WinData& windata)
@@ -200,8 +204,6 @@ namespace renderx {
 					m_SphereData.push_back(m_RenderData->m_Normals[i].z);
 				}
 			}
-
-
 		}
 
 	}
