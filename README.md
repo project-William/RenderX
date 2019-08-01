@@ -7,7 +7,7 @@ RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math libra
 
 ----
 
-##Buliding
+## Buliding
 
 Dependencies:
  + glfw : https://github.com/glfw/glfw
@@ -18,25 +18,25 @@ Dependencies:
 
 ----
 
- ##Features
- Objectives         |Implemented
- :-----------------:|:---------------------:
- Camera             |Movement,Zoom
- Textures           |Cubemap,2DTexture init/load/bind
- Mesh loading       |TODO:
- Math               |by glm
- Transformations    |Position TODO:
- Lighting           |Basic
- Materials          |TODO:
- Deferred rendering |TODO
- SSAO               |TODO
- Normal mapping     |TODO
- Shadow Mapping     |TODO
- IBL                |TODO
- Bloom              |TODO
+## Features
+Objectives         |Implemented
+:-----------------:|:---------------------:
+Camera             |Movement,Zoom
+Textures           |Cubemap,2DTexture init/load/bind
+Mesh loading       |TODO:
+Math               |by glm
+Transformations    |Position TODO:
+Lighting           |Basic
+Materials          |TODO:
+Deferred rendering |TODO
+SSAO               |TODO
+Normal mapping     |TODO
+Shadow Mapping     |TODO
+IBL                |TODO
+Bloom              |TODO
 
 ----
- ##In the future..
+ ## In the future..
  1:Cross-Platform feature
  2:More APIS:Vulkan DirectX
  3:......
