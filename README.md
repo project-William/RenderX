@@ -6,8 +6,7 @@ RenderX is a real-time and physically based rendering engine which built by C++ 
 RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math library), GLAD+GLFW,stb(loading textures) and runs on Windows.
 
 ----
-##Gallery
-----
+
 ##Buliding
 
 Dependencies:
@@ -18,6 +17,7 @@ Dependencies:
  + stb  : https://github.com/nothings/stb
 
 ----
+
  ##Features
  Objectives         |Implemented
  :-----------------:|:---------------------:
