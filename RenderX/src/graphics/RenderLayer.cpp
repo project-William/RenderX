@@ -40,6 +40,120 @@ namespace renderx {
 		}
 
 
+		void RenderLayer::RenderSettings()
+		{
+			//dock space checkbox
+			ImGui::Checkbox("DockSpace", &m_DockSpace_Open);
+			if (ImGui::CollapsingHeader("FPS Game Camera"))
+			{
+				float s=1;
+				ImGui::SliderFloat("Mouse Sensitivity", &s,0.01f,0.5f);
+				
+			}
+			if (ImGui::CollapsingHeader("Skybox"))
+			{
+				
+				if (ImGui::Checkbox("Skybox 1", &m_SkyboxPart.skybox_1))
+				{
+					SINGLE_CHOICE(m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
+				}
+
+				if (ImGui::Checkbox("Skybox 2", &m_SkyboxPart.skybox_2))
+				{
+					SINGLE_CHOICE(m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
+				}
+
+				if (ImGui::Checkbox("Skybox 3", &m_SkyboxPart.skybox_3))
+				{
+					SINGLE_CHOICE(m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_4);
+
+				}
+
+				if (ImGui::Checkbox("Skybox 4", &m_SkyboxPart.skybox_4))
+				{
+					SINGLE_CHOICE(m_SkyboxPart.skybox_4, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_2);
+				}
+
+				
+								
+			}
+
+			//renderers header
+			if(ImGui::CollapsingHeader("Renderers", m_Renderer_App_Open))
+			{
+
+				if (ImGui::Checkbox("Cube", &m_RendererPart.renderer_1))
+				{
+					SINGLE_CHOICE(m_RendererPart.renderer_1, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
+				}
+
+				if (ImGui::Checkbox("Sphere", &m_RendererPart.renderer_2))
+				{
+					SINGLE_CHOICE(m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
+
+				}
+
+				if (ImGui::Checkbox("Model_1", &m_RendererPart.renderer_3))
+				{
+					SINGLE_CHOICE(m_RendererPart.renderer_3, m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_4);
+				}
+
+				if (ImGui::Checkbox("Model_2", &m_RendererPart.renderer_4))
+				{
+					SINGLE_CHOICE(m_RendererPart.renderer_4, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_1);
+
+				}
+
+			}
+			//lights
+			if(ImGui::CollapsingHeader("Lights", m_Light_App_Open))
+			{
+				if (ImGui::Checkbox("Light_1", &m_LightPart.light_1))
+				{
+					SINGLE_CHOICE(m_LightPart.light_1, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_4);
+				}
+				if (ImGui::Checkbox("Light_2", &m_LightPart.light_2))
+				{
+					SINGLE_CHOICE(m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_3, m_LightPart.light_4);
+				}
+				if (ImGui::Checkbox("Light_3", &m_LightPart.light_3))
+				{
+					SINGLE_CHOICE(m_LightPart.light_3, m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_4);
+				}
+				if (ImGui::Checkbox("Light_4", &m_LightPart.light_4))
+				{
+					SINGLE_CHOICE(m_LightPart.light_4, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_1);
+				}
+			}
+			//renderers attributes
+			if(ImGui::CollapsingHeader("Renderers Attributes", m_Renderer_App_Open))
+			{
+				float color[4];
+				float pos[3];
+				float scale;
+				ImGui::ColorEdit4("Render Color", &color[0]);
+				ImGui::SliderFloat("Position-x", &pos[0], -20, 20);
+				ImGui::SliderFloat("Position-y", &pos[1], -20, 20);
+				ImGui::SliderFloat("Position-z", &pos[2], -20, 20);
+				ImGui::SliderFloat("Scale", &scale, 0.1f, 5.0f);
+			}
+
+			//texture
+			if(ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
+			{
+				ImGui::Text("texture1");
+				ImGui::Text("texture2");
+				ImGui::Text("texture3");
+				ImGui::Text("texture4");
+			}
+
+			//other attributes
+			if(ImGui::CollapsingHeader("Other Attributes", m_Other_Attrib_App_Open))
+			{
+				ImGui::Text("HDR");
+			}
+		}
+
 		void RenderLayer::RenderSkybox()
 		{
 
@@ -75,5 +189,6 @@ namespace renderx {
 
 			ImGui::End();
 		}
+		
 	}
 }

@@ -118,7 +118,6 @@ namespace renderx {
 			}
 		}
 
-
 		void RenderSphere::PhongModel(RenderLight* light,entity::FPSCamera* camera)
 		{
 			m_RenderData->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
@@ -128,9 +127,10 @@ namespace renderx {
 			
 			ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f,128.0f);
 			ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
-			ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -10, 10);
-			ImGui::SliderFloat("Y-axis", &light->GetLightPositionRef().y, -10, 10);
-			ImGui::SliderFloat("Z-axis", &light->GetLightPositionRef().z, -10, 10);
+			ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
+			ImGui::SliderFloat("Y-axis", &light->GetLightPositionRef().y, -20, 20);
+			ImGui::SliderFloat("Z-axis", &light->GetLightPositionRef().z, -20, 20);
+			
 		}
 
 		void RenderSphere::Color(const WinData& windata)

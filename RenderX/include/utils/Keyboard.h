@@ -13,11 +13,11 @@ namespace renderx {
 
 			/* Printable keys */
 			RX_KEY_SPACE        =      32,
-			RX_KEY_APOSTROPHE   =      39,  /* ' */
-			RX_KEY_COMMA        =      44,  /* , */
-			RX_KEY_MINUS        =      45,  /* - */
-			RX_KEY_PERIOD       =      46,  /* . */
-			RX_KEY_SLASH        =      47,  /* / */
+			RX_KEY_APOSTROPHE   =      39, 
+			RX_KEY_COMMA        =      44, 
+			RX_KEY_MINUS        =      45, 
+			RX_KEY_PERIOD       =      46, 
+			RX_KEY_SLASH        =      47, 
 			RX_KEY_0            =      48,
 			RX_KEY_1            =      49,
 			RX_KEY_2            =      50,
@@ -28,8 +28,8 @@ namespace renderx {
 			RX_KEY_7            =      55,
 			RX_KEY_8            =      56,
 			RX_KEY_9            =      57,
-			RX_KEY_SEMICOLON    =      59,  /* ; */
-			RX_KEY_EQUAL        =      61,  /* = */
+			RX_KEY_SEMICOLON    =      59, 
+			RX_KEY_EQUAL        =      61, 
 			RX_KEY_A            =      65,
 			RX_KEY_B            =      66,
 			RX_KEY_C            =      67,
@@ -56,12 +56,12 @@ namespace renderx {
 			RX_KEY_X            =      88,
 			RX_KEY_Y            =      89,
 			RX_KEY_Z            =      90,
-			RX_KEY_LEFT_BRACKET =      91,  /* [ */
-			RX_KEY_BACKSLASH    =      92,  /* \ */
-			RX_KEY_RIGHT_BRACKET=      93,  /* ] */
-			RX_KEY_GRAVE_ACCENT =      96,  /* ` */
-			RX_KEY_WORLD_1      =      161, /* non-US #1 */
-			RX_KEY_WORLD_2      =      162, /* non-US #2 */
+			RX_KEY_LEFT_BRACKET =      91, 
+			RX_KEY_BACKSLASH    =      92, 
+			RX_KEY_RIGHT_BRACKET=      93, 
+			RX_KEY_GRAVE_ACCENT =      96, 
+			RX_KEY_WORLD_1      =      161,
+			RX_KEY_WORLD_2      =      162,
 			
 			RX_KEY_ESCAPE       =      256,
 			RX_KEY_ENTER        =      257,
@@ -152,27 +152,19 @@ namespace renderx {
 			~Keyboard();
 
 			static std::shared_ptr<Keyboard> Create();
-			
+										
 			static std::shared_ptr<Keyboard>& GetKeyboardInstance() { return ms_Keyboard; }
 
 			void OnEvent(events::KeyPressedEvent& event);
 			
 			void OnEvent(events::KeyReleasedEvent& event);
 
-			
 			inline bool GetKeyCode(int keycode)
 			{
-				if (keycode < 0)
-				{
-					return false;
-				}
-				else
-				{
-					return (*m_Keys)[keycode];
-				}
+				return keycode < 0
+					? false
+					: (*m_Keys)[keycode];
 			}
-
-
 		};
 	}
 }

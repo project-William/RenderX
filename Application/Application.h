@@ -40,6 +40,8 @@ private:
 	bool m_WindowResized_flag = false;
 
 
+
+
 private:
 
 	void OnEvent(events::Event& e);
