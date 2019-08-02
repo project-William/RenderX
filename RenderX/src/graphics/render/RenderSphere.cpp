@@ -83,6 +83,30 @@ namespace renderx {
 
 		}
 
+		void RenderSphere::DrawMultiObj(const WinData& windata)
+		{
+			for (int i = 0; i < 5; ++i)
+			{
+				for (int j = 0; j < 5; ++j)
+				{
+					BindObject();
+					//set view matrix
+					m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
+					//set model matrix
+					m_Trans.model = glm::mat4(1.0f);
+					m_Trans.model = glm::translate(glm::mat4(1.0f), glm::vec3(3.0f * j, 3.0f * i, 0.0f));
+					m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
+					//set projection matrix
+					m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+
+					//fragment uniform variables
+					m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
+					glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
+
+				}
+			}
+		}
+
 		void RenderSphere::SphereSetting(const WinData& windata, entity::FPSCamera* camera)
 		{
 			ImGui::Checkbox("FPS Camera", &m_Open_Camera);

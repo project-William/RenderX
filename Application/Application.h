@@ -23,7 +23,10 @@ private:
 
 	graphics::RenderSphere* sphere;
 
-	entity::RenderSkybox* skybox;
+	entity::RenderSkybox* skybox_1;
+	entity::RenderSkybox* skybox_2;
+	entity::RenderSkybox* skybox_3;
+	entity::RenderSkybox* skybox_4;
 
 	ui::ImguiLog* imguiLog;
 
@@ -40,9 +43,10 @@ private:
 	bool m_WindowResized_flag = false;
 
 
-
+	
 
 private:
+	entity::CubemapFaces cubemapfaces;
 
 	void OnEvent(events::Event& e);
 	

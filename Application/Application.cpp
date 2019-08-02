@@ -26,7 +26,17 @@ Application::Application()
 
 	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
-	skybox = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag");
+	
+	skybox_1 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces);
+	skybox_2 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces1);
+	skybox_3 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces2);
+	skybox_4 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces3);
+
+	renderLayer->PushSkybox(skybox_1);
+	renderLayer->PushSkybox(skybox_2);
+	renderLayer->PushSkybox(skybox_3);
+	renderLayer->PushSkybox(skybox_4);
+
 
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow=new ui::ImguiSetWindow();
@@ -44,13 +54,15 @@ Application::~Application()
 	delete renderLayer;
 	delete layerList;
 	delete framebuffer;
-	delete skybox;
+	delete skybox_1;
+	delete skybox_2;
+	delete skybox_3;
+	delete skybox_4;
 }
 
 void Application::Run()
 {
 	auto& WinData = m_Window->GetWinData();
-
 
 	while (m_Running)
 	{	
@@ -62,9 +74,9 @@ void Application::Run()
 		m_Window->ClearColor();
 		//begin scene
 		graphics::RenderScene::SceneBegin();
-
-		skybox->Draw(WinData,camera);
-		sphere->Draw(WinData);
+		//skybox->Draw(WinData,camera);
+		renderLayer->RenderSkybox(WinData, camera);
+		sphere->DrawMultiObj(WinData);
 
 		//cube->Draw(WinData);
 		

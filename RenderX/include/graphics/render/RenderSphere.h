@@ -14,6 +14,7 @@ namespace renderx {
 			void BindObject() const override;
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
+			void DrawMultiObj(const WinData& windata);
 
 			void RenderProperties() override;
 			void Color(const WinData& windata);

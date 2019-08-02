@@ -198,7 +198,6 @@
     <ClInclude Include="include\utils\Keyboard.h" />
     <ClInclude Include="include\utils\Log.h" />
     <ClInclude Include="include\utils\Mouse.h" />
-    <ClInclude Include="include\utils\RenderxUtils.h" />
     <ClInclude Include="RenderX.h" />
     <ClInclude Include="include\graphics\Layer.h" />
     <ClInclude Include="include\graphics\FrameBuffer.h" />

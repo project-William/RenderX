@@ -2,16 +2,15 @@
 
 namespace renderx {
 	namespace entity {
-
-		RenderSkybox::RenderSkybox(const std::string& vsfile,const std::string& fsfile)
+		RenderSkybox::RenderSkybox(const std::string& vsfile, const std::string& fsfile, const std::vector<std::string>& faces)
 			:m_Cubemap(nullptr)
 		{
-			m_Cubemap = std::unique_ptr<graphics::CubemapTexture>(new graphics::CubemapTexture(m_Faces.m_faces));
+			m_Cubemap = std::shared_ptr<graphics::CubemapTexture>(new graphics::CubemapTexture(faces));
 			m_RenderData = new graphics::RenderData();
 			m_RenderData->m_VAO = std::shared_ptr<graphics::VertexArray>
-			(
-				new graphics::VertexArray(sizeof(float)*m_SkyboxVertices.size(), &m_SkyboxVertices[0])
-			);
+				(
+					new graphics::VertexArray(sizeof(float) * m_SkyboxVertices.size(), &m_SkyboxVertices[0])
+					);
 
 			m_RenderData->m_Layout =
 			{
@@ -21,6 +20,7 @@ namespace renderx {
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 			m_RenderData->m_Shader = std::shared_ptr<graphics::Shader>(new graphics::Shader(vsfile, fsfile));
 			m_RenderData->m_Shader->SetInt("u_Skybox", 0);
+
 		}
 
 		RenderSkybox::~RenderSkybox()
@@ -45,7 +45,6 @@ namespace renderx {
 		{
 
 		}
-
 
 		void RenderSkybox::Draw(const graphics::WinData& windata,FPSCamera* camera)
 		{

@@ -8,6 +8,8 @@ namespace renderx {
 
 #define SINGLE_CHOICE(a,b,c,d) if(a) { b=c=d=false; }
 
+		using Camera_Pair=std::pair<entity::FPSCamera*, entity::DefaultCamera*>;
+
 		struct REN_API SkyboxPart
 		{
 			bool skybox_1 = true;
@@ -30,8 +32,6 @@ namespace renderx {
 			bool renderer_4 = false;
 		};
 
-
-
 		class REN_API RenderLayer:public Layer
 		{
 		public:
@@ -39,33 +39,35 @@ namespace renderx {
 			RenderLayer(const WinData& windata);
 			~RenderLayer();
 
-			void PushFrontRenderer(RenderObject* renderer);
 			void PushBackRenderer(RenderObject* renderer);
 
 			void DoRendering(const WinData& windata);
 
-
 			void RenderSettings();
 
-			void RenderSkybox();
+			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
 			void RenderModel();
 			void OnAttach() override;
 			void OnDetach() override;
 			void OnImguiLayer() override;
+			void PushSkybox(entity::RenderSkybox* skybox);
 
 			//skybox 
-			void PushbackSkybox();
-			void PushfrontSkybox();
-			//renderers
-			void PushbackRenderers();
-			void PushfrontRenderers();
-
+			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
+		
 		private:
-			std::list<RenderObject*> m_Renderers;
-			RenderObject* m_Render;
+
+			std::vector<RenderObject*> m_Renderers;
 			
-			std::list<entity::RenderSkybox> m_RenderSkybox;
-			
+			entity::RenderSkybox* m_Skybox;
+
+			std::vector<entity::RenderSkybox*> m_Skyboxes;
+
+			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;
+
+			int skybox_flags = 1;
+
+
 
 			bool m_DockSpace_Open = true;
 			bool m_Skybox_App_Open = false;
@@ -76,6 +78,13 @@ namespace renderx {
 			bool m_Other_Attrib_App_Open = false;
 
 			SkyboxPart m_SkyboxPart;
+			
+			bool skyboxchoice1 = true;
+			bool skyboxchoice2 = false;
+			bool skyboxchoice3 = false;
+			bool skyboxchoice4 = false;
+			
+			
 			RendererPart m_RendererPart;
 			LightPart m_LightPart;
 			

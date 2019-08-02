@@ -4,27 +4,19 @@ namespace renderx {
 	namespace graphics {
 
 		RenderLayer::RenderLayer()
-			:m_Render(nullptr)
 		{
 
 		}
 
 		RenderLayer::RenderLayer(const WinData& windata)
-			: m_Render(nullptr)
 		{
 
 		}
 
 		RenderLayer::~RenderLayer()
 		{
-			delete m_Render;
 		}
 
-
-		void RenderLayer::PushFrontRenderer(RenderObject* renderer)
-		{
-			m_Renderers.push_front(renderer);
-		}
 
 		void RenderLayer::PushBackRenderer(RenderObject* renderer)
 		{
@@ -42,8 +34,7 @@ namespace renderx {
 
 		void RenderLayer::RenderSettings()
 		{
-			//dock space checkbox
-			ImGui::Checkbox("DockSpace", &m_DockSpace_Open);
+
 			if (ImGui::CollapsingHeader("FPS Game Camera"))
 			{
 				float s=1;
@@ -52,7 +43,6 @@ namespace renderx {
 			}
 			if (ImGui::CollapsingHeader("Skybox"))
 			{
-				
 				if (ImGui::Checkbox("Skybox 1", &m_SkyboxPart.skybox_1))
 				{
 					SINGLE_CHOICE(m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
@@ -90,7 +80,6 @@ namespace renderx {
 				if (ImGui::Checkbox("Sphere", &m_RendererPart.renderer_2))
 				{
 					SINGLE_CHOICE(m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
-
 				}
 
 				if (ImGui::Checkbox("Model_1", &m_RendererPart.renderer_3))
@@ -101,7 +90,6 @@ namespace renderx {
 				if (ImGui::Checkbox("Model_2", &m_RendererPart.renderer_4))
 				{
 					SINGLE_CHOICE(m_RendererPart.renderer_4, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_1);
-
 				}
 
 			}
@@ -154,12 +142,26 @@ namespace renderx {
 			}
 		}
 
-		void RenderLayer::RenderSkybox()
+		void RenderLayer::RenderSkybox(const WinData& windata, entity::FPSCamera* camera)
 		{
 
+			if (m_SkyboxPart.skybox_1)
+			{
+				m_Skyboxes[0]->Draw(windata, camera);
+			}
+			if (m_SkyboxPart.skybox_2)
+			{
+				m_Skyboxes[1]->Draw(windata, camera);
+			}
+			if (m_SkyboxPart.skybox_3)
+			{
+				m_Skyboxes[2]->Draw(windata, camera);
+			}
+			if (m_SkyboxPart.skybox_4)
+			{
+				m_Skyboxes[3]->Draw(windata, camera);
+			}
 		}
-
-
 		void RenderLayer::RenderModel()
 		{
 
@@ -168,6 +170,7 @@ namespace renderx {
 
 		void RenderLayer::OnAttach()
 		{
+
 		}
 
 		void RenderLayer::OnDetach()
@@ -188,6 +191,18 @@ namespace renderx {
 			}
 
 			ImGui::End();
+		}
+
+		
+		void RenderLayer::InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam)
+		{
+			m_Camera.first = fpscam;
+			m_Camera.second = defcam;
+		}
+
+		void RenderLayer::PushSkybox(entity::RenderSkybox* skybox)
+		{
+			m_Skyboxes.push_back(skybox);
 		}
 		
 	}
