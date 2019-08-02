@@ -10,6 +10,13 @@ namespace renderx {
 
 		using Camera_Pair=std::pair<entity::FPSCamera*, entity::DefaultCamera*>;
 
+		struct REN_API CameraPart
+		{
+			bool fpsCamera = false;
+			bool defaultCamera = false;
+			bool NoCamera = true;
+		};
+
 		struct REN_API SkyboxPart
 		{
 			bool skybox_1 = true;
@@ -32,6 +39,12 @@ namespace renderx {
 			bool renderer_4 = false;
 		};
 
+		struct REN_API LightModelPart
+		{
+			bool PhongModel = true;
+			bool Blinn_Phong = false;
+		};
+
 		class REN_API RenderLayer:public Layer
 		{
 		public:
@@ -39,13 +52,14 @@ namespace renderx {
 			RenderLayer(const WinData& windata);
 			~RenderLayer();
 
-			void PushBackRenderer(RenderObject* renderer);
-
+			void PushRenderer(RenderObject* renderer, bool isRendered);
 			void DoRendering(const WinData& windata);
-
-			void RenderSettings();
+			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
+			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
+			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
+			void LightModel(RenderLight* light, entity::FPSCamera* camera);
 			void RenderModel();
 			void OnAttach() override;
 			void OnDetach() override;
@@ -54,8 +68,10 @@ namespace renderx {
 
 			//skybox 
 			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
-		
+				
 		private:
+
+			std::unordered_map<RenderObject*, bool> m_Renderer;
 
 			std::vector<RenderObject*> m_Renderers;
 			
@@ -65,10 +81,6 @@ namespace renderx {
 
 			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;
 
-			int skybox_flags = 1;
-
-
-
 			bool m_DockSpace_Open = true;
 			bool m_Skybox_App_Open = false;
 			bool m_Renderer_App_Open = true;
@@ -76,18 +88,12 @@ namespace renderx {
 			bool m_Renderer_Attrib_App_Open = false;
 			bool m_Texture_App_Open = false;
 			bool m_Other_Attrib_App_Open = false;
-
+			bool m_LightModel_Open = false;
 			SkyboxPart m_SkyboxPart;
-			
-			bool skyboxchoice1 = true;
-			bool skyboxchoice2 = false;
-			bool skyboxchoice3 = false;
-			bool skyboxchoice4 = false;
-			
-			
+			CameraPart m_CameraPart;
 			RendererPart m_RendererPart;
 			LightPart m_LightPart;
-			
+			LightModelPart m_LightModelPart;
 		};
 
 	}

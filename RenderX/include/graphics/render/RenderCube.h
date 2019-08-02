@@ -18,10 +18,9 @@ namespace renderx {
 			void Color(const WinData& windata);
 			void RenderProperties() override {};
 			void Draw();
-			inline RenderData* GetRenderData()const { return m_RenderData; }
+			inline RenderData* GetRenderDataRef() override { return m_RenderData; }
 			
-			inline Transformation& GetTrans() override { return m_Trans; }
-
+			inline Transformation& GetTransRef() override { return m_Trans; }
 
 		private:
 			RenderData *m_RenderData;

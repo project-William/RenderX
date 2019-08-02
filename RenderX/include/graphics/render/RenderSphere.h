@@ -7,7 +7,6 @@ namespace renderx {
 		class REN_API RenderSphere :public RenderObject
 		{
 		public:
-			RenderSphere();
 			RenderSphere(const std::string& vsfile,const std::string& fsfile);
 			~RenderSphere();
 
@@ -20,12 +19,14 @@ namespace renderx {
 			void Color(const WinData& windata);
 			void SphereSetting(const WinData& windata, entity::FPSCamera* camera);
 			void PhongModel(RenderLight* light, entity::FPSCamera* camera);
+			
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
 			inline const unsigned int GetIndexCount()const { return m_IndexCount; }
 		
-			inline Transformation& GetTrans() override { return m_Trans; }
-
+			inline Transformation& GetTransRef() override { return m_Trans; }
+			inline RenderData* GetRenderDataRef() override { return m_RenderData; }
+		
 		private:
 			
 			Transformation m_Trans;

@@ -2,11 +2,6 @@
 
 namespace renderx {
 	namespace graphics {
-		RenderSphere::RenderSphere()
-			:X_SEGMENTS(64), Y_SEGMENTS(64), m_PI(3.1415926535)
-		{
-
-		}
 
 		RenderSphere::RenderSphere(const std::string& vsfile, const std::string& fsfile)
 			: X_SEGMENTS(64), Y_SEGMENTS(64), m_PI(3.1415926535)
@@ -60,9 +55,7 @@ namespace renderx {
 
 		void RenderSphere::Draw(const WinData& windata)
 		{
-			m_RenderData->m_Shader->BindShaderProgram();
-			m_RenderData->m_VAO->BindVertexArray();
-
+			BindObject();
 			//set view matrix
 			//m_Trans.view = glm::mat4(1.0f);
 			//m_Trans.view = glm::translate(m_Trans.view, m_Trans.position-glm::vec3(0.0f,0.0f,5.0f));

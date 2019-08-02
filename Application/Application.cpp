@@ -37,6 +37,9 @@ Application::Application()
 	renderLayer->PushSkybox(skybox_3);
 	renderLayer->PushSkybox(skybox_4);
 
+	renderLayer->PushRenderer(sphere, true);
+	renderLayer->PushRenderer(cube, false);
+
 
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow=new ui::ImguiSetWindow();
@@ -76,8 +79,8 @@ void Application::Run()
 		graphics::RenderScene::SceneBegin();
 		//skybox->Draw(WinData,camera);
 		renderLayer->RenderSkybox(WinData, camera);
-		sphere->DrawMultiObj(WinData);
-
+		//sphere->Draw(WinData);
+		renderLayer->RenderObjects(WinData, camera);
 		//cube->Draw(WinData);
 		
 		graphics::RenderScene::SceneEnd();
@@ -89,10 +92,12 @@ void Application::Run()
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
-		sphere->SphereSetting(WinData, camera);
-		sphere->PhongModel(basicLight, camera);
-		sphere->Color(WinData);
-		renderLayer->RenderSettings();
+		renderLayer->CameraSetting(WinData, camera);
+		renderLayer->LightModel(basicLight, camera);
+		//sphere->SphereSetting(WinData, camera);
+		//sphere->PhongModel(basicLight, camera);
+		//sphere->Color(WinData);
+		renderLayer->RenderSettings(WinData,camera,basicLight);
 		imguisetwindow->EndSetWindow();
 		//movement
 		//sphere->GetTrans().view = camera->GetViewMatrix();
