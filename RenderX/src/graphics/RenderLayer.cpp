@@ -21,17 +21,11 @@ namespace renderx {
 		void RenderLayer::PushRenderer(RenderObject* renderer, bool isRendered)
 		{
 			m_Renderer.insert(std::pair<RenderObject*, bool>(renderer,isRendered));
-			m_Renderers.push_back(renderer);
 		}
 
 		void RenderLayer::DoRendering(const WinData& windata)
 		{
-			for (auto renderer : m_Renderers)
-			{
-				renderer->Draw(windata);
-			}
 		}
-
 
 		void RenderLayer::RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light)
 		{
@@ -115,7 +109,6 @@ namespace renderx {
 				{
 					SINGLE_CHOICE(m_RendererPart.renderer_4, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_1);
 				}
-
 			}
 			//lights
 			if (ImGui::CollapsingHeader("Lights", m_Light_App_Open))
@@ -124,14 +117,17 @@ namespace renderx {
 				{
 					SINGLE_CHOICE(m_LightPart.light_1, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_4);
 				}
+
 				if (ImGui::Checkbox("Light_2", &m_LightPart.light_2))
 				{
 					SINGLE_CHOICE(m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_3, m_LightPart.light_4);
 				}
+
 				if (ImGui::Checkbox("Light_3", &m_LightPart.light_3))
 				{
 					SINGLE_CHOICE(m_LightPart.light_3, m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_4);
 				}
+
 				if (ImGui::Checkbox("Light_4", &m_LightPart.light_4))
 				{
 					SINGLE_CHOICE(m_LightPart.light_4, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_1);
@@ -143,11 +139,14 @@ namespace renderx {
 				if (ImGui::Checkbox("Phong Model", &m_LightModelPart.PhongModel))
 				{
 					if (m_LightModelPart.PhongModel) m_LightModelPart.Blinn_Phong = false;
+					
 				}
+
 				if (ImGui::Checkbox("Blinn Phong", &m_LightModelPart.Blinn_Phong))
 				{
 					if (m_LightModelPart.Blinn_Phong) m_LightModelPart.PhongModel = false;
 				}
+
 				ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
 				ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
 				ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
@@ -157,21 +156,25 @@ namespace renderx {
 			//renderers attributes
 			if (ImGui::CollapsingHeader("Renderers Attributes", m_Renderer_App_Open))
 			{
-				float color[4];
-				float pos[3];
-				float scale;
-				ImGui::ColorEdit4("Render Color", &color[0]);
-				ImGui::SliderFloat("Position-x", &pos[0], -20, 20);
-				ImGui::SliderFloat("Position-y", &pos[1], -20, 20);
-				ImGui::SliderFloat("Position-z", &pos[2], -20, 20);
-				ImGui::SliderFloat("Scale", &scale, 0.1f, 5.0f);
+				
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						ImGui::ColorEdit4("Render Color", &iter.first->GetTransRef().color[0]);
+						ImGui::SliderFloat("Scale-x", &iter.first->GetTransRef().scale[0], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-y", &iter.first->GetTransRef().scale[1], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-z", &iter.first->GetTransRef().scale[2], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-xyz", &iter.first->GetTransRef().s_scale, 0.1f, 2.0f);
+					}
+				}
 			}
 
 			//texture
 			if (ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
 			{
-				ImGui::Text("texture1");
-				ImGui::Text("texture2");
+				ImGui::Text("2D texture");
+				ImGui::Text("normal texture");
 				ImGui::Text("texture3");
 				ImGui::Text("texture4");
 			}
@@ -179,7 +182,7 @@ namespace renderx {
 			//other attributes
 			if (ImGui::CollapsingHeader("Other Attributes", m_Other_Attrib_App_Open))
 			{
-				ImGui::Text("HDR");
+				ImGui::SliderFloat("gamma value", &m_gamma_value, 0.3f, 3.0f);
 			}
 
 		}
@@ -246,14 +249,18 @@ namespace renderx {
 			{
 				if (iter.second)
 				{
+					iter.first->GetRenderDataRef()->m_Shader->SetVec4("u_color", iter.first->GetTransRef().color);
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_Shineness", light->GetShineness());
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_open_phong", m_LightModelPart.PhongModel);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_blinn_phong", m_LightModelPart.Blinn_Phong);
+					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
 				}
 			}
 		}
-
+		
 		void RenderLayer::RenderSkybox(const WinData& windata, entity::FPSCamera* camera)
 		{
 			if (m_SkyboxPart.skybox_1)
@@ -289,7 +296,7 @@ namespace renderx {
 			
 			if (m_RendererPart.renderer_3)
 			{
-
+				
 			}
 			
 			if (m_RendererPart.renderer_4)
@@ -328,7 +335,6 @@ namespace renderx {
 
 			ImGui::End();
 		}
-
 		
 		void RenderLayer::InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam)
 		{
@@ -340,6 +346,5 @@ namespace renderx {
 		{
 			m_Skyboxes.push_back(skybox);
 		}
-		
 	}
 }

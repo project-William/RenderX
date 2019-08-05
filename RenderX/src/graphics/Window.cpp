@@ -152,7 +152,7 @@ namespace renderx {
 			else
 				RDX_INIT_SUCCESS(gladLoadGLLoader, "GLAD initialized successfully!");
 		
-
+			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
 			return true;
 		}

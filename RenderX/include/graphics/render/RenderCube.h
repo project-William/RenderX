@@ -16,7 +16,6 @@ namespace renderx {
 			void Draw(const WinData& windata) override;
 		
 			void Color(const WinData& windata);
-			void RenderProperties() override {};
 			void Draw();
 			inline RenderData* GetRenderDataRef() override { return m_RenderData; }
 			

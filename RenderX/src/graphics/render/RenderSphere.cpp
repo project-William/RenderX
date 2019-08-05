@@ -23,9 +23,9 @@ namespace renderx {
 
 			m_RenderData->m_Layout =
 			{
-				{ ShaderDataType::FLOAT3, "VertexPos" },
-				{ ShaderDataType::FLOAT2, "TexCoords" },
-				{ ShaderDataType::FLOAT3, "Normals" }
+				{ ShaderDataType::FLOAT3, "a_VertexPos" },
+				{ ShaderDataType::FLOAT2, "a_TexCoords" },
+				{ ShaderDataType::FLOAT3, "a_Normals" }
 			};
 
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
@@ -52,31 +52,7 @@ namespace renderx {
 			m_RenderData->m_Shader->UnbindShaderProgram();
 		}
 
-
 		void RenderSphere::Draw(const WinData& windata)
-		{
-			BindObject();
-			//set view matrix
-			//m_Trans.view = glm::mat4(1.0f);
-			//m_Trans.view = glm::translate(m_Trans.view, m_Trans.position-glm::vec3(0.0f,0.0f,5.0f));
-			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
-			//set model matrix
-			m_Trans.model = glm::mat4(1.0f);
-			m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
-			//set projection matrix
-			//m_Trans.projection = glm::mat4(1.0f);
-			//m_Trans.projection = glm::perspective(glm::radians(m_Trans.perspective_radians),
-			//	(float)windata.win_Width / (float)windata.win_Height,
-			//	0.1f, 100.0f);
-			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
-			
-			//fragment uniform variables
-			m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
-			glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
-
-		}
-
-		void RenderSphere::DrawMultiObj(const WinData& windata)
 		{
 			for (int i = 0; i < 5; ++i)
 			{
@@ -86,8 +62,9 @@ namespace renderx {
 					//set view matrix
 					m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 					//set model matrix
-					m_Trans.model = glm::mat4(1.0f);
 					m_Trans.model = glm::translate(glm::mat4(1.0f), glm::vec3(3.0f * j, 3.0f * i, 0.0f));
+					m_Trans.model = glm::scale(m_Trans.model, m_Trans.scale);
+					m_Trans.model = glm::scale(m_Trans.model, glm::vec3(m_Trans.s_scale));
 					m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
 					//set projection matrix
 					m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
@@ -154,13 +131,6 @@ namespace renderx {
 		{
 			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
 		}
-
-		void RenderSphere::RenderProperties()
-		{
-
-	
-		}
-
 
 		void RenderSphere::CreateSphere()
 		{

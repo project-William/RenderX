@@ -44,9 +44,7 @@ Application::Application()
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow=new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
-
 	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 3.0f));
-
 	basicLight = new graphics::BasicLight();
 
 }
@@ -92,6 +90,7 @@ void Application::Run()
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
+		//imguisetwindow->ShowDemo();
 		renderLayer->CameraSetting(WinData, camera);
 		renderLayer->LightModel(basicLight, camera);
 		//sphere->SphereSetting(WinData, camera);
@@ -101,13 +100,11 @@ void Application::Run()
 		imguisetwindow->EndSetWindow();
 		//movement
 		//sphere->GetTrans().view = camera->GetViewMatrix();
-		
 		//imgui draw window
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
 		imguiSceneWindow->EndSceneWindow();
 		//keyboard movement
-		
 		//imgui log window
 		imguiLog->BeginLog();
 		imguiLog->EndLog();
@@ -116,10 +113,8 @@ void Application::Run()
 		m_WindowResized_flag = false;
 		//framebuffer->UnbindFrameBuffer();
 		//skybox->Draw(WinData,camera);
-		//
 		//sphere->Draw(WinData);
 		//sphere->SphereSetting(WinData,camera);
-
 		m_Window->OnUpdate();
 	}
 	imgui->OnDetach();

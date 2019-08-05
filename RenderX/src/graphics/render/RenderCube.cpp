@@ -1,5 +1,6 @@
 #include "graphics/render/RenderCube.h"
 
+
 namespace renderx {
 	namespace graphics {
 
@@ -57,7 +58,7 @@ namespace renderx {
 			BindObject();
 			//set view matrix
 			m_Trans.view = glm::mat4(1.0f);
-			m_Trans.view = glm::translate(m_Trans.view, m_Trans.position);
+			m_Trans.view = glm::translate(m_Trans.view, m_Trans.scale);
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 			//set model matrix
 			m_Trans.model = glm::mat4(1.0f);
@@ -85,7 +86,7 @@ namespace renderx {
 		{
 			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
 			
-			ImGui::SliderFloat3("Position", &m_Trans.position[0], -10.0f, 2.0f);
+			ImGui::SliderFloat3("Position", &m_Trans.scale[0], -10.0f, 2.0f);
 		}
 
 	}

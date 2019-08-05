@@ -33,6 +33,7 @@ namespace renderx {
 			RX_EVENT_CATEGORY_GUI = VALUE(5)
 		};
 
+		
 		class REN_API Event
 		{
 		public:
@@ -45,16 +46,14 @@ namespace renderx {
 			virtual int GetCategoryFlags()const = 0;
 
 			virtual const std::string To_String()const { return GetEventName(); }
-
+			
 			inline bool IsInCategory(EventCategory category)
 			{
 				return GetCategoryFlags() & category;
 			}
-
 		protected:
 
 			bool m_Handled = false;
-
 
 		};
 

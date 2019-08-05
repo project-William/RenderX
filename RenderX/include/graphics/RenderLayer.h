@@ -65,21 +65,15 @@ namespace renderx {
 			void OnDetach() override;
 			void OnImguiLayer() override;
 			void PushSkybox(entity::RenderSkybox* skybox);
-
 			//skybox 
 			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
 				
 		private:
-
+							
 			std::unordered_map<RenderObject*, bool> m_Renderer;
-
-			std::vector<RenderObject*> m_Renderers;
-			
-			entity::RenderSkybox* m_Skybox;
-
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
-
 			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;
+			std::vector<RenderLight*> m_Lights;
 
 			bool m_DockSpace_Open = true;
 			bool m_Skybox_App_Open = false;
@@ -89,6 +83,10 @@ namespace renderx {
 			bool m_Texture_App_Open = false;
 			bool m_Other_Attrib_App_Open = false;
 			bool m_LightModel_Open = false;
+
+			float m_gamma_value = 2.2f;
+
+
 			SkyboxPart m_SkyboxPart;
 			CameraPart m_CameraPart;
 			RendererPart m_RendererPart;

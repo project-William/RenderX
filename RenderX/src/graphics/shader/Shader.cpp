@@ -89,7 +89,6 @@ namespace renderx {
 			glUniformMatrix4fv(glGetUniformLocation(m_ShaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 		}
 
-
 		void Shader::BindShaderProgram()const
 		{
 			glUseProgram(m_ShaderProgram);
@@ -99,7 +98,6 @@ namespace renderx {
 		{
 			glUseProgram(0);
 		}
-
 
 		GLuint Shader::CreateShader(const std::string& file, int type)
 		{

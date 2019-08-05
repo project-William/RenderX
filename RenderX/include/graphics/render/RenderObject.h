@@ -32,15 +32,15 @@ namespace renderx {
 		struct REN_API Transformation
 		{
 			float perspective_radians;
-			glm::vec3 position;
+			float s_scale = 1.0f;
+			glm::vec3 scale;
 			glm::mat4 model;
 			glm::mat4 view;
 			glm::mat4 projection;
 			glm::vec4 color;
-
 			Transformation()
 				:perspective_radians(45.0f),
-				 position(glm::vec3(0.0f, 0.0f, 0.0f)),
+				 scale(glm::vec3(1.0f, 1.0f, 1.0f)),
 				 model(glm::mat4(1.0f)),
 				 view(glm::mat4(1.0f)),
 				 projection(glm::mat4(1.0f)),
@@ -61,7 +61,6 @@ namespace renderx {
 			virtual void BindObject() const = 0;
 			virtual void UnbindObject() const = 0;
 			virtual void Draw(const WinData& windata) = 0;
-			virtual void RenderProperties() = 0;
 			virtual inline Transformation& GetTransRef() = 0;
 			virtual inline RenderData* GetRenderDataRef() = 0;
 		};

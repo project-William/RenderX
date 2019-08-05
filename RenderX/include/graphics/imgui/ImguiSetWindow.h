@@ -12,6 +12,7 @@ namespace renderx {
 
 			void BeginSetWindow();
 			void GraphicsSettingWindow();
+			void ShowDemo() { bool a = true; ImGui::ShowDemoWindow(&a); }
 			void EndSetWindow();
 
 		private:

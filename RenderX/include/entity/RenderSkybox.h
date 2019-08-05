@@ -6,6 +6,7 @@
 namespace renderx {
 	namespace entity {
 
+		
 		using CubemapTexVector=std::vector<std::vector<std::string>>;
 
 		struct REN_API CubemapFaces
@@ -42,8 +43,12 @@ namespace renderx {
 		{
 		public:
 			RenderSkybox(const std::string& vsfile, const std::string& fsfile, const std::vector<std::string>& faces);
-			~RenderSkybox();
+			
+			RenderSkybox(const RenderSkybox& other) = delete;
+			RenderSkybox& operator=(const RenderSkybox& other) = delete;
 
+			~RenderSkybox();
+						
 			void EnableObject() override;
 			void DisableObject() override;
 			void Draw(const graphics::WinData& windata, FPSCamera* camera);
@@ -54,7 +59,7 @@ namespace renderx {
 			inline std::shared_ptr<graphics::CubemapTexture>& GetCubemapRef() { return m_Cubemap; }
 			
 		private:
-			
+
 			std::shared_ptr<graphics::CubemapTexture> m_Cubemap;
 			graphics::Transformation m_Trans;
 			graphics::RenderData* m_RenderData;
