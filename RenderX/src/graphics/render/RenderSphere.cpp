@@ -33,6 +33,9 @@ namespace renderx {
 			m_Trans.color = glm::vec4(0.6f, 0.0f, 0.6f, 1.0f);
 			m_Trans.model = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
+			m_RenderData->m_Shader->BindShaderProgram();
+			m_RenderData->m_Shader->SetVec3("u_albedo", 0.5f, 0.0f, 0.0f);
+			m_RenderData->m_Shader->SetFloat("u_ao", 1.0f);
 		}
 
 		RenderSphere::~RenderSphere()
@@ -62,7 +65,7 @@ namespace renderx {
 					//set view matrix
 					m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 					//set model matrix
-					m_Trans.model = glm::translate(glm::mat4(1.0f), glm::vec3(3.0f * j, 3.0f * i, 0.0f));
+					m_Trans.model = glm::translate(glm::mat4(1.0f), glm::vec3(1.5f * j, 1.5f * i, 0.0f));
 					m_Trans.model = glm::scale(m_Trans.model, m_Trans.scale);
 					m_Trans.model = glm::scale(m_Trans.model, glm::vec3(m_Trans.s_scale));
 					m_RenderData->m_Shader->SetMat4("u_model", m_Trans.model);
@@ -72,6 +75,7 @@ namespace renderx {
 					//fragment uniform variables
 					m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
 					glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
+
 
 				}
 			}

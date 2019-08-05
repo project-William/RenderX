@@ -53,5 +53,8 @@
     <Image Include="texture\ame_iceflats\iceflats_lf.tga" />
     <Image Include="texture\ame_iceflats\iceflats_rt.tga" />
     <Image Include="texture\ame_iceflats\iceflats_up.tga" />
+    <Image Include="texture\normal_wall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

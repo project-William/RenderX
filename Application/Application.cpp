@@ -75,14 +75,10 @@ void Application::Run()
 		m_Window->ClearColor();
 		//begin scene
 		graphics::RenderScene::SceneBegin();
-		//skybox->Draw(WinData,camera);
 		renderLayer->RenderSkybox(WinData, camera);
-		//sphere->Draw(WinData);
 		renderLayer->RenderObjects(WinData, camera);
-		//cube->Draw(WinData);
 		
 		graphics::RenderScene::SceneEnd();
-		//end scene
 		/***************************default framebuffer*******************************/
 		framebuffer->UnbindFrameBuffer();
 		imgui->Begin();
@@ -90,16 +86,11 @@ void Application::Run()
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
-		//imguisetwindow->ShowDemo();
 		renderLayer->CameraSetting(WinData, camera);
 		renderLayer->LightModel(basicLight, camera);
-		//sphere->SphereSetting(WinData, camera);
-		//sphere->PhongModel(basicLight, camera);
-		//sphere->Color(WinData);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
 		imguisetwindow->EndSetWindow();
 		//movement
-		//sphere->GetTrans().view = camera->GetViewMatrix();
 		//imgui draw window
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());

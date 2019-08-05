@@ -21,5 +21,5 @@ void main()
     vs_out.v_texCoords = a_TexCoords;
     vs_out.v_normals = mat3(u_model) * a_Normals;   
 	vs_out.v_fragPos=vec3(u_model*vec4(a_VertexPos,1.0f));
-    gl_Position = u_projection*u_view*u_model*vec4(a_VertexPos, 1.0);
+    gl_Position = u_projection*u_view*u_model*vec4(vs_out.v_fragPos, 1.0);
 }

@@ -18,7 +18,7 @@ namespace renderx {
 		{
 			glGenTextures(1, &m_Texture);
 			glBindTexture(GL_TEXTURE_2D, m_Texture);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+			glTexImage2D(GL_TEXTURE_2D, 0,GL_RGBA16F, width, height, 0, GL_RGB, GL_FLOAT, NULL);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			stbi_set_flip_vertically_on_load(true);

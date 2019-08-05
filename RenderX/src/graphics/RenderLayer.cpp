@@ -138,13 +138,29 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("Phong Model", &m_LightModelPart.PhongModel))
 				{
-					if (m_LightModelPart.PhongModel) m_LightModelPart.Blinn_Phong = false;
-					
+					if (m_LightModelPart.PhongModel) 
+					{ 
+						m_LightModelPart.Blinn_Phong = false; 
+						m_LightModelPart.lightPbr = false;
+					}
 				}
 
 				if (ImGui::Checkbox("Blinn Phong", &m_LightModelPart.Blinn_Phong))
 				{
-					if (m_LightModelPart.Blinn_Phong) m_LightModelPart.PhongModel = false;
+					if (m_LightModelPart.Blinn_Phong)
+					{
+						m_LightModelPart.PhongModel = false;
+						m_LightModelPart.lightPbr = false;
+					}
+				}
+
+				if (ImGui::Checkbox("Lighting PBR", &m_LightModelPart.lightPbr))
+				{
+					if (m_LightModelPart.lightPbr)
+					{
+						m_LightModelPart.Blinn_Phong = false;
+						m_LightModelPart.PhongModel = false;
+					}
 				}
 
 				ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
@@ -156,7 +172,6 @@ namespace renderx {
 			//renderers attributes
 			if (ImGui::CollapsingHeader("Renderers Attributes", m_Renderer_App_Open))
 			{
-				
 				for (auto iter : m_Renderer)
 				{
 					if (iter.second)
@@ -166,6 +181,8 @@ namespace renderx {
 						ImGui::SliderFloat("Scale-y", &iter.first->GetTransRef().scale[1], 0.1f, 2.0f);
 						ImGui::SliderFloat("Scale-z", &iter.first->GetTransRef().scale[2], 0.1f, 2.0f);
 						ImGui::SliderFloat("Scale-xyz", &iter.first->GetTransRef().s_scale, 0.1f, 2.0f);
+						ImGui::SliderFloat("metallic", &m_metallic, 0.0f,1.0f);
+						ImGui::SliderFloat("roughness", &m_roughness, 0.0f,1.0f);
 					}
 				}
 			}
@@ -182,7 +199,7 @@ namespace renderx {
 			//other attributes
 			if (ImGui::CollapsingHeader("Other Attributes", m_Other_Attrib_App_Open))
 			{
-				ImGui::SliderFloat("gamma value", &m_gamma_value, 0.3f, 3.0f);
+				ImGui::SliderFloat("gamma value", &m_gamma_value, 0.3f, 10.0f);
 			}
 
 		}
@@ -257,6 +274,10 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_open_phong", m_LightModelPart.PhongModel);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_blinn_phong", m_LightModelPart.Blinn_Phong);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", &m_LightModelPart.lightPbr);
+					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
+					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
+
 				}
 			}
 		}

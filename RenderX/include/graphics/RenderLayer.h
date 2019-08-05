@@ -41,8 +41,9 @@ namespace renderx {
 
 		struct REN_API LightModelPart
 		{
-			bool PhongModel = true;
+			bool PhongModel = false;
 			bool Blinn_Phong = false;
+			bool lightPbr = true;
 		};
 
 		class REN_API RenderLayer:public Layer
@@ -86,6 +87,8 @@ namespace renderx {
 
 			float m_gamma_value = 2.2f;
 
+			float m_metallic = 0.1f;
+			float m_roughness = 0.2f;
 
 			SkyboxPart m_SkyboxPart;
 			CameraPart m_CameraPart;
