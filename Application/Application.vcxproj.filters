@@ -59,5 +59,20 @@
     <Image Include="texture\diffuse_wall.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\pbr\ion\albedo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\ion\ao.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\ion\metallic.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\ion\normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\ion\roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

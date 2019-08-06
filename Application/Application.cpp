@@ -87,8 +87,8 @@ void Application::Run()
 		imguisetwindow->BeginSetWindow();
 		imguisetwindow->GraphicsSettingWindow();
 		renderLayer->CameraSetting(WinData, camera);
-		renderLayer->LightModel(basicLight, camera);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
+		renderLayer->LightModel(basicLight, camera);
 		imguisetwindow->EndSetWindow();
 		//movement
 		//imgui draw window

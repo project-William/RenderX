@@ -132,6 +132,7 @@ namespace renderx {
 				{
 					SINGLE_CHOICE(m_LightPart.light_4, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_1);
 				}
+				
 			}
 			//Light model
 			if (ImGui::CollapsingHeader("Light Model", m_LightModel_Open))
@@ -152,7 +153,7 @@ namespace renderx {
 				{
 					SINGLE_CHOICE(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,
 								  m_LightModelPart.PhongModel, m_LightModelPart.TexturePBR);
-				}	
+				}
 				
 				if (ImGui::Checkbox("Texture PBR", &m_LightModelPart.TexturePBR))
 				{
@@ -275,6 +276,7 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", &m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
+
 				}
 			}
 		}

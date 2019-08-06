@@ -27,7 +27,7 @@ namespace renderx {
 		public:
 			Texture();
 			Texture(int width, int height);
-			Texture(const std::string& name, std::string& filepath);
+			Texture(const std::string& name, const std::string& filepath);
 			~Texture();
 
 			inline const GLuint& GetTexRef()const { return m_Texture; }

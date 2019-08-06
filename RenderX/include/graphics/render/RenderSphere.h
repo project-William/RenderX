@@ -15,10 +15,10 @@ namespace renderx {
 			void Draw(const WinData& windata) override;
 
 			std::shared_ptr<graphics::Texture> m_AlbedoTex;
-			std::shared_ptr<graphics::Texture> m_Normal;
-			std::shared_ptr<graphics::Texture> m_AO;
-			std::shared_ptr<graphics::Texture> m_Roughness;
-			std::shared_ptr<graphics::Texture> m_Metallic;
+			std::shared_ptr<graphics::Texture> m_NormalTex;
+			std::shared_ptr<graphics::Texture> m_AOTex;
+			std::shared_ptr<graphics::Texture> m_RoughnessTex;
+			std::shared_ptr<graphics::Texture> m_MetallicTex;
 
 
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }

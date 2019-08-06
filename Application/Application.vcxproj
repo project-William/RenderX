@@ -185,6 +185,11 @@
     <Image Include="texture\container.jpg" />
     <Image Include="texture\diffuse_wall.jpg" />
     <Image Include="texture\normal_wall.png" />
+    <Image Include="texture\pbr\ion\albedo.png" />
+    <Image Include="texture\pbr\ion\ao.png" />
+    <Image Include="texture\pbr\ion\metallic.png" />
+    <Image Include="texture\pbr\ion\normal.png" />
+    <Image Include="texture\pbr\ion\roughness.png" />
     <Image Include="texture\wall.jpg" />
   </ItemGroup>
   <ItemGroup>

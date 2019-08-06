@@ -43,8 +43,8 @@ namespace renderx {
 		{
 			bool PhongModel = false;
 			bool Blinn_Phong = false;
-			bool LightPBR = true;
-			bool TexturePBR = false;
+			bool LightPBR = false;
+			bool TexturePBR = true;
 		};
 
 		class REN_API RenderLayer:public Layer

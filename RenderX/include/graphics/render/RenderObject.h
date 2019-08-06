@@ -24,7 +24,6 @@ namespace renderx {
 			std::vector<glm::vec3> m_Bitangent;
 			std::vector<unsigned int> m_Indices;
 
-			std::unordered_map<unsigned int, const std::string&> m_Textures;
 
 			RenderData()
 				:m_Shader(nullptr), m_VAO(nullptr)
