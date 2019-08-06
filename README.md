@@ -21,13 +21,14 @@ Dependencies:
 ## Features
 Objectives         |Implemented
 :-----------------:|:---------------------:
-Camera             |Movement,Zoom
+Camera             |Movement,Zoom,FPS Game mode
 Textures           |Cubemap,2DTexture init/load/bind
 Mesh loading       |TODO:
 Math               |by glm
 Transformations    |Position TODO:
 Lighting           |Basic
-Materials          |TODO:
+PBR                |Light and Texture PBR
+Materials          |metallic,roughness
 Deferred rendering |TODO
 SSAO               |TODO
 Normal mapping     |TODO
