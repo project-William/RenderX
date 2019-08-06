@@ -99,7 +99,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\LearnOpenGL%28imGui%29\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\graphics\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RENDERX_DLL;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -113,7 +113,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\LearnOpenGL%28imGui%29\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\graphics\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RENDERX_DLL;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\LearnOpenGL%28imGui%29\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\graphics\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RENDERX_DLL;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -147,7 +147,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\LearnOpenGL%28imGui%29\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\graphics\RenderX\RenderX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RENDERX_DLL;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -157,11 +157,6 @@
       <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RenderX\RenderX.vcxproj">
-      <Project>{373c8247-2803-4ec2-8cf2-8a87812d6a99}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
   </ItemGroup>
@@ -188,8 +183,14 @@
     <Image Include="texture\ame_iceflats\iceflats_rt.tga" />
     <Image Include="texture\ame_iceflats\iceflats_up.tga" />
     <Image Include="texture\container.jpg" />
+    <Image Include="texture\diffuse_wall.jpg" />
     <Image Include="texture\normal_wall.png" />
     <Image Include="texture\wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RenderX\RenderX.vcxproj">
+      <Project>{373c8247-2803-4ec2-8cf2-8a87812d6a99}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

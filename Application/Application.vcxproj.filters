@@ -56,5 +56,8 @@
     <Image Include="texture\normal_wall.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\diffuse_wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

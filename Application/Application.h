@@ -8,7 +8,7 @@ class Application
 {
 private:
 	std::unique_ptr<graphics::Window> m_Window;
-
+	
 	entity::FPSCamera* camera;
 
 	ui::ImguiLayer* imgui = nullptr;
