@@ -138,29 +138,26 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("Phong Model", &m_LightModelPart.PhongModel))
 				{
-					if (m_LightModelPart.PhongModel) 
-					{ 
-						m_LightModelPart.Blinn_Phong = false; 
-						m_LightModelPart.lightPbr = false;
-					}
+					SINGLE_CHOICE(m_LightModelPart.PhongModel, m_LightModelPart.Blinn_Phong,
+								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Blinn Phong", &m_LightModelPart.Blinn_Phong))
 				{
-					if (m_LightModelPart.Blinn_Phong)
-					{
-						m_LightModelPart.PhongModel = false;
-						m_LightModelPart.lightPbr = false;
-					}
+					SINGLE_CHOICE(m_LightModelPart.Blinn_Phong, m_LightModelPart.PhongModel,
+								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
 				}
 
-				if (ImGui::Checkbox("Lighting PBR", &m_LightModelPart.lightPbr))
+				if (ImGui::Checkbox("Lighting PBR", &m_LightModelPart.LightPBR))
 				{
-					if (m_LightModelPart.lightPbr)
-					{
-						m_LightModelPart.Blinn_Phong = false;
-						m_LightModelPart.PhongModel = false;
-					}
+					SINGLE_CHOICE(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,
+								  m_LightModelPart.PhongModel, m_LightModelPart.TexturePBR);
+				}	
+				
+				if (ImGui::Checkbox("Texture PBR", &m_LightModelPart.TexturePBR))
+				{
+					SINGLE_CHOICE(m_LightModelPart.TexturePBR, m_LightModelPart.Blinn_Phong,
+								  m_LightModelPart.LightPBR, m_LightModelPart.PhongModel);
 				}
 
 				ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
@@ -274,10 +271,10 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_open_phong", m_LightModelPart.PhongModel);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_blinn_phong", m_LightModelPart.Blinn_Phong);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
-					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", &m_LightModelPart.lightPbr);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", &m_LightModelPart.LightPBR);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", &m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
-
 				}
 			}
 		}

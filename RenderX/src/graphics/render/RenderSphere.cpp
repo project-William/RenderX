@@ -11,9 +11,9 @@ namespace renderx {
 			CreateSphere();
 
 			m_RenderData->m_VAO = std::shared_ptr<VertexArray>
-				(
-					new VertexArray(sizeof(float) * m_SphereData.size(), &m_SphereData[0])
-					);
+			(
+				new VertexArray(sizeof(float) * m_SphereData.size(), &m_SphereData[0])
+			);
 
 			m_RenderData->m_VAO->AddEbo
 			(
@@ -30,12 +30,22 @@ namespace renderx {
 
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 
+			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new Texture());
+
+
+
 			m_Trans.color = glm::vec4(0.6f, 0.0f, 0.6f, 1.0f);
 			m_Trans.model = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_Shader->SetVec3("u_albedo", 0.5f, 0.0f, 0.0f);
 			m_RenderData->m_Shader->SetFloat("u_ao", 1.0f);
+			m_RenderData->m_Shader->SetInt("u_albedoMap", 0);
+			m_RenderData->m_Shader->SetInt("u_normalMap", 1);
+			m_RenderData->m_Shader->SetInt("u_metallicMap", 2);
+			m_RenderData->m_Shader->SetInt("u_roughnessMap", 3);
+			m_RenderData->m_Shader->SetInt("u_aoMap", 4);
+	
 		}
 
 		RenderSphere::~RenderSphere()
@@ -79,61 +89,6 @@ namespace renderx {
 
 				}
 			}
-		}
-
-		void RenderSphere::SphereSetting(const WinData& windata, entity::FPSCamera* camera)
-		{
-			ImGui::Checkbox("FPS Camera", &m_Open_Camera);
-			
-			if (m_Open_Camera)
-			{
-				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-				camera->EnableObject();
-				m_Trans.view = camera->GetViewMatrix();
-				m_Trans.projection = glm::perspective
-				(
-					glm::radians(camera->GetCameraAttrib().Zoom),
-					(float)windata.win_Width/(float)windata.win_Height,
-					0.1f,100.0f
-				);
-
-				auto keyboard = utils::Keyboard::GetKeyboardInstance();
-				if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-				{
-					m_Open_Camera = false;
-				}
-			}
-			else
-			{
-				glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-				m_Trans.view = camera->GetViewMatrix();
-				m_Trans.projection = glm::perspective
-				(
-					glm::radians(45.0f),
-					(float)windata.win_Width / (float)windata.win_Height,
-					0.1f, 100.0f
-				);
-			}
-		}
-
-		void RenderSphere::PhongModel(RenderLight* light,entity::FPSCamera* camera)
-		{
-			m_RenderData->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
-			m_RenderData->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
-			m_RenderData->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
-			m_RenderData->m_Shader->SetFloat("u_Shineness", light->GetShineness());
-			
-			ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f,128.0f);
-			ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
-			ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
-			ImGui::SliderFloat("Y-axis", &light->GetLightPositionRef().y, -20, 20);
-			ImGui::SliderFloat("Z-axis", &light->GetLightPositionRef().z, -20, 20);
-			
-		}
-
-		void RenderSphere::Color(const WinData& windata)
-		{
-			ImGui::ColorEdit4("Color", &m_Trans.color[0]);
 		}
 
 		void RenderSphere::CreateSphere()

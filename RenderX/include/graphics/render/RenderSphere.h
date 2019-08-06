@@ -14,10 +14,13 @@ namespace renderx {
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
 
-			void Color(const WinData& windata);
-			void SphereSetting(const WinData& windata, entity::FPSCamera* camera);
-			void PhongModel(RenderLight* light, entity::FPSCamera* camera);
-			
+			std::shared_ptr<graphics::Texture> m_AlbedoTex;
+			std::shared_ptr<graphics::Texture> m_Normal;
+			std::shared_ptr<graphics::Texture> m_AO;
+			std::shared_ptr<graphics::Texture> m_Roughness;
+			std::shared_ptr<graphics::Texture> m_Metallic;
+
+
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
 			inline const unsigned int GetIndexCount()const { return m_IndexCount; }

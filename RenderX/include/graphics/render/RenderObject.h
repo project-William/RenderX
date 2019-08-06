@@ -4,6 +4,7 @@
 #include "..//Window.h"
 #include "..//..//entity/FPSCamera.h"
 #include "..//..//entity/DefualtCamera.h"
+#include "..//texture/Texture.h"
 #include "BasicLight.h"
 
 
@@ -19,8 +20,11 @@ namespace renderx {
 			std::vector<glm::vec3> m_Positions;
 			std::vector<glm::vec2> m_UV;
 			std::vector<glm::vec3> m_Normals;
+			std::vector<glm::vec3> m_Tangent;
+			std::vector<glm::vec3> m_Bitangent;
 			std::vector<unsigned int> m_Indices;
 
+			std::unordered_map<unsigned int, const std::string&> m_Textures;
 
 			RenderData()
 				:m_Shader(nullptr), m_VAO(nullptr)
