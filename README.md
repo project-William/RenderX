@@ -12,11 +12,11 @@ RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math libra
 ## Buliding
 
 Dependencies:
- + glfw : https://github.com/glfw/glfw
- + glad : https://github.com/Dav1dde/glad
- + Imgui: https://github.com/ocornut/imgui
- + glm  : https://github.com/Groovounet/glm-deprecated
- + stb  : https://github.com/nothings/stb
+ + [[glfw]](https://github.com/glfw/glfw):Window & input system
+ + [[glad]](https://github.com/Dav1dde/glad):OpenGL funciton loader
+ + [[Imgui]](https://github.com/ocornut/imgui):UI system
+ + [[glm]](https://github.com/Groovounet/glm-deprecated):OpenGL math function
+ + [[stb]](https://github.com/nothings/stb):Image loader
 
 ----
 
