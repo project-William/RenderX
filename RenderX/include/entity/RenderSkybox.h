@@ -23,17 +23,32 @@ namespace renderx {
 
 			std::vector<std::string> m_faces1 =
 			{
-
+				"texture/hw_blue/blue_ft.tga",
+				"texture/hw_blue/blue_bk.tga",
+				"texture/hw_blue/blue_dn.tga",
+				"texture/hw_blue/blue_up.tga",
+				"texture/hw_blue/blue_rt.tga",
+				"texture/hw_blue/blue_lf.tga",
 			};
 
 			std::vector<std::string> m_faces2 =
 			{
-
+				"texture/hw_desertnight/desert_night_ft.tga",
+				"texture/hw_desertnight/desert_night_bk.tga",
+				"texture/hw_desertnight/desert_night_dn.tga",
+				"texture/hw_desertnight/desert_night_up.tga",
+				"texture/hw_desertnight/desert_night_rt.tga",
+				"texture/hw_desertnight/desert_night_lf.tga",
 			};
 
 			std::vector<std::string> m_faces3 =
 			{
-
+				"texture/hw_lagoon/lagoon_ft.tga",
+				"texture/hw_lagoon/lagoon_bk.tga",
+				"texture/hw_lagoon/lagoon_dn.tga",
+				"texture/hw_lagoon/lagoon_up.tga",
+				"texture/hw_lagoon/lagoon_rt.tga",
+				"texture/hw_lagoon/lagoon_lf.tga",
 			};
 							
 		};
