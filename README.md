@@ -1,6 +1,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mortennobel/SimpleRenderEngine/master/LICENSE)
 # RenderX
 
+<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Logo/Logo.png" width= "400" height="250"></div>
+
 RenderX is a real-time and physically based rendering engine which built by C++ and Modern OpenGL.The goal of RenderX engine is to provide an easy way to get started with simple computer graphics programming even without a deep knowledge about the low-level graphics API like OpenGL.
 
 RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math library), GLAD+GLFW,stb(loading textures) and runs on Windows.
