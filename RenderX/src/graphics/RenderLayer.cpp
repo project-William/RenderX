@@ -272,8 +272,8 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_open_phong", m_LightModelPart.PhongModel);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_blinn_phong", m_LightModelPart.Blinn_Phong);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
-					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", &m_LightModelPart.LightPBR);
-					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", &m_LightModelPart.TexturePBR);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", m_LightModelPart.LightPBR);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
 

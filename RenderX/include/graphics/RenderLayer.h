@@ -41,10 +41,10 @@ namespace renderx {
 
 		struct REN_API LightModelPart
 		{
-			bool PhongModel = false;
+			bool PhongModel = true;
 			bool Blinn_Phong = false;
 			bool LightPBR = false;
-			bool TexturePBR = true;
+			bool TexturePBR = false;
 		};
 
 		class REN_API RenderLayer:public Layer
