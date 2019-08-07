@@ -59,6 +59,7 @@ namespace renderx {
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
 
+
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
 			void LightModel(RenderLight* light, entity::FPSCamera* camera);
@@ -67,6 +68,7 @@ namespace renderx {
 			void OnDetach() override;
 			void OnImguiLayer() override;
 			void PushSkybox(entity::RenderSkybox* skybox);
+			void PushLights(graphics::RenderLight* light);
 			//skybox 
 			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
 				
@@ -88,8 +90,8 @@ namespace renderx {
 
 			float m_gamma_value = 2.2f;
 
-			float m_metallic = 0.1f;
-			float m_roughness = 0.2f;
+			float m_metallic = 0.5f;
+			float m_roughness = 0.25f;
 
 			SkyboxPart m_SkyboxPart;
 			CameraPart m_CameraPart;

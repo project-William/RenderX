@@ -161,6 +161,14 @@ namespace renderx {
 								  m_LightModelPart.LightPBR, m_LightModelPart.PhongModel);
 				}
 
+				for (auto light : m_Lights)
+				{
+					if (light)
+					{
+						
+					}
+				}
+
 				ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
 				ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
 				ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
@@ -366,5 +374,12 @@ namespace renderx {
 		{
 			m_Skyboxes.push_back(skybox);
 		}
+
+		void RenderLayer::PushLights(graphics::RenderLight* light)
+		{
+			m_Lights.push_back(light);
+		}
+
+
 	}
 }

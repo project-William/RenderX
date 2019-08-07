@@ -14,19 +14,19 @@ Application::Application()
 	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
 
 	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
-	
+
 	imgui = new ui::ImguiLayer(m_Window->GetWinData());
 
 	imgui->OnAttach();
-	
+
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
-	layerList->PushBackLayer(renderLayer);	
+	layerList->PushBackLayer(renderLayer);
 	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
 
-	cube = new graphics::RenderCube("shader/cubeVertex.vert","shader/cubeFragment.frag");
+	cube = new graphics::RenderCube("shader/cubeVertex.vert", "shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
-	
+
 	skybox_1 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces);
 	skybox_2 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces1);
 	skybox_3 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces2);
@@ -42,10 +42,18 @@ Application::Application()
 
 
 	imguiLog = new ui::ImguiLog();
-	imguisetwindow=new ui::ImguiSetWindow();
+	imguisetwindow = new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
 	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 3.0f));
 	basicLight = new graphics::BasicLight();
+
+	for (int i = 0; i < 4; i++)
+	{
+		lights[i] = new graphics::BasicLight(glm::vec3(4.0f + i, 4.0f, 4.0f + i), glm::vec3(1.0f));
+		renderLayer->PushLights(lights[i]);
+	}
+
+
 
 }
 
