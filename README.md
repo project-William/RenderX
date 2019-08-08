@@ -10,7 +10,7 @@ RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math libra
 ----
 
 ## ScreenShot
-<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/ScreenShots.jpg" width= "800" height="480"></div>
+<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/ScreenShots.png" width= "800" height="480"></div>
 
 ## Gallery
 
