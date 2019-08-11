@@ -40,6 +40,7 @@ namespace renderx {
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			glfwWindowHint(GLFW_SAMPLES, 4);
 
 			m_WinData.glWindowPtr = glfwCreateWindow(
 				m_WinData.win_Width,
@@ -154,6 +155,7 @@ namespace renderx {
 		
 			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_MULTISAMPLE);
 			return true;
 		}
 
