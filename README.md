@@ -45,6 +45,7 @@ Shadow Mapping     |TODO
 IBL                |TODO
 Bloom              |TODO
 Environment Reflection |TODO
+MSAA               |Enable
 
 ----
  ## In the future..
