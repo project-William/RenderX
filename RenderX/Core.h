@@ -31,6 +31,8 @@
 
 #define VALUE(x) (1<<x)
 
+#define MAX_FILE_DIALOG_NAME_BUFFER 1024
+
 #define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
 
 #define RDX_INIT_ERROR(x,...) if(!(x)) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)

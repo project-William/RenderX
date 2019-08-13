@@ -31,7 +31,8 @@ Dependencies:
 Objectives         |Implemented
 :-----------------:|:---------------------:
 Camera             |Movement,Zoom,FPS Game mode
-Textures           |Cubemap,2DTexture init/load/bind
+Textures           |2DTexture init/load/bind
+Cubemap            |Enable
 Mesh loading       |TODO:
 Math               |by glm
 Transformations    |Position TODO:
