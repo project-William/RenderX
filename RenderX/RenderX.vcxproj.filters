@@ -147,10 +147,7 @@
     <ClInclude Include="include\graphics\render\RenderSphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\imgui\ImguiFileDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\imgui\FileBrowser.h">
+    <ClInclude Include="include\graphics\imgui\ImguiFileBrowser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,7 +248,7 @@
     <ClCompile Include="src\graphics\render\BasicLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\imgui\ImguiFileDialog.cpp">
+    <ClCompile Include="src\graphics\imgui\ImguiFileBrowser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

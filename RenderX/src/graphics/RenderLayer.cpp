@@ -196,17 +196,166 @@ namespace renderx {
 			//texture
 			if (ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
 			{
-				ImGui::Text("2D texture");
-				ImGui::Text("normal texture");
-				ImGui::Text("texture3");
-				ImGui::Text("texture4");
+				std::string textureName = "none";
+				textureName = m_FileBrowser.GetSelected().string();
+
+				// albedo texture 
+				if (ImGui::Button("Open Albedo texture"))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.AlbedoTex = true;
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second && iter.first->GetRenderDataRef()->m_AlbedoTex)
+					{
+						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_AlbedoTex, ImVec2(100, 100));
+					}
+				}
+
+				ImGui::NewLine();
+				//ao texture
+				if (ImGui::Button("Open AO texture"))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.AOTex = true;
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second && iter.first->GetRenderDataRef()->m_AOTex)
+					{
+						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_AOTex, ImVec2(100, 100));
+					}
+				}
+				ImGui::NewLine();
+				//metallic texture
+				if (ImGui::Button("Open Metallic texture"))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.MetallicTex = true;
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second && iter.first->GetRenderDataRef()->m_MetallicTex)
+					{
+						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_MetallicTex, ImVec2(100, 100));
+					}
+				}
+				ImGui::NewLine();
+				//normal texture
+				if (ImGui::Button("Open Normal texture"))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.NormalTex = true;
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second && iter.first->GetRenderDataRef()->m_NormalTex)
+					{
+						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_NormalTex, ImVec2(100, 100));
+					}
+				}
+				ImGui::NewLine();
+				//roughness texture
+				if (ImGui::Button("Open Roughness texture"))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.RoughnessTex = true;
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second && iter.first->GetRenderDataRef()->m_RoughnessTex)
+					{
+						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_RoughnessTex, ImVec2(100, 100));
+					}
+				}
+				ImGui::NewLine();
+
+				m_FileBrowser.Display();
+
+				if (m_TexturePart.AlbedoTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && (!m_FileBrowser.IsOpened()))
+						{
+							iter.first->SetAlbedoTex(textureName);
+							m_TexturePart.AlbedoTex = false;
+						}
+					}
+				}
+				
+				
+				if (m_TexturePart.AOTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetAOTex(textureName);
+							m_TexturePart.AOTex = false;
+						}
+					}
+				}
+				
+				
+				if (m_TexturePart.MetallicTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetMetallicTex(textureName);
+							m_TexturePart.MetallicTex = false;
+						}
+					}
+				}
+				
+			
+				if (m_TexturePart.NormalTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetNormalTex(textureName);
+							m_TexturePart.NormalTex = false;
+						}
+					}
+				}
+				
+			
+				if (m_TexturePart.RoughnessTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetRoughnessTex(textureName);
+							m_TexturePart.RoughnessTex = false;
+						}
+					}
+				}
+
 			}
 
 			//other attributes
 			if (ImGui::CollapsingHeader("Other Attributes", m_Other_Attrib_App_Open))
 			{
 				ImGui::SliderFloat("gamma value", &m_gamma_value, 0.3f, 10.0f);
+				if (ImGui::Checkbox("Open MSAA", &m_Open_MSAA))
+				{
+					if (m_Open_MSAA)
+					{
+						glEnable(GL_MULTISAMPLE);
+					}
+				}
 			}
+
+			
 
 		}
 
@@ -269,18 +418,16 @@ namespace renderx {
 
 		void RenderLayer::File()
 		{
-			if (ImGui::Button("Openfile"))
-			{
-				m_FileBrowser.Open();
-			}
+			//if (ImGui::Button("Openfile"))
+			//{
+			//	m_FileBrowser.Open();
+			//}
+			//
+			//m_FileBrowser.Display();
 
-			m_FileBrowser.Display();
-
-			if (m_FileBrowser.HasSelected())
-			{
-				std::cout << "Selected fileName" << m_FileBrowser.GetSelected().string() << std::endl;
-				m_FileBrowser.GetSelected().clear();
-			}
+			
+			
+			
 		}
 
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
@@ -301,6 +448,7 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
+					
 
 				}
 			}

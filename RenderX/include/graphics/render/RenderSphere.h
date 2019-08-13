@@ -20,6 +20,12 @@ namespace renderx {
 			std::shared_ptr<graphics::Texture> m_RoughnessTex;
 			std::shared_ptr<graphics::Texture> m_MetallicTex;
 
+			void SetAlbedoTex(const std::string& file);
+			void SetNormalTex(const std::string& file);
+			void SetAOTex(const std::string& file);
+			void SetRoughnessTex(const std::string& file);
+			void SetMetallicTex(const std::string& file);
+
 
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }

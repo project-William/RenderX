@@ -155,7 +155,6 @@ namespace renderx {
 		
 			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
-			glEnable(GL_MULTISAMPLE);
 			return true;
 		}
 

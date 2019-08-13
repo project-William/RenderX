@@ -24,6 +24,12 @@ namespace renderx {
 			std::vector<glm::vec3> m_Bitangent;
 			std::vector<unsigned int> m_Indices;
 
+			unsigned int m_AlbedoTex = 0;
+			unsigned int m_AOTex = 0;
+			unsigned int m_MetallicTex = 0;
+			unsigned int m_NormalTex = 0;
+			unsigned int m_RoughnessTex = 0;
+			
 
 			RenderData()
 				:m_Shader(nullptr), m_VAO(nullptr)
@@ -66,6 +72,12 @@ namespace renderx {
 			virtual void Draw(const WinData& windata) = 0;
 			virtual inline Transformation& GetTransRef() = 0;
 			virtual inline RenderData* GetRenderDataRef() = 0;
+
+			virtual void SetAlbedoTex(const std::string& file) = 0;
+			virtual void SetNormalTex(const std::string& file) = 0;
+			virtual void SetAOTex(const std::string& file) = 0;
+			virtual void SetRoughnessTex(const std::string& file) = 0;
+			virtual void SetMetallicTex(const std::string& file) = 0;
 		};
 
 

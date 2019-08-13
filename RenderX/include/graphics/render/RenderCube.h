@@ -21,6 +21,14 @@ namespace renderx {
 			
 			inline Transformation& GetTransRef() override { return m_Trans; }
 
+
+			void SetAlbedoTex(const std::string& file);
+			void SetNormalTex(const std::string& file);
+			void SetAOTex(const std::string& file);
+			void SetRoughnessTex(const std::string& file);
+			void SetMetallicTex(const std::string& file);
+
+
 		private:
 			RenderData *m_RenderData;
 			Transformation m_Trans;

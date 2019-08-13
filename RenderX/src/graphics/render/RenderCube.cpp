@@ -82,6 +82,26 @@ namespace renderx {
 			m_RenderData->m_VAO->UnbindVertexArray();
 		}
 
+		void RenderCube::SetAlbedoTex(const std::string& file)
+		{
+		}
+
+		void RenderCube::SetNormalTex(const std::string& file)
+		{
+		}
+
+		void RenderCube::SetAOTex(const std::string& file)
+		{
+		}
+
+		void RenderCube::SetRoughnessTex(const std::string& file)
+		{
+		}
+
+		void RenderCube::SetMetallicTex(const std::string& file)
+		{
+		}
+
 		void RenderCube::Color(const WinData& windata)
 		{
 			ImGui::ColorEdit4("Color", &m_Trans.color[0]);

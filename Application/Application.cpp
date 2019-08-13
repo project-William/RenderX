@@ -44,7 +44,7 @@ Application::Application()
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow = new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
-	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 3.0f));
+	camera = new entity::FPSCamera(glm::vec3(6.0f, -2.0f, 15.0f));
 	basicLight = new graphics::BasicLight();
 
 	for (int i = 0; i < 4; i++)
@@ -226,7 +226,6 @@ bool Application::OnMouseButtonReleased(events::MouseRelasedEvent& e)
 bool Application::OnMouseMovedEvent(events::MouseMovedEvent& e)
 {
 	utils::Mouse::GetMouseInstance()->OnEvent(e);
-	EVENT_LOG(events::MouseMovedEvent, "Mouse Moved!");
 	return true;
 }
 

@@ -48,6 +48,15 @@ namespace renderx {
 			bool TexturePBR = false;
 		};
 
+		struct REN_API TexturePart
+		{
+			bool AlbedoTex = false;
+			bool MetallicTex = false;
+			bool AOTex = false;
+			bool NormalTex = false;
+			bool RoughnessTex = false;
+		};
+
 		class REN_API RenderLayer:public Layer
 		{
 		public:
@@ -60,6 +69,7 @@ namespace renderx {
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
 			void File();
+			
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
@@ -74,7 +84,7 @@ namespace renderx {
 			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
 				
 		private:
-			ui::FileBrowser m_FileBrowser;
+			ui::ImguiFileBrowser m_FileBrowser;
 
 			std::unordered_map<RenderObject*, bool> m_Renderer;
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
@@ -91,15 +101,20 @@ namespace renderx {
 			bool m_LightModel_Open = false;
 
 			float m_gamma_value = 2.2f;
+			bool m_Open_MSAA = false;
+
 
 			float m_metallic = 0.5f;
 			float m_roughness = 0.25f;
+
+			std::string name;
 
 			SkyboxPart m_SkyboxPart;
 			CameraPart m_CameraPart;
 			RendererPart m_RendererPart;
 			LightPart m_LightPart;
 			LightModelPart m_LightModelPart;
+			TexturePart m_TexturePart;
 		};
 
 	}

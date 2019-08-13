@@ -127,7 +127,7 @@ vec3 PhongModel(vec3 lightpos , bool blinn)
 }
 
 
-vec3 LightPBR(vec3 lightpos,bool texture_pbr)
+vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 {
 	vec3 albedo     = pow(texture(u_albedoMap, fs_in.v_texCoords).rgb, vec3(2.2));
 	float metallic  = texture(u_metallicMap, fs_in.v_texCoords).r;
@@ -233,13 +233,15 @@ vec3 LightPBR(vec3 lightpos,bool texture_pbr)
 		ambient = vec3(0.03) * u_albedo * u_ao;
 	}
 	//
-	vec3 color = ambient + Lo;
+	vec3 color = (ambient + Lo );
 	//
 	// HDR tonemapping
 	color = color / (color + vec3(1.0));
 	// gamma correct
 	color = pow(color, vec3(1.0/u_gamma_value)); 
 	return color;
+
+	
 }
 
 void main()
@@ -259,12 +261,12 @@ void main()
 	
 	if(u_light_pbr)
 	{
-		result=LightPBR(lightPos, u_texture_pbr);
+		result=LightAndTexturePBR(lightPos, u_texture_pbr);
 	}
 
 	if(u_texture_pbr)
 	{
-		result=LightPBR(lightPos, u_texture_pbr);
+		result=LightAndTexturePBR(lightPos, u_texture_pbr);
 		FragColor=vec4(result,1.0f);
 	}
 	else

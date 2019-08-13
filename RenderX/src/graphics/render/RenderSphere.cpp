@@ -30,19 +30,18 @@ namespace renderx {
 
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 
-			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("albedo", "texture/pbr/ion/albedo.png"));
-			m_MetallicTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("metallic","texture/pbr/ion/metallic.png"));
-			m_AOTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("ao","texture/pbr/ion/ao.png"));
-			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("normal","texture/pbr/ion/normal.png"));
-			m_RoughnessTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("roughness","texture/pbr/ion/roughness.png"));
-
+			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture());
+			m_AOTex = std::shared_ptr<graphics::Texture>(new graphics::Texture());
+			m_MetallicTex = std::shared_ptr<graphics::Texture>(new graphics::Texture());
+			m_RoughnessTex = std::shared_ptr<graphics::Texture>(new graphics::Texture());
+			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture());
 		
-			m_Trans.color = glm::vec4(0.6f, 0.0f, 0.6f, 1.0f);
+			m_Trans.color = glm::vec4(188/255.0f, 148/255.0f, 188/255.0f, 1.0f);
 			m_Trans.model = glm::mat4(1.0f);
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 			m_RenderData->m_Shader->BindShaderProgram();
-			m_RenderData->m_Shader->SetVec3("u_albedo", 0.5f, 0.0f, 0.0f);
-			m_RenderData->m_Shader->SetFloat("u_ao", 1.0f);
+			m_RenderData->m_Shader->SetVec3("u_albedo", 1.0f, 1.0f, 1.0f);
+			m_RenderData->m_Shader->SetFloat("u_ao", 0.5f);
 			m_RenderData->m_Shader->SetInt("u_albedoMap", 0);
 			m_RenderData->m_Shader->SetInt("u_normalMap", 1);
 			m_RenderData->m_Shader->SetInt("u_metallicMap", 2);
@@ -70,9 +69,7 @@ namespace renderx {
 
 		void RenderSphere::Draw(const WinData& windata)
 		{
-			
-
-			for (int i = 0; i < 5; ++i)
+			for (int i = 0; i < 2; ++i)
 			{
 				for (int j = 0; j < 5; ++j)
 				{
@@ -91,21 +88,49 @@ namespace renderx {
 					m_RenderData->m_Shader->SetVec4("u_color", m_Trans.color);
 
 					glActiveTexture(GL_TEXTURE0);
-					glBindTexture(GL_TEXTURE_2D, m_AlbedoTex->GetTexture());
+					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_AlbedoTex);
 					glActiveTexture(GL_TEXTURE1);
-					glBindTexture(GL_TEXTURE_2D, m_NormalTex->GetTexture());
+					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_NormalTex);
 					glActiveTexture(GL_TEXTURE2);
-					glBindTexture(GL_TEXTURE_2D, m_MetallicTex->GetTexture());
+					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_MetallicTex);
 					glActiveTexture(GL_TEXTURE3);
-					glBindTexture(GL_TEXTURE_2D, m_RoughnessTex->GetTexture());
+					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_RoughnessTex);
 					glActiveTexture(GL_TEXTURE4);
-					glBindTexture(GL_TEXTURE_2D, m_AOTex->GetTexture());
+					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_AOTex);
 
 					glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
-
-
 				}
 			}
+		}
+
+		void RenderSphere::SetAlbedoTex(const std::string& file)
+		{
+			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("albedo", file));
+			m_RenderData->m_AlbedoTex = m_AlbedoTex->GetTexture();
+		}
+
+		void RenderSphere::SetNormalTex(const std::string& file)
+		{
+			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("normal", file));
+			m_RenderData->m_NormalTex = m_NormalTex->GetTexture();
+		}
+
+		void RenderSphere::SetAOTex(const std::string& file)
+		{
+			m_AOTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("ao", file));
+			m_RenderData->m_AOTex = m_AOTex->GetTexture();
+		}
+
+		void RenderSphere::SetRoughnessTex(const std::string& file)
+		{
+			m_RoughnessTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("roughness", file));
+			m_RenderData->m_RoughnessTex = m_RoughnessTex->GetTexture();
+		}
+
+		void RenderSphere::SetMetallicTex(const std::string& file)
+		{
+			m_MetallicTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("metallic", file));
+			m_RenderData->m_MetallicTex = m_MetallicTex->GetTexture();
 		}
 
 		void RenderSphere::CreateSphere()
