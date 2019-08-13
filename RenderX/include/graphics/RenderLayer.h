@@ -2,6 +2,7 @@
 #include "Layer.h"
 #include "FrameBuffer.h"
 #include "Renderers.h"
+#include "imgui/ImguiFileBrowser.h"
 
 namespace renderx {
 	namespace graphics {
@@ -58,7 +59,7 @@ namespace renderx {
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
-
+			void File();
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
@@ -73,7 +74,8 @@ namespace renderx {
 			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
 				
 		private:
-							
+			ui::FileBrowser m_FileBrowser;
+
 			std::unordered_map<RenderObject*, bool> m_Renderer;
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
 			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;

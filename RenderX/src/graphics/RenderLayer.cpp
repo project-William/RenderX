@@ -266,6 +266,23 @@ namespace renderx {
 			}
 		}
 
+
+		void RenderLayer::File()
+		{
+			if (ImGui::Button("Openfile"))
+			{
+				m_FileBrowser.Open();
+			}
+
+			m_FileBrowser.Display();
+
+			if (m_FileBrowser.HasSelected())
+			{
+				std::cout << "Selected fileName" << m_FileBrowser.GetSelected().string() << std::endl;
+				m_FileBrowser.GetSelected().clear();
+			}
+		}
+
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
 		{
 			for (auto iter : m_Renderer)

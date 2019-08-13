@@ -103,6 +103,7 @@ void Application::Run()
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
 		imguiSceneWindow->EndSceneWindow();
+		renderLayer->File();
 		//keyboard movement
 		//imgui log window
 		imguiLog->BeginLog();
