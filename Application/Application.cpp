@@ -107,6 +107,7 @@ void Application::Run()
 		//keyboard movement
 		//imgui log window
 		imguiLog->BeginLog();
+		imguiLog->Log();
 		imguiLog->EndLog();
 		
 		imgui->End();		

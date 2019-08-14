@@ -161,9 +161,6 @@
     <ClCompile Include="src\utils\FileUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

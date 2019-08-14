@@ -86,7 +86,6 @@ namespace renderx {
 			if (m_CameraAttrib.Zoom >= 45.0f)
 				m_CameraAttrib.Zoom = 45.0f;
 
-			std::cout << mouse->GetMouseScrollOffset().y << std::endl;
 
 		}
 

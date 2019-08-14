@@ -23,20 +23,22 @@ namespace renderx {
 		Window::Window()
 		{
 			if (!init())
-				RDX_INIT_ERROR(init(), "Init failed");
+				std::cout << "filed" << std::endl;
 			else 
-				RDX_INIT_SUCCESS(init(), "Init successfully");
+				std::cout << "success" << std::endl;
 		}
 
 		bool Window::init()
 		{
 			if (glfwInit() != GLFW_TRUE)
 			{
-				RDX_INIT_ERROR(glfwInit(), "Init failed");
+				std::cout << "failed" << std::endl;
 				return false;
 			}
 			else
-				RDX_INIT_SUCCESS(glfwInit(), "Init successfully");
+			{
+				std::cout << "success" << std::endl;
+			}
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -146,13 +148,12 @@ namespace renderx {
 
 			if (!gladLoadGLLoader(GLADloadproc(glfwGetProcAddress)))
 			{
-				RDX_INIT_ERROR(gladLoadGLLoader, "Failed to initialize GLAD!");
+				std::cout << "failed" << std::endl;
 				glfwTerminate();
 				return false;
 			}
 			else
-				RDX_INIT_SUCCESS(gladLoadGLLoader, "GLAD initialized successfully!");
-		
+				std::cout << "success" << std::endl;
 			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
 			return true;
