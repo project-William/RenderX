@@ -24,7 +24,7 @@ Dependencies:
  + [[Imgui]](https://github.com/ocornut/imgui):UI system
  + [[glm]](https://github.com/Groovounet/glm-deprecated):OpenGL math function
  + [[stb]](https://github.com/nothings/stb):Image loader
-
+ + [[fileBrowser]](https://github.com/AirGuanZ/imgui-filebrowser):change texture
 ----
 
 ## Features
@@ -47,11 +47,13 @@ IBL                |TODO
 Bloom              |TODO
 Environment Reflection |TODO
 MSAA               |Enable
+File Browser       |Enable
+Flat               |TODO
 
 ----
  ## In the future..
- 1:Cross-Platform feature
- 2:More APIS:Vulkan DirectX
- 3:......
+ + Cross-Platform feature 
+ + More APIS:Vulkan DirectX 
+ + ......
 
   
