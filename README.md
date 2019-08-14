@@ -14,7 +14,7 @@ RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math libra
 
 ## Gallery
 
-![PhongModel](https://github.com/project-William/RenderX/blob/master/Gallery/PhongModel.jpg)|![LightingPBR](https://github.com/project-William/RenderX/blob/master/Gallery/LightingPBR.jpg)|![TexturePBR](https://github.com/project-William/RenderX/blob/master/Gallery/TexturePBR.jpg)
+[![PhongModel](https://github.com/project-William/RenderX/blob/master/Gallery/PhongModel.jpg){:height="200",width="300"}][![LightingPBR](https://github.com/project-William/RenderX/blob/master/Gallery/LightingPBR.jpg){:height="200",width="300"}][![TexturePBR](https://github.com/project-William/RenderX/blob/master/Gallery/TexturePBR.jpg){:height="200",width="300"}]
 
 
 
@@ -30,6 +30,7 @@ Dependencies:
 ## Features
 Objectives         |Implemented
 :-----------------:|:---------------------:
+DockSpace          |Enable
 Camera             |Movement,Zoom,FPS Game mode
 Textures           |2DTexture init/load/bind
 Cubemap            |Enable
@@ -41,7 +42,7 @@ PBR                |Light and Texture PBR
 Materials          |metallic,roughness
 Deferred rendering |TODO
 SSAO               |TODO
-Normal mapping     |TODO
+Normal mapping     |Enable
 Shadow Mapping     |TODO
 IBL                |TODO
 Bloom              |TODO
