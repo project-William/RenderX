@@ -15,10 +15,10 @@ RenderX currently depends on OpenGL 4.1(or higher),Dear ImGui(UI),glm(Math libra
 ## Gallery
 
 <center class="half">
-    <img src="https://github.com/project-William/RenderX/blob/master/Gallery/PhongModel.jpg" width="300"/><img src="https://github.com/project-William/RenderX/blob/master/Gallery/LightingPBR.jpg" width="300"/><img src="https://github.com/project-William/RenderX/blob/master/Gallery/TexturePBR.jpg" width="300"/>
+    <img src="https://github.com/project-William/RenderX/blob/master/Gallery/PhongModel.jpg" width="300"/>
+    <img src="https://github.com/project-William/RenderX/blob/master/Gallery/LightingPBR.jpg" width="300"/>
+    <img src="https://github.com/project-William/RenderX/blob/master/Gallery/TexturePBR.jpg" width="300"/>
 </center>
-
-
 Dependencies:
  + [[glfw]](https://github.com/glfw/glfw):Window & input system
  + [[glad]](https://github.com/Dav1dde/glad):OpenGL funciton loader
