@@ -8,9 +8,9 @@ namespace renderx {
 			m_Cubemap = std::shared_ptr<graphics::CubemapTexture>(new graphics::CubemapTexture(faces));
 			m_RenderData = new graphics::RenderData();
 			m_RenderData->m_VAO = std::shared_ptr<graphics::VertexArray>
-				(
-					new graphics::VertexArray(sizeof(float) * m_SkyboxVertices.size(), &m_SkyboxVertices[0])
-					);
+			(
+				new graphics::VertexArray(sizeof(float) * m_SkyboxVertices.size(), &m_SkyboxVertices[0])
+			);
 
 			m_RenderData->m_Layout =
 			{

@@ -166,7 +166,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 		vec3 H = normalize(V + L);
 		float distance = length(lightpos  - fs_in.v_fragPos);
 		float attenuation = 1.0 / (distance * distance);
-		vec3 radiance = (u_lightColor*300)   * attenuation;
+		vec3 radiance = (u_lightColor * 300)   * attenuation;
 		// Cook-Torrance BRDF
 		float NDF;
 		float G;

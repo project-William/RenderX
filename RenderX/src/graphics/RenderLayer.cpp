@@ -23,6 +23,11 @@ namespace renderx {
 			m_Renderer.insert(std::pair<RenderObject*, bool>(renderer,isRendered));
 		}
 
+		void RenderLayer::PushFlatboard(entity::Flatboard* flatboard)
+		{
+			m_Flatboards.push_back(flatboard);
+		}
+
 		void RenderLayer::DoRendering(const WinData& windata)
 		{
 		}
@@ -413,6 +418,54 @@ namespace renderx {
 					}
 				}
 			}
+
+			for (auto iter : m_Flatboards)
+			{
+				if (m_CameraPart.fpsCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+					camera->EnableObject();
+					iter->GetTransRef().view = camera->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(camera->GetCameraAttrib().Zoom),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+
+					auto keyboard = utils::Keyboard::GetKeyboardInstance();
+					if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
+					{
+						m_CameraPart.fpsCamera = false;
+						m_CameraPart.NoCamera = true;
+						m_CameraPart.defaultCamera = false;
+					}
+				}
+				if (m_CameraPart.defaultCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					iter->GetTransRef().view = camera->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(45.0f),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+
+				}
+				if (m_CameraPart.NoCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					iter->GetTransRef().view = camera->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(45.0f),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+
+				}
+			}
 		}
 
 
@@ -448,10 +501,13 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
-					
+					iter.first->UnbindObject();
 
 				}
 			}
+
+			
+
 		}
 		
 		void RenderLayer::RenderSkybox(const WinData& windata, entity::FPSCamera* camera)
@@ -471,6 +527,28 @@ namespace renderx {
 			if (m_SkyboxPart.skybox_4)
 			{
 				m_Skyboxes[3]->Draw(windata, camera);
+			}
+		}
+
+		void RenderLayer::RenderFlatboard(const WinData& windata, entity::FPSCamera* camera, RenderLight* light)
+		{
+			for (auto iter : m_Flatboards)
+			{
+				iter->EnableObject();
+
+				iter->GetRenderDataRef()->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
+				iter->GetRenderDataRef()->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
+				iter->GetRenderDataRef()->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
+				iter->GetRenderDataRef()->m_Shader->SetFloat("u_Shineness", light->GetShineness());
+				iter->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
+				iter->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
+				iter->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
+
+				iter->Draw(windata, camera);
+			
+				
+			
+				iter->DisableObject();
 			}
 		}
 

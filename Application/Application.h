@@ -28,6 +28,8 @@ private:
 	entity::RenderSkybox* skybox_3;
 	entity::RenderSkybox* skybox_4;
 
+	entity::Flatboard* flatboard;
+
 	ui::ImguiLog* imguiLog;
 
 	ui::ImguiSetWindow* imguisetwindow;

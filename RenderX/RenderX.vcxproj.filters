@@ -150,6 +150,9 @@
     <ClInclude Include="include\graphics\imgui\ImguiFileBrowser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\Flatboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\Window.cpp">
@@ -246,6 +249,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\imgui\ImguiFileBrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\Flatboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

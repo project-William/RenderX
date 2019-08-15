@@ -65,6 +65,7 @@ namespace renderx {
 			~RenderLayer();
 
 			void PushRenderer(RenderObject* renderer, bool isRendered);
+			void PushFlatboard(entity::Flatboard* flatboard);
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
@@ -72,6 +73,8 @@ namespace renderx {
 			
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
+			void RenderFlatboard(const WinData& windata,entity::FPSCamera* camera, RenderLight* light);
+			
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
 			void LightModel(RenderLight* light, entity::FPSCamera* camera);
 			void RenderModel();
@@ -88,8 +91,10 @@ namespace renderx {
 
 			std::unordered_map<RenderObject*, bool> m_Renderer;
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
+			std::vector<entity::Flatboard*> m_Flatboards;
 			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;
 			std::vector<RenderLight*> m_Lights;
+			
 
 			bool m_DockSpace_Open = true;
 			bool m_Skybox_App_Open = false;

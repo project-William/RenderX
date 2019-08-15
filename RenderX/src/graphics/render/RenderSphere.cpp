@@ -41,7 +41,7 @@ namespace renderx {
 			m_Trans.view = glm::translate(m_Trans.view, glm::vec3(0.0f, 0.0f, -3.0f));
 			m_RenderData->m_Shader->BindShaderProgram();
 			m_RenderData->m_Shader->SetVec3("u_albedo", 1.0f, 1.0f, 1.0f);
-			m_RenderData->m_Shader->SetFloat("u_ao", 0.5f);
+			m_RenderData->m_Shader->SetFloat("u_ao", 1.0f);
 			m_RenderData->m_Shader->SetInt("u_albedoMap", 0);
 			m_RenderData->m_Shader->SetInt("u_normalMap", 1);
 			m_RenderData->m_Shader->SetInt("u_metallicMap", 2);
@@ -71,7 +71,7 @@ namespace renderx {
 		{
 			for (int i = 0; i < 2; ++i)
 			{
-				for (int j = 0; j < 5; ++j)
+				for (int j = 0; j < 2; ++j)
 				{
 					BindObject();
 					//set view matrix

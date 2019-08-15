@@ -32,6 +32,8 @@ Application::Application()
 	skybox_3 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces2);
 	skybox_4 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces3);
 
+	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
+
 	renderLayer->PushSkybox(skybox_1);
 	renderLayer->PushSkybox(skybox_2);
 	renderLayer->PushSkybox(skybox_3);
@@ -39,6 +41,8 @@ Application::Application()
 
 	renderLayer->PushRenderer(sphere, true);
 	renderLayer->PushRenderer(cube, false);
+
+	renderLayer->PushFlatboard(flatboard);
 
 
 	imguiLog = new ui::ImguiLog();
@@ -83,7 +87,9 @@ void Application::Run()
 		m_Window->ClearColor();
 		//begin scene
 		graphics::RenderScene::SceneBegin();
+
 		renderLayer->RenderSkybox(WinData, camera);
+		renderLayer->RenderFlatboard(WinData, camera, basicLight);
 		renderLayer->RenderObjects(WinData, camera);
 		
 		graphics::RenderScene::SceneEnd();
@@ -93,10 +99,12 @@ void Application::Run()
 		
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
+
 		imguisetwindow->GraphicsSettingWindow();
 		renderLayer->CameraSetting(WinData, camera);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
 		renderLayer->LightModel(basicLight, camera);
+		
 		imguisetwindow->EndSetWindow();
 		//movement
 		//imgui draw window
@@ -111,11 +119,9 @@ void Application::Run()
 		imguiLog->EndLog();
 		
 		imgui->End();		
-		m_WindowResized_flag = false;
+		//m_WindowResized_flag = false;
 		//framebuffer->UnbindFrameBuffer();
-		//skybox->Draw(WinData,camera);
-		//sphere->Draw(WinData);
-		//sphere->SphereSetting(WinData,camera);
+		//flatboard->Draw(WinData, camera);
 		m_Window->OnUpdate();
 	}
 	imgui->OnDetach();

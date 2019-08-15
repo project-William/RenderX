@@ -36,6 +36,7 @@
 #include "include/entity/Entity.h"
 #include "include/entity/FPSCamera.h"
 #include "include/entity/RenderSkybox.h"
+#include "include/entity/Flatboard.h"
 
 
 //shader header
