@@ -108,6 +108,9 @@ namespace renderx {
 			float m_gamma_value = 2.2f;
 			bool m_Open_MSAA = false;
 
+			bool EnvirMapping = false;
+
+
 
 			float m_metallic = 0.5f;
 			float m_roughness = 0.25f;

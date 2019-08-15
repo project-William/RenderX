@@ -22,8 +22,9 @@ namespace renderx {
 			
 			m_RenderData->m_Layout = 
 			{ 
-				{ ShaderDataType::FLOAT3, "VertexPos" },
-				{ ShaderDataType::FLOAT2, "TexCoords" }
+				{ ShaderDataType::FLOAT3, "a_VertexPos" },
+				{ ShaderDataType::FLOAT2, "a_TexCoords" },
+				{ ShaderDataType::FLOAT3, "a_Normals" }
 			};
 			
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);

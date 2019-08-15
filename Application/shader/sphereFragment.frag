@@ -18,6 +18,12 @@ uniform float u_Shineness;
 uniform bool u_open_phong;
 uniform bool u_blinn_phong;
 uniform float u_gamma_value;
+// IBL
+uniform samplerCube u_irradianceMap;
+uniform samplerCube u_prefilterMap;
+uniform sampler2D u_brdfLUT;
+
+
 
 //material parameters lighting PBR
 uniform vec3 u_albedo;
@@ -32,9 +38,13 @@ uniform sampler2D u_metallicMap;
 uniform sampler2D u_roughnessMap;
 uniform sampler2D u_aoMap;
 
+//skybox
+uniform samplerCube u_skybox;
 
 uniform bool u_light_pbr;
 uniform bool u_texture_pbr;
+uniform bool u_environment_mapping;
+
 
 const float PI = 3.14159265359;
 vec3 getNormalFromMap()
@@ -94,6 +104,11 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
 }
 // ----------------------------------------------------------------------------
+vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness)
+{
+    return F0 + (max(vec3(1.0 - roughness), F0) - F0) * pow(1.0 - cosTheta, 5.0);
+} 
+// ----------------------------------------------------------------------------
 vec3 PhongModel(vec3 lightpos , bool blinn)
 {
 	//ambient
@@ -136,6 +151,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 
 	vec3 N;
 	vec3 V;
+	vec3 R;
 	if(texture_pbr)
 	{
 		N = getNormalFromMap();
@@ -145,6 +161,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 	{
 		N = normalize(fs_in.v_normals);
 		V = normalize(u_viewPos - fs_in.v_fragPos);
+		vec3 R = reflect(-V, N);
 	}
 	
 	vec3 F0 = vec3(0.04); 
@@ -231,6 +248,24 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 	else 
 	{
 		ambient = vec3(0.03) * u_albedo * u_ao;
+		 // ambient lighting (we now use IBL as the ambient term)
+	    //vec3 F = fresnelSchlickRoughness(max(dot(N, V), 0.0), F0, roughness);
+	    //
+	    //vec3 kS = F;
+	    //vec3 kD = 1.0 - kS;
+	    //kD *= 1.0 - metallic;	  
+	    //
+	    //vec3 irradiance = texture(u_irradianceMap, N).rgb;
+	    //vec3 diffuse      = irradiance * albedo;
+	    //
+	    //// sample both the pre-filter map and the BRDF lut and combine them together as per the Split-Sum approximation to get the IBL specular part.
+	    //const float MAX_REFLECTION_LOD = 4.0;
+	    //vec3 prefilteredColor = textureLod(u_prefilterMap, R,  roughness * MAX_REFLECTION_LOD).rgb;    
+	    //vec2 brdf  = texture(u_brdfLUT, vec2(max(dot(N, V), 0.0), roughness)).rg;
+	    //vec3 specular = prefilteredColor * (F * brdf.x + brdf.y);
+	    //
+	    //vec3 ambient = (kD * diffuse + specular) * u_ao;
+    
 	}
 	//
 	vec3 color = (ambient + Lo );
@@ -262,6 +297,14 @@ void main()
 	if(u_light_pbr)
 	{
 		result=LightAndTexturePBR(lightPos, u_texture_pbr);
+	}
+
+	if(u_environment_mapping)
+	{
+		float ratio = 1.00 / 1.52;
+		vec3 I = normalize(fs_in.v_fragPos - u_viewPos);
+		vec3 R = refract(I, normalize(fs_in.v_normals), ratio);
+		FragColor = vec4(texture(u_skybox, R).rgb, 1.0);
 	}
 
 	if(u_texture_pbr)

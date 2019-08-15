@@ -97,6 +97,7 @@ namespace renderx {
 					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_RoughnessTex);
 					glActiveTexture(GL_TEXTURE4);
 					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_AOTex);
+					
 
 					glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
 				}

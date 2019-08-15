@@ -24,6 +24,8 @@ Application::Application()
 	layerList->PushBackLayer(renderLayer);
 	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
 
+	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
+
 	cube = new graphics::RenderCube("shader/cubeVertex.vert", "shader/cubeFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 
@@ -32,7 +34,6 @@ Application::Application()
 	skybox_3 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces2);
 	skybox_4 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces3);
 
-	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
 
 	renderLayer->PushSkybox(skybox_1);
 	renderLayer->PushSkybox(skybox_2);
