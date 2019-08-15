@@ -92,5 +92,80 @@
     <Image Include="texture\hw_lagoon\lagoon_lf.tga" />
     <Image Include="texture\hw_lagoon\lagoon_rt.tga" />
     <Image Include="texture\hw_lagoon\lagoon_up.tga" />
+    <Image Include="texture\pbr\gold\albedo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\gold\ao.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\gold\metallic.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\gold\normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\gold\roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\rock\Marble_04_1K_Base_Color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\rock\Marble_04_1K_Height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\rock\Marble_04_1K_Normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\rock\Marble_04_1K_Roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\rock\Marble_04_1K-Base_AO.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_AO.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Base_Color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_AO.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Base_Color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_AO.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Base_Color.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -142,7 +142,6 @@ namespace renderx {
 				auto& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
 				events::MouseScrollEvent event((float)xOffset, (float)yOffset);
 
-				std::cout << yOffset << std::endl;
 				data.OnEvent(event);
 			});
 
@@ -156,6 +155,7 @@ namespace renderx {
 				std::cout << "success" << std::endl;
 			glEnable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_MULTISAMPLE);
 			return true;
 		}
 

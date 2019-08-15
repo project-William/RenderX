@@ -160,7 +160,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 	// of 0.04 and if it's a metal, use the albedo color as F0 (metallic workflow)    
 	// calculate per-light radiance
     vec3 Lo = vec3(0.0);
-	for(int i=0;i<4;i++)
+	for(int i=0;i<1;i++)
 	{
 		vec3 L = normalize(lightpos - fs_in.v_fragPos);
 		vec3 H = normalize(V + L);
@@ -226,7 +226,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 	vec3 ambient;
 	if(texture_pbr)
 	{
-		ambient = vec3(0.03) * albedo * u_ao;
+		ambient = vec3(0.03) * albedo * ao;
 	}
 	else 
 	{

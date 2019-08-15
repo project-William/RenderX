@@ -207,11 +207,36 @@
     <Image Include="texture\hw_lagoon\lagoon_rt.tga" />
     <Image Include="texture\hw_lagoon\lagoon_up.tga" />
     <Image Include="texture\normal_wall.png" />
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_AO.png" />
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Base_Color.png" />
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Height.png" />
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Normal.png" />
+    <Image Include="texture\pbr\blue\Blue_tiles_01_3K_Roughness.png" />
+    <Image Include="texture\pbr\gold\albedo.png" />
+    <Image Include="texture\pbr\gold\ao.png" />
+    <Image Include="texture\pbr\gold\metallic.png" />
+    <Image Include="texture\pbr\gold\normal.png" />
+    <Image Include="texture\pbr\gold\roughness.png" />
     <Image Include="texture\pbr\ion\albedo.png" />
     <Image Include="texture\pbr\ion\ao.png" />
     <Image Include="texture\pbr\ion\metallic.png" />
     <Image Include="texture\pbr\ion\normal.png" />
     <Image Include="texture\pbr\ion\roughness.png" />
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_AO.png" />
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Base_Color.png" />
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Height.png" />
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Normal.png" />
+    <Image Include="texture\pbr\metal1\Thin_stainless_steel_tiles_01_2K_Roughness.png" />
+    <Image Include="texture\pbr\rock\Marble_04_1K-Base_AO.png" />
+    <Image Include="texture\pbr\rock\Marble_04_1K_Base_Color.png" />
+    <Image Include="texture\pbr\rock\Marble_04_1K_Height.png" />
+    <Image Include="texture\pbr\rock\Marble_04_1K_Normal.png" />
+    <Image Include="texture\pbr\rock\Marble_04_1K_Roughness.png" />
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_AO.png" />
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Base_Color.png" />
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Height.png" />
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Normal.png" />
+    <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Roughness.png" />
     <Image Include="texture\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
