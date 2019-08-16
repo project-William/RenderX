@@ -116,7 +116,7 @@ vec3 PhongModel(vec3 lightpos , bool blinn)
 	vec3 ambient=ambient_strength*u_lightColor;
 	//diffuse
 	vec3 normal=normalize(fs_in.v_normals);
-	vec3 lightDir=normalize(lightpos-fs_in.v_fragPos);
+	vec3 lightDir=normalize(lightpos);
 	float diff=max(dot(normal,lightDir),0.0f);
 	vec3 diffuse=diff*u_lightColor;
 	// specular
@@ -140,7 +140,6 @@ vec3 PhongModel(vec3 lightpos , bool blinn)
 	
 	return ambient+diffuse+specular;
 }
-
 
 vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 {
@@ -177,7 +176,7 @@ vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 	// of 0.04 and if it's a metal, use the albedo color as F0 (metallic workflow)    
 	// calculate per-light radiance
     vec3 Lo = vec3(0.0);
-	for(int i=0;i<1;i++)
+	for(int i=0;i<4;i++)
 	{
 		vec3 L = normalize(lightpos - fs_in.v_fragPos);
 		vec3 H = normalize(V + L);

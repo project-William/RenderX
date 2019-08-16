@@ -45,7 +45,7 @@ private:
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;
 
-
+	graphics::HDR* hdr;
 	
 
 private:

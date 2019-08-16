@@ -16,6 +16,7 @@
 #include "include/graphics/Window.h"
 #include "include/graphics/EntityLayer.h"
 #include "include/graphics/RenderScene.h"
+#include "include/graphics/HDR.h"
 
 //imgui(UI) header
 #include "include/graphics/imgui/ImguiLayer.h"

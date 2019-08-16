@@ -49,16 +49,16 @@ Application::Application()
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow = new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
-	camera = new entity::FPSCamera(glm::vec3(6.0f, -2.0f, 15.0f));
+	camera = new entity::FPSCamera(glm::vec3(3.0f, -2.0f, 15.0f));
 	basicLight = new graphics::BasicLight();
 
 	for (int i = 0; i < 4; i++)
 	{
-		lights[i] = new graphics::BasicLight(glm::vec3(4.0f + i, 4.0f, 4.0f + i), glm::vec3(1.0f));
+		lights[i] = new graphics::BasicLight(glm::vec3(14.0f + i, 14.0f + i, 14.0f + i), glm::vec3(1.0f));
 		renderLayer->PushLights(lights[i]);
 	}
 
-
+	hdr = new graphics::HDR("shader/HDRVertex.vert", "shader/HDRFragment.frag");
 
 }
 
@@ -88,23 +88,32 @@ void Application::Run()
 		m_Window->ClearColor();
 		//begin scene
 		graphics::RenderScene::SceneBegin();
-
+		
 		renderLayer->RenderSkybox(WinData, camera);
+		
 		renderLayer->RenderFlatboard(WinData, camera, basicLight);
 		renderLayer->RenderObjects(WinData, camera);
+		renderLayer->LightModel(basicLight, camera);
+
 		
 		graphics::RenderScene::SceneEnd();
+
+		
 		/***************************default framebuffer*******************************/
 		framebuffer->UnbindFrameBuffer();
+		//hdr->EnableHDRProgram(framebuffer->GetRendered());
+		//hdr->EnableHDR(0.9f);
+
 		imgui->Begin();
 		
 		//imgui setting window
 		imguisetwindow->BeginSetWindow();
-
+		
 		imguisetwindow->GraphicsSettingWindow();
 		renderLayer->CameraSetting(WinData, camera);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
-		renderLayer->LightModel(basicLight, camera);
+
+		//renderLayer->MultiLight(camera);
 		
 		imguisetwindow->EndSetWindow();
 		//movement
@@ -112,7 +121,6 @@ void Application::Run()
 		imguiSceneWindow->BeginSceneWindow();
 		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
 		imguiSceneWindow->EndSceneWindow();
-		renderLayer->File();
 		//keyboard movement
 		//imgui log window
 		imguiLog->BeginLog();
@@ -120,6 +128,7 @@ void Application::Run()
 		imguiLog->EndLog();
 		
 		imgui->End();		
+		
 		//m_WindowResized_flag = false;
 		//framebuffer->UnbindFrameBuffer();
 		//flatboard->Draw(WinData, camera);

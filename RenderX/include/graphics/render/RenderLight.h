@@ -17,7 +17,7 @@ namespace renderx {
 			virtual inline float& GetShinenessRef() = 0;
 			virtual inline glm::vec3& GetLightPositionRef() = 0;
 			virtual inline glm::vec3& GetLightColorRef() = 0;
-
+			virtual inline glm::vec3& GetLightDirectionRef() = 0;
 		};
 
 

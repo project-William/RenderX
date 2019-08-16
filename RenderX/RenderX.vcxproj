@@ -171,6 +171,7 @@
     <ClInclude Include="include\events\KeyboardEvent.h" />
     <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\EntityLayer.h" />
+    <ClInclude Include="include\graphics\HDR.h" />
     <ClInclude Include="include\graphics\imgui\ImguiFileBrowser.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLog.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="src\entity\FPSCamera.cpp" />
     <ClCompile Include="src\graphics\EntityLayer.cpp" />
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
+    <ClCompile Include="src\graphics\HDR.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiFileBrowser.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiLog.cpp" />

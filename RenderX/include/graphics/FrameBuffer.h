@@ -20,9 +20,9 @@ namespace renderx {
 
 			void BindFrameBuffer();
 			void UnbindFrameBuffer();
-			void UpdateFramebufferData(const WinData& windata, bool flag);
+			void UpdateFramebufferData(const WinData& windata, bool& flag);
 
-			inline const GLuint& GetRendered()const { return m_Texture->GetTexRef(); }
+			inline GLuint& GetRendered(){ return m_Texture->GetTexRef(); }
 			inline const GLuint& GetFrameBufferID()const { return m_FrameBufferID; }
 		private:
 

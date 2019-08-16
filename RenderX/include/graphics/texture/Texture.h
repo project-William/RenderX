@@ -30,7 +30,7 @@ namespace renderx {
 			Texture(const std::string& name, const std::string& filepath);
 			~Texture();
 
-			inline const GLuint& GetTexRef()const { return m_Texture; }
+			inline GLuint& GetTexRef() { return m_Texture; }
 			inline GLuint GetTexture()const { return m_Texture; }
 			inline int GetTextureWidth()const { return m_Width; }
 			inline int GetTextureHeight()const { return m_Height; }

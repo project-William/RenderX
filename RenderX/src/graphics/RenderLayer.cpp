@@ -5,7 +5,6 @@ namespace renderx {
 
 		RenderLayer::RenderLayer()
 		{
-
 		}
 
 		RenderLayer::RenderLayer(const WinData& windata)
@@ -498,7 +497,6 @@ namespace renderx {
 			{
 				if (iter.second)
 				{
-					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_environment_mapping", EnvirMapping);
 					iter.first->GetRenderDataRef()->m_Shader->SetVec4("u_color", iter.first->GetTransRef().color);
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_lightColor", light->GetLightColor());
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
@@ -511,14 +509,12 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
-
+					iter.first->UnbindObject();
 				}
 			}
-
-			
-
 		}
-		
+
+	
 		void RenderLayer::RenderSkybox(const WinData& windata, entity::FPSCamera* camera)
 		{
 			if (m_SkyboxPart.skybox_1)

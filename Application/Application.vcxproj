@@ -177,6 +177,8 @@
     <None Include="shader\flatboardFragment.frag" />
     <None Include="shader\flatboardVertex.vert" />
     <None Include="shader\fragment.frag" />
+    <None Include="shader\HDRFragment.frag" />
+    <None Include="shader\HDRVertex.vert" />
     <None Include="shader\sphereFragment.frag" />
     <None Include="shader\sphereVertex.vert" />
     <None Include="shader\vertex.vert" />

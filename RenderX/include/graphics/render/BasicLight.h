@@ -18,6 +18,7 @@ namespace renderx {
 			inline glm::vec3& GetLightPositionRef() override { return m_Position; }
 			inline glm::vec3& GetLightColorRef()override { return m_LightColor; }
 
+			inline glm::vec3& GetLightDirectionRef()override { return m_Direction; }
 			
 
 
@@ -25,6 +26,7 @@ namespace renderx {
 		private:
 			glm::vec3 m_Position;
 			glm::vec3 m_LightColor;
+			glm::vec3 m_Direction;
 			float m_Shineness;
 		};
 

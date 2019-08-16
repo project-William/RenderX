@@ -4,7 +4,7 @@ namespace renderx {
 	namespace graphics {
 
 		BasicLight::BasicLight()
-			:m_Position(3.0f,3.0f,3.0f),m_LightColor(1.0f,1.0f,1.0f),m_Shineness(32)
+			:m_Position(10.0f,20.0f,10.0f),m_LightColor(1.0f,1.0f,1.0f),m_Shineness(32),m_Direction(-0.2f, -1.0f, -0.3f)
 		{
 
 		}
