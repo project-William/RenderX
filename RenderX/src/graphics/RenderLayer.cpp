@@ -5,17 +5,12 @@ namespace renderx {
 
 		RenderLayer::RenderLayer()
 		{
-		}
-
-		RenderLayer::RenderLayer(const WinData& windata)
-		{
-
+			m_EmptyTexture = std::shared_ptr<Texture>(new Texture("Empty Texture", "texture/EmptyTexture.png"));
 		}
 
 		RenderLayer::~RenderLayer()
 		{
 		}
-
 
 		void RenderLayer::PushRenderer(RenderObject* renderer, bool isRendered)
 		{
@@ -202,83 +197,142 @@ namespace renderx {
 			//texture
 			if (ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
 			{
-				std::string textureName = "none";
-				textureName = m_FileBrowser.GetSelected().string();
-
 				// albedo texture 
-				if (ImGui::Button("Open Albedo texture"))
+				if (ImGui::Button("Albedo", ImVec2(100.0f,20.0f)))
 				{
 					m_FileBrowser.Open();
 					m_TexturePart.AlbedoTex = true;
 				}
+				ImGui::SameLine();
+
+				if (ImGui::Checkbox("Use Albedo", &m_EnableTexture.EnableAlbedo))
+				{
+					 
+				}
 
 				for (auto iter : m_Renderer)
 				{
-					if (iter.second && iter.first->GetRenderDataRef()->m_AlbedoTex)
+					unsigned int tex = 0;
+					if (iter.second)
 					{
-						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_AlbedoTex, ImVec2(100, 100));
+						if (iter.first->GetAlbedoTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetAlbedoTexture(), ImVec2(100, 100));
+						}
+						else 
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
 					}
 				}
+				
 
-				ImGui::NewLine();
 				//ao texture
-				if (ImGui::Button("Open AO texture"))
+				if (ImGui::Button("AO",ImVec2(100.0f,20.0f)))
 				{
 					m_FileBrowser.Open();
 					m_TexturePart.AOTex = true;
 				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use AO", &m_EnableTexture.EnableAO))
+				{
+				}
 
 				for (auto iter : m_Renderer)
 				{
-					if (iter.second && iter.first->GetRenderDataRef()->m_AOTex)
+					unsigned int tex = 0;
+					if (iter.second)
 					{
-						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_AOTex, ImVec2(100, 100));
+						if (iter.first->GetAOTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetAOTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
 					}
 				}
-				ImGui::NewLine();
 				//metallic texture
-				if (ImGui::Button("Open Metallic texture"))
+				if (ImGui::Button("Metallic", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
 					m_TexturePart.MetallicTex = true;
 				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Metallic", &m_EnableTexture.EnableMetallic))
+				{
+
+				}
 				for (auto iter : m_Renderer)
 				{
-					if (iter.second && iter.first->GetRenderDataRef()->m_MetallicTex)
+					unsigned int tex = 0;
+					if (iter.second)
 					{
-						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_MetallicTex, ImVec2(100, 100));
+						if (iter.first->GetMetallicTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetMetallicTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
 					}
 				}
-				ImGui::NewLine();
 				//normal texture
-				if (ImGui::Button("Open Normal texture"))
+				if (ImGui::Button("Normal", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
 					m_TexturePart.NormalTex = true;
 				}
-
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Normal", &m_EnableTexture.EnableNormal))
+				{
+				}
 				for (auto iter : m_Renderer)
 				{
-					if (iter.second && iter.first->GetRenderDataRef()->m_NormalTex)
+					unsigned int tex = 0;
+					if (iter.second)
 					{
-						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_NormalTex, ImVec2(100, 100));
+						if (iter.first->GetNormalTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetNormalTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
 					}
 				}
-				ImGui::NewLine();
+			
 				//roughness texture
-				if (ImGui::Button("Open Roughness texture"))
+				if (ImGui::Button("Roughness", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
 					m_TexturePart.RoughnessTex = true;
 				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Roughness", &m_EnableTexture.EnableRoughness))
+				{
+
+				}
 				for (auto iter : m_Renderer)
 				{
-					if (iter.second && iter.first->GetRenderDataRef()->m_RoughnessTex)
+					unsigned int tex = 0;
+					if (iter.second)
 					{
-						ImGui::Image((void*)(intptr_t)iter.first->GetRenderDataRef()->m_RoughnessTex, ImVec2(100, 100));
+						if (iter.first->GetRoughnessTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetRoughnessTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
 					}
 				}
-				ImGui::NewLine();
+				std::string textureName = "none";
+				textureName = m_FileBrowser.GetSelected().string();
 
 				m_FileBrowser.Display();
 
@@ -286,15 +340,28 @@ namespace renderx {
 				{
 					for (auto iter : m_Renderer)
 					{
-						if (iter.second && (!m_FileBrowser.IsOpened()))
+						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetAlbedoTex(textureName);
 							m_TexturePart.AlbedoTex = false;
-							std::cout << "albedo texture is bind" << std::endl;
 						}
 					}
 				}
 				
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableAlbedo)
+						{
+							iter.first->EnableAlbedoTexture();
+						}
+						else
+						{
+							iter.first->DisableAlbedoTexture();
+						}
+					}
+				}
 				
 				if (m_TexturePart.AOTex)
 				{
@@ -307,7 +374,22 @@ namespace renderx {
 						}
 					}
 				}
-				
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableAO)
+						{
+							iter.first->EnableAOTexture();
+						}
+						else
+						{
+							iter.first->DisableAOTexture();
+						}
+						std::cout << m_EnableTexture.EnableAO << std::endl;
+					}
+				}
+
 				
 				if (m_TexturePart.MetallicTex)
 				{
@@ -320,7 +402,21 @@ namespace renderx {
 						}
 					}
 				}
-				
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableMetallic)
+						{
+							iter.first->EnableMetallicTexture();
+						}
+						else
+						{
+							iter.first->DisableMetallicTexture();
+						}
+					}
+				}
+
 			
 				if (m_TexturePart.NormalTex)
 				{
@@ -333,7 +429,21 @@ namespace renderx {
 						}
 					}
 				}
-				
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableNormal)
+						{
+							iter.first->EnableNormalTexture();
+						}
+						else
+						{
+							iter.first->DisableNormalTexture();
+						}
+					}
+				}
+
 			
 				if (m_TexturePart.RoughnessTex)
 				{
@@ -343,6 +453,20 @@ namespace renderx {
 						{
 							iter.first->SetRoughnessTex(textureName);
 							m_TexturePart.RoughnessTex = false;
+						}
+					}
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableRoughness)
+						{
+							iter.first->EnableRoughnessTexture();
+						}
+						else
+						{
+							iter.first->DisableRoughnessTexture();
 						}
 					}
 				}
@@ -364,11 +488,7 @@ namespace renderx {
 				if (ImGui::Checkbox("environment mapping", &EnvirMapping))
 				{
 				}
-
-
 			}
-
-			
 
 		}
 

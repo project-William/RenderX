@@ -20,11 +20,33 @@ namespace renderx {
 			std::shared_ptr<graphics::Texture> m_RoughnessTex;
 			std::shared_ptr<graphics::Texture> m_MetallicTex;
 
-			void SetAlbedoTex(const std::string& file);
-			void SetNormalTex(const std::string& file);
-			void SetAOTex(const std::string& file);
-			void SetRoughnessTex(const std::string& file);
-			void SetMetallicTex(const std::string& file);
+			void SetAlbedoTex(const std::string& file) override;
+			void SetNormalTex(const std::string& file) override;
+			void SetAOTex(const std::string& file) override;
+			void SetRoughnessTex(const std::string& file) override;
+			void SetMetallicTex(const std::string& file) override;
+
+
+			unsigned int& GetAlbedoTexture() override { return m_AlbedoTex->GetTexRef(); }
+			unsigned int& GetAOTexture() override { return m_AOTex->GetTexRef(); }
+			unsigned int& GetMetallicTexture() override { return m_MetallicTex->GetTexRef(); }
+			unsigned int& GetNormalTexture() override { return m_NormalTex->GetTexRef(); }
+			unsigned int& GetRoughnessTexture() override { return m_RoughnessTex->GetTexRef(); }
+
+
+
+			void EnableAlbedoTexture() override { m_RenderData->m_AlbedoTex = m_AlbedoTex->GetTexture(); }
+			void EnableAOTexture()  override { m_RenderData->m_AOTex= m_AOTex->GetTexture(); }
+			void EnableMetallicTexture() override { m_RenderData->m_MetallicTex = m_MetallicTex->GetTexture(); }
+			void EnableNormalTexture()  override { m_RenderData->m_NormalTex = m_NormalTex->GetTexture(); }
+			void EnableRoughnessTexture()  override { m_RenderData->m_RoughnessTex = m_RoughnessTex->GetTexture(); }
+
+
+			void DisableAlbedoTexture() override {  m_RenderData->m_AlbedoTex = 0; }
+			void DisableAOTexture()  override { m_RenderData->m_AOTex= 0; }
+			void DisableMetallicTexture() override { m_RenderData->m_MetallicTex = 0; }
+			void DisableNormalTexture()  override { m_RenderData->m_NormalTex = 0; }
+			void DisableRoughnessTexture()  override { m_RenderData->m_RoughnessTex = 0; }
 
 
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }

@@ -25,9 +25,9 @@ namespace renderx {
 			};
 			m_RenderData->m_VAO->AddBufferLayout(m_RenderData->m_Layout);
 			m_Trans.model = glm::translate(m_Trans.model, glm::vec3(0.0f, 1.0f, 0.0f));
-			m_Trans.model = glm::rotate(m_Trans.model, glm::radians(3*90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("albedo", "texture/diffuse_wall.jpg"));
-			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("normal", "texture/normal_wall.png"));
+			m_Trans.model = glm::rotate(m_Trans.model, glm::radians(2*90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("albedo", "texture/wood_base.png"));
+			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("normal", "texture/wood_normal.png"));
 
 			m_RenderData->m_Shader->SetInt("u_diffuseMap", 0);
 			m_RenderData->m_Shader->SetInt("u_normalMap", 1);

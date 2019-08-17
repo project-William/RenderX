@@ -43,15 +43,15 @@ namespace renderx {
 		private:
 			void PositionTexCoordNormal()
 			{
-				m_Pos1 = glm::vec3(-1.0f, 1.0f, 0.0f);
-				m_Pos2 = glm::vec3(-1.0f, -1.0f, 0.0f);
-				m_Pos3 = glm::vec3( 1.0f, -1.0f, 0.0f);
-				m_Pos4 = glm::vec3( 1.0f, 1.0f, 0.0f);
+				m_Pos1 = glm::vec3(-1.0f, 0.0f, -1.0f);
+				m_Pos2 = glm::vec3(-1.0f, 0.0f,  1.0f);
+				m_Pos3 = glm::vec3( 1.0f, 0.0f,  1.0f);
+				m_Pos4 = glm::vec3( 1.0f, 0.0f, -1.0f);
 				m_Uv1 = glm::vec2(0.0, 1.0);
 				m_Uv2 = glm::vec2(0.0, 0.0);
 				m_Uv3 = glm::vec2(1.0, 0.0);
 				m_Uv4 = glm::vec2(1.0, 1.0);
-				m_Nm = glm::vec3(0.0, 0.0, 1.0);
+				m_Nm = glm::vec3(0.0, 1.0, 0.0);
 				// calculate tangent/bitangent vectors of both triangles
 				glm::vec3 tangent1, bitangent1;
 				glm::vec3 tangent2, bitangent2;
@@ -96,7 +96,7 @@ namespace renderx {
 
 
 				m_VertexData = {
-					// positions            // normal         // texcoords  // tangent                          // bitangent
+					// positions							// normal				// texcoords	// tangent							// bitangent
 					10*m_Pos1.x, 10*m_Pos1.y, 10*m_Pos1.z, m_Nm.x, m_Nm.y, m_Nm.z, m_Uv1.x, m_Uv1.y, tangent1.x, tangent1.y, tangent1.z, bitangent1.x, bitangent1.y, bitangent1.z,
 					10*m_Pos2.x, 10*m_Pos2.y, 10*m_Pos2.z, m_Nm.x, m_Nm.y, m_Nm.z, m_Uv2.x, m_Uv2.y, tangent1.x, tangent1.y, tangent1.z, bitangent1.x, bitangent1.y, bitangent1.z,
 					10*m_Pos3.x, 10*m_Pos3.y, 10*m_Pos3.z, m_Nm.x, m_Nm.y, m_Nm.z, m_Uv3.x, m_Uv3.y, tangent1.x, tangent1.y, tangent1.z, bitangent1.x, bitangent1.y, bitangent1.z,

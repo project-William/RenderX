@@ -78,6 +78,27 @@ namespace renderx {
 			virtual void SetAOTex(const std::string& file) = 0;
 			virtual void SetRoughnessTex(const std::string& file) = 0;
 			virtual void SetMetallicTex(const std::string& file) = 0;
+
+			virtual unsigned int& GetAlbedoTexture() = 0;
+			virtual unsigned int& GetAOTexture() = 0;
+			virtual unsigned int& GetMetallicTexture() = 0;
+			virtual unsigned int& GetNormalTexture() = 0;
+			virtual unsigned int& GetRoughnessTexture() = 0;
+
+			virtual void EnableAlbedoTexture() = 0;
+			virtual void EnableAOTexture() = 0;
+			virtual void EnableMetallicTexture() = 0;
+			virtual void EnableNormalTexture() = 0;
+			virtual void EnableRoughnessTexture() = 0;
+			
+			virtual void DisableAlbedoTexture() = 0;
+			virtual void DisableAOTexture() = 0;
+			virtual void DisableMetallicTexture() = 0;
+			virtual void DisableNormalTexture() = 0;
+			virtual void DisableRoughnessTexture() = 0;
+
+
+		
 		};
 
 

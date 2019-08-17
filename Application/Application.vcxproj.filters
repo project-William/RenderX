@@ -186,5 +186,14 @@
     <Image Include="texture\pbr\flat_wood\roughness.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="texture\EmptyTexture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\wood_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="texture\wood_base.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

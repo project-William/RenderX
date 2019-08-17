@@ -192,6 +192,7 @@
     <Image Include="texture\ame_iceflats\iceflats_up.tga" />
     <Image Include="texture\container.jpg" />
     <Image Include="texture\diffuse_wall.jpg" />
+    <Image Include="texture\EmptyTexture.png" />
     <Image Include="texture\hw_blue\blue_bk.tga" />
     <Image Include="texture\hw_blue\blue_dn.tga" />
     <Image Include="texture\hw_blue\blue_ft.tga" />
@@ -247,6 +248,8 @@
     <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Normal.png" />
     <Image Include="texture\pbr\wood\Wooden_planks_05_2K_Roughness.png" />
     <Image Include="texture\wall.jpg" />
+    <Image Include="texture\wood_base.png" />
+    <Image Include="texture\wood_normal.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RenderX\RenderX.vcxproj">

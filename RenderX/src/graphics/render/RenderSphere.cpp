@@ -107,31 +107,26 @@ namespace renderx {
 		void RenderSphere::SetAlbedoTex(const std::string& file)
 		{
 			m_AlbedoTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("albedo", file));
-			m_RenderData->m_AlbedoTex = m_AlbedoTex->GetTexture();
 		}
 
 		void RenderSphere::SetNormalTex(const std::string& file)
 		{
 			m_NormalTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("normal", file));
-			m_RenderData->m_NormalTex = m_NormalTex->GetTexture();
 		}
 
 		void RenderSphere::SetAOTex(const std::string& file)
 		{
 			m_AOTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("ao", file));
-			m_RenderData->m_AOTex = m_AOTex->GetTexture();
 		}
 
 		void RenderSphere::SetRoughnessTex(const std::string& file)
 		{
 			m_RoughnessTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("roughness", file));
-			m_RenderData->m_RoughnessTex = m_RoughnessTex->GetTexture();
 		}
 
 		void RenderSphere::SetMetallicTex(const std::string& file)
 		{
 			m_MetallicTex = std::shared_ptr<graphics::Texture>(new graphics::Texture("metallic", file));
-			m_RenderData->m_MetallicTex = m_MetallicTex->GetTexture();
 		}
 
 		void RenderSphere::CreateSphere()

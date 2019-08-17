@@ -57,11 +57,19 @@ namespace renderx {
 			bool RoughnessTex = false;
 		};
 
+		struct REN_API EnableTexture
+		{
+			bool EnableAlbedo = false;
+			bool EnableAO = false;
+			bool EnableMetallic = false;
+			bool EnableNormal = false;
+			bool EnableRoughness = false;
+		};
+
 		class REN_API RenderLayer:public Layer
 		{
 		public:
 			RenderLayer();
-			RenderLayer(const WinData& windata);
 			~RenderLayer();
 
 			void PushRenderer(RenderObject* renderer, bool isRendered);
@@ -110,7 +118,7 @@ namespace renderx {
 
 			bool EnvirMapping = false;
 
-
+			std::shared_ptr<Texture> m_EmptyTexture;
 
 			float m_metallic = 0.5f;
 			float m_roughness = 0.25f;
@@ -123,6 +131,13 @@ namespace renderx {
 			LightPart m_LightPart;
 			LightModelPart m_LightModelPart;
 			TexturePart m_TexturePart;
+			EnableTexture m_EnableTexture;
+
+			bool isUse = false;
+
+
+		private:
+			void EmptyTexture(const std::string& filepath);
 		};
 
 	}

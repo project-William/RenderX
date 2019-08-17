@@ -85,6 +85,7 @@ namespace renderx {
 
 		void RenderCube::SetAlbedoTex(const std::string& file)
 		{
+
 		}
 
 		void RenderCube::SetNormalTex(const std::string& file)
@@ -93,14 +94,17 @@ namespace renderx {
 
 		void RenderCube::SetAOTex(const std::string& file)
 		{
+
 		}
 
 		void RenderCube::SetRoughnessTex(const std::string& file)
 		{
+
 		}
 
 		void RenderCube::SetMetallicTex(const std::string& file)
 		{
+
 		}
 
 		void RenderCube::Color(const WinData& windata)

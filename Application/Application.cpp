@@ -13,7 +13,7 @@ Application::Application()
 
 	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
 
-	renderLayer = new graphics::RenderLayer(m_Window->GetWinData());
+	renderLayer = new graphics::RenderLayer();
 
 	imgui = new ui::ImguiLayer(m_Window->GetWinData());
 

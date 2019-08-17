@@ -30,31 +30,30 @@ vec3 getNormalFromMap()
     vec3 T  = normalize(Q1*st2.t - Q2*st1.t);
     vec3 B  = -normalize(cross(N, T));
     mat3 TBN = mat3(T, B, N);
-
+	
     return normalize(TBN * tangentNormal);
 }
 
 void main()
 {           
-     // obtain normal from normal map in range [0,1]
-    vec3 normal = getNormalFromMap();
+    //vec3 normal = getNormalFromMap();
+    vec3 normal = texture(u_normalMap, fs_in.v_texCoords).rgb;
     // transform normal vector to range [-1,1]
-    normal = normalize(normal * 2.0 - 1.0);  // this normal is in tangent space
-   
+    normal = normalize(normal * 2.0 - 1.0); 
     // get diffuse color
     vec3 color = texture(u_diffuseMap, fs_in.v_texCoords).rgb;
     // ambient
-    vec3 ambient = 0.1 * color;
+    vec3 ambient = 0.1 * color * u_lightColor;
     // diffuse
     vec3 lightDir = normalize(fs_in.v_tangentLightPos - fs_in.v_tangentFragPos);
     float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * color;
+    vec3 diffuse = diff * color * u_lightColor;
     // specular
     vec3 viewDir = normalize(fs_in.v_tangentViewPos - fs_in.v_tangentFragPos);
     vec3 reflectDir = reflect(-lightDir, normal);
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), 32.0);
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 32.0f);
 
-    vec3 specular = vec3(0.2) * spec;
+    vec3 specular = vec3(1.0f) * spec;
     FragColor = vec4(ambient + diffuse + specular, 1.0);
 }
