@@ -33,21 +33,17 @@ namespace renderx {
 			unsigned int& GetNormalTexture() override { return m_NormalTex->GetTexRef(); }
 			unsigned int& GetRoughnessTexture() override { return m_RoughnessTex->GetTexRef(); }
 
-
-
 			void EnableAlbedoTexture() override { m_RenderData->m_AlbedoTex = m_AlbedoTex->GetTexture(); }
 			void EnableAOTexture()  override { m_RenderData->m_AOTex= m_AOTex->GetTexture(); }
 			void EnableMetallicTexture() override { m_RenderData->m_MetallicTex = m_MetallicTex->GetTexture(); }
 			void EnableNormalTexture()  override { m_RenderData->m_NormalTex = m_NormalTex->GetTexture(); }
 			void EnableRoughnessTexture()  override { m_RenderData->m_RoughnessTex = m_RoughnessTex->GetTexture(); }
 
-
 			void DisableAlbedoTexture() override {  m_RenderData->m_AlbedoTex = 0; }
 			void DisableAOTexture()  override { m_RenderData->m_AOTex= 0; }
 			void DisableMetallicTexture() override { m_RenderData->m_MetallicTex = 0; }
 			void DisableNormalTexture()  override { m_RenderData->m_NormalTex = 0; }
 			void DisableRoughnessTexture()  override { m_RenderData->m_RoughnessTex = 0; }
-
 
 			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
 			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }

@@ -1,7 +1,6 @@
 #pragma once
 #include "..//graphics/render/RenderObject.h"
 
-
 namespace renderx {
 	namespace entity {
 

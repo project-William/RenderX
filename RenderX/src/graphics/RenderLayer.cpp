@@ -386,7 +386,6 @@ namespace renderx {
 						{
 							iter.first->DisableAOTexture();
 						}
-						std::cout << m_EnableTexture.EnableAO << std::endl;
 					}
 				}
 
@@ -488,6 +487,13 @@ namespace renderx {
 				if (ImGui::Checkbox("environment mapping", &EnvirMapping))
 				{
 				}
+
+				float m_HDR = 0.4f;
+				if (ImGui::SliderFloat("HDR", &m_HDR, 0.0f, 10.0f))
+				{
+
+				}
+
 			}
 
 		}
@@ -579,7 +585,6 @@ namespace renderx {
 						(float)windata.win_Width / (float)windata.win_Height,
 						0.1f, 100.0f
 					);
-			
 				}
 				if (m_CameraPart.NoCamera)
 				{

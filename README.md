@@ -39,6 +39,7 @@ Transformations    |Position TODO:
 Lighting           |Basic
 PBR                |Light and Texture PBR
 Materials          |metallic,roughness
+HDR                |init
 Deferred rendering |TODO
 SSAO               |TODO
 Normal mapping     |Enable
@@ -48,7 +49,7 @@ Bloom              |TODO
 Environment Reflection |TODO
 MSAA               |Enable
 File Browser       |Enable
-Flat               |TODO
+Flat               |Enable
 
 ----
  ## In the future..
