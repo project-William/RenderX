@@ -9,7 +9,6 @@ namespace renderx {
 
 #define SINGLE_CHOICE(a,b,c,d) if(a) { b=c=d=false; }
 
-		using Camera_Pair=std::pair<entity::FPSCamera*, entity::DefaultCamera*>;
 
 		struct REN_API CameraPart
 		{
@@ -77,10 +76,12 @@ namespace renderx {
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
+			void DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::DefaultCamera*> campair);
 			void File();
 			
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
+			void DefSkybox(const WinData& windata, entity::DefaultCamera* camera);
 			void RenderFlatboard(const WinData& windata,entity::FPSCamera* camera, RenderLight* light);
 			
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);

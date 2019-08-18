@@ -50,6 +50,10 @@ Application::Application()
 	imguisetwindow = new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
 	camera = new entity::FPSCamera(glm::vec3(3.0f, -2.0f, 15.0f));
+	defaultcam = new entity::DefaultCamera(glm::vec3(3.0f, -2.0f, 15.0f));
+
+	m_CamPair = std::pair<entity::FPSCamera*, entity::DefaultCamera*>(camera, defaultcam);
+
 	basicLight = new graphics::BasicLight();
 
 	for (int i = 0; i < 4; i++)
@@ -110,7 +114,7 @@ void Application::Run()
 		imguisetwindow->BeginSetWindow();
 		
 		imguisetwindow->GraphicsSettingWindow();
-		renderLayer->CameraSetting(WinData, camera);
+		renderLayer->DefaultCamSet(WinData, m_CamPair);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
 
 		//renderLayer->MultiLight(camera);

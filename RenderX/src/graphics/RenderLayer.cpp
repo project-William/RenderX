@@ -602,6 +602,121 @@ namespace renderx {
 		}
 
 
+		void RenderLayer::DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::DefaultCamera*> campair)
+		{
+			for (auto iter : m_Renderer)
+			{
+				if (iter.second == true)
+				{
+					if (m_CameraPart.defaultCamera || m_CameraPart.fpsCamera)
+					{
+						if (m_CameraPart.defaultCamera)
+						{
+							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+							campair.second->EnableObject();
+							iter.first->GetTransRef().view = campair.second->GetViewMatrix();
+							iter.first->GetTransRef().projection = glm::perspective
+							(
+								glm::radians(campair.second->GetCameraAttrib().Zoom),
+								(float)windata.win_Width / (float)windata.win_Height,
+								0.1f, 100.0f
+							);
+							auto keyboard = utils::Keyboard::GetKeyboardInstance();
+							if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
+							{
+								m_CameraPart.fpsCamera = false;
+								m_CameraPart.NoCamera = true;
+								m_CameraPart.defaultCamera = false;
+							}
+						}
+						else if (m_CameraPart.fpsCamera)
+						{
+							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+							campair.first->EnableObject();
+							iter.first->GetTransRef().view = campair.first->GetViewMatrix();
+							iter.first->GetTransRef().projection = glm::perspective
+							(
+								glm::radians(campair.first->GetCameraAttrib().Zoom),
+								(float)windata.win_Width / (float)windata.win_Height,
+								0.1f, 100.0f
+							);
+							auto keyboard = utils::Keyboard::GetKeyboardInstance();
+							if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
+							{
+								m_CameraPart.fpsCamera = false;
+								m_CameraPart.NoCamera = true;
+								m_CameraPart.defaultCamera = false;
+							}
+						}
+					}
+					if (m_CameraPart.NoCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						iter.first->GetTransRef().view = campair.second->GetViewMatrix();
+						iter.first->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(45.0f),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+
+					}
+				}
+			}
+
+			for (auto iter : m_Flatboards)
+			{
+				if (m_CameraPart.fpsCamera || m_CameraPart.defaultCamera)
+				{
+					if (m_CameraPart.fpsCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+						campair.first->EnableObject();
+						iter->GetTransRef().view = campair.first->GetViewMatrix();
+						iter->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(campair.first->GetCameraAttrib().Zoom),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+					}
+					else if(m_CameraPart.defaultCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						campair.second->EnableObject();
+						iter->GetTransRef().view = campair.second->GetViewMatrix();
+						iter->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(campair.second->GetCameraAttrib().Zoom),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+					}
+					
+
+					auto keyboard = utils::Keyboard::GetKeyboardInstance();
+					if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
+					{
+						m_CameraPart.fpsCamera = false;
+						m_CameraPart.NoCamera = true;
+						m_CameraPart.defaultCamera = false;
+					}
+				}
+				if (m_CameraPart.NoCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					iter->GetTransRef().view = campair.second->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(45.0f),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+
+				}
+			}
+		}
+
 		void RenderLayer::File()
 		{
 			//if (ImGui::Button("Openfile"))
@@ -659,6 +774,13 @@ namespace renderx {
 				m_Skyboxes[3]->Draw(windata, camera);
 			}
 		}
+
+
+		void RenderLayer::DefSkybox(const WinData& windata, entity::DefaultCamera* camera)
+		{
+
+		}
+
 
 		void RenderLayer::RenderFlatboard(const WinData& windata, entity::FPSCamera* camera, RenderLight* light)
 		{

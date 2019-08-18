@@ -46,6 +46,12 @@ namespace renderx {
 
 			inline float GetScrollSensitivity()const { return m_ScrollSensitivity; }
 
+			inline bool IsLeftMousebuttonPressed()const { return m_LeftButton; }
+
+			inline bool IsRightMousebuttonPressed()const { return m_RightButton; }
+
+			inline bool IsMiddleMousebuttonMoved()const { return m_MiddleButton; }
+
 			void OnEvent(events::MouseMovedEvent& event);
 			
 			void OnEvent(events::MousePressedEvent& event);

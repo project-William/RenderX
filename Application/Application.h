@@ -11,6 +11,10 @@ private:
 	
 	entity::FPSCamera* camera;
 
+	entity::DefaultCamera* defaultcam;
+	
+	std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_CamPair;
+
 	ui::ImguiLayer* imgui = nullptr;
 
 	graphics::RenderLayer* renderLayer = nullptr;
