@@ -7,14 +7,14 @@
 namespace renderx {
 	namespace entity {
 
-		class REN_API DefaultCamera :public Entity
+		class REN_API MayaCamera :public Entity
 		{
 		public:
-			DefaultCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
+			MayaCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
 				float yaw = -90, float pitch = 0)
 			{
 
-				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, -1.0f);
+				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, 0.0f);
 				m_CameraAttrib.MouseSensivitity = 0.1f;
 				m_CameraAttrib.MovementSpeed = 0.1f;
 				m_CameraAttrib.Zoom = 45.0f;
@@ -27,7 +27,7 @@ namespace renderx {
 				OnUpdate();
 			}
 
-			~DefaultCamera();
+			~MayaCamera();
 
 			void OnUpdate() override;
 			void EnableObject() override;

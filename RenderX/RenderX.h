@@ -33,7 +33,7 @@
 #include "include/graphics/render/BasicLight.h"
 
 //entity headers
-#include "include/entity/DefualtCamera.h"
+#include "include/entity/MayaCamera.h"
 #include "include/entity/Entity.h"
 #include "include/entity/FPSCamera.h"
 #include "include/entity/RenderSkybox.h"

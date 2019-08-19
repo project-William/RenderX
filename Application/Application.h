@@ -11,9 +11,9 @@ private:
 	
 	entity::FPSCamera* camera;
 
-	entity::DefaultCamera* defaultcam;
+	entity::MayaCamera* defaultcam;
 	
-	std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_CamPair;
+	std::pair<entity::FPSCamera*, entity::MayaCamera*> m_CamPair;
 
 	ui::ImguiLayer* imgui = nullptr;
 

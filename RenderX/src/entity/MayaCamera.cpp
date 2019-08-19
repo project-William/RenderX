@@ -4,12 +4,12 @@ namespace renderx {
 	namespace entity {
 		
 		
-		DefaultCamera::~DefaultCamera()
+		MayaCamera::~MayaCamera()
 		{
 
 		}
 
-		void DefaultCamera::OnUpdate()
+		void MayaCamera::OnUpdate()
 		{
 			if (utils::Mouse::GetMouseInstance()->IsLeftMousebuttonPressed())
 			{
@@ -41,19 +41,19 @@ namespace renderx {
 
 		}
 
-		void DefaultCamera::EnableObject()  
+		void MayaCamera::EnableObject()  
 		{
 			ProcessInputMouse();
 		}
 
-		void DefaultCamera::DisableObject() 
+		void MayaCamera::DisableObject() 
 		{
 
 		}
 
 		
 
-		glm::mat4 DefaultCamera::GetViewMatrix()
+		glm::mat4 MayaCamera::GetViewMatrix()
 		{
 
 			if (utils::Mouse::GetMouseInstance()->IsRightMousebuttonPressed())
@@ -77,17 +77,17 @@ namespace renderx {
 			}
 		}
 
-		glm::mat4 DefaultCamera::GetProjectionMatrix()
+		glm::mat4 MayaCamera::GetProjectionMatrix()
 		{
 			return glm::mat4();
 		}
 
-		glm::mat4 DefaultCamera::GetModelMatrix()
+		glm::mat4 MayaCamera::GetModelMatrix()
 		{
 			return glm::mat4();
 		}
 
-		void DefaultCamera::ProcessInputMouse()
+		void MayaCamera::ProcessInputMouse()
 		{
 			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
 
@@ -140,7 +140,7 @@ namespace renderx {
 
 		}
 
-		void DefaultCamera::ProcessInputKeyboard()
+		void MayaCamera::ProcessInputKeyboard()
 		{
 		}
 

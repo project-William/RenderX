@@ -3,7 +3,7 @@
 #include "..//VAOVBOEBO/VertexArray.h"
 #include "..//Window.h"
 #include "..//..//entity/FPSCamera.h"
-#include "..//..//entity/DefualtCamera.h"
+#include "..//..//entity/MayaCamera.h"
 #include "..//texture/Texture.h"
 #include "BasicLight.h"
 

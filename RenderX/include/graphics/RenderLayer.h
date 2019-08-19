@@ -13,7 +13,7 @@ namespace renderx {
 		struct REN_API CameraPart
 		{
 			bool fpsCamera = false;
-			bool defaultCamera = false;
+			bool MayaCamera = false;
 			bool NoCamera = true;
 		};
 
@@ -76,12 +76,12 @@ namespace renderx {
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
-			void DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::DefaultCamera*> campair);
+			void DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair);
 			void File();
 			
 
 			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
-			void DefSkybox(const WinData& windata, entity::DefaultCamera* camera);
+			void DefSkybox(const WinData& windata, entity::MayaCamera* camera);
 			void RenderFlatboard(const WinData& windata,entity::FPSCamera* camera, RenderLight* light);
 			
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
@@ -93,7 +93,7 @@ namespace renderx {
 			void PushSkybox(entity::RenderSkybox* skybox);
 			void PushLights(graphics::RenderLight* light);
 			//skybox 
-			void InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam);
+			void InitCamera(entity::FPSCamera* fpscam, entity::MayaCamera* defcam);
 				
 		private:
 			ui::ImguiFileBrowser m_FileBrowser;
@@ -101,7 +101,7 @@ namespace renderx {
 			std::unordered_map<RenderObject*, bool> m_Renderer;
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
 			std::vector<entity::Flatboard*> m_Flatboards;
-			std::pair<entity::FPSCamera*, entity::DefaultCamera*> m_Camera;
+			std::pair<entity::FPSCamera*, entity::MayaCamera*> m_Camera;
 			std::vector<RenderLight*> m_Lights;
 			
 

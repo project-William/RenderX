@@ -34,26 +34,26 @@ namespace renderx {
 				{
 					if (m_CameraPart.fpsCamera)
 					{
-						m_CameraPart.defaultCamera = false;
+						m_CameraPart.MayaCamera = false;
 						m_CameraPart.NoCamera = false;
 					}
 				}
 				
-				if (ImGui::Checkbox("Default Camera", &m_CameraPart.defaultCamera))
+				if (ImGui::Checkbox("Default Camera", &m_CameraPart.MayaCamera))
 				{
-					if (m_CameraPart.defaultCamera)
+					if (m_CameraPart.MayaCamera)
 					{
 						m_CameraPart.fpsCamera = false;
 						m_CameraPart.NoCamera = false;
 					}
 				}
 
-				if (ImGui::Checkbox("Ban Camera", &m_CameraPart.NoCamera))
+				if (ImGui::Checkbox("No Camera", &m_CameraPart.NoCamera))
 				{
 					if (m_CameraPart.NoCamera)
 					{	
 						m_CameraPart.fpsCamera = false;
-						m_CameraPart.defaultCamera = false;
+						m_CameraPart.MayaCamera = false;
 					}
 				}
 			}
@@ -523,10 +523,10 @@ namespace renderx {
 						{
 							m_CameraPart.fpsCamera = false;
 							m_CameraPart.NoCamera = true;
-							m_CameraPart.defaultCamera = false;
+							m_CameraPart.MayaCamera = false;
 						}
 					}
-					if(m_CameraPart.defaultCamera)
+					if(m_CameraPart.MayaCamera)
 					{
 						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						iter.first->GetTransRef().view = camera->GetViewMatrix();
@@ -572,10 +572,10 @@ namespace renderx {
 					{
 						m_CameraPart.fpsCamera = false;
 						m_CameraPart.NoCamera = true;
-						m_CameraPart.defaultCamera = false;
+						m_CameraPart.MayaCamera = false;
 					}
 				}
-				if (m_CameraPart.defaultCamera)
+				if (m_CameraPart.MayaCamera)
 				{
 					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 					iter->GetTransRef().view = camera->GetViewMatrix();
@@ -602,15 +602,15 @@ namespace renderx {
 		}
 
 
-		void RenderLayer::DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::DefaultCamera*> campair)
+		void RenderLayer::DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair)
 		{
 			for (auto iter : m_Renderer)
 			{
 				if (iter.second == true)
 				{
-					if (m_CameraPart.defaultCamera || m_CameraPart.fpsCamera)
+					if (m_CameraPart.MayaCamera || m_CameraPart.fpsCamera)
 					{
-						if (m_CameraPart.defaultCamera)
+						if (m_CameraPart.MayaCamera)
 						{
 							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 							campair.second->EnableObject();
@@ -626,7 +626,7 @@ namespace renderx {
 							{
 								m_CameraPart.fpsCamera = false;
 								m_CameraPart.NoCamera = true;
-								m_CameraPart.defaultCamera = false;
+								m_CameraPart.MayaCamera = false;
 							}
 						}
 						else if (m_CameraPart.fpsCamera)
@@ -645,7 +645,7 @@ namespace renderx {
 							{
 								m_CameraPart.fpsCamera = false;
 								m_CameraPart.NoCamera = true;
-								m_CameraPart.defaultCamera = false;
+								m_CameraPart.MayaCamera = false;
 							}
 						}
 					}
@@ -666,7 +666,7 @@ namespace renderx {
 
 			for (auto iter : m_Flatboards)
 			{
-				if (m_CameraPart.fpsCamera || m_CameraPart.defaultCamera)
+				if (m_CameraPart.fpsCamera || m_CameraPart.MayaCamera)
 				{
 					if (m_CameraPart.fpsCamera)
 					{
@@ -680,7 +680,7 @@ namespace renderx {
 							0.1f, 100.0f
 						);
 					}
-					else if(m_CameraPart.defaultCamera)
+					else if(m_CameraPart.MayaCamera)
 					{
 						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						campair.second->EnableObject();
@@ -699,7 +699,7 @@ namespace renderx {
 					{
 						m_CameraPart.fpsCamera = false;
 						m_CameraPart.NoCamera = true;
-						m_CameraPart.defaultCamera = false;
+						m_CameraPart.MayaCamera = false;
 					}
 				}
 				if (m_CameraPart.NoCamera)
@@ -776,7 +776,7 @@ namespace renderx {
 		}
 
 
-		void RenderLayer::DefSkybox(const WinData& windata, entity::DefaultCamera* camera)
+		void RenderLayer::DefSkybox(const WinData& windata, entity::MayaCamera* camera)
 		{
 
 		}
@@ -852,7 +852,7 @@ namespace renderx {
 			ImGui::End();
 		}
 		
-		void RenderLayer::InitCamera(entity::FPSCamera* fpscam, entity::DefaultCamera* defcam)
+		void RenderLayer::InitCamera(entity::FPSCamera* fpscam, entity::MayaCamera* defcam)
 		{
 			m_Camera.first = fpscam;
 			m_Camera.second = defcam;
