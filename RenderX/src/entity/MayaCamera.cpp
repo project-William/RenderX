@@ -11,33 +11,16 @@ namespace renderx {
 
 		void MayaCamera::OnUpdate()
 		{
-			if (utils::Mouse::GetMouseInstance()->IsLeftMousebuttonPressed())
-			{
-				glm::vec3 front;
-				front.x = cos(glm::radians(m_CameraAttrib.Euler_Yaw)) * cos(glm::radians(m_CameraAttrib.Euler_Pitch));
-				front.y = sin(glm::radians(m_CameraAttrib.Euler_Pitch));
-				front.z = sin(glm::radians(m_CameraAttrib.Euler_Yaw)) * cos(glm::radians(m_CameraAttrib.Euler_Pitch));
-				m_CameraAttrib.Front = glm::normalize(front);
+			glm::vec3 front = m_FocusPoint - m_CameraAttrib.Position;
+			front = glm::normalize(front);
 
-				m_CameraAttrib.Right = glm::normalize(glm::cross(m_CameraAttrib.Front, m_CameraAttrib.WorldUp));
-				m_CameraAttrib.Up = glm::normalize(glm::cross(m_CameraAttrib.Front, m_CameraAttrib.Right));
-
-			}
-			else
-			{
-				glm::vec3 front;
-				front.x = cos(glm::radians(m_CameraAttrib.Euler_Yaw)) * cos(glm::radians(m_CameraAttrib.Euler_Pitch));
-				front.y = sin(glm::radians(m_CameraAttrib.Euler_Pitch));
-				front.z = sin(glm::radians(m_CameraAttrib.Euler_Yaw)) * cos(glm::radians(m_CameraAttrib.Euler_Pitch));
-				m_CameraAttrib.Front = glm::normalize(front);
-
-				m_CameraAttrib.Right = glm::normalize(glm::cross(m_CameraAttrib.Front, m_CameraAttrib.WorldUp));
-				m_CameraAttrib.Up = glm::normalize(glm::cross(m_CameraAttrib.Front, m_CameraAttrib.Right));
-
-			}
+			m_CameraAttrib.Right = glm::normalize(glm::cross(front, m_CameraAttrib.WorldUp));
+			m_CameraAttrib.Up = glm::normalize(glm::cross(front, m_CameraAttrib.Right));
+			
 			m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
 				+ std::powf(m_CameraAttrib.Position.y, 2)
 				+ std::powf(m_CameraAttrib.Position.z, 2));
+			
 
 		}
 
@@ -55,26 +38,9 @@ namespace renderx {
 
 		glm::mat4 MayaCamera::GetViewMatrix()
 		{
-
-			if (utils::Mouse::GetMouseInstance()->IsRightMousebuttonPressed())
-			{
-				return glm::lookAt(m_CameraAttrib.Position,
-					   m_CameraAttrib.Position + m_CameraAttrib.Front,
-					   m_CameraAttrib.Up);
-			}
-			else if(utils::Mouse::GetMouseInstance()->IsLeftMousebuttonPressed())
-			{
-				return glm::lookAt(m_CameraAttrib.Position,
-					   glm::vec3(0.0f),
-					   m_CameraAttrib.Up);
-			}
-			else
-			{
-				return glm::lookAt(m_CameraAttrib.Position,
-					   m_CameraAttrib.Position + m_CameraAttrib.Front,
-					   m_CameraAttrib.Up);
-
-			}
+			return glm::lookAt(m_CameraAttrib.Position,
+				m_FocusPoint,
+				m_CameraAttrib.Up);
 		}
 
 		glm::mat4 MayaCamera::GetProjectionMatrix()
@@ -97,53 +63,60 @@ namespace renderx {
 			float xoffset = CurrentPosition.x - LastPosition.x;
 			float yoffset = -CurrentPosition.y + LastPosition.y;
 
+			xoffset *= 0.1f;
+			yoffset *= 0.1f;
 
 			mouse->UpdateMouse();
 
 			if (mouse->IsRightMousebuttonPressed())
 			{
-				m_CameraAttrib.Position.x += xoffset * 0.01;
-				m_CameraAttrib.Position.y += yoffset * 0.01;
+				m_CameraAttrib.Position += m_CameraAttrib.Right * 0.1f * xoffset;
+				m_CameraAttrib.Position -= m_CameraAttrib.Up * 0.1f * yoffset;
 
+				m_FocusPoint.x += 0.1f * xoffset;
+				m_FocusPoint.y += 0.1f * yoffset;
+
+				m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
+					+ std::powf(m_CameraAttrib.Position.y, 2)
+					+ std::powf(m_CameraAttrib.Position.z, 2));
 			}
 
 			if (mouse->IsLeftMousebuttonPressed())
 			{
 
-				//m_CameraAttrib.Euler_Yaw -= xoffset;
-				//m_CameraAttrib.Euler_Pitch -= yoffset;
+				m_CameraAttrib.Euler_Yaw -= xoffset;
+				m_CameraAttrib.Euler_Pitch -= yoffset;
+
+				m_CameraAttrib.Position.x = -m_Distance * cos(glm::radians(m_CameraAttrib.Euler_Yaw)) * cos(glm::radians(m_CameraAttrib.Euler_Pitch));
+
+				m_CameraAttrib.Position.y = -m_Distance * sin(glm::radians(m_CameraAttrib.Euler_Pitch));
+
+				m_CameraAttrib.Position.z = -m_Distance * cos(glm::radians(m_CameraAttrib.Euler_Pitch)) * sin(glm::radians(m_CameraAttrib.Euler_Yaw));
 
 			}
 
+
 			if (mouse->IsMiddleMousebuttonMoved())
 			{
+				std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
+
+				if (m_CameraAttrib.Zoom >= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
+					m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
+				if (m_CameraAttrib.Zoom <= 1.0f)
+					m_CameraAttrib.Zoom = 1.0f;
+				if (m_CameraAttrib.Zoom >= 45.0f)
+					m_CameraAttrib.Zoom = 45.0f;
 
 			}
 
 			OnUpdate();
 
-			//if (mouse->IsLeftMousebuttonPressed())
-			//{
-			//
-			//}
-			//
-			//if (mouse->IsMiddleMousebuttonMoved())
-			//{
-			//	if (m_CameraAttrib.Zoom >= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
-			//		m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
-			//	if (m_CameraAttrib.Zoom <= 1.0f)
-			//		m_CameraAttrib.Zoom = 1.0f;
-			//	if (m_CameraAttrib.Zoom >= 45.0f)
-			//		m_CameraAttrib.Zoom = 45.0f;
-			//}
-
-
 		}
 
 		void MayaCamera::ProcessInputKeyboard()
 		{
-		}
 
+		}
 
 	}
 }

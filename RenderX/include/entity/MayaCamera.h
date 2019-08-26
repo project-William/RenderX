@@ -11,9 +11,8 @@ namespace renderx {
 		{
 		public:
 			MayaCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
-				float yaw = -90, float pitch = 0)
+				float yaw = -90, float pitch = 0):m_FocusPoint(glm::vec3(0.0f))
 			{
-
 				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, 0.0f);
 				m_CameraAttrib.MouseSensivitity = 0.1f;
 				m_CameraAttrib.MovementSpeed = 0.1f;
@@ -23,7 +22,7 @@ namespace renderx {
 				m_CameraAttrib.Euler_Yaw = yaw;
 				m_CameraAttrib.Euler_Pitch = pitch;
 
-
+				
 				OnUpdate();
 			}
 
@@ -48,6 +47,9 @@ namespace renderx {
 			//objects that behind z-Far will not be rendered
 			float m_Far;
 			float m_Distance;
+			glm::vec3 m_FocusPoint;
+			glm::mat4 m_RotationMatrix;
+			glm::vec3 m_Position;
 
 			void ProcessInputMouse();
 			void ProcessInputKeyboard();

@@ -49,8 +49,8 @@ Application::Application()
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow = new ui::ImguiSetWindow();
 	imguiSceneWindow = new ui::ImguiSceneWindow();
-	camera = new entity::FPSCamera(glm::vec3(3.0f, -2.0f, 15.0f));
-	defaultcam = new entity::MayaCamera(glm::vec3(3.0f, -2.0f, 15.0f));
+	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 15.0f));
+	defaultcam = new entity::MayaCamera(glm::vec3(0.0f, 0.0f, 15.0f));
 
 	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
 

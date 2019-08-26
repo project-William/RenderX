@@ -27,7 +27,7 @@ namespace renderx {
 			m_RenderBuffer = new RenderBuffer();
 			m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height);
 			glFramebufferRenderbuffer(GL_FRAMEBUFFER, 
-									  GL_DEPTH_ATTACHMENT, 
+									  GL_DEPTH_STENCIL_ATTACHMENT, 
 									  GL_RENDERBUFFER, 
 									  m_RenderBuffer->GetRenderBuffer());
 
@@ -72,7 +72,7 @@ namespace renderx {
 				m_RenderBuffer = new RenderBuffer();
 				m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height);
 				glFramebufferRenderbuffer(GL_FRAMEBUFFER,
-					GL_DEPTH_ATTACHMENT,
+					GL_DEPTH_STENCIL_ATTACHMENT,
 					GL_RENDERBUFFER,
 					m_RenderBuffer->GetRenderBuffer());
 				flag = false;
