@@ -85,7 +85,5 @@ namespace renderx {
 			return glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
 		}
 
-
-
 	}
 }

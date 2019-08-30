@@ -106,11 +106,8 @@ namespace renderx {
 					m_CameraAttrib.Zoom = 1.0f;
 				if (m_CameraAttrib.Zoom >= 45.0f)
 					m_CameraAttrib.Zoom = 45.0f;
-
 			}
-
 			OnUpdate();
-
 		}
 
 		void MayaCamera::ProcessInputKeyboard()
