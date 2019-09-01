@@ -8,8 +8,8 @@ namespace renderx {
 
 		struct REN_API ShaderSource
 		{
-			std::string vertexSource;
-			std::string fragmentSource;
+			std::optional<std::string> vertexSource;
+			std::optional<std::string> fragmentSource;
 		};
 
 		class REN_API Shader

@@ -23,10 +23,8 @@ namespace renderx {
 
 		ShaderSource& Shader::GetShaderSource()
 		{
-			std::optional<std::string> vertex = utils::FileUtils::ReadShader(m_VFilePath);
-			std::optional<std::string> fragment = utils::FileUtils::ReadShader(m_FFilePath);
-			m_Source.vertexSource = vertex.value_or("Not present");
-			m_Source.fragmentSource = fragment.value_or("Not present!");
+			m_Source.vertexSource = utils::FileUtils::ReadShader(m_VFilePath);
+			m_Source.fragmentSource = utils::FileUtils::ReadShader(m_FFilePath);
 			return m_Source;
 		}
 
@@ -113,12 +111,12 @@ namespace renderx {
 
 		GLuint& Shader::CreateShaderProgram()
 		{
-			GLuint vertexShader = CreateShader(m_Source.vertexSource, GL_VERTEX_SHADER);
-			GLuint fragmentShader = CreateShader(m_Source.fragmentSource, GL_FRAGMENT_SHADER);
+			GLuint vertexShader = CreateShader(m_Source.vertexSource.value_or("Read Shader Source Error!"), GL_VERTEX_SHADER);
+			GLuint fragmentShader = CreateShader(m_Source.fragmentSource.value_or("Read Shader Source Error!"), GL_FRAGMENT_SHADER);
 
 			m_ShaderProgram = glCreateProgram();
-			std::cout << m_Source.vertexSource << std::endl;
-			std::cout << m_Source.fragmentSource << std::endl;
+			std::cout << m_Source.vertexSource.value_or("Read Shader Source Error!") << std::endl;
+			std::cout << m_Source.fragmentSource.value_or("Read Shader Source Error!") << std::endl;
 			glAttachShader(m_ShaderProgram, vertexShader);
 			glAttachShader(m_ShaderProgram, fragmentShader);
 			glLinkProgram(m_ShaderProgram);
