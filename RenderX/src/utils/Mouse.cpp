@@ -28,15 +28,16 @@ namespace renderx {
 		{
 			m_LastPosition = m_CurrentPosition;
 
-			float xoffset = event.GetMouseXPos() - m_CurrentPosition.x;
-			float yoffset = event.GetMouseYPos() - m_CurrentPosition.y;
+			float xoffset = event.GetMouseXPos() - m_LastPosition.x;
+			float yoffset = event.GetMouseYPos() - m_LastPosition.y;
 
 			xoffset *= m_MouseSensitivity;
 			yoffset *= m_MouseSensitivity;
 
 			m_CurrentPosition.x += xoffset;
 			m_CurrentPosition.y += yoffset;
-		
+
+			m_CurrentPosition = event.GetMousePos();
 		}
 
 		void Mouse::OnEvent(events::MousePressedEvent& event)

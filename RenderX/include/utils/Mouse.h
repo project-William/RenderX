@@ -20,7 +20,7 @@ namespace renderx {
 			bool m_RightButton = false;
 			bool m_MiddleButton = true;
 
-			glm::vec2 m_CurrentPosition;
+			glm::vec2 m_CurrentPosition = glm::vec2(0.0f);
 			glm::vec2 m_LastPosition = glm::vec2(0.0f);
 			glm::vec2 m_ScrollOffset = glm::vec2(0.1f);
 

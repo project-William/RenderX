@@ -18,6 +18,7 @@ namespace renderx {
 
 			inline float GetMouseXPos()const { return m_Xpos; }
 			inline float GetMouseYPos()const { return m_Ypos; }
+			inline glm::vec2 GetMousePos()const { return glm::vec2(m_Xpos, m_Ypos); }
 
 			EVENT_CLASS_TYPE(RX_MOUSE_MOVE)
 			EVENT_NAME_TYPE(RX_MOUSE_MOVE)
