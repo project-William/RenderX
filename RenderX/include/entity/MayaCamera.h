@@ -41,17 +41,13 @@ namespace renderx {
 		private:
 			CameraAttributes m_CameraAttrib;
 
-			//objects that beyond z-Near will not be rendered
-			float m_Near;
-
-			//objects that behind z-Far will not be rendered
-			float m_Far;
 			float m_Distance;
 			glm::vec3 m_FocusPoint;
 			glm::mat4 m_RotationMatrix;
 			glm::vec3 m_Position;
 
 			void ProcessInputMouse();
+			void ProcessMouseScrollInput();
 			void ProcessInputKeyboard();
 		};
 

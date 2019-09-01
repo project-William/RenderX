@@ -26,6 +26,7 @@ namespace renderx {
 
 		void MayaCamera::EnableObject()  
 		{
+			ProcessMouseScrollInput();
 			ProcessInputMouse();
 		}
 
@@ -101,32 +102,22 @@ namespace renderx {
 			}
 
 
-			if (mouse->IsMiddleMousebuttonMoved())
-			{
-
-				if (m_CameraAttrib.Zoom >= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
-				{
-					m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
-					std::cout << mouse->GetMouseScrollOffset().y << std::endl;
-					
-				}
-				if (m_CameraAttrib.Zoom <= 1.0f)
-				{
-					m_CameraAttrib.Zoom = 1.0f;
-				}
-				if (m_CameraAttrib.Zoom >= 45.0f)
-				{
-					m_CameraAttrib.Zoom = 45.0f;
-				}
-
-				
-
-				mouse->UpdateMouse();
-
-			}
-
-
 			OnUpdate();
+		}
+
+		void MayaCamera::ProcessMouseScrollInput()
+		{
+			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
+
+			if (m_CameraAttrib.Zoom >= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
+				m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
+
+			std::cout << m_CameraAttrib.Zoom << std::endl;
+
+			if (m_CameraAttrib.Zoom <= 1.0f)
+				m_CameraAttrib.Zoom = 1.0f;
+			if (m_CameraAttrib.Zoom >= 45.0f)
+				m_CameraAttrib.Zoom = 45.0f;
 		}
 
 		void MayaCamera::ProcessInputKeyboard()
