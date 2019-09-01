@@ -18,11 +18,11 @@ namespace renderx {
 		private:
 			bool m_LeftButton = false;
 			bool m_RightButton = false;
-			bool m_MiddleButton = false;
+			bool m_MiddleButton = true;
 
 			glm::vec2 m_CurrentPosition;
 			glm::vec2 m_LastPosition = glm::vec2(0.0f);
-			glm::vec2 m_ScrollOffset = glm::vec2(0.0f);
+			glm::vec2 m_ScrollOffset = glm::vec2(0.1f);
 
 			float m_ScrollSensitivity = 0.25f;
 			float m_MouseSensitivity = 0.1;
@@ -40,7 +40,7 @@ namespace renderx {
 
 			inline glm::vec2& GetMouseCurrentPosition() { return m_CurrentPosition; }
 
-			inline glm::vec2 GetMouseScrollOffset()const { return m_ScrollOffset; }
+			inline glm::vec2& GetMouseScrollOffset() { return m_ScrollOffset; }
 
 			inline float GetMouseSensitivity()const { return m_MouseSensitivity; }
 

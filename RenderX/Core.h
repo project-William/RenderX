@@ -15,6 +15,7 @@
 #include <functional>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <optional>
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_glfw.h>
@@ -42,7 +43,7 @@
 
 #define RDX_INIT_SUCCESS(x,...) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
 
-#define RDX_EVENT_LOG(x,log) renderx::utils::Log::LogEvent( #x, log)	
+#define RDX_EVENT_LOG(x,log) renderx::utils::Log::LogEvent(#x, log)	
 
 
 

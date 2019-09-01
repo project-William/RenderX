@@ -12,7 +12,7 @@ namespace renderx {
 		private:
 			GLuint m_FrameBufferID;
 			RenderBuffer* m_RenderBuffer;
-			Texture *m_Texture;
+			Texture *m_BaseTexture;
 		public:
 			FrameBuffer();
 			FrameBuffer(const WinData& windata);
@@ -22,7 +22,7 @@ namespace renderx {
 			void UnbindFrameBuffer();
 			void UpdateFramebufferData(const WinData& windata, bool& flag);
 
-			inline GLuint& GetRendered(){ return m_Texture->GetTexRef(); }
+			inline GLuint& GetRendered(){ return m_BaseTexture->GetTexRef(); }
 			inline const GLuint& GetFrameBufferID()const { return m_FrameBufferID; }
 		private:
 

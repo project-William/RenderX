@@ -141,7 +141,6 @@ namespace renderx {
 			{
 				auto& data = *static_cast<WinData*>(glfwGetWindowUserPointer(window));
 				events::MouseScrollEvent event((float)xOffset, (float)yOffset);
-
 				data.OnEvent(event);
 			});
 

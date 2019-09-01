@@ -23,8 +23,10 @@ namespace renderx {
 
 		ShaderSource& Shader::GetShaderSource()
 		{
-			m_Source.vertexSource = utils::FileUtils::read_shader(m_VFilePath);
-			m_Source.fragmentSource = utils::FileUtils::read_shader(m_FFilePath);
+			std::optional<std::string> vertex = utils::FileUtils::ReadShader(m_VFilePath);
+			std::optional<std::string> fragment = utils::FileUtils::ReadShader(m_FFilePath);
+			m_Source.vertexSource = vertex.value_or("Not present");
+			m_Source.fragmentSource = fragment.value_or("Not present!");
 			return m_Source;
 		}
 

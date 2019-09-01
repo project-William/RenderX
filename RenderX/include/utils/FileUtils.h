@@ -6,8 +6,8 @@ namespace renderx {
 		class REN_API FileUtils
 		{
 		public:
-			static std::string read_shader(const std::string& filepath);
-			
+			static std::optional<std::string> ReadShader(const std::string& filepath);
+
 		};
 	}
 }

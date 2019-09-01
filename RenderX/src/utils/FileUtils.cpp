@@ -3,18 +3,20 @@
 
 namespace renderx {
 	namespace utils {
-		std::string FileUtils::read_shader(const std::string& filepath)
+
+		std::optional<std::string> FileUtils::ReadShader(const std::string& filepath)
 		{
-			std::ifstream infile;
-			infile.open(filepath);
-			std::stringstream ss;
-			if (!infile.is_open())
-				throw std::runtime_error("Unable to open the file" + filepath);
-			else
+			std::ifstream infile(filepath);
+			if (infile)
 			{
-				ss << infile.rdbuf();
-				return ss.str();
+				std::stringstream strstream;
+				strstream << infile.rdbuf();
+				std::string result = strstream.str();
+				return result;
 			}
+			return std::nullopt;
 		}
+
+
 	}
 }
