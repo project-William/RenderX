@@ -3,7 +3,6 @@
 namespace renderx {
 	namespace entity {
 		
-		
 		MayaCamera::~MayaCamera()
 		{
 
@@ -20,8 +19,6 @@ namespace renderx {
 			m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
 				+ std::powf(m_CameraAttrib.Position.y, 2)
 				+ std::powf(m_CameraAttrib.Position.z, 2));
-			
-
 		}
 
 		void MayaCamera::EnableObject()  
@@ -67,28 +64,11 @@ namespace renderx {
 			xoffset *= 0.1f;
 			yoffset *= 0.1f;
 
-			mouse->UpdateMouse();
 
-			//if (mouse->IsRightMousebuttonPressed())
-			//{
-			//	m_CameraAttrib.Position += m_CameraAttrib.Right * 0.1f * xoffset;
-			//	m_CameraAttrib.Position -= m_CameraAttrib.Up * 0.1f * yoffset;
-			//
-			//	m_FocusPoint.x += 0.1f * xoffset;
-			//	m_FocusPoint.y += 0.1f * yoffset;
-			//
-			//	m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
-			//		+ std::powf(m_CameraAttrib.Position.y, 2)
-			//		+ std::powf(m_CameraAttrib.Position.z, 2));
-			//}
-
+			
+			
 			if (mouse->IsLeftMousebuttonPressed())
 			{
-				m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
-							+ std::powf(m_CameraAttrib.Position.y, 2)
-							+ std::powf(m_CameraAttrib.Position.z, 2));
-
-
 				m_CameraAttrib.Euler_Yaw -= xoffset;
 				m_CameraAttrib.Euler_Pitch -= yoffset;
 
@@ -97,9 +77,23 @@ namespace renderx {
 				m_CameraAttrib.Position.y = -m_Distance * sin(glm::radians(m_CameraAttrib.Euler_Pitch));
 
 				m_CameraAttrib.Position.z = -m_Distance * cos(glm::radians(m_CameraAttrib.Euler_Pitch)) * sin(glm::radians(m_CameraAttrib.Euler_Yaw));
-
-				mouse->UpdateMouse();
+			
 			}
+
+
+			if (mouse->IsRightMousebuttonPressed())
+			{
+				m_CameraAttrib.Position += m_CameraAttrib.Right * 0.1f * xoffset;
+				m_CameraAttrib.Position -= m_CameraAttrib.Up * 0.1f * yoffset;
+
+				m_FocusPoint.x += 0.1f * xoffset;
+				m_FocusPoint.y -= 0.1f * yoffset;
+			}
+
+			m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
+				+ std::powf(m_CameraAttrib.Position.y, 2)
+				+ std::powf(m_CameraAttrib.Position.z, 2));
+			mouse->UpdateMouse();
 
 
 			OnUpdate();

@@ -30,7 +30,8 @@ Dependencies:
 Objectives         |Implemented
 :-----------------:|:---------------------:
 DockSpace          |Enable
-Camera             |Movement,Zoom,FPS Game mode
+FPS Camera         |Movement,Zoom
+Maya Camera        |Movement,Zoom
 Textures           |2DTexture init/load/bind
 Cubemap            |Enable
 Mesh loading       |TODO:

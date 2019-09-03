@@ -2,6 +2,7 @@
 
 namespace renderx {
 	namespace ui {
+
 		ImguiSetWindow::ImguiSetWindow()
 		{
 
@@ -24,6 +25,18 @@ namespace renderx {
 				ImGui::Checkbox("DockSpace", &m_DockSpace_Open);
 			}
 		}
+
+		void ImguiSetWindow::PushRenderers(std::unordered_map<graphics::RenderObject*, bool>& m_Renderer)
+		{
+
+		}
+
+		void ImguiSetWindow::CameraSetting(const graphics::WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair)
+		{
+		
+		}
+
+	
 
 
 		void ImguiSetWindow::EndSetWindow()

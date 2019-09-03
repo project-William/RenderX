@@ -95,6 +95,8 @@ namespace renderx {
 			//skybox 
 			void InitCamera(entity::FPSCamera* fpscam, entity::MayaCamera* defcam);
 				
+			inline std::unordered_map<RenderObject*, bool>& GetRenderersRef() { return m_Renderer; }
+
 		private:
 			ui::ImguiFileBrowser m_FileBrowser;
 
