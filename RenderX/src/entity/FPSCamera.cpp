@@ -43,8 +43,12 @@ namespace renderx {
 		{	
 			float speed = 0.005f;
 			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
+			std::shared_ptr<ui::ImguiSceneWindow>& sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
 		
-			if (mouse->GetMouseCurrentPosition() != glm::vec2(0, 0))
+			if (mouse->GetMouseCurrentPosition() != glm::vec2(0, 0) && mouse->IsLeftMousebuttonPressed() &&
+				mouse->GetMouseLastPosition().x < sceneWindow->GetSceneWinWidth()
+				&& mouse->GetMouseCurrentPosition().y < sceneWindow->GetSceneWinHeight()
+				)
 			{
 				glm::vec2 LastPosition = mouse->GetMouseLastPosition();
 				glm::vec2 CurrentPosition = mouse->GetMouseCurrentPosition();
@@ -78,14 +82,21 @@ namespace renderx {
 		void FPSCamera::ProcessMouseScrollInput()
 		{
 			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
+			std::shared_ptr<ui::ImguiSceneWindow>& sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
 
-			if (m_CameraAttrib.Zoom>= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
-				m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
-			if (m_CameraAttrib.Zoom <= 1.0f)
-				m_CameraAttrib.Zoom = 1.0f;
-			if (m_CameraAttrib.Zoom >= 45.0f)
-				m_CameraAttrib.Zoom = 45.0f;
+			if (mouse->IsLeftMousebuttonPressed() &&
+				mouse->GetMouseLastPosition().x < sceneWindow->GetSceneWinWidth()
+				&& mouse->GetMouseCurrentPosition().y < sceneWindow->GetSceneWinHeight()
+			   )
+			{
+				if (m_CameraAttrib.Zoom >= 1.0f && m_CameraAttrib.Zoom <= 45.0f)
+					m_CameraAttrib.Zoom -= mouse->GetMouseScrollOffset().y;
+				if (m_CameraAttrib.Zoom <= 1.0f)
+					m_CameraAttrib.Zoom = 1.0f;
+				if (m_CameraAttrib.Zoom >= 45.0f)
+					m_CameraAttrib.Zoom = 45.0f;
 
+			}
 
 		}
 

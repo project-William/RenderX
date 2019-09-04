@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "..//utils/Keyboard.h"
 #include "..//utils/Mouse.h"
+#include "..//graphics/imgui/ImguiSceneWindow.h"
 
 namespace renderx {
 	namespace entity {

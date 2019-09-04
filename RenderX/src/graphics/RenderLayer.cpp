@@ -631,7 +631,7 @@ namespace renderx {
 						}
 						else if (m_CameraPart.fpsCamera)
 						{
-							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 							campair.first->EnableObject();
 							iter.first->GetTransRef().view = campair.first->GetViewMatrix();
 							iter.first->GetTransRef().projection = glm::perspective
@@ -670,7 +670,7 @@ namespace renderx {
 				{
 					if (m_CameraPart.fpsCamera)
 					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						campair.first->EnableObject();
 						iter->GetTransRef().view = campair.first->GetViewMatrix();
 						iter->GetTransRef().projection = glm::perspective

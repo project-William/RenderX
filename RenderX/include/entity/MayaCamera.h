@@ -12,7 +12,7 @@ namespace renderx {
 		{
 		public:
 			MayaCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
-				float yaw = -90, float pitch = -15.0f):m_FocusPoint(glm::vec3(0.0f))
+				float yaw = -90, float pitch = 15.0f):m_FocusPoint(glm::vec3(0.0f))
 			{
 				m_CameraAttrib.Front = glm::vec3(0.0f, 0.0f, 0.0f);
 				m_CameraAttrib.MouseSensivitity = 0.1f;
