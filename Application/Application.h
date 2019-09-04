@@ -37,11 +37,11 @@ private:
 	ui::ImguiLog* imguiLog;
 
 	ui::ImguiSetWindow* imguisetwindow;
+	std::shared_ptr<ui::ImguiSceneWindow> m_SceneWindow;
 
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
-	ui::ImguiSceneWindow* imguiSceneWindow;
 
 	graphics::RenderLight* basicLight;
 	graphics::RenderLight* lights[4];

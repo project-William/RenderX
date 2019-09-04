@@ -24,7 +24,7 @@ namespace renderx {
 			glm::vec2 m_LastPosition = glm::vec2(0.0f);
 			glm::vec2 m_ScrollOffset = glm::vec2(0.1f);
 
-			float m_ScrollSensitivity = 0.25f;
+			float m_ScrollSensitivity = 0.45f;
 			float m_MouseSensitivity = 0.1;
 
 

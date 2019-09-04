@@ -1,11 +1,12 @@
 #pragma once
 #include "..//..//..//Core.h"
 #include "..//Window.h"
-#include "..//..//entity/FPSCamera.h"
-#include "..//..//entity/MayaCamera.h"
 #include "..//render/RenderObject.h"
+#include "..//RenderLayer.h"
 
 namespace renderx {
+	using CamPair=std::pair<entity::FPSCamera*, entity::MayaCamera*>;
+
 	namespace ui {
 
 		class REN_API ImguiSetWindow
@@ -16,10 +17,9 @@ namespace renderx {
 
 			void BeginSetWindow();
 			void GraphicsSettingWindow();
-			void CameraSetting(const graphics::WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair);
+			void CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer);
 			void ShowDemo() { bool a = true; ImGui::ShowDemoWindow(&a); }
 			void EndSetWindow();
-			void PushRenderers(std::unordered_map<graphics::RenderObject*, bool>& m_Renderer);
 
 		private:
 

@@ -26,14 +26,11 @@ namespace renderx {
 			}
 		}
 
-		void ImguiSetWindow::PushRenderers(std::unordered_map<graphics::RenderObject*, bool>& m_Renderer)
+		void ImguiSetWindow::CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer)
 		{
+			auto& renderers = layer.GetRenderersRef();
+			
 
-		}
-
-		void ImguiSetWindow::CameraSetting(const graphics::WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair)
-		{
-		
 		}
 
 	

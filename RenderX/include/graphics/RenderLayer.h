@@ -5,9 +5,10 @@
 #include "imgui/ImguiFileBrowser.h"
 
 namespace renderx {
-	namespace graphics {
 
-#define SINGLE_CHOICE(a,b,c,d) if(a) { b=c=d=false; }
+	using CamPair=std::pair<entity::FPSCamera*, entity::MayaCamera*>;
+
+	namespace graphics {
 
 
 		struct REN_API CameraPart
@@ -76,7 +77,7 @@ namespace renderx {
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
 			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
-			void DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair);
+			void DefaultCamSet(const WinData& windata, CamPair campair);
 			void File();
 			
 
@@ -103,7 +104,7 @@ namespace renderx {
 			std::unordered_map<RenderObject*, bool> m_Renderer;
 			std::vector<entity::RenderSkybox*> m_Skyboxes;
 			std::vector<entity::Flatboard*> m_Flatboards;
-			std::pair<entity::FPSCamera*, entity::MayaCamera*> m_Camera;
+			CamPair m_Camera;
 			std::vector<RenderLight*> m_Lights;
 			
 
@@ -137,10 +138,6 @@ namespace renderx {
 			EnableTexture m_EnableTexture;
 
 			bool isUse = false;
-
-
-		private:
-			void EmptyTexture(const std::string& filepath);
 		};
 
 	}

@@ -48,9 +48,11 @@ Application::Application()
 
 	imguiLog = new ui::ImguiLog();
 	imguisetwindow = new ui::ImguiSetWindow();
-	imguiSceneWindow = new ui::ImguiSceneWindow();
-	camera = new entity::FPSCamera(glm::vec3(0.0f, 0.0f, 15.0f));
-	defaultcam = new entity::MayaCamera(glm::vec3(0.0f, 0.0f, 15.0f));
+
+	m_SceneWindow = ui::ImguiSceneWindow::Create();
+
+	camera = new entity::FPSCamera(glm::vec3(0.0f, 2.0f, 15.0f));
+	defaultcam = new entity::MayaCamera(glm::vec3(0.0f, 2.0f, 15.0f));
 
 	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
 
@@ -122,9 +124,9 @@ void Application::Run()
 		imguisetwindow->EndSetWindow();
 		//movement
 		//imgui draw window
-		imguiSceneWindow->BeginSceneWindow();
-		imguiSceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
-		imguiSceneWindow->EndSceneWindow();
+		m_SceneWindow->BeginSceneWindow();
+		m_SceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
+		m_SceneWindow->EndSceneWindow();
 		//keyboard movement
 		//imgui log window
 		imguiLog->BeginLog();

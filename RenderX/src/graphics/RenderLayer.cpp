@@ -62,22 +62,22 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("Skybox 1", &m_SkyboxPart.skybox_1))
 				{
-					SINGLE_CHOICE(m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
+					SINGLE_CHOICE_IN_FOUR(m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
 				}
 
 				if (ImGui::Checkbox("Skybox 2", &m_SkyboxPart.skybox_2))
 				{
-					SINGLE_CHOICE(m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
+					SINGLE_CHOICE_IN_FOUR(m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_4);
 				}
 
 				if (ImGui::Checkbox("Skybox 3", &m_SkyboxPart.skybox_3))
 				{
-					SINGLE_CHOICE(m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_4);
+					SINGLE_CHOICE_IN_FOUR(m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_2, m_SkyboxPart.skybox_4);
 				}
 
 				if (ImGui::Checkbox("Skybox 4", &m_SkyboxPart.skybox_4))
 				{
-					SINGLE_CHOICE(m_SkyboxPart.skybox_4, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_2);
+					SINGLE_CHOICE_IN_FOUR(m_SkyboxPart.skybox_4, m_SkyboxPart.skybox_1, m_SkyboxPart.skybox_3, m_SkyboxPart.skybox_2);
 				}
 
 			}
@@ -89,24 +89,24 @@ namespace renderx {
 
 				if (ImGui::Checkbox("Sphere", &m_RendererPart.renderer_1))
 				{
-					SINGLE_CHOICE(m_RendererPart.renderer_1, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
+					SINGLE_CHOICE_IN_FOUR(m_RendererPart.renderer_1, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
 					RenderIter->second = m_RendererPart.renderer_1;
 				}
 
 				if (ImGui::Checkbox("cube", &m_RendererPart.renderer_2))
 				{
-					SINGLE_CHOICE(m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
+					SINGLE_CHOICE_IN_FOUR(m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_3, m_RendererPart.renderer_4);
 					(++RenderIter)->second = m_RendererPart.renderer_1;
 				}
 
 				if (ImGui::Checkbox("Model_1", &m_RendererPart.renderer_3))
 				{
-					SINGLE_CHOICE(m_RendererPart.renderer_3, m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_4);
+					SINGLE_CHOICE_IN_FOUR(m_RendererPart.renderer_3, m_RendererPart.renderer_2, m_RendererPart.renderer_1, m_RendererPart.renderer_4);
 				}
 
 				if (ImGui::Checkbox("Model_2", &m_RendererPart.renderer_4))
 				{
-					SINGLE_CHOICE(m_RendererPart.renderer_4, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_1);
+					SINGLE_CHOICE_IN_FOUR(m_RendererPart.renderer_4, m_RendererPart.renderer_2, m_RendererPart.renderer_3, m_RendererPart.renderer_1);
 				}
 			}
 			//lights
@@ -114,22 +114,22 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("Light_1", &m_LightPart.light_1))
 				{
-					SINGLE_CHOICE(m_LightPart.light_1, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_4);
+					SINGLE_CHOICE_IN_FOUR(m_LightPart.light_1, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_4);
 				}
 
 				if (ImGui::Checkbox("Light_2", &m_LightPart.light_2))
 				{
-					SINGLE_CHOICE(m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_3, m_LightPart.light_4);
+					SINGLE_CHOICE_IN_FOUR(m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_3, m_LightPart.light_4);
 				}
 
 				if (ImGui::Checkbox("Light_3", &m_LightPart.light_3))
 				{
-					SINGLE_CHOICE(m_LightPart.light_3, m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_4);
+					SINGLE_CHOICE_IN_FOUR(m_LightPart.light_3, m_LightPart.light_2, m_LightPart.light_1, m_LightPart.light_4);
 				}
 
 				if (ImGui::Checkbox("Light_4", &m_LightPart.light_4))
 				{
-					SINGLE_CHOICE(m_LightPart.light_4, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_1);
+					SINGLE_CHOICE_IN_FOUR(m_LightPart.light_4, m_LightPart.light_2, m_LightPart.light_3, m_LightPart.light_1);
 				}
 				
 			}
@@ -138,25 +138,25 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("Phong Model", &m_LightModelPart.PhongModel))
 				{
-					SINGLE_CHOICE(m_LightModelPart.PhongModel, m_LightModelPart.Blinn_Phong,
+					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.PhongModel, m_LightModelPart.Blinn_Phong,
 								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Blinn Phong", &m_LightModelPart.Blinn_Phong))
 				{
-					SINGLE_CHOICE(m_LightModelPart.Blinn_Phong, m_LightModelPart.PhongModel,
+					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.Blinn_Phong, m_LightModelPart.PhongModel,
 								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Lighting PBR", &m_LightModelPart.LightPBR))
 				{
-					SINGLE_CHOICE(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,
+					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,
 								  m_LightModelPart.PhongModel, m_LightModelPart.TexturePBR);
 				}
 				
 				if (ImGui::Checkbox("Texture PBR", &m_LightModelPart.TexturePBR))
 				{
-					SINGLE_CHOICE(m_LightModelPart.TexturePBR, m_LightModelPart.Blinn_Phong,
+					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.TexturePBR, m_LightModelPart.Blinn_Phong,
 								  m_LightModelPart.LightPBR, m_LightModelPart.PhongModel);
 				}
 
@@ -602,7 +602,7 @@ namespace renderx {
 		}
 
 
-		void RenderLayer::DefaultCamSet(const WinData& windata, std::pair<entity::FPSCamera*, entity::MayaCamera*> campair)
+		void RenderLayer::DefaultCamSet(const WinData& windata, CamPair campair)
 		{
 			for (auto iter : m_Renderer)
 			{

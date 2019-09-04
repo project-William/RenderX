@@ -33,6 +33,14 @@
 	#define REN_API __declspec(dllexport)
 #endif // RENDERX
 
+#define SINGLE_CHOICE_IN_TWO(a,b) if(a) { b=false; }
+
+#define SINGLE_CHOICE_IN_THREE(a,b,c) if(a) { b=c=false; }
+
+#define SINGLE_CHOICE_IN_FOUR(a,b,c,d) if(a) { b=c=d=false; }
+
+#define SINGLE_CHOICE_IN_FIVE(a,b,c,d,e) if(a) { b=c=d=e=false; }
+
 #define VALUE(x) (1<<x)
 
 #define MAX_FILE_DIALOG_NAME_BUFFER 1024
