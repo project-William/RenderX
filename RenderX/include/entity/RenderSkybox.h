@@ -4,6 +4,7 @@
 #include "Entity.h"
 
 namespace renderx {
+	using CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>;
 	namespace entity {
 
 		
@@ -66,7 +67,7 @@ namespace renderx {
 						
 			void EnableObject() override;
 			void DisableObject() override;
-			void Draw(const graphics::WinData& windata, FPSCamera* camera);
+			void Draw(const graphics::WinData& windata, CamPair& cam);
 			void OnUpdate() override;
 			
 			inline graphics::Transformation& GetTransRef() { return m_Trans; }

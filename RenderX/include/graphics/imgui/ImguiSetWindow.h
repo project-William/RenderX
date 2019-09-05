@@ -18,13 +18,27 @@ namespace renderx {
 			void BeginSetWindow();
 			void GraphicsSettingWindow();
 			void CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer);
+
 			void ShowDemo() { bool a = true; ImGui::ShowDemoWindow(&a); }
 			void EndSetWindow();
 
 		private:
-
+			bool m_DockSpace_Open = true;
+			bool m_Skybox_App_Open = false;
+			bool m_Renderer_App_Open = true;
+			bool m_Light_App_Open = false;
+			bool m_Renderer_Attrib_App_Open = false;
+			bool m_Texture_App_Open = false;
+			bool m_Other_Attrib_App_Open = false;
+			bool m_LightModel_Open = false;
 			void DockSpace(bool& dockopen);
 		private:
+			void CameraHeader(graphics::RenderLayer& layer);
+			void SkyboxHeader(graphics::RenderLayer& layer);
+			void RendererHeader(graphics::RenderLayer& layer);
+			void LightModelHeader(graphics::RenderLayer& layer);
+			void TextureHeader();
+			void OtherAttribHeader();
 			bool m_DockSpace_Open = true;
 		};
 	}

@@ -28,9 +28,429 @@ namespace renderx {
 
 		void ImguiSetWindow::CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer)
 		{
-			auto& renderers = layer.GetRenderersRef();
-			
+			CameraHeader(layer);
+			SkyboxHeader(layer);
 
+		}
+
+		void ImguiSetWindow::CameraHeader(graphics::RenderLayer& layer)
+		{
+			if (ImGui::CollapsingHeader("Camera"))
+			{
+				if (ImGui::Checkbox("FPS Game Camera", &layer.IsCameraRef().fpsCamera))
+				{
+					SINGLE_CHOICE_IN_TWO(layer.IsCameraRef().fpsCamera, layer.IsCameraRef().MayaCamera);
+				}
+
+				if (ImGui::Checkbox("Default Camera", &layer.IsCameraRef().MayaCamera))
+				{
+					SINGLE_CHOICE_IN_TWO(layer.IsCameraRef().MayaCamera, layer.IsCameraRef().fpsCamera);
+				}
+			}
+		}
+
+		void ImguiSetWindow::SkyboxHeader(graphics::RenderLayer& layer)
+		{
+
+			if (ImGui::CollapsingHeader("Skybox"))
+			{
+				if (ImGui::Checkbox("Skybox 1", &layer.IsSkyboxRenderRef().skybox_1))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_1, 
+						layer.IsSkyboxRenderRef().skybox_2, 
+						layer.IsSkyboxRenderRef().skybox_3, 
+						layer.IsSkyboxRenderRef().skybox_4);
+				}
+
+				if (ImGui::Checkbox("Skybox 2", &layer.IsSkyboxRenderRef().skybox_1))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_2,
+						layer.IsSkyboxRenderRef().skybox_1,
+						layer.IsSkyboxRenderRef().skybox_3,
+						layer.IsSkyboxRenderRef().skybox_4);
+				}
+
+				if (ImGui::Checkbox("Skybox 3", &layer.IsSkyboxRenderRef().skybox_1))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_3,
+						layer.IsSkyboxRenderRef().skybox_1,
+						layer.IsSkyboxRenderRef().skybox_2,
+						layer.IsSkyboxRenderRef().skybox_4);
+				}
+
+				if (ImGui::Checkbox("Skybox 4", &layer.IsSkyboxRenderRef().skybox_1))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_4,
+						layer.IsSkyboxRenderRef().skybox_1,
+						layer.IsSkyboxRenderRef().skybox_3,
+						layer.IsSkyboxRenderRef().skybox_2);
+				}
+			}
+		}
+
+		void ImguiSetWindow::RendererHeader(graphics::RenderLayer& layer)
+		{
+			auto rendererID = layer.GetRenderersRef().begin();
+
+			if (ImGui::CollapsingHeader("Renderers", m_Renderer_App_Open))
+			{
+
+				if (ImGui::Checkbox("Sphere", &layer.IsRenderRef().renderer_1))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsRenderRef().renderer_1,
+						layer.IsRenderRef().renderer_2, 
+						layer.IsRenderRef().renderer_3, 
+						layer.IsRenderRef().renderer_4);
+					rendererID->second = layer.IsRenderRef().renderer_1;
+				}
+
+				if (ImGui::Checkbox("cube", &layer.IsRenderRef().renderer_2))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsRenderRef().renderer_2,
+						layer.IsRenderRef().renderer_1,
+						layer.IsRenderRef().renderer_3,
+						layer.IsRenderRef().renderer_4);
+					(++rendererID)->second = layer.IsRenderRef().renderer_1;
+				}
+
+				if (ImGui::Checkbox("Model_1", &layer.IsRenderRef().renderer_3))
+				{
+				}
+
+				if (ImGui::Checkbox("Model_2", &layer.IsRenderRef().renderer_4))
+				{
+				}
+			}
+		}
+
+		void ImguiSetWindow::LightModelHeader(graphics::RenderLayer& layer)
+		{
+			if (ImGui::CollapsingHeader("Light Model", m_LightModel_Open))
+			{
+				if (ImGui::Checkbox("Phong Model", &layer.IsLightModeRef().PhongModel))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().PhongModel, 
+						layer.IsLightModeRef().Blinn_Phong,
+						layer.IsLightModeRef().LightPBR, 
+						layer.IsLightModeRef().TexturePBR);
+				}
+
+				if (ImGui::Checkbox("Blinn Phong", &layer.IsLightModeRef().Blinn_Phong))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().Blinn_Phong,
+						layer.IsLightModeRef().PhongModel,
+						layer.IsLightModeRef().LightPBR, 
+						layer.IsLightModeRef().TexturePBR);
+				}
+
+				if (ImGui::Checkbox("Lighting PBR", &layer.IsLightModeRef().LightPBR))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().LightPBR,
+						layer.IsLightModeRef().Blinn_Phong,
+						layer.IsLightModeRef().PhongModel, 
+						layer.IsLightModeRef().TexturePBR);
+				}
+
+				if (ImGui::Checkbox("Texture PBR", &layer.IsLightModeRef().TexturePBR))
+				{
+					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().TexturePBR,
+						layer.IsLightModeRef().Blinn_Phong,
+						layer.IsLightModeRef().LightPBR, 
+						layer.IsLightModeRef().PhongModel);
+				}
+
+				//ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
+				//ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
+				//ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
+				//ImGui::SliderFloat("Y-axis", &light->GetLightPositionRef().y, -20, 20);
+				//ImGui::SliderFloat("Z-axis", &light->GetLightPositionRef().z, -20, 20);
+			}
+		}
+
+		void ImguiSetWindow::TextureHeader()
+		{
+
+			//texture
+			if (ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
+			{
+				// albedo texture 
+				if (ImGui::Button("Albedo", ImVec2(100.0f, 20.0f)))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.AlbedoTex = true;
+				}
+				ImGui::SameLine();
+
+				if (ImGui::Checkbox("Use Albedo", &m_EnableTexture.EnableAlbedo))
+				{
+
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					unsigned int tex = 0;
+					if (iter.second)
+					{
+						if (iter.first->GetAlbedoTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetAlbedoTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
+					}
+				}
+
+
+				//ao texture
+				if (ImGui::Button("AO", ImVec2(100.0f, 20.0f)))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.AOTex = true;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use AO", &m_EnableTexture.EnableAO))
+				{
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					unsigned int tex = 0;
+					if (iter.second)
+					{
+						if (iter.first->GetAOTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetAOTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
+					}
+				}
+				//metallic texture
+				if (ImGui::Button("Metallic", ImVec2(100.0f, 20.0f)))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.MetallicTex = true;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Metallic", &m_EnableTexture.EnableMetallic))
+				{
+
+				}
+				for (auto iter : m_Renderer)
+				{
+					unsigned int tex = 0;
+					if (iter.second)
+					{
+						if (iter.first->GetMetallicTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetMetallicTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
+					}
+				}
+				//normal texture
+				if (ImGui::Button("Normal", ImVec2(100.0f, 20.0f)))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.NormalTex = true;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Normal", &m_EnableTexture.EnableNormal))
+				{
+				}
+				for (auto iter : m_Renderer)
+				{
+					unsigned int tex = 0;
+					if (iter.second)
+					{
+						if (iter.first->GetNormalTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetNormalTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
+					}
+				}
+
+				//roughness texture
+				if (ImGui::Button("Roughness", ImVec2(100.0f, 20.0f)))
+				{
+					m_FileBrowser.Open();
+					m_TexturePart.RoughnessTex = true;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("Use Roughness", &m_EnableTexture.EnableRoughness))
+				{
+
+				}
+				for (auto iter : m_Renderer)
+				{
+					unsigned int tex = 0;
+					if (iter.second)
+					{
+						if (iter.first->GetRoughnessTexture())
+						{
+							ImGui::Image((void*)(intptr_t)iter.first->GetRoughnessTexture(), ImVec2(100, 100));
+						}
+						else
+						{
+							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+						}
+					}
+				}
+				std::string textureName = "none";
+				textureName = m_FileBrowser.GetSelected().string();
+
+				m_FileBrowser.Display();
+
+				if (m_TexturePart.AlbedoTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetAlbedoTex(textureName);
+							m_TexturePart.AlbedoTex = false;
+						}
+					}
+				}
+
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableAlbedo)
+						{
+							iter.first->EnableAlbedoTexture();
+						}
+						else
+						{
+							iter.first->DisableAlbedoTexture();
+						}
+					}
+				}
+
+				if (m_TexturePart.AOTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetAOTex(textureName);
+							m_TexturePart.AOTex = false;
+						}
+					}
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableAO)
+						{
+							iter.first->EnableAOTexture();
+						}
+						else
+						{
+							iter.first->DisableAOTexture();
+						}
+					}
+				}
+
+
+				if (m_TexturePart.MetallicTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetMetallicTex(textureName);
+							m_TexturePart.MetallicTex = false;
+						}
+					}
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableMetallic)
+						{
+							iter.first->EnableMetallicTexture();
+						}
+						else
+						{
+							iter.first->DisableMetallicTexture();
+						}
+					}
+				}
+
+
+				if (m_TexturePart.NormalTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetNormalTex(textureName);
+							m_TexturePart.NormalTex = false;
+						}
+					}
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableNormal)
+						{
+							iter.first->EnableNormalTexture();
+						}
+						else
+						{
+							iter.first->DisableNormalTexture();
+						}
+					}
+				}
+
+
+				if (m_TexturePart.RoughnessTex)
+				{
+					for (auto iter : m_Renderer)
+					{
+						if (iter.second && !m_FileBrowser.IsOpened())
+						{
+							iter.first->SetRoughnessTex(textureName);
+							m_TexturePart.RoughnessTex = false;
+						}
+					}
+				}
+				for (auto iter : m_Renderer)
+				{
+					if (iter.second)
+					{
+						if (m_EnableTexture.EnableRoughness)
+						{
+							iter.first->EnableRoughnessTexture();
+						}
+						else
+						{
+							iter.first->DisableRoughnessTexture();
+						}
+					}
+				}
+
+			}
+		}
+
+		void ImguiSetWindow::OtherAttribHeader()
+		{
 		}
 
 	

@@ -16,6 +16,14 @@ namespace renderx {
 
 			inline int GetSceneWinWidth() const { return m_SceneWinWidth; }
 			inline int GetSceneWinHeight() const { return m_SceneWinHeight; }
+
+			
+
+			void CameraHeader();
+			void SkyboxHeader();
+			void RendererHeader();
+			void TextureHeader();
+			void OtherAttribHeader();
 			
 			static std::shared_ptr<ImguiSceneWindow> Create();
 			inline static std::shared_ptr<ImguiSceneWindow>& GetSceneWindowInstance() { return m_Instance; }

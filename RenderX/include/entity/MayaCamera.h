@@ -36,11 +36,12 @@ namespace renderx {
 			glm::mat4 GetProjectionMatrix();
 			glm::mat4 GetModelMatrix();
 
-			inline CameraAttributes GetCameraAttrib()const { return m_CameraAttrib; }
-
+			inline CameraAttributes GetCameraAttrib() { return m_CameraAttrib; }
+			inline float& GetDistanceRef() { return m_Distance; }
+			inline bool& IsUseRef() { return m_IsUse; }
 		private:
 			CameraAttributes m_CameraAttrib;
-
+			bool m_IsUse = false;
 			float m_Distance;
 			glm::vec3 m_FocusPoint;
 			glm::mat4 m_RotationMatrix;

@@ -51,7 +51,7 @@ Application::Application()
 
 	m_SceneWindow = ui::ImguiSceneWindow::Create();
 
-	camera = new entity::FPSCamera(glm::vec3(0.0f, 2.0f, 15.0f));
+	camera = new entity::FPSCamera(glm::vec3(0.0f, 4.0f, 15.0f));
 	defaultcam = new entity::MayaCamera(glm::vec3(0.0f, 2.0f, 15.0f));
 
 	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
@@ -95,7 +95,7 @@ void Application::Run()
 		//begin scene
 		graphics::RenderScene::SceneBegin();
 		
-		renderLayer->RenderSkybox(WinData, camera);
+		renderLayer->RenderSkybox(WinData, m_CamPair);
 		
 		renderLayer->RenderFlatboard(WinData, camera, basicLight);
 		renderLayer->RenderObjects(WinData, camera);
@@ -116,7 +116,7 @@ void Application::Run()
 		imguisetwindow->BeginSetWindow();
 		
 		imguisetwindow->GraphicsSettingWindow();
-		renderLayer->DefaultCamSet(WinData, m_CamPair);
+		renderLayer->CameraSettng(WinData, m_CamPair);
 		renderLayer->RenderSettings(WinData,camera,basicLight);
 
 		//renderLayer->MultiLight(camera);

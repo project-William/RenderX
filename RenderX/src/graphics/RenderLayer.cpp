@@ -32,29 +32,12 @@ namespace renderx {
 			{
 				if (ImGui::Checkbox("FPS Game Camera", &m_CameraPart.fpsCamera))
 				{
-					if (m_CameraPart.fpsCamera)
-					{
-						m_CameraPart.MayaCamera = false;
-						m_CameraPart.NoCamera = false;
-					}
+					SINGLE_CHOICE_IN_TWO(m_CameraPart.fpsCamera, m_CameraPart.MayaCamera);
 				}
 				
 				if (ImGui::Checkbox("Default Camera", &m_CameraPart.MayaCamera))
 				{
-					if (m_CameraPart.MayaCamera)
-					{
-						m_CameraPart.fpsCamera = false;
-						m_CameraPart.NoCamera = false;
-					}
-				}
-
-				if (ImGui::Checkbox("No Camera", &m_CameraPart.NoCamera))
-				{
-					if (m_CameraPart.NoCamera)
-					{	
-						m_CameraPart.fpsCamera = false;
-						m_CameraPart.MayaCamera = false;
-					}
+					SINGLE_CHOICE_IN_TWO(m_CameraPart.MayaCamera, m_CameraPart.fpsCamera);
 				}
 			}
 			
@@ -498,111 +481,7 @@ namespace renderx {
 
 		}
 
-		void RenderLayer::CameraSetting(const WinData& windata, entity::FPSCamera* camera)
-		{
-			//iter is the iterator of renderers, iter.first is the pointer of a Renderer while iter.second is to distinguish
-			//wheather it should be rendered
-			for (auto iter : m_Renderer)
-			{
-				if (iter.second == true)
-				{
-					if (m_CameraPart.fpsCamera)
-					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-						camera->EnableObject();
-						iter.first->GetTransRef().view = camera->GetViewMatrix();
-						iter.first->GetTransRef().projection = glm::perspective
-						(
-							glm::radians(camera->GetCameraAttrib().Zoom),
-							(float)windata.win_Width / (float)windata.win_Height,
-							0.1f, 100.0f
-						);
-
-						auto keyboard = utils::Keyboard::GetKeyboardInstance();
-						if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-						{
-							m_CameraPart.fpsCamera = false;
-							m_CameraPart.NoCamera = true;
-							m_CameraPart.MayaCamera = false;
-						}
-					}
-					if(m_CameraPart.MayaCamera)
-					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-						iter.first->GetTransRef().view = camera->GetViewMatrix();
-						iter.first->GetTransRef().projection = glm::perspective
-						(
-							glm::radians(45.0f),
-							(float)windata.win_Width / (float)windata.win_Height,
-							0.1f, 100.0f
-						);
-						
-					}
-					if(m_CameraPart.NoCamera)
-					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-						iter.first->GetTransRef().view = camera->GetViewMatrix();
-						iter.first->GetTransRef().projection = glm::perspective
-						(
-							glm::radians(45.0f),
-							(float)windata.win_Width / (float)windata.win_Height,
-							0.1f, 100.0f
-						);
-
-					}
-				}
-			}
-
-			for (auto iter : m_Flatboards)
-			{
-				if (m_CameraPart.fpsCamera)
-				{
-					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-					camera->EnableObject();
-					iter->GetTransRef().view = camera->GetViewMatrix();
-					iter->GetTransRef().projection = glm::perspective
-					(
-						glm::radians(camera->GetCameraAttrib().Zoom),
-						(float)windata.win_Width / (float)windata.win_Height,
-						0.1f, 100.0f
-					);
-			
-					auto keyboard = utils::Keyboard::GetKeyboardInstance();
-					if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-					{
-						m_CameraPart.fpsCamera = false;
-						m_CameraPart.NoCamera = true;
-						m_CameraPart.MayaCamera = false;
-					}
-				}
-				if (m_CameraPart.MayaCamera)
-				{
-					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-					iter->GetTransRef().view = camera->GetViewMatrix();
-					iter->GetTransRef().projection = glm::perspective
-					(
-						glm::radians(45.0f),
-						(float)windata.win_Width / (float)windata.win_Height,
-						0.1f, 100.0f
-					);
-				}
-				if (m_CameraPart.NoCamera)
-				{
-					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-					iter->GetTransRef().view = camera->GetViewMatrix();
-					iter->GetTransRef().projection = glm::perspective
-					(
-						glm::radians(45.0f),
-						(float)windata.win_Width / (float)windata.win_Height,
-						0.1f, 100.0f
-					);
-			
-				}
-			}
-		}
-
-
-		void RenderLayer::DefaultCamSet(const WinData& windata, CamPair campair)
+		void RenderLayer::CameraSettng(const WinData& windata, CamPair& campair)
 		{
 			for (auto iter : m_Renderer)
 			{
@@ -614,6 +493,8 @@ namespace renderx {
 						{
 							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 							campair.second->EnableObject();
+							campair.first->IsUseRef() = false;
+							campair.second->IsUseRef() = true;
 							iter.first->GetTransRef().view = campair.second->GetViewMatrix();
 							iter.first->GetTransRef().projection = glm::perspective
 							(
@@ -621,17 +502,12 @@ namespace renderx {
 								(float)windata.win_Width / (float)windata.win_Height,
 								0.1f, 100.0f
 							);
-							auto keyboard = utils::Keyboard::GetKeyboardInstance();
-							if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-							{
-								m_CameraPart.fpsCamera = false;
-								m_CameraPart.NoCamera = true;
-								m_CameraPart.MayaCamera = false;
-							}
 						}
 						else if (m_CameraPart.fpsCamera)
 						{
 							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+							campair.first->IsUseRef() = true;
+							campair.second->IsUseRef() = false;
 							campair.first->EnableObject();
 							iter.first->GetTransRef().view = campair.first->GetViewMatrix();
 							iter.first->GetTransRef().projection = glm::perspective
@@ -640,26 +516,7 @@ namespace renderx {
 								(float)windata.win_Width / (float)windata.win_Height,
 								0.1f, 100.0f
 							);
-							auto keyboard = utils::Keyboard::GetKeyboardInstance();
-							if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-							{
-								m_CameraPart.fpsCamera = false;
-								m_CameraPart.NoCamera = true;
-								m_CameraPart.MayaCamera = false;
-							}
 						}
-					}
-					if (m_CameraPart.NoCamera)
-					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-						iter.first->GetTransRef().view = campair.second->GetViewMatrix();
-						iter.first->GetTransRef().projection = glm::perspective
-						(
-							glm::radians(45.0f),
-							(float)windata.win_Width / (float)windata.win_Height,
-							0.1f, 100.0f
-						);
-
 					}
 				}
 			}
@@ -672,6 +529,8 @@ namespace renderx {
 					{
 						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						campair.first->EnableObject();
+						campair.first->IsUseRef() = true;
+						campair.second->IsUseRef() = false;
 						iter->GetTransRef().view = campair.first->GetViewMatrix();
 						iter->GetTransRef().projection = glm::perspective
 						(
@@ -680,10 +539,12 @@ namespace renderx {
 							0.1f, 100.0f
 						);
 					}
-					else if(m_CameraPart.MayaCamera)
+					else if (m_CameraPart.MayaCamera)
 					{
 						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						campair.second->EnableObject();
+						campair.second->IsUseRef() = true;
+						campair.first->IsUseRef() = false;
 						iter->GetTransRef().view = campair.second->GetViewMatrix();
 						iter->GetTransRef().projection = glm::perspective
 						(
@@ -692,43 +553,9 @@ namespace renderx {
 							0.1f, 100.0f
 						);
 					}
-					
-
-					auto keyboard = utils::Keyboard::GetKeyboardInstance();
-					if (keyboard->GetKeyCode(utils::Keys::RX_KEY_ESCAPE))
-					{
-						m_CameraPart.fpsCamera = false;
-						m_CameraPart.NoCamera = true;
-						m_CameraPart.MayaCamera = false;
-					}
-				}
-				if (m_CameraPart.NoCamera)
-				{
-					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-					iter->GetTransRef().view = campair.second->GetViewMatrix();
-					iter->GetTransRef().projection = glm::perspective
-					(
-						glm::radians(45.0f),
-						(float)windata.win_Width / (float)windata.win_Height,
-						0.1f, 100.0f
-					);
 
 				}
 			}
-		}
-
-		void RenderLayer::File()
-		{
-			//if (ImGui::Button("Openfile"))
-			//{
-			//	m_FileBrowser.Open();
-			//}
-			//
-			//m_FileBrowser.Display();
-
-			
-			
-			
 		}
 
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
@@ -755,7 +582,8 @@ namespace renderx {
 		}
 
 	
-		void RenderLayer::RenderSkybox(const WinData& windata, entity::FPSCamera* camera)
+
+		void RenderLayer::RenderSkybox(const WinData& windata, CamPair& camera)
 		{
 			if (m_SkyboxPart.skybox_1)
 			{
@@ -774,13 +602,6 @@ namespace renderx {
 				m_Skyboxes[3]->Draw(windata, camera);
 			}
 		}
-
-
-		void RenderLayer::DefSkybox(const WinData& windata, entity::MayaCamera* camera)
-		{
-
-		}
-
 
 		void RenderLayer::RenderFlatboard(const WinData& windata, entity::FPSCamera* camera, RenderLight* light)
 		{

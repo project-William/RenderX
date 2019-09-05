@@ -14,8 +14,7 @@ namespace renderx {
 		struct REN_API CameraPart
 		{
 			bool fpsCamera = false;
-			bool MayaCamera = false;
-			bool NoCamera = true;
+			bool MayaCamera = true;
 		};
 
 		struct REN_API SkyboxPart
@@ -76,13 +75,9 @@ namespace renderx {
 			void PushFlatboard(entity::Flatboard* flatboard);
 			void DoRendering(const WinData& windata);
 			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
-			void CameraSetting(const WinData& windata, entity::FPSCamera* camera);
-			void DefaultCamSet(const WinData& windata, CamPair campair);
-			void File();
-			
+			void CameraSettng(const WinData& windata, CamPair& campair);
 
-			void RenderSkybox(const WinData& windata, entity::FPSCamera* camera);
-			void DefSkybox(const WinData& windata, entity::MayaCamera* camera);
+			void RenderSkybox(const WinData& windata, CamPair& camera);
 			void RenderFlatboard(const WinData& windata,entity::FPSCamera* camera, RenderLight* light);
 			
 			void RenderObjects(const WinData& windata, entity::FPSCamera* camera);
@@ -97,6 +92,12 @@ namespace renderx {
 			void InitCamera(entity::FPSCamera* fpscam, entity::MayaCamera* defcam);
 				
 			inline std::unordered_map<RenderObject*, bool>& GetRenderersRef() { return m_Renderer; }
+			inline SkyboxPart& IsSkyboxRenderRef() { return m_SkyboxPart; }
+			inline CameraPart& IsCameraRef() { return m_CameraPart; }
+			inline RendererPart& IsRenderRef() { return m_RendererPart; }
+			inline LightModelPart& IsLightModeRef() { return m_LightModelPart; }
+			inline TexturePart& IsTextureRef() { return m_TexturePart; }
+			inline EnableTexture& IsEnableTextureRef() { return m_EnableTexture; }
 
 		private:
 			ui::ImguiFileBrowser m_FileBrowser;

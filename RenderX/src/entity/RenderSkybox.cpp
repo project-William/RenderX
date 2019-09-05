@@ -46,21 +46,37 @@ namespace renderx {
 
 		}
 
-		void RenderSkybox::Draw(const graphics::WinData& windata,FPSCamera* camera)
+		void RenderSkybox::Draw(const graphics::WinData& windata, CamPair& camera)
 		{
 			glDepthMask(GL_FALSE);
 			EnableObject();
-			
-			m_Trans.view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
-			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 
-			m_Trans.projection = glm::perspective(glm::radians(45.0f), 
-				(float)windata.win_Width / (float)windata.win_Height,
-				0.1f, 100.0f);
-			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+			if (camera.first->IsUseRef())
+			{
+				m_Trans.view = glm::mat4(glm::mat3(camera.first->GetViewMatrix()));
+				m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 
-			m_Cubemap->BindCubemapTexture();
-			glDrawArrays(GL_TRIANGLES, 0, 36);
+				m_Trans.projection = glm::perspective(glm::radians(45.0f),
+					(float)windata.win_Width / (float)windata.win_Height,
+					0.1f, 100.0f);
+				m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+
+				m_Cubemap->BindCubemapTexture();
+				glDrawArrays(GL_TRIANGLES, 0, 36);
+			}
+			else if (camera.second->IsUseRef())
+			{
+				m_Trans.view = glm::mat4(glm::mat3(camera.second->GetViewMatrix()));
+				m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
+
+				m_Trans.projection = glm::perspective(glm::radians(45.0f),
+					(float)windata.win_Width / (float)windata.win_Height,
+					0.1f, 100.0f);
+				m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
+
+				m_Cubemap->BindCubemapTexture();
+				glDrawArrays(GL_TRIANGLES, 0, 36);
+			}
 
 			DisableObject();
 			glDepthMask(GL_TRUE);
