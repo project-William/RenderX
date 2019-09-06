@@ -487,73 +487,66 @@ namespace renderx {
 			{
 				if (iter.second == true)
 				{
-					if (m_CameraPart.MayaCamera || m_CameraPart.fpsCamera)
-					{
-						if (m_CameraPart.MayaCamera)
-						{
-							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-							campair.second->EnableObject();
-							campair.first->IsUseRef() = false;
-							campair.second->IsUseRef() = true;
-							iter.first->GetTransRef().view = campair.second->GetViewMatrix();
-							iter.first->GetTransRef().projection = glm::perspective
-							(
-								glm::radians(campair.second->GetCameraAttrib().Zoom),
-								(float)windata.win_Width / (float)windata.win_Height,
-								0.1f, 100.0f
-							);
-						}
-						else if (m_CameraPart.fpsCamera)
-						{
-							glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-							campair.first->IsUseRef() = true;
-							campair.second->IsUseRef() = false;
-							campair.first->EnableObject();
-							iter.first->GetTransRef().view = campair.first->GetViewMatrix();
-							iter.first->GetTransRef().projection = glm::perspective
-							(
-								glm::radians(campair.first->GetCameraAttrib().Zoom),
-								(float)windata.win_Width / (float)windata.win_Height,
-								0.1f, 100.0f
-							);
-						}
-					}
-				}
-			}
-
-			for (auto iter : m_Flatboards)
-			{
-				if (m_CameraPart.fpsCamera || m_CameraPart.MayaCamera)
-				{
-					if (m_CameraPart.fpsCamera)
-					{
-						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-						campair.first->EnableObject();
-						campair.first->IsUseRef() = true;
-						campair.second->IsUseRef() = false;
-						iter->GetTransRef().view = campair.first->GetViewMatrix();
-						iter->GetTransRef().projection = glm::perspective
-						(
-							glm::radians(campair.first->GetCameraAttrib().Zoom),
-							(float)windata.win_Width / (float)windata.win_Height,
-							0.1f, 100.0f
-						);
-					}
-					else if (m_CameraPart.MayaCamera)
+					if (m_CameraPart.MayaCamera)
 					{
 						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 						campair.second->EnableObject();
-						campair.second->IsUseRef() = true;
 						campair.first->IsUseRef() = false;
-						iter->GetTransRef().view = campair.second->GetViewMatrix();
-						iter->GetTransRef().projection = glm::perspective
+						campair.second->IsUseRef() = true;
+						iter.first->GetTransRef().view = campair.second->GetViewMatrix();
+						iter.first->GetTransRef().projection = glm::perspective
 						(
 							glm::radians(campair.second->GetCameraAttrib().Zoom),
 							(float)windata.win_Width / (float)windata.win_Height,
 							0.1f, 100.0f
 						);
 					}
+					else if (m_CameraPart.fpsCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						campair.first->IsUseRef() = true;
+						campair.second->IsUseRef() = false;
+						campair.first->EnableObject();
+						iter.first->GetTransRef().view = campair.first->GetViewMatrix();
+						iter.first->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(campair.first->GetCameraAttrib().Zoom),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+					}
+				}
+			}
 
+			for (auto iter : m_Flatboards)
+			{
+				if (m_CameraPart.fpsCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					campair.first->EnableObject();
+					campair.first->IsUseRef() = true;
+					campair.second->IsUseRef() = false;
+					iter->GetTransRef().view = campair.first->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(campair.first->GetCameraAttrib().Zoom),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+				}
+				else if (m_CameraPart.MayaCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					campair.second->EnableObject();
+					campair.second->IsUseRef() = true;
+					campair.first->IsUseRef() = false;
+					iter->GetTransRef().view = campair.second->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(campair.second->GetCameraAttrib().Zoom),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
 				}
 			}
 		}
