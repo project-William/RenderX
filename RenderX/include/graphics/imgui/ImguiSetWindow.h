@@ -32,14 +32,16 @@ namespace renderx {
 			bool m_Other_Attrib_App_Open = false;
 			bool m_LightModel_Open = false;
 			void DockSpace(bool& dockopen);
+			ImguiFileBrowser m_FileBrowser;
+
+
 		private:
 			void CameraHeader(graphics::RenderLayer& layer);
 			void SkyboxHeader(graphics::RenderLayer& layer);
 			void RendererHeader(graphics::RenderLayer& layer);
 			void LightModelHeader(graphics::RenderLayer& layer);
-			void TextureHeader();
+			void TextureHeader(graphics::RenderLayer& layer);
 			void OtherAttribHeader();
-			bool m_DockSpace_Open = true;
 		};
 	}
 }

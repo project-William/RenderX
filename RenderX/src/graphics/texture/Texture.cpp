@@ -44,7 +44,7 @@ namespace renderx {
 			else
 				data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Bits, 0);
 			glGenTextures(1, &texture);
-		
+			
 
 			if (data)
 			{
@@ -82,7 +82,7 @@ namespace renderx {
 				
 				stbi_image_free(data);
 			}
-		
+
 			return texture;
 		}
 

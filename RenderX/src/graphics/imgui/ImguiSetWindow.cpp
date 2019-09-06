@@ -30,7 +30,8 @@ namespace renderx {
 		{
 			CameraHeader(layer);
 			SkyboxHeader(layer);
-
+			LightModelHeader(layer);
+			TextureHeader(layer);
 		}
 
 		void ImguiSetWindow::CameraHeader(graphics::RenderLayer& layer)
@@ -62,7 +63,7 @@ namespace renderx {
 						layer.IsSkyboxRenderRef().skybox_4);
 				}
 
-				if (ImGui::Checkbox("Skybox 2", &layer.IsSkyboxRenderRef().skybox_1))
+				if (ImGui::Checkbox("Skybox 2", &layer.IsSkyboxRenderRef().skybox_2))
 				{
 					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_2,
 						layer.IsSkyboxRenderRef().skybox_1,
@@ -70,7 +71,7 @@ namespace renderx {
 						layer.IsSkyboxRenderRef().skybox_4);
 				}
 
-				if (ImGui::Checkbox("Skybox 3", &layer.IsSkyboxRenderRef().skybox_1))
+				if (ImGui::Checkbox("Skybox 3", &layer.IsSkyboxRenderRef().skybox_3))
 				{
 					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_3,
 						layer.IsSkyboxRenderRef().skybox_1,
@@ -78,7 +79,7 @@ namespace renderx {
 						layer.IsSkyboxRenderRef().skybox_4);
 				}
 
-				if (ImGui::Checkbox("Skybox 4", &layer.IsSkyboxRenderRef().skybox_1))
+				if (ImGui::Checkbox("Skybox 4", &layer.IsSkyboxRenderRef().skybox_4))
 				{
 					SINGLE_CHOICE_IN_FOUR(layer.IsSkyboxRenderRef().skybox_4,
 						layer.IsSkyboxRenderRef().skybox_1,
@@ -167,37 +168,39 @@ namespace renderx {
 			}
 		}
 
-		void ImguiSetWindow::TextureHeader()
+		void ImguiSetWindow::TextureHeader(graphics::RenderLayer& layer)
 		{
-
+			auto& texturePart = layer.IsTextureRef();
+			auto& enableTexture = layer.IsEnableTextureRef();
+			auto& renderers = layer.GetRenderersRef();
 			//texture
 			if (ImGui::CollapsingHeader("Textures", m_Texture_App_Open))
 			{
 				// albedo texture 
-				if (ImGui::Button("Albedo", ImVec2(100.0f, 20.0f)))
+				if (ImGui::Button("ALBEDO", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
-					m_TexturePart.AlbedoTex = true;
+					texturePart.AlbedoTex = true;
 				}
 				ImGui::SameLine();
-
-				if (ImGui::Checkbox("Use Albedo", &m_EnableTexture.EnableAlbedo))
+				if (ImGui::Checkbox("USE ALBEDO", &enableTexture.EnableAlbedo))
 				{
 
 				}
 
-				for (auto iter : m_Renderer)
+				for (auto iter : layer.GetRenderersRef())
 				{
 					unsigned int tex = 0;
 					if (iter.second)
 					{
+						std::cout << iter.first->GetAlbedoTexture() << std::endl;
 						if (iter.first->GetAlbedoTexture())
 						{
 							ImGui::Image((void*)(intptr_t)iter.first->GetAlbedoTexture(), ImVec2(100, 100));
 						}
 						else
 						{
-							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+							ImGui::Image((void*)(intptr_t)layer.GetEmptyTextureRef()->GetTexRef(), ImVec2(100, 100));
 						}
 					}
 				}
@@ -207,14 +210,15 @@ namespace renderx {
 				if (ImGui::Button("AO", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
-					m_TexturePart.AOTex = true;
+					texturePart.AOTex = true;
 				}
 				ImGui::SameLine();
-				if (ImGui::Checkbox("Use AO", &m_EnableTexture.EnableAO))
+				if (ImGui::Checkbox("USE AO", &enableTexture.EnableAO))
 				{
+
 				}
 
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					unsigned int tex = 0;
 					if (iter.second)
@@ -225,22 +229,23 @@ namespace renderx {
 						}
 						else
 						{
-							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+							ImGui::Image((void*)(intptr_t)layer.GetEmptyTextureRef()->GetTexRef(), ImVec2(100, 100));
 						}
 					}
 				}
 				//metallic texture
-				if (ImGui::Button("Metallic", ImVec2(100.0f, 20.0f)))
+				if (ImGui::Button("METALLIC", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
-					m_TexturePart.MetallicTex = true;
+					texturePart.MetallicTex = true;
 				}
 				ImGui::SameLine();
-				if (ImGui::Checkbox("Use Metallic", &m_EnableTexture.EnableMetallic))
+				if (ImGui::Checkbox("USE METALLIC", &enableTexture.EnableMetallic))
 				{
 
 				}
-				for (auto iter : m_Renderer)
+
+				for (auto iter : renderers)
 				{
 					unsigned int tex = 0;
 					if (iter.second)
@@ -251,21 +256,22 @@ namespace renderx {
 						}
 						else
 						{
-							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+							ImGui::Image((void*)(intptr_t)layer.GetEmptyTextureRef()->GetTexRef(), ImVec2(100, 100));
 						}
 					}
 				}
 				//normal texture
-				if (ImGui::Button("Normal", ImVec2(100.0f, 20.0f)))
+				if (ImGui::Button("NORMAL", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
-					m_TexturePart.NormalTex = true;
+					texturePart.NormalTex = true;
 				}
 				ImGui::SameLine();
-				if (ImGui::Checkbox("Use Normal", &m_EnableTexture.EnableNormal))
+				if (ImGui::Checkbox("USE NORMAL", &enableTexture.EnableNormal))
 				{
+
 				}
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					unsigned int tex = 0;
 					if (iter.second)
@@ -276,23 +282,24 @@ namespace renderx {
 						}
 						else
 						{
-							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+							ImGui::Image((void*)(intptr_t)layer.GetEmptyTextureRef()->GetTexRef(), ImVec2(100, 100));
 						}
 					}
 				}
 
 				//roughness texture
-				if (ImGui::Button("Roughness", ImVec2(100.0f, 20.0f)))
+				if (ImGui::Button("ROUGHNESS", ImVec2(100.0f, 20.0f)))
 				{
 					m_FileBrowser.Open();
-					m_TexturePart.RoughnessTex = true;
+					texturePart.RoughnessTex = true;
 				}
 				ImGui::SameLine();
-				if (ImGui::Checkbox("Use Roughness", &m_EnableTexture.EnableRoughness))
+				if (ImGui::Checkbox("USE ROUGHNESS", &enableTexture.EnableRoughness))
 				{
 
 				}
-				for (auto iter : m_Renderer)
+
+				for (auto iter : renderers)
 				{
 					unsigned int tex = 0;
 					if (iter.second)
@@ -303,32 +310,34 @@ namespace renderx {
 						}
 						else
 						{
-							ImGui::Image((void*)(intptr_t)m_EmptyTexture->GetTexRef(), ImVec2(100, 100));
+							ImGui::Image((void*)(intptr_t)layer.GetEmptyTextureRef()->GetTexRef(), ImVec2(100, 100));
 						}
 					}
 				}
 				std::string textureName = "none";
 				textureName = m_FileBrowser.GetSelected().string();
 
+				std::cout << textureName << std::endl;
+
 				m_FileBrowser.Display();
 
-				if (m_TexturePart.AlbedoTex)
+				if (texturePart.AlbedoTex)
 				{
-					for (auto iter : m_Renderer)
+					for (auto iter : renderers)
 					{
 						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetAlbedoTex(textureName);
-							m_TexturePart.AlbedoTex = false;
+							texturePart.AlbedoTex = false;
 						}
 					}
 				}
 
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					if (iter.second)
 					{
-						if (m_EnableTexture.EnableAlbedo)
+						if (enableTexture.EnableAlbedo)
 						{
 							iter.first->EnableAlbedoTexture();
 						}
@@ -339,22 +348,22 @@ namespace renderx {
 					}
 				}
 
-				if (m_TexturePart.AOTex)
+				if (texturePart.AOTex)
 				{
-					for (auto iter : m_Renderer)
+					for (auto iter : renderers)
 					{
 						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetAOTex(textureName);
-							m_TexturePart.AOTex = false;
+							texturePart.AOTex = false;
 						}
 					}
 				}
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					if (iter.second)
 					{
-						if (m_EnableTexture.EnableAO)
+						if (enableTexture.EnableAO)
 						{
 							iter.first->EnableAOTexture();
 						}
@@ -366,22 +375,22 @@ namespace renderx {
 				}
 
 
-				if (m_TexturePart.MetallicTex)
+				if (texturePart.MetallicTex)
 				{
-					for (auto iter : m_Renderer)
+					for (auto iter : renderers)
 					{
 						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetMetallicTex(textureName);
-							m_TexturePart.MetallicTex = false;
+							texturePart.MetallicTex = false;
 						}
 					}
 				}
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					if (iter.second)
 					{
-						if (m_EnableTexture.EnableMetallic)
+						if (enableTexture.EnableMetallic)
 						{
 							iter.first->EnableMetallicTexture();
 						}
@@ -393,22 +402,22 @@ namespace renderx {
 				}
 
 
-				if (m_TexturePart.NormalTex)
+				if (texturePart.NormalTex)
 				{
-					for (auto iter : m_Renderer)
+					for (auto iter : renderers)
 					{
 						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetNormalTex(textureName);
-							m_TexturePart.NormalTex = false;
+							texturePart.NormalTex = false;
 						}
 					}
 				}
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					if (iter.second)
 					{
-						if (m_EnableTexture.EnableNormal)
+						if (enableTexture.EnableNormal)
 						{
 							iter.first->EnableNormalTexture();
 						}
@@ -420,22 +429,22 @@ namespace renderx {
 				}
 
 
-				if (m_TexturePart.RoughnessTex)
+				if (texturePart.RoughnessTex)
 				{
-					for (auto iter : m_Renderer)
+					for (auto iter : renderers)
 					{
 						if (iter.second && !m_FileBrowser.IsOpened())
 						{
 							iter.first->SetRoughnessTex(textureName);
-							m_TexturePart.RoughnessTex = false;
+							texturePart.RoughnessTex = false;
 						}
 					}
 				}
-				for (auto iter : m_Renderer)
+				for (auto iter : renderers)
 				{
 					if (iter.second)
 					{
-						if (m_EnableTexture.EnableRoughness)
+						if (enableTexture.EnableRoughness)
 						{
 							iter.first->EnableRoughnessTexture();
 						}

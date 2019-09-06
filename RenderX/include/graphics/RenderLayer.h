@@ -98,7 +98,8 @@ namespace renderx {
 			inline LightModelPart& IsLightModeRef() { return m_LightModelPart; }
 			inline TexturePart& IsTextureRef() { return m_TexturePart; }
 			inline EnableTexture& IsEnableTextureRef() { return m_EnableTexture; }
-
+			inline ui::ImguiFileBrowser& GetFileBrowser() { return m_FileBrowser; }
+			inline std::shared_ptr<Texture>& GetEmptyTextureRef() { return m_EmptyTexture; }
 		private:
 			ui::ImguiFileBrowser m_FileBrowser;
 

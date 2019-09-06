@@ -62,7 +62,6 @@ namespace renderx {
 			yoffset *= 0.1f;
 
 			auto sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
-			std::cout << sceneWindow->GetSceneWinHeight() << std::endl;
 
 			if (mouse->GetMouseCurrentPosition().x <= sceneWindow->GetSceneWinWidth()
 				&& mouse->GetMouseCurrentPosition().y <= sceneWindow->GetSceneWinHeight()

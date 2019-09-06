@@ -35,8 +35,6 @@ namespace renderx {
 
 			inline CameraAttributes GetCameraAttrib() { return m_CameraAttrib; }
 
-			void UpdateCameraPosition();
-
 			void EnableObject()  override;
 			void DisableObject() override;
 			glm::mat4 GetViewMatrix();

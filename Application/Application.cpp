@@ -117,7 +117,8 @@ void Application::Run()
 		
 		imguisetwindow->GraphicsSettingWindow();
 		renderLayer->CameraSettng(WinData, m_CamPair);
-		renderLayer->RenderSettings(WinData,camera,basicLight);
+		//renderLayer->RenderSettings(WinData,camera,basicLight);
+		imguisetwindow->CameraSetting(WinData, m_CamPair, *renderLayer);
 
 		//renderLayer->MultiLight(camera);
 		
