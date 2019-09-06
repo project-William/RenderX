@@ -26,7 +26,7 @@ Application::Application()
 
 	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
 
-	cube = new graphics::RenderCube("shader/cubeVertex.vert", "shader/cubeFragment.frag");
+	cube = new graphics::RenderCube("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
 
 	skybox_1 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces);

@@ -15,8 +15,6 @@ namespace renderx {
 			void UnbindObject() const override;
 			void Draw(const WinData& windata) override;
 		
-			void Color(const WinData& windata);
-			void Draw();
 			inline RenderData* GetRenderDataRef() override { return m_RenderData; }
 			
 			inline Transformation& GetTransRef() override { return m_Trans; }
@@ -63,48 +61,48 @@ namespace renderx {
 		
 			std::vector<float> m_CubeData =
 			{
-				// back face
-				-1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f, // bottom-left
-				1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 1.0f, // top-right
-				1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 0.0f, // bottom-right         
-				1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 1.0f, // top-right
-			   -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f, // bottom-left
-			   -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 1.0f, // top-left
-				// front face
-				-1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 0.0f, // bottom-left
-				1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 0.0f, // bottom-right
-				1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 1.0f, // top-right
-				1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, 1.0f, // top-right
-				-1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 1.0f, // top-left
-				-1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 0.0f, // bottom-left
-				// left face
-				-1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 0.0f, // top-right
-				-1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 1.0f, // top-left
-				-1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 1.0f, // bottom-left
-				-1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 1.0f, // bottom-left
-				-1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 0.0f, // bottom-right
-				-1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 0.0f, // top-right
-				// right face
-				1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 0.0f, // top-left
-				1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 1.0f, // bottom-right
-				1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 1.0f, // top-right         
-				1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 1.0f, // bottom-right
-				1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 0.0f, // top-left
-				1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 0.0f, // bottom-left     
-				// bottom face
-				-1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 1.0f, // top-right
-				1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 1.0f, // top-left
-				1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 0.0f, // bottom-left
-				1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 0.0f, // bottom-left
-				-1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 0.0f, // bottom-right
-				-1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 1.0f, // top-right
-				// top face
-				-1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 1.0f, // top-left
-				1.0f,  1.0f , 1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 0.0f, // bottom-right
-				1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 1.0f, // top-right     
-				1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 0.0f, // bottom-right
-				-1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 1.0f, // top-left
-				-1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 0.0f  // bottom-left       
+				// positions         // texture coords // normals           
+				-1.0f, -1.0f, -1.0f, 0.0f,  0.0f, 0.0f,  0.0f, -1.0f,
+				 1.0f, -1.0f, -1.0f, 1.0f,  0.0f, 0.0f,  0.0f, -1.0f,
+				 1.0f,  1.0f, -1.0f, 1.0f,  1.0f, 0.0f,  0.0f, -1.0f,
+				 1.0f,  1.0f, -1.0f, 1.0f,  1.0f, 0.0f,  0.0f, -1.0f,
+				-1.0f,  1.0f, -1.0f, 0.0f,  1.0f, 0.0f,  0.0f, -1.0f,
+				-1.0f, -1.0f, -1.0f, 0.0f,  0.0f, 0.0f,  0.0f, -1.0f,
+												  
+				-1.0f, -1.0f,  1.0f, 0.0f,  0.0f, 0.0f,  0.0f,  1.0f,
+				 1.0f, -1.0f,  1.0f, 1.0f,  0.0f, 0.0f,  0.0f,  1.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f,  1.0f, 0.0f,  0.0f,  1.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f,  1.0f, 0.0f,  0.0f,  1.0f,
+				-1.0f,  1.0f,  1.0f, 0.0f,  1.0f, 0.0f,  0.0f,  1.0f,
+				-1.0f, -1.0f,  1.0f, 0.0f,  0.0f, 0.0f,  0.0f,  1.0f,
+												  
+				-1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+				-1.0f,  1.0f, -1.0f, 1.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				-1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				-1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				-1.0f, -1.0f,  1.0f, 0.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+				-1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+												  
+				 1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+				 1.0f,  1.0f, -1.0f, 1.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				 1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				 1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 1.0f,  0.0f,  0.0f,
+				 1.0f, -1.0f,  1.0f, 0.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 1.0f,  0.0f,  0.0f,
+												  
+				-1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 0.0f, -1.0f,  0.0f,
+				 1.0f, -1.0f, -1.0f, 1.0f,  1.0f, 0.0f, -1.0f,  0.0f,
+				 1.0f, -1.0f,  1.0f, 1.0f,  0.0f, 0.0f, -1.0f,  0.0f,
+				 1.0f, -1.0f,  1.0f, 1.0f,  0.0f, 0.0f, -1.0f,  0.0f,
+				-1.0f, -1.0f,  1.0f, 0.0f,  0.0f, 0.0f, -1.0f,  0.0f,
+				-1.0f, -1.0f, -1.0f, 0.0f,  1.0f, 0.0f, -1.0f,  0.0f,
+										  
+				-1.0f,  1.0f, -1.0f, 0.0f,  1.0f, 0.0f,  1.0f,  0.0f,
+				 1.0f,  1.0f, -1.0f, 1.0f,  1.0f, 0.0f,  1.0f,  0.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 0.0f,  1.0f,  0.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f,  0.0f, 0.0f,  1.0f,  0.0f,
+				-1.0f,  1.0f,  1.0f, 0.0f,  0.0f, 0.0f,  1.0f,  0.0f,
+				-1.0f,  1.0f, -1.0f, 0.0f,  1.0f, 0.0f,  1.0f,  0.0f,
 			};
 
 		};

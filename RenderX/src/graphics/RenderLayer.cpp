@@ -553,7 +553,7 @@ namespace renderx {
 
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
 		{
-			for (auto iter : m_Renderer)
+			for (auto& iter : m_Renderer)
 			{
 				if (iter.second)
 				{

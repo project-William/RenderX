@@ -30,6 +30,7 @@ namespace renderx {
 		{
 			CameraHeader(layer);
 			SkyboxHeader(layer);
+			RendererHeader(layer);
 			LightModelHeader(layer);
 			TextureHeader(layer);
 		}
@@ -92,6 +93,7 @@ namespace renderx {
 		void ImguiSetWindow::RendererHeader(graphics::RenderLayer& layer)
 		{
 			auto rendererID = layer.GetRenderersRef().begin();
+			
 
 			if (ImGui::CollapsingHeader("Renderers", m_Renderer_App_Open))
 			{
@@ -102,6 +104,10 @@ namespace renderx {
 						layer.IsRenderRef().renderer_2, 
 						layer.IsRenderRef().renderer_3, 
 						layer.IsRenderRef().renderer_4);
+					for (auto& renderer : layer.GetRenderersRef())
+					{
+						renderer.second = false;
+					}
 					rendererID->second = layer.IsRenderRef().renderer_1;
 				}
 
@@ -111,7 +117,11 @@ namespace renderx {
 						layer.IsRenderRef().renderer_1,
 						layer.IsRenderRef().renderer_3,
 						layer.IsRenderRef().renderer_4);
-					(++rendererID)->second = layer.IsRenderRef().renderer_1;
+					for (auto& renderer : layer.GetRenderersRef())
+					{
+						renderer.second = false;
+					}
+					(++rendererID)->second = layer.IsRenderRef().renderer_2;
 				}
 
 				if (ImGui::Checkbox("Model_1", &layer.IsRenderRef().renderer_3))
@@ -193,7 +203,6 @@ namespace renderx {
 					unsigned int tex = 0;
 					if (iter.second)
 					{
-						std::cout << iter.first->GetAlbedoTexture() << std::endl;
 						if (iter.first->GetAlbedoTexture())
 						{
 							ImGui::Image((void*)(intptr_t)iter.first->GetAlbedoTexture(), ImVec2(100, 100));
@@ -316,8 +325,6 @@ namespace renderx {
 				}
 				std::string textureName = "none";
 				textureName = m_FileBrowser.GetSelected().string();
-
-				std::cout << textureName << std::endl;
 
 				m_FileBrowser.Display();
 
