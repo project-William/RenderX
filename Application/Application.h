@@ -44,7 +44,6 @@ private:
 	
 
 	graphics::RenderLight* basicLight;
-	graphics::RenderLight* lights[4];
 
 	bool m_Running = true;
 	bool m_WindowResized_flag = false;

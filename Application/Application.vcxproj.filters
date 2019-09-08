@@ -33,16 +33,14 @@
   <ItemGroup>
     <None Include="shader\fragment.frag" />
     <None Include="shader\vertex.vert" />
-    <None Include="shader\cubeVertex.vert" />
-    <None Include="shader\cubeFragment.frag" />
-    <None Include="shader\sphereVertex.vert" />
-    <None Include="shader\sphereFragment.frag" />
     <None Include="shader\cubemapFragment.frag" />
     <None Include="shader\cubemapVertex.vert" />
     <None Include="shader\flatboardVertex.vert" />
     <None Include="shader\flatboardFragment.frag" />
     <None Include="shader\HDRVertex.vert" />
     <None Include="shader\HDRFragment.frag" />
+    <None Include="shader\RendererFragment.frag" />
+    <None Include="shader\RendererVertex.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\wall.jpg">

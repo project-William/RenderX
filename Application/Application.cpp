@@ -26,8 +26,8 @@ Application::Application()
 
 	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
 
-	cube = new graphics::RenderCube("shader/sphereVertex.vert", "shader/sphereFragment.frag");
-	sphere = new graphics::RenderSphere("shader/sphereVertex.vert", "shader/sphereFragment.frag");
+	cube = new graphics::RenderCube("shader/RendererVertex.vert", "shader/RendererFragment.frag");
+	sphere = new graphics::RenderSphere("shader/RendererVertex.vert", "shader/RendererFragment.frag");
 
 	skybox_1 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces);
 	skybox_2 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces1);
@@ -57,13 +57,6 @@ Application::Application()
 	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
 
 	basicLight = new graphics::BasicLight();
-
-	for (int i = 0; i < 4; i++)
-	{
-		lights[i] = new graphics::BasicLight(glm::vec3(14.0f + i, 14.0f + i, 14.0f + i), glm::vec3(1.0f));
-		renderLayer->PushLights(lights[i]);
-	}
-
 	hdr = new graphics::HDR("shader/HDRVertex.vert", "shader/HDRFragment.frag");
 
 }
