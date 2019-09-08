@@ -41,8 +41,7 @@ namespace renderx {
 
 		struct REN_API LightModelPart
 		{
-			bool PhongModel = true;
-			bool Blinn_Phong = false;
+			bool Blinn_Phong = true;
 			bool LightPBR = false;
 			bool TexturePBR = false;
 		};

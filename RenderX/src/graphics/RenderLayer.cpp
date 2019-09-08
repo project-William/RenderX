@@ -119,40 +119,22 @@ namespace renderx {
 			//Light model
 			if (ImGui::CollapsingHeader("Light Model", m_LightModel_Open))
 			{
-				if (ImGui::Checkbox("Phong Model", &m_LightModelPart.PhongModel))
-				{
-					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.PhongModel, m_LightModelPart.Blinn_Phong,
-								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
-				}
-
 				if (ImGui::Checkbox("Blinn Phong", &m_LightModelPart.Blinn_Phong))
 				{
-					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.Blinn_Phong, m_LightModelPart.PhongModel,
-								  m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
+					SINGLE_CHOICE_IN_THREE(m_LightModelPart.Blinn_Phong,m_LightModelPart.LightPBR, m_LightModelPart.TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Lighting PBR", &m_LightModelPart.LightPBR))
 				{
-					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,
-								  m_LightModelPart.PhongModel, m_LightModelPart.TexturePBR);
+					SINGLE_CHOICE_IN_THREE(m_LightModelPart.LightPBR, m_LightModelPart.Blinn_Phong,m_LightModelPart.TexturePBR);
 				}
 				
 				if (ImGui::Checkbox("Texture PBR", &m_LightModelPart.TexturePBR))
 				{
-					SINGLE_CHOICE_IN_FOUR(m_LightModelPart.TexturePBR, m_LightModelPart.Blinn_Phong,
-								  m_LightModelPart.LightPBR, m_LightModelPart.PhongModel);
+					SINGLE_CHOICE_IN_THREE(m_LightModelPart.TexturePBR, m_LightModelPart.Blinn_Phong,m_LightModelPart.LightPBR);
 				}
 
-				
-
-				for (auto light : m_Lights)
-				{
-					if (light)
-					{
-						
-					}
-				}
-
+		
 				ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
 				ImGui::ColorEdit3("Light Color", &light->GetLightColorRef()[0]);
 				ImGui::SliderFloat("X-axis", &light->GetLightPositionRef().x, -20, 20);
@@ -553,6 +535,7 @@ namespace renderx {
 
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
 		{
+			bool istex = false;
 			for (auto& iter : m_Renderer)
 			{
 				if (iter.second)
@@ -562,13 +545,13 @@ namespace renderx {
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_lightPos", light->GetLightPosition());
 					iter.first->GetRenderDataRef()->m_Shader->SetVec3("u_viewPos", camera->GetCameraAttrib().Position);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_Shineness", light->GetShineness());
-					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_open_phong", m_LightModelPart.PhongModel);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_blinn_phong", m_LightModelPart.Blinn_Phong);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_gamma_value", m_gamma_value);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_light_pbr", m_LightModelPart.LightPBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_texture_pbr", m_LightModelPart.TexturePBR);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_metallic", m_metallic);
 					iter.first->GetRenderDataRef()->m_Shader->SetFloat("u_roughness", m_roughness);
+					iter.first->GetRenderDataRef()->m_Shader->SetBool("u_IsBlinnTexture", istex);
 					iter.first->UnbindObject();
 				}
 			}

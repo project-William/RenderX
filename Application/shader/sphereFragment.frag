@@ -23,6 +23,7 @@ uniform samplerCube u_irradianceMap;
 uniform samplerCube u_prefilterMap;
 uniform sampler2D u_brdfLUT;
 
+uniform bool u_IsBlinnTexture;
 
 
 //material parameters lighting PBR
@@ -109,37 +110,47 @@ vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness)
     return F0 + (max(vec3(1.0 - roughness), F0) - F0) * pow(1.0 - cosTheta, 5.0);
 } 
 // ----------------------------------------------------------------------------
-vec3 PhongModel(vec3 lightpos , bool blinn)
+
+vec3 BlinnPhong(vec3 lightpos)
 {
+	vec3 result;
 	//ambient
-	float ambient_strength=0.5f;
-	vec3 ambient=ambient_strength*u_lightColor;
-	//diffuse
-	vec3 normal=normalize(fs_in.v_normals);
-	vec3 lightDir=normalize(lightpos);
-	float diff=max(dot(normal,lightDir),0.0f);
-	vec3 diffuse=diff*u_lightColor;
-	// specular
-	if(blinn)
+	vec3 ambient;
+	vec3 texture_color;
+	if(u_IsBlinnTexture)
 	{
-		// specular
-		float specular_Strength = 0.5;
-		vec3 viewDir = normalize(u_viewPos - fs_in.v_fragPos);
-		vec3 halfwayDir=normalize(lightDir+viewDir);
-		vec3 reflectDir = reflect(-lightDir, normal);  
-	
-		float spec = pow(max(dot(normal, halfwayDir), 0.0), u_Shineness);
-		vec3 specular = specular_Strength * spec * u_lightColor;  
-		return ambient+diffuse+specular;
+		vec3 texture_color=texture(u_albedoMap,fs_in.v_texCoords).rgb;
+		ambient=0.5f* texture_color;
 	}
-	float specular_Strength = 0.5;
+	else
+	{
+		ambient=0.5f* vec3(u_lightColor);
+	}
+	//diffuse
+	vec3 normals=normalize(fs_in.v_normals);
+	vec3 lightDir=normalize(vec3(3.0f,-3.0f,3.0f)- fs_in.v_fragPos);
+	float diff=max(dot(normals,lightDir),0.0f);
+	vec3 diffuse;
+    if(u_IsBlinnTexture)
+	{
+		diffuse=diff* texture_color;
+	}
+	else
+	{
+		diffuse= diff* vec3(u_lightColor);
+	}
+	//specular
 	vec3 viewDir = normalize(u_viewPos - fs_in.v_fragPos);
-	vec3 reflectDir = reflect(-lightDir, normal);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shineness);
-	vec3 specular = specular_Strength * spec * u_lightColor;  
-	
-	return ambient+diffuse+specular;
+    vec3 reflectDir = reflect(-lightDir, normals);
+    float spec = 0.0;
+    vec3 halfwayDir = normalize(lightDir + viewDir);  
+    spec = pow(max(dot(normals, halfwayDir), 0.0), 32.0);
+    vec3 specular = vec3(u_lightColor) * spec *0.5f;
+
+	result=ambient+diffuse+specular;
+	return result;
 }
+
 
 vec3 LightAndTexturePBR(vec3 lightpos,bool texture_pbr)
 {
@@ -283,14 +294,9 @@ void main()
 	vec3 result;
 	vec3 lightPos=vec3(u_lightPos.x,-u_lightPos.y,u_lightPos.z);
     
-	if(u_open_phong)
-	{
-		result =PhongModel(lightPos,u_blinn_phong);
-	}
-
 	if(u_blinn_phong)
 	{
-		result =PhongModel(lightPos,u_blinn_phong);
+		result =BlinnPhong(lightPos);
 	}
 	
 	if(u_light_pbr)

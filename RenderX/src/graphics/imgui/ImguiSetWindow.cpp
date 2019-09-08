@@ -138,36 +138,25 @@ namespace renderx {
 		{
 			if (ImGui::CollapsingHeader("Light Model", m_LightModel_Open))
 			{
-				if (ImGui::Checkbox("Phong Model", &layer.IsLightModeRef().PhongModel))
-				{
-					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().PhongModel, 
-						layer.IsLightModeRef().Blinn_Phong,
-						layer.IsLightModeRef().LightPBR, 
-						layer.IsLightModeRef().TexturePBR);
-				}
-
 				if (ImGui::Checkbox("Blinn Phong", &layer.IsLightModeRef().Blinn_Phong))
 				{
-					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().Blinn_Phong,
-						layer.IsLightModeRef().PhongModel,
+					SINGLE_CHOICE_IN_THREE(layer.IsLightModeRef().Blinn_Phong,
 						layer.IsLightModeRef().LightPBR, 
 						layer.IsLightModeRef().TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Lighting PBR", &layer.IsLightModeRef().LightPBR))
 				{
-					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().LightPBR,
+					SINGLE_CHOICE_IN_THREE(layer.IsLightModeRef().LightPBR,
 						layer.IsLightModeRef().Blinn_Phong,
-						layer.IsLightModeRef().PhongModel, 
 						layer.IsLightModeRef().TexturePBR);
 				}
 
 				if (ImGui::Checkbox("Texture PBR", &layer.IsLightModeRef().TexturePBR))
 				{
-					SINGLE_CHOICE_IN_FOUR(layer.IsLightModeRef().TexturePBR,
+					SINGLE_CHOICE_IN_THREE(layer.IsLightModeRef().TexturePBR,
 						layer.IsLightModeRef().Blinn_Phong,
-						layer.IsLightModeRef().LightPBR, 
-						layer.IsLightModeRef().PhongModel);
+						layer.IsLightModeRef().LightPBR);
 				}
 
 				//ImGui::SliderFloat("Shineness", &light->GetShinenessRef(), 0.0f, 128.0f);
