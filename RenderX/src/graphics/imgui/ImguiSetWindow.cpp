@@ -33,6 +33,7 @@ namespace renderx {
 			RendererHeader(layer);
 			LightModelHeader(layer);
 			TextureHeader(layer);
+			OtherAttribHeader(layer);
 		}
 
 		void ImguiSetWindow::CameraHeader(graphics::RenderLayer& layer)
@@ -454,8 +455,23 @@ namespace renderx {
 			}
 		}
 
-		void ImguiSetWindow::OtherAttribHeader()
+		void ImguiSetWindow::OtherAttribHeader(graphics::RenderLayer& layer)
 		{
+			if (ImGui::CollapsingHeader("Renderers Attributes", m_Renderer_App_Open))
+			{
+				for (auto iter : layer.GetRenderersRef())
+				{
+					if (iter.second)
+					{
+						ImGui::ColorEdit4("Render Color", &iter.first->GetTransRef().color[0]);
+						ImGui::SliderFloat("Scale-x", &iter.first->GetTransRef().scale[0], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-y", &iter.first->GetTransRef().scale[1], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-z", &iter.first->GetTransRef().scale[2], 0.1f, 2.0f);
+						ImGui::SliderFloat("Scale-xyz", &iter.first->GetTransRef().s_scale, 0.1f, 2.0f);
+						
+					}
+				}
+			}
 		}
 
 	

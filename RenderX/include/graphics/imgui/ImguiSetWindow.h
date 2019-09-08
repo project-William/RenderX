@@ -41,7 +41,7 @@ namespace renderx {
 			void RendererHeader(graphics::RenderLayer& layer);
 			void LightModelHeader(graphics::RenderLayer& layer);
 			void TextureHeader(graphics::RenderLayer& layer);
-			void OtherAttribHeader();
+			void OtherAttribHeader(graphics::RenderLayer& layer);
 		};
 	}
 }

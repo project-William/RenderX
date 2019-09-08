@@ -116,11 +116,9 @@ vec3 BlinnPhong(vec3 lightpos)
 	vec3 result;
 	//ambient
 	vec3 ambient;
-	vec3 texture_color;
 	if(u_IsBlinnTexture)
 	{
-		vec3 texture_color=texture(u_albedoMap,fs_in.v_texCoords).rgb;
-		ambient=0.5f* texture_color;
+		ambient=0.5f* texture(u_albedoMap,fs_in.v_texCoords).rgb;
 	}
 	else
 	{
@@ -128,12 +126,12 @@ vec3 BlinnPhong(vec3 lightpos)
 	}
 	//diffuse
 	vec3 normals=normalize(fs_in.v_normals);
-	vec3 lightDir=normalize(vec3(3.0f,-3.0f,3.0f)- fs_in.v_fragPos);
+	vec3 lightDir=normalize(lightpos);
 	float diff=max(dot(normals,lightDir),0.0f);
 	vec3 diffuse;
     if(u_IsBlinnTexture)
 	{
-		diffuse=diff* texture_color;
+		diffuse= diff* texture(u_albedoMap,fs_in.v_texCoords).rgb;
 	}
 	else
 	{
