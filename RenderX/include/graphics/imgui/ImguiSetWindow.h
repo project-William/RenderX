@@ -17,8 +17,8 @@ namespace renderx {
 
 			void BeginSetWindow();
 			void GraphicsSettingWindow();
-			void CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer);
-
+			void Setting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer);
+			void CameraSetting(CamPair& camPair, graphics::RenderLayer& layer, const graphics::WinData& windata);
 			void ShowDemo() { bool a = true; ImGui::ShowDemoWindow(&a); }
 			void EndSetWindow();
 

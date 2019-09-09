@@ -71,6 +71,14 @@ Application::~Application()
 	delete skybox_2;
 	delete skybox_3;
 	delete skybox_4;
+	delete camera;
+	delete defaultcam;
+	delete basicLight;
+	delete hdr;
+	delete cube;
+	delete sphere;
+	delete imguiLog;
+	delete flatboard;
 }
 
 void Application::Run()
@@ -89,8 +97,7 @@ void Application::Run()
 		graphics::RenderScene::SceneBegin();
 		
 		renderLayer->RenderSkybox(WinData, m_CamPair);
-		
-		renderLayer->RenderFlatboard(WinData, camera, basicLight);
+		//renderLayer->RenderFlatboard(WinData, camera, basicLight);
 		renderLayer->RenderObjects(WinData, camera);
 		renderLayer->LightModel(basicLight, camera);
 
@@ -109,9 +116,8 @@ void Application::Run()
 		imguisetwindow->BeginSetWindow();
 		
 		imguisetwindow->GraphicsSettingWindow();
-		renderLayer->CameraSettng(WinData, m_CamPair);
-		//renderLayer->RenderSettings(WinData,camera,basicLight);
-		imguisetwindow->CameraSetting(WinData, m_CamPair, *renderLayer);
+		imguisetwindow->CameraSetting(m_CamPair, *renderLayer, WinData);
+		imguisetwindow->Setting(WinData, m_CamPair, *renderLayer);
 
 		//renderLayer->MultiLight(camera);
 		
@@ -135,6 +141,7 @@ void Application::Run()
 		m_Window->OnUpdate();
 	}
 	imgui->OnDetach();
+	glfwTerminate();
 }
 
 

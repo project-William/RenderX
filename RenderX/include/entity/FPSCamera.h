@@ -47,6 +47,7 @@ namespace renderx {
 			void ProcessMouseScrollInput();
 			void ProcessKeyboardInput();
 			void ProcessMouseInput();
+			bool IsMouseInRange(const glm::vec2& position);
 		};
 
 	}

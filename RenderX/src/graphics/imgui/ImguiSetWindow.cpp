@@ -26,7 +26,7 @@ namespace renderx {
 			}
 		}
 
-		void ImguiSetWindow::CameraSetting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer)
+		void ImguiSetWindow::Setting(const graphics::WinData& windata, CamPair& campair, graphics::RenderLayer& layer)
 		{
 			CameraHeader(layer);
 			SkyboxHeader(layer);
@@ -34,6 +34,77 @@ namespace renderx {
 			LightModelHeader(layer);
 			TextureHeader(layer);
 			OtherAttribHeader(layer);
+		}
+
+		void ImguiSetWindow::CameraSetting(CamPair& camPair, graphics::RenderLayer& layer, const graphics::WinData& windata)
+		{
+			auto& renderers = layer.GetRenderersRef();
+			for (auto iter : renderers)
+			{
+				if (iter.second == true)
+				{
+					if (layer.IsCameraRef().MayaCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						camPair.second->EnableObject();
+						camPair.first->IsUseRef() = false;
+						camPair.second->IsUseRef() = true;
+						iter.first->GetTransRef().view = camPair.second->GetViewMatrix();
+						iter.first->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(camPair.second->GetCameraAttrib().Zoom),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+					}
+					else if (layer.IsCameraRef().fpsCamera)
+					{
+						glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						camPair.first->IsUseRef() = true;
+						camPair.second->IsUseRef() = false;
+						camPair.first->EnableObject();
+						iter.first->GetTransRef().view = camPair.first->GetViewMatrix();
+						iter.first->GetTransRef().projection = glm::perspective
+						(
+							glm::radians(camPair.first->GetCameraAttrib().Zoom),
+							(float)windata.win_Width / (float)windata.win_Height,
+							0.1f, 100.0f
+						);
+					}
+				}
+			}
+
+			for (auto iter : layer.GetFlatboard())
+			{
+				if (layer.IsCameraRef().fpsCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					camPair.first->EnableObject();
+					camPair.first->IsUseRef() = true;
+					camPair.second->IsUseRef() = false;
+					iter->GetTransRef().view = camPair.first->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(camPair.first->GetCameraAttrib().Zoom),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+				}
+				else if (layer.IsCameraRef().MayaCamera)
+				{
+					glfwSetInputMode(windata.glWindowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					camPair.second->EnableObject();
+					camPair.second->IsUseRef() = true;
+					camPair.first->IsUseRef() = false;
+					iter->GetTransRef().view = camPair.second->GetViewMatrix();
+					iter->GetTransRef().projection = glm::perspective
+					(
+						glm::radians(camPair.second->GetCameraAttrib().Zoom),
+						(float)windata.win_Width / (float)windata.win_Height,
+						0.1f, 100.0f
+					);
+				}
+			}
 		}
 
 		void ImguiSetWindow::CameraHeader(graphics::RenderLayer& layer)

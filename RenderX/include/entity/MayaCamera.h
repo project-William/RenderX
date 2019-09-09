@@ -33,9 +33,6 @@ namespace renderx {
 			void DisableObject() override;
 
 			glm::mat4 GetViewMatrix() ;
-			glm::mat4 GetProjectionMatrix();
-			glm::mat4 GetModelMatrix();
-
 			inline CameraAttributes GetCameraAttrib() { return m_CameraAttrib; }
 			inline float& GetDistanceRef() { return m_Distance; }
 			inline bool& IsUseRef() { return m_IsUse; }
@@ -50,6 +47,7 @@ namespace renderx {
 			void ProcessInputMouse();
 			void ProcessMouseScrollInput();
 			void UpdateCameraPosition();
+			bool IsMouseInRange(const glm::vec2& position);
 		};
 
 	}

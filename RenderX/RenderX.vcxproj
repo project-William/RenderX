@@ -184,6 +184,8 @@
     <ClInclude Include="include\graphics\RenderLayer.h" />
     <ClInclude Include="include\graphics\RenderScene.h" />
     <ClInclude Include="include\graphics\render\BasicLight.h" />
+    <ClInclude Include="include\graphics\render\Mesh.h" />
+    <ClInclude Include="include\graphics\render\Model.h" />
     <ClInclude Include="include\graphics\render\RenderCube.h" />
     <ClInclude Include="include\graphics\render\RenderLight.h" />
     <ClInclude Include="include\graphics\render\RenderModel.h" />
@@ -229,6 +231,8 @@
     <ClCompile Include="src\graphics\RenderLayer.cpp" />
     <ClCompile Include="src\graphics\RenderScene.cpp" />
     <ClCompile Include="src\graphics\render\BasicLight.cpp" />
+    <ClCompile Include="src\graphics\render\Mesh.cpp" />
+    <ClCompile Include="src\graphics\render\Model.cpp" />
     <ClCompile Include="src\graphics\render\RenderCube.cpp" />
     <ClCompile Include="src\graphics\render\RenderModel.cpp" />
     <ClCompile Include="src\entity\RenderSkybox.cpp" />

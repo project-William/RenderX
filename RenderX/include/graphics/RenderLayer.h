@@ -72,9 +72,6 @@ namespace renderx {
 
 			void PushRenderer(RenderObject* renderer, bool isRendered);
 			void PushFlatboard(entity::Flatboard* flatboard);
-			void DoRendering(const WinData& windata);
-			void RenderSettings(const WinData& windata, entity::FPSCamera* camera, RenderLight* light);
-			void CameraSettng(const WinData& windata, CamPair& campair);
 
 			void RenderSkybox(const WinData& windata, CamPair& camera);
 			void RenderFlatboard(const WinData& windata,entity::FPSCamera* camera, RenderLight* light);
@@ -99,6 +96,7 @@ namespace renderx {
 			inline EnableTexture& IsEnableTextureRef() { return m_EnableTexture; }
 			inline ui::ImguiFileBrowser& GetFileBrowser() { return m_FileBrowser; }
 			inline std::shared_ptr<Texture>& GetEmptyTextureRef() { return m_EmptyTexture; }
+			inline std::vector<entity::Flatboard*>& GetFlatboard() { return m_Flatboards; }
 		private:
 			ui::ImguiFileBrowser m_FileBrowser;
 

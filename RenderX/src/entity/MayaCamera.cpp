@@ -34,18 +34,8 @@ namespace renderx {
 		glm::mat4 MayaCamera::GetViewMatrix()
 		{
 			return glm::lookAt(m_CameraAttrib.Position,
-				m_FocusPoint,
-				m_CameraAttrib.Up);
-		}
-
-		glm::mat4 MayaCamera::GetProjectionMatrix()
-		{
-			return glm::mat4();
-		}
-
-		glm::mat4 MayaCamera::GetModelMatrix()
-		{
-			return glm::mat4();
+				   m_FocusPoint,
+				   m_CameraAttrib.Up);
 		}
 
 		void MayaCamera::ProcessInputMouse()
@@ -61,11 +51,7 @@ namespace renderx {
 			xoffset *= 0.1f;
 			yoffset *= 0.1f;
 
-			auto sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
-
-			if (mouse->GetMouseCurrentPosition().x <= sceneWindow->GetSceneWinWidth()
-				&& mouse->GetMouseCurrentPosition().y <= sceneWindow->GetSceneWinHeight()
-			   )
+			if (IsMouseInRange(mouse->GetMouseCurrentPosition()))
 			{
 				if (mouse->IsLeftMousebuttonPressed())
 				{
@@ -75,7 +61,6 @@ namespace renderx {
 				}
 
 			}
-		
 			mouse->UpdateMouse();
 
 			m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
@@ -96,18 +81,22 @@ namespace renderx {
 
 		}
 
+		bool MayaCamera::IsMouseInRange(const glm::vec2& position)
+		{
+			std::shared_ptr<ui::ImguiSceneWindow>& sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
+			return position.x > 0 && position.x < sceneWindow->GetSceneWinWidth() &&
+				   position.y > 0 && position.y < sceneWindow->GetSceneWinHeight();
+		}
+
 		void MayaCamera::ProcessMouseScrollInput()
 		{
 			std::shared_ptr<utils::Mouse>& mouse = utils::Mouse::GetMouseInstance();
-			auto sceneWindow = ui::ImguiSceneWindow::GetSceneWindowInstance();
 
 			m_Distance = std::sqrt(std::powf(m_CameraAttrib.Position.x, 2)
 				+ std::powf(m_CameraAttrib.Position.y, 2)
 				+ std::powf(m_CameraAttrib.Position.z, 2));
 
-			if (mouse->GetMouseCurrentPosition().x <= sceneWindow->GetSceneWinWidth()
-				&& mouse->GetMouseCurrentPosition().y <= sceneWindow->GetSceneWinHeight()
-				)
+			if (IsMouseInRange(mouse->GetMouseCurrentPosition()))
 			{
 				if (mouse->GetMouseScrollOffset().y < 0)
 				{
