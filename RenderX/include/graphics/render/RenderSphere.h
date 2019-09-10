@@ -45,9 +45,9 @@ namespace renderx {
 			void DisableNormalTexture()  override { m_RenderData->m_NormalTex = 0; }
 			void DisableRoughnessTexture()  override { m_RenderData->m_RoughnessTex = 0; }
 
-			inline const unsigned int GetXSegments()const { return X_SEGMENTS; }
-			inline const unsigned int GetYSegments()const { return Y_SEGMENTS; }
-			inline const unsigned int GetIndexCount()const { return m_IndexCount; }
+			inline const size_t GetXSegments()const { return X_SEGMENTS; }
+			inline const size_t GetYSegments()const { return Y_SEGMENTS; }
+			inline const size_t GetIndexCount()const { return m_IndexCount; }
 		
 			inline Transformation& GetTransRef() override { return m_Trans; }
 			inline RenderData* GetRenderDataRef() override { return m_RenderData; }
@@ -55,9 +55,9 @@ namespace renderx {
 		private:
 			
 			Transformation m_Trans;
-			unsigned int m_IndexCount;
-			const unsigned int X_SEGMENTS;
-			const unsigned int Y_SEGMENTS;
+			size_t m_IndexCount;
+			const size_t X_SEGMENTS;
+			const size_t Y_SEGMENTS;
 			const float m_PI;
 			std::vector<float> m_SphereData;
 			RenderData* m_RenderData;

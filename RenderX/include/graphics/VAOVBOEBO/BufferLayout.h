@@ -40,6 +40,7 @@ namespace renderx {
 				break;
 			case ShaderDataType::FLOAT4:	return 4;
 				break;
+			default:break;
 			}
 		}
 

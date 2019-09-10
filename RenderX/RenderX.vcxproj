@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ImGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,7 +120,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ImGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,7 +139,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ImGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,7 +158,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;ImGui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -252,7 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
-      <Project>{0a2545b2-64c8-4013-a4fe-a5a47810390a}</Project>
+      <Project>{3e5b069e-abd0-4d4c-a204-3ad4c1a04fb5}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

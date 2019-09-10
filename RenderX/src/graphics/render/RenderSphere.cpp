@@ -131,12 +131,12 @@ namespace renderx {
 
 		void RenderSphere::CreateSphere()
 		{
-			for (unsigned int y = 0; y <= Y_SEGMENTS; ++y)
+			for (size_t y = 0; y <= Y_SEGMENTS; ++y)
 			{
-				for (unsigned int x = 0; x <= X_SEGMENTS; ++x)
+				for (size_t x = 0; x <= X_SEGMENTS; ++x)
 				{
-					float xSegment = (float)x / (float)X_SEGMENTS;
-					float ySegment = (float)y / (float)Y_SEGMENTS;
+					float xSegment = static_cast<float>(x) / static_cast<float>(X_SEGMENTS);
+					float ySegment = static_cast<float>(y) / static_cast<float>(Y_SEGMENTS);
 					float xPos = std::cos(xSegment * 2.0f * m_PI) * std::sin(ySegment * m_PI);
 					float yPos = std::cos(ySegment * m_PI);
 					float zPos = std::sin(xSegment * 2.0f * m_PI) * std::sin(ySegment * m_PI);
@@ -149,11 +149,11 @@ namespace renderx {
 
 
 			bool oddRow = false;
-			for (int y = 0; y < Y_SEGMENTS; ++y)
+			for (size_t y = 0; y < Y_SEGMENTS; ++y)
 			{
 				if (!oddRow) // even rows: y == 0, y == 2; and so on
 				{
-					for (int x = 0; x <= X_SEGMENTS; ++x)
+					for (size_t x = 0; x <= X_SEGMENTS; ++x)
 					{
 						m_RenderData->m_Indices.push_back(y * (X_SEGMENTS + 1) + x);
 						m_RenderData->m_Indices.push_back((y + 1) * (X_SEGMENTS + 1) + x);
@@ -161,7 +161,7 @@ namespace renderx {
 				}
 				else
 				{
-					for (int x = X_SEGMENTS; x >= 0; --x)
+					for (size_t x = X_SEGMENTS; x >= 0; --x)
 					{
 						m_RenderData->m_Indices.push_back((y + 1) * (X_SEGMENTS + 1) + x);
 						m_RenderData->m_Indices.push_back(y * (X_SEGMENTS + 1) + x);

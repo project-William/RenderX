@@ -36,8 +36,6 @@ namespace renderx {
 			OtherAttribHeader(layer);
 		}
 
-		
-
 		void ImguiSetWindow::CameraSetting(CamPair& camPair, graphics::RenderLayer& layer, const graphics::WinData& windata)
 		{
 			auto& renderers = layer.GetRenderersRef();

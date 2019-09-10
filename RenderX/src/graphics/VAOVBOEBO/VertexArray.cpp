@@ -9,7 +9,7 @@ namespace renderx {
 
 		}
 
-		VertexArray::VertexArray(unsigned int size, const void* data)
+		VertexArray::VertexArray(size_t size, const void* data)
 			:m_VertexArray(0),
 			 m_Vertexbuffer(new VertexBuffer(size, data)),
 			 m_IndexBuffer(new IndexBuffer())

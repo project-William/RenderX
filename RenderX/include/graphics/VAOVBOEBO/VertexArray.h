@@ -15,7 +15,7 @@ namespace renderx {
 			IndexBuffer* m_IndexBuffer;
 		public:
 			VertexArray();
-			VertexArray(unsigned int size, const void* data);
+			VertexArray(size_t size, const void* data);
 			~VertexArray();
 			void AddEbo(unsigned int indices_size, const void* indices_data);
 

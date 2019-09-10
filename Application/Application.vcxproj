@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN32\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\imgui\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(SolutionDir)vendor\imgui\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -250,6 +250,9 @@
     <Image Include="texture\wood_normal.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+      <Project>{3e5b069e-abd0-4d4c-a204-3ad4c1a04fb5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\RenderX\RenderX.vcxproj">
       <Project>{373c8247-2803-4ec2-8cf2-8a87812d6a99}</Project>
     </ProjectReference>
