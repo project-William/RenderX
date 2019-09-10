@@ -19,20 +19,20 @@ namespace renderx {
 		//camera attributes
 		struct REN_API CameraAttributes
 		{
-			glm::vec3 Position = glm::vec3(0.0f);
-			glm::vec3 Front = glm::vec3(0.0f);
-			glm::vec3 Up = glm::vec3(0.0f);
-			glm::vec3 Right = glm::vec3(0.0f);
-			glm::vec3 WorldUp = glm::vec3(0.0f);
-			glm::vec3 View = glm::vec3(0.0f);
+			glm::vec3 Position;
+			glm::vec3 Front;
+			glm::vec3 Up;
+			glm::vec3 Right;
+			glm::vec3 WorldUp;
+			glm::vec3 View ;
 			float Euler_Yaw = 0;
 			float Euler_Pitch = 0;
 
-			float MovementSpeed = 0;
-			float MouseSensivitity = 0;
+			float MovementSpeed =0;
+			float MouseSensivitity =0;
 
-			float Zoom = 45.0f;
-			float Fov = 45.0f;
+			float Zoom =0;
+			float Fov = 0;
 		};
 
 

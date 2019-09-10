@@ -36,9 +36,13 @@ namespace renderx {
 			OtherAttribHeader(layer);
 		}
 
+		
+
 		void ImguiSetWindow::CameraSetting(CamPair& camPair, graphics::RenderLayer& layer, const graphics::WinData& windata)
 		{
 			auto& renderers = layer.GetRenderersRef();
+			float aspect = (float)windata.win_Width / (float)windata.win_Height;
+
 			for (auto iter : renderers)
 			{
 				if (iter.second == true)
@@ -53,7 +57,7 @@ namespace renderx {
 						iter.first->GetTransRef().projection = glm::perspective
 						(
 							glm::radians(camPair.second->GetCameraAttrib().Zoom),
-							(float)windata.win_Width / (float)windata.win_Height,
+							ASPECT_IN_RANGE(aspect),
 							0.1f, 100.0f
 						);
 					}
@@ -67,7 +71,7 @@ namespace renderx {
 						iter.first->GetTransRef().projection = glm::perspective
 						(
 							glm::radians(camPair.first->GetCameraAttrib().Zoom),
-							(float)windata.win_Width / (float)windata.win_Height,
+							ASPECT_IN_RANGE(aspect),
 							0.1f, 100.0f
 						);
 					}
@@ -86,7 +90,7 @@ namespace renderx {
 					iter->GetTransRef().projection = glm::perspective
 					(
 						glm::radians(camPair.first->GetCameraAttrib().Zoom),
-						(float)windata.win_Width / (float)windata.win_Height,
+						ASPECT_IN_RANGE(aspect),
 						0.1f, 100.0f
 					);
 				}
@@ -100,7 +104,7 @@ namespace renderx {
 					iter->GetTransRef().projection = glm::perspective
 					(
 						glm::radians(camPair.second->GetCameraAttrib().Zoom),
-						(float)windata.win_Width / (float)windata.win_Height,
+						ASPECT_IN_RANGE(aspect),
 						0.1f, 100.0f
 					);
 				}

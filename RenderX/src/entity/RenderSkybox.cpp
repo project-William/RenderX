@@ -57,7 +57,7 @@ namespace renderx {
 			m_RenderData->m_Shader->SetMat4("u_view", m_Trans.view);
 
 			m_Trans.projection = glm::perspective(glm::radians(45.0f),
-				(float)windata.win_Width / (float)windata.win_Height,
+				ASPECT_IN_RANGE((float)windata.win_Width / (float)windata.win_Height),
 				0.1f, 100.0f);
 			m_RenderData->m_Shader->SetMat4("u_projection", m_Trans.projection);
 

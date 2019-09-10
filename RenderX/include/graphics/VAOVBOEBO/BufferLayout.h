@@ -71,6 +71,7 @@ namespace renderx {
 			GLuint m_Stride;
 
 		public:
+			
 			BufferLayout();
 			~BufferLayout();
 			BufferLayout(const std::initializer_list<BufferElement> elements);

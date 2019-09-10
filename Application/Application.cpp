@@ -85,6 +85,7 @@ void Application::Run()
 {
 	auto& WinData = m_Window->GetWinData();
 
+	int k = 1200110;
 	while (m_Running)
 	{	
 		/*****************************bind framebuffer******************************/
@@ -109,6 +110,8 @@ void Application::Run()
 		framebuffer->UnbindFrameBuffer();
 		//hdr->EnableHDRProgram(framebuffer->GetRendered());
 		//hdr->EnableHDR(0.9f);
+		
+		
 
 		imgui->Begin();
 		

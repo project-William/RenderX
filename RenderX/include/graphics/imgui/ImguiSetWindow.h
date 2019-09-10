@@ -36,6 +36,8 @@ namespace renderx {
 
 
 		private:
+		
+
 			void CameraHeader(graphics::RenderLayer& layer);
 			void SkyboxHeader(graphics::RenderLayer& layer);
 			void RendererHeader(graphics::RenderLayer& layer);

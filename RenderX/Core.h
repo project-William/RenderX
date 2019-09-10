@@ -47,11 +47,13 @@
 
 #define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
 
-#define RDX_INIT_ERROR(x,...) if(!(x)) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
+#define ASPECT_IN_RANGE(x) isnan(x) == true ? 1.0f : x
 
-#define RDX_INIT_SUCCESS(x,...) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
-
-#define RDX_EVENT_LOG(x,log) renderx::utils::Log::LogEvent(#x, log)	
+//#define RDX_INIT_ERROR(x,...) if(!(x)) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
+//
+//#define RDX_INIT_SUCCESS(x,...) renderx::utils::Log::LogInit(#x,__FILE__,__LINE__,##__VA_ARGS__)
+//
+//#define RDX_EVENT_LOG(x,log) renderx::utils::Log::LogEvent(#x, log)	
 
 
 

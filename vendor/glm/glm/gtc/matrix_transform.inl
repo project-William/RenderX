@@ -218,7 +218,6 @@ namespace glm
 	)
 	{
 		assert(abs(aspect - std::numeric_limits<T>::epsilon()) > static_cast<T>(0));
-		
 
 		T const tanHalfFovy = tan(fovy / static_cast<T>(2));
 
