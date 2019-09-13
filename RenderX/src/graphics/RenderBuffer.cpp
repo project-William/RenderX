@@ -25,9 +25,9 @@ namespace renderx {
 			glBindRenderbuffer(GL_RENDERBUFFER, 0);
 		}
 
-		void RenderBuffer::BufferStorage(unsigned int width,unsigned int height)
+		void RenderBuffer::BufferStorage(unsigned int width,unsigned int height, GLenum kind)
 		{
-			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+			glRenderbufferStorage(GL_RENDERBUFFER, kind, width, height);
 		}
 	}
 }

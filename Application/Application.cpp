@@ -22,7 +22,9 @@ Application::Application()
 	layerList = new graphics::LayerList();
 	layerList->PushBackLayer(imgui);
 	layerList->PushBackLayer(renderLayer);
-	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
+
+
+
 
 	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
 
@@ -57,7 +59,13 @@ Application::Application()
 	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
 
 	basicLight = new graphics::BasicLight();
-	hdr = new graphics::HDR("shader/HDRVertex.vert", "shader/HDRFragment.frag");
+	//hdr = new graphics::HDR("shader/HDRVertex.vert", "shader/HDRFragment.frag");
+
+	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
+	cubemap = new entity::HDRCubemap("texture/ibl_hdr_radiance.hdr", "shader/toCubemap.vert", "shader/toCubemap.frag");
+	
+	env = new graphics::EnvFramebuffer();
+	
 
 }
 
@@ -84,35 +92,44 @@ Application::~Application()
 void Application::Run()
 {
 	auto& WinData = m_Window->GetWinData();
+	framebuffer->InitFramebuffer(WinData);
+	//cubemap->Init();
+	env->Init();
+	env->frame(*m_Window);
 
-	int k = 1200110;
+
 	while (m_Running)
 	{	
 		/*****************************bind framebuffer******************************/
-		m_Window->Clear();
+		//m_Window->Clear();
 		framebuffer->BindFrameBuffer();
 		framebuffer->UpdateFramebufferData(WinData,m_WindowResized_flag);
+
 		m_Window->Clear();
 		m_Window->ClearColor();
 		//begin scene
 		graphics::RenderScene::SceneBegin();
 		
-		renderLayer->RenderSkybox(WinData, m_CamPair);
-		//renderLayer->RenderFlatboard(WinData, camera, basicLight);
+		env->use(m_CamPair);
+		
+		//renderLayer->RenderSkybox(WinData, m_CamPair);
+		renderLayer->RenderFlatboard(WinData, camera, basicLight);
 		renderLayer->RenderObjects(WinData, camera);
 		renderLayer->LightModel(basicLight, camera);
-
+		
 		
 		graphics::RenderScene::SceneEnd();
-
+		
 		
 		/***************************default framebuffer*******************************/
 		framebuffer->UnbindFrameBuffer();
+		
 		//hdr->EnableHDRProgram(framebuffer->GetRendered());
 		//hdr->EnableHDR(0.9f);
+		//cubemap->RenderSkybox(m_CamPair);
 		
 		
-
+		
 		imgui->Begin();
 		
 		//imgui setting window
@@ -121,7 +138,7 @@ void Application::Run()
 		imguisetwindow->GraphicsSettingWindow();
 		imguisetwindow->CameraSetting(m_CamPair, *renderLayer, WinData);
 		imguisetwindow->Setting(WinData, m_CamPair, *renderLayer);
-
+		
 		//renderLayer->MultiLight(camera);
 		
 		imguisetwindow->EndSetWindow();
@@ -140,7 +157,32 @@ void Application::Run()
 		
 		//m_WindowResized_flag = false;
 		//framebuffer->UnbindFrameBuffer();
-		//flatboard->Draw(WinData, camera);
+		//m_Window->Clear();
+		//m_Window->ClearColor();
+		
+		//renderLayer->RenderSkybox(WinData, m_CamPair);
+		//renderLayer->RenderFlatboard(WinData, camera, basicLight);
+		//renderLayer->RenderObjects(WinData, camera);
+		//renderLayer->LightModel(basicLight, camera);
+		
+		
+		//sphere->Draw(WinData);
+		
+		//env->Use(m_CamPair); 
+		//imgui->Begin();
+		////
+		//imguisetwindow->BeginSetWindow();
+		////
+		//imguisetwindow->GraphicsSettingWindow();
+		//imguisetwindow->CameraSetting(m_CamPair, *renderLayer, WinData);
+		//imguisetwindow->Setting(WinData, m_CamPair, *renderLayer);
+		////						
+		//imguisetwindow->EndSetWindow();
+		////
+		//imgui->End();
+
+
+
 		m_Window->OnUpdate();
 	}
 	imgui->OnDetach();

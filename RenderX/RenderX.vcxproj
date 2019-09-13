@@ -73,25 +73,25 @@
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="include\entity\HDRCubemap.h" />
     <ClInclude Include="include\entity\MayaCamera.h" />
     <ClInclude Include="include\entity\Entity.h" />
     <ClInclude Include="include\entity\Flatboard.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="include\events\KeyboardEvent.h" />
     <ClInclude Include="include\events\MouseEvent.h" />
     <ClInclude Include="include\graphics\EntityLayer.h" />
+    <ClInclude Include="include\graphics\EnvFramebuffer.h" />
     <ClInclude Include="include\graphics\HDR.h" />
     <ClInclude Include="include\graphics\imgui\ImguiFileBrowser.h" />
     <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="include\graphics\shader\Shader.h" />
     <ClInclude Include="include\graphics\Buffer.h" />
     <ClInclude Include="include\graphics\texture\CubemapTexture.h" />
+    <ClInclude Include="include\graphics\texture\HDRTexture.h" />
     <ClInclude Include="include\graphics\texture\stb_image.h" />
     <ClInclude Include="include\graphics\texture\Texture.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\BufferLayout.h" />
@@ -214,10 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="src\entity\HDRCubemap.cpp" />
     <ClCompile Include="src\entity\MayaCamera.cpp" />
     <ClCompile Include="src\entity\Flatboard.cpp" />
     <ClCompile Include="src\entity\FPSCamera.cpp" />
     <ClCompile Include="src\graphics\EntityLayer.cpp" />
+    <ClCompile Include="src\graphics\EnvFramebuffer.cpp" />
     <ClCompile Include="src\graphics\FrameBuffer.cpp" />
     <ClCompile Include="src\graphics\HDR.cpp" />
     <ClCompile Include="src\graphics\imgui\ImguiFileBrowser.cpp" />
@@ -239,6 +244,7 @@
     <ClCompile Include="src\graphics\render\RenderSphere.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\graphics\texture\CubemapTexture.cpp" />
+    <ClCompile Include="src\graphics\texture\HDRTexture.cpp" />
     <ClCompile Include="src\graphics\texture\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />

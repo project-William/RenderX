@@ -16,7 +16,7 @@ namespace renderx {
 			void Bind() const;
 			void Unbind() const;
 
-			void BufferStorage(unsigned int width,unsigned int height);
+			void BufferStorage(unsigned int width,unsigned int height, GLenum kind);
 
 			inline const GLuint& GetRenderBuffer()const { return m_RenderBufferID; }
 

@@ -15,23 +15,6 @@ namespace renderx {
 		{
 			glGenFramebuffers(1, &m_FrameBufferID);
 			glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBufferID);
-
-			m_BaseTexture = new Texture(windata.win_Width, windata.win_Height);
-
-			glFramebufferTexture2D(GL_FRAMEBUFFER,
-				GL_COLOR_ATTACHMENT0,
-				GL_TEXTURE_2D,
-				m_BaseTexture->GetTexRef(), 0);
-
-			
-			m_RenderBuffer = new RenderBuffer();
-			m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height);
-			glFramebufferRenderbuffer(GL_FRAMEBUFFER, 
-									  GL_DEPTH_STENCIL_ATTACHMENT, 
-									  GL_RENDERBUFFER, 
-									  m_RenderBuffer->GetRenderBuffer());
-
-			m_RenderBuffer->Unbind();
 			UnbindFrameBuffer();
 		}
 
@@ -40,6 +23,44 @@ namespace renderx {
 			glDeleteFramebuffers(1, &m_FrameBufferID);
 			delete m_BaseTexture;
 			delete m_RenderBuffer;
+		}
+
+		void FrameBuffer::InitFramebuffer(const WinData& windata)
+		{
+			BindFrameBuffer();
+
+			CreateBaseTexture(windata);
+			AttachTexture(m_BaseTexture->GetTexRef(), FBTexAttachType::COLOR_ATTACH_0);
+			UpdateRenderBuffer(windata);
+			
+			UnbindFrameBuffer();
+		}
+
+		void FrameBuffer::AttachTexture(const GLuint& texture, FBTexAttachType type)
+		{
+			glFramebufferTexture2D(GL_FRAMEBUFFER,
+				GetFBTexAttachType(type),
+				GL_TEXTURE_2D,
+				texture, 0);
+		}
+
+
+		void FrameBuffer::CreateBaseTexture(const graphics::WinData& windata)
+		{
+			m_BaseTexture = new Texture(windata.win_Width, windata.win_Height);
+		}
+
+
+		void FrameBuffer::UpdateRenderBuffer(const graphics::WinData& windata)
+		{
+			m_RenderBuffer = new RenderBuffer();
+			m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height,GL_DEPTH24_STENCIL8);
+			glFramebufferRenderbuffer(GL_FRAMEBUFFER,
+				GL_DEPTH_STENCIL_ATTACHMENT,
+				GL_RENDERBUFFER,
+				m_RenderBuffer->GetRenderBuffer());
+
+			m_RenderBuffer->Unbind();
 		}
 
 		void FrameBuffer::BindFrameBuffer()
@@ -56,29 +77,25 @@ namespace renderx {
 
 		void FrameBuffer::UpdateFramebufferData(const WinData& windata, bool& flag)
 		{
+
 			if (flag)
 			{
 				delete m_BaseTexture;
 				delete m_RenderBuffer;
-				m_BaseTexture = new Texture(windata.win_Width, windata.win_Height);
+				CreateBaseTexture(windata);
 				std::cout << flag << std::endl;
 				auto texture = m_BaseTexture->GetTexture();
 
-				glFramebufferTexture2D(GL_FRAMEBUFFER,
-					GL_COLOR_ATTACHMENT0,
-					GL_TEXTURE_2D,
-					m_BaseTexture->GetTexRef(), 0);
-
-				m_RenderBuffer = new RenderBuffer();
-				m_RenderBuffer->BufferStorage(windata.win_Width, windata.win_Height);
-				glFramebufferRenderbuffer(GL_FRAMEBUFFER,
-					GL_DEPTH_STENCIL_ATTACHMENT,
-					GL_RENDERBUFFER,
-					m_RenderBuffer->GetRenderBuffer());
+				AttachTexture(m_BaseTexture->GetTexRef(), FBTexAttachType::COLOR_ATTACH_0);
+			
+				UpdateRenderBuffer(windata);
+			
 				flag = false;
 			}
+
 			
 		}
+
 
 		bool FrameBuffer::CheckInit()
 		{

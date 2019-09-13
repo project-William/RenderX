@@ -170,6 +170,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shader\backfragment.frag" />
+    <None Include="shader\backvertex.vert" />
     <None Include="shader\cubemapFragment.frag" />
     <None Include="shader\cubemapVertex.vert" />
     <None Include="shader\flatboardFragment.frag" />
@@ -179,7 +181,10 @@
     <None Include="shader\HDRVertex.vert" />
     <None Include="shader\RendererFragment.frag" />
     <None Include="shader\RendererVertex.vert" />
+    <None Include="shader\toCubemap.frag" />
+    <None Include="shader\toCubemap.vert" />
     <None Include="shader\vertex.vert" />
+    <None Include="texture\ibl_hdr_radiance.hdr" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\ame_iceflats\iceflats_bk.tga" />

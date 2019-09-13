@@ -42,6 +42,7 @@ private:
 	std::shared_ptr<utils::Mouse> m_Mouse;
 	std::shared_ptr<utils::Keyboard> m_Keyboard;
 	
+	entity::HDRCubemap* cubemap;
 
 	graphics::RenderLight* basicLight;
 
@@ -50,6 +51,8 @@ private:
 
 	graphics::HDR* hdr;
 	
+	graphics::EnvFramebuffer* env;
+
 
 private:
 	entity::CubemapFaces cubemapfaces;

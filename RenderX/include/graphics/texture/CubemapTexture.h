@@ -7,11 +7,13 @@ namespace renderx {
 		class REN_API CubemapTexture
 		{
 		public:
+			CubemapTexture(int width, int height);
 			CubemapTexture(const std::vector<std::string>& textureName);
 			~CubemapTexture();
 			
 			void LoadCubeMaps();
-			inline int GetTexture() const { return m_Texture; };
+			inline unsigned int GetTexture() const { return m_Texture; };
+			inline unsigned int& GetTextureRef() { return m_Texture; }
 			void BindCubemapTexture()const;
 			void UnbindCubemapTexture()const;
 

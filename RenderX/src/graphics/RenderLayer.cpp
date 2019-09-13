@@ -24,7 +24,7 @@ namespace renderx {
 
 		void RenderLayer::LightModel(RenderLight* light, entity::FPSCamera* camera)
 		{
-			bool istex = true;
+			bool istex = false;
 			for (auto& iter : m_Renderer)
 			{
 				if (iter.second)

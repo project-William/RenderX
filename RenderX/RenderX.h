@@ -17,6 +17,7 @@
 #include "include/graphics/EntityLayer.h"
 #include "include/graphics/RenderScene.h"
 #include "include/graphics/HDR.h"
+#include "include/graphics/EnvFramebuffer.h"
 
 //imgui(UI) header
 #include "include/graphics/imgui/ImguiLayer.h"
@@ -38,6 +39,7 @@
 #include "include/entity/FPSCamera.h"
 #include "include/entity/RenderSkybox.h"
 #include "include/entity/Flatboard.h"
+#include "include/entity/HDRCubemap.h"
 
 
 //shader header

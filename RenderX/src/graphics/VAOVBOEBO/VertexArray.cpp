@@ -1,4 +1,5 @@
 #include "graphics/VAOVBOEBO/VertexArray.h"
+#pragma warning(disable:4099)
 
 namespace renderx {
 	namespace graphics {

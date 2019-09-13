@@ -41,6 +41,11 @@
     <None Include="shader\HDRFragment.frag" />
     <None Include="shader\RendererFragment.frag" />
     <None Include="shader\RendererVertex.vert" />
+    <None Include="shader\toCubemap.vert" />
+    <None Include="shader\toCubemap.frag" />
+    <None Include="texture\ibl_hdr_radiance.hdr" />
+    <None Include="shader\backvertex.vert" />
+    <None Include="shader\backfragment.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\wall.jpg">

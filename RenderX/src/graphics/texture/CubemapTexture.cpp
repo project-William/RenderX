@@ -4,6 +4,23 @@
 namespace renderx {
 	namespace graphics {
 
+		CubemapTexture::CubemapTexture(int width,int height)
+			:m_Width(width), m_Height(height), m_Nrchannels(0), m_Texture(0)
+		{
+			glGenTextures(1, &m_Texture);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, m_Texture);
+			for (size_t i = 0; i < 6; i++)
+			{
+				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16, m_Width, m_Height, 0, GL_RGB, GL_FLOAT, nullptr);
+			}
+			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+		}
+
 		CubemapTexture::CubemapTexture(const std::vector<std::string>& textureName)
 			:m_Width(0),m_Height(0),m_Nrchannels(0),m_Texture(0),m_Texture_Name(textureName)
 		{

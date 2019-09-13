@@ -17,7 +17,7 @@ namespace renderx {
 
 			m_RenderData->m_VAO->AddEbo
 			(
-				sizeof(unsigned int) * m_RenderData->m_Indices.size(),
+				sizeof(size_t) * m_RenderData->m_Indices.size(),
 				&m_RenderData->m_Indices[0]
 			);
 
@@ -98,8 +98,7 @@ namespace renderx {
 					glActiveTexture(GL_TEXTURE4);
 					glBindTexture(GL_TEXTURE_2D, m_RenderData->m_AOTex);
 					
-
-					glDrawElements(GL_TRIANGLE_STRIP, m_IndexCount, GL_UNSIGNED_INT, 0);
+					glDrawElements(GL_TRIANGLE_STRIP, static_cast<int>(m_IndexCount), GL_UNSIGNED_INT, 0);
 				}
 			}
 		}
@@ -161,7 +160,7 @@ namespace renderx {
 				}
 				else
 				{
-					for (size_t x = X_SEGMENTS; x >= 0; --x)
+					for (int x = static_cast<int>(X_SEGMENTS); x >= 0; --x)
 					{
 						m_RenderData->m_Indices.push_back((y + 1) * (X_SEGMENTS + 1) + x);
 						m_RenderData->m_Indices.push_back(y * (X_SEGMENTS + 1) + x);
@@ -189,6 +188,5 @@ namespace renderx {
 				}
 			}
 		}
-
 	}
 }
