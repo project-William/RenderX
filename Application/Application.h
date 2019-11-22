@@ -1,81 +1,35 @@
 #pragma once
-#include <RenderX.h>
+#include "include/Sandbox.h"
 
-
-using namespace renderx;
-
-class Application
+class Application :public Sandbox
 {
-private:
-	std::unique_ptr<graphics::Window> m_Window;
-	
-	entity::FPSCamera* camera;
-
-	entity::MayaCamera* defaultcam;
-	
-	std::pair<entity::FPSCamera*, entity::MayaCamera*> m_CamPair;
-
-	ui::ImguiLayer* imgui = nullptr;
-
-	graphics::RenderLayer* renderLayer = nullptr;
-
-	graphics::LayerList* layerList = nullptr;
-
-	graphics::FrameBuffer* framebuffer;
-
-	graphics::RenderCube* cube;
-
-	graphics::RenderSphere* sphere;
-
-	entity::RenderSkybox* skybox_1;
-	entity::RenderSkybox* skybox_2;
-	entity::RenderSkybox* skybox_3;
-	entity::RenderSkybox* skybox_4;
-
-	entity::Flatboard* flatboard;
-
-	ui::ImguiLog* imguiLog;
-
-	ui::ImguiSetWindow* imguisetwindow;
-	std::shared_ptr<ui::ImguiSceneWindow> m_SceneWindow;
-
-	std::shared_ptr<utils::Mouse> m_Mouse;
-	std::shared_ptr<utils::Keyboard> m_Keyboard;
-	
-	entity::HDRCubemap* cubemap;
-
-	graphics::RenderLight* basicLight;
-
-	bool m_Running = true;
-	bool m_WindowResized_flag = false;
-
-	graphics::HDR* hdr;
-	
-	graphics::EnvFramebuffer* env;
-
-
-private:
-	entity::CubemapFaces cubemapfaces;
-
-	void OnEvent(events::Event& e);
-	
-	bool OnWindowResizedEvent(events::WindowResizedEvent& e);
-	bool OnWindowClosedEvent(events::WindowClosedEvent& e);
-	bool OnWindowMovedEvent(events::WindowMovedEvent& e);
-	
-	bool OnMouseButtonPressed(events::MousePressedEvent& e);
-	bool OnMouseButtonReleased(events::MouseRelasedEvent& e);
-	bool OnMouseMovedEvent(events::MouseMovedEvent& e);
-	bool OnMouseScrollEvent(events::MouseScrollEvent& e);
-	
-	bool OnKeyPressedEvent(events::KeyPressedEvent& e);
-	bool OnKeyReleasedEvent(events::KeyReleasedEvent& e);
-	
-
 public:
 	Application();
 	~Application();
 
 	void Run();
+
+private:
+	std::shared_ptr<Test> m_Test;
+	
+
+	float deltaTime = 0, lastFrame = 0;
+
+
+	glm::vec3 lightPositions[4] = {
+			glm::vec3(-10.0f,  10.0f, 10.0f),
+			glm::vec3(10.0f,  10.0f, 10.0f),
+			glm::vec3(-10.0f, -10.0f, 10.0f),
+			glm::vec3(10.0f, -10.0f, 10.0f),
+	};
+	glm::vec3 lightColors[4] = {
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f)
+	};
+
+
+
 
 };

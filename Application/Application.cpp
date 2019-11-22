@@ -1,328 +1,206 @@
 #include "Application.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#define EVENT_LOG(x,message) { std::cout<<"EVENT:"#x<<" "<<message<<std::endl; }
-
+ 
 Application::Application()
 {
-
-	m_Window = std::unique_ptr<graphics::Window>(graphics::Window::Create());
-	m_Keyboard = utils::Keyboard::Create();
-	m_Mouse = utils::Mouse::Create();
-
-	m_Window->SetEventCallback(BIND_EVENT(Application::OnEvent));
-
-	renderLayer = new graphics::RenderLayer();
-
-	imgui = new ui::ImguiLayer(m_Window->GetWinData());
-
-	imgui->OnAttach();
-
-	layerList = new graphics::LayerList();
-	layerList->PushBackLayer(imgui);
-	layerList->PushBackLayer(renderLayer);
+	m_Test = Test::Create();
 
 
-
-
-	flatboard = new entity::Flatboard("shader/flatboardVertex.vert", "shader/flatboardFragment.frag");
-
-	cube = new graphics::RenderCube("shader/RendererVertex.vert", "shader/RendererFragment.frag");
-	sphere = new graphics::RenderSphere("shader/RendererVertex.vert", "shader/RendererFragment.frag");
-
-	skybox_1 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces);
-	skybox_2 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces1);
-	skybox_3 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces2);
-	skybox_4 = new entity::RenderSkybox("shader/cubemapVertex.vert", "shader/cubemapFragment.frag", cubemapfaces.m_faces3);
-
-
-	renderLayer->PushSkybox(skybox_1);
-	renderLayer->PushSkybox(skybox_2);
-	renderLayer->PushSkybox(skybox_3);
-	renderLayer->PushSkybox(skybox_4);
-
-	renderLayer->PushRenderer(sphere, true);
-	renderLayer->PushRenderer(cube, false);
-
-	renderLayer->PushFlatboard(flatboard);
-
-
-	imguiLog = new ui::ImguiLog();
-	imguisetwindow = new ui::ImguiSetWindow();
-
-	m_SceneWindow = ui::ImguiSceneWindow::Create();
-
-	camera = new entity::FPSCamera(glm::vec3(0.0f, 4.0f, 15.0f));
-	defaultcam = new entity::MayaCamera(glm::vec3(0.0f, 2.0f, 15.0f));
-
-	m_CamPair = std::pair<entity::FPSCamera*, entity::MayaCamera*>(camera, defaultcam);
-
-	basicLight = new graphics::BasicLight();
-	//hdr = new graphics::HDR("shader/HDRVertex.vert", "shader/HDRFragment.frag");
-
-	framebuffer = new graphics::FrameBuffer(m_Window->GetWinData());
-	cubemap = new entity::HDRCubemap("texture/ibl_hdr_radiance.hdr", "shader/toCubemap.vert", "shader/toCubemap.frag");
-	
-	env = new graphics::EnvFramebuffer();
 	
 
+	
 }
 
 Application::~Application()
 {
-	delete imgui;
-	delete renderLayer;
-	delete layerList;
-	delete framebuffer;
-	delete skybox_1;
-	delete skybox_2;
-	delete skybox_3;
-	delete skybox_4;
-	delete camera;
-	delete defaultcam;
-	delete basicLight;
-	delete hdr;
-	delete cube;
-	delete sphere;
-	delete imguiLog;
-	delete flatboard;
+
 }
 
 void Application::Run()
 {
-	auto& WinData = m_Window->GetWinData();
-	framebuffer->InitFramebuffer(WinData);
-	//cubemap->Init();
-	env->Init();
-	env->frame(*m_Window);
+
+	//SetupIBL();
+
+	m_ShaderManager.SubmitShader(m_BackgroundShader);
+	m_ShaderManager.SubmitShader(m_PbrShader);
+	m_ShaderManager.SubmitShader(m_PrefilterShader);
+	m_ShaderManager.SubmitShader(m_BrdfShader);
+	m_ShaderManager.SubmitShader(m_EquirectangularToCubemapShader);
+	m_ShaderManager.SubmitShader(m_IrradianceShader);
+
+	m_RendererManager.SubmitRenderer(std::dynamic_pointer_cast<graphics::Renderer>(m_Quad));
+	m_RendererManager.SubmitRenderer(std::dynamic_pointer_cast<graphics::Renderer>(m_Sphere));
+	m_RendererManager.SubmitRenderer(std::dynamic_pointer_cast<graphics::Renderer>(m_Block));
 
 
-	while (m_Running)
-	{	
-		/*****************************bind framebuffer******************************/
-		//m_Window->Clear();
-		framebuffer->BindFrameBuffer();
-		framebuffer->UpdateFramebufferData(WinData,m_WindowResized_flag);
+	m_TextureManager.SubmitTexture(hdrtexture, graphics::TexType::HDR_TEXTURE);
+	m_TextureManager.SubmitTexture(cubemap, graphics::TexType::ENVCUBEMAP);
+	m_TextureManager.SubmitTexture(brdftexture, graphics::TexType::BRDFLUT_TEXTURE);
+	m_TextureManager.SubmitTexture(irradianceMap, graphics::TexType::IRRADIANCEMAP);
+	m_TextureManager.SubmitTexture(prefilter, graphics::TexType::PREFILTERMAP);
 
+	m_Scene = Scene::Create(m_ShaderManager, m_TextureManager, m_RendererManager);
+	
+	m_Scene->SetupIBL(m_Framebuffer);
+
+
+	// then before rendering, configure the viewport to the original framebuffer's screen dimensions
+	m_Window->ConfigFrameSize();
+	
+	glm::mat4 view;
+	glm::mat4 projection;
+
+
+	//before loop, for gui
+	m_Imgui = std::shared_ptr<ui::ImguiWindow>(new ui::ImguiWindow());
+	m_SetWin = std::shared_ptr<ui::SettingWindow>(new ui::SettingWindow());
+	
+	while (!m_Window->Closed())
+	{
+		utils::Timer timer;
+		// per-frame time logic 
+		// --------------------
+		//float currentFrame = glfwGetTime();
+		//deltaTime = currentFrame - lastFrame;
+		//lastFrame = currentFrame;
+
+		// render
+		// ------
 		m_Window->Clear();
 		m_Window->ClearColor();
-		//begin scene
-		graphics::RenderScene::SceneBegin();
+
+		// render scene, supplying the convoluted irradiance map to the final shader.
+		// ------------------------------------------------------------------------------------------
+		//m_PbrShader->BindShaderProgram();
+		//view = m_Camera->GetViewMatrix();
+		//projection = m_Camera->GetProjectionMatrix(m_Camera->GetCameraAttribRef().Zoom);
+		//m_PbrShader->SetMat4("view", view);
+		//m_PbrShader->SetVec3("camPos", m_Camera->GetCameraAttribRef().Position);
+		//m_PbrShader->SetMat4("projection", projection);
 		
-		env->use(m_CamPair);
+		// bind pre-computed IBL data
+		//manager::TextureManager::BindTexture(m_TextureManager.m_Hdrtexture.GetTexture(), 0, graphics::TexType::IRRADIANCEMAP);
+		//manager::TextureManager::BindTexture(m_TextureManager.m_Prefilter.GetTexture(), 1, graphics::TexType::PREFILTERMAP);
+		//manager::TextureManager::BindTexture(m_TextureManager.m_Brdftexture.GetTexture(), 2, graphics::TexType::BRDFLUT_TEXTURE);
+
+		// render rows*column number of spheres with material properties defined by textures (they all have the same material properties)
+		//glm::mat4 model = glm::mat4(1.0f);
+		//for (int32_t row = 0; row < 7; ++row)
+		//{
+		//	m_Sphere->BindVAO();
+		//	m_PbrShader->SetFloat("metallic", (float)row / (float)7);
+		//	m_PbrShader->SetVec4("albedo", albedoColor.x, albedoColor.y, albedoColor.z, albedoColor.w);
+		//	for (int32_t col = 0; col < 7; ++col)
+		//	{
+		//		// we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
+		//		// on direct lighting.
+		//		m_PbrShader->SetFloat("roughness", glm::clamp((float)col / (float)7, 0.05f, 1.0f));
+		//
+		//		model = glm::mat4(1.0f);
+		//		model = glm::translate(model, glm::vec3(
+		//			(float)(col - (7 / 2)) * 2.5,
+		//			-0.0f,
+		//			(float)(row - (7 / 2)) * 2.5
+		//		));
+		//		m_PbrShader->SetMat4("model", model);
+		//		m_Sphere->Draw();
+		//	}
+		//}
+
+		Scene::BeginScene();
+
+		m_Scene->SetCameraViewport(m_Camera);
+		m_Scene->BindPreComputedIBL();
+		m_Scene->RenderScene();
 		
-		//renderLayer->RenderSkybox(WinData, m_CamPair);
-		renderLayer->RenderFlatboard(WinData, camera, basicLight);
-		renderLayer->RenderObjects(WinData, camera);
-		renderLayer->LightModel(basicLight, camera);
+		// render light source (simply re-render sphere at light positions)
+		// this looks a bit off as we use the same shader, but it'll make their positions obvious and 
+		// keeps the codeprint small.
+		//for (uint32_t i = 0; i < sizeof(lightPositions) / sizeof(lightPositions[0]); ++i)
+		//{
+		//	glm::vec3 newPos = lightPositions[i] + glm::vec3(sin(glfwGetTime() * 5.0) * 5.0, 0.0, 0.0);
+		//	newPos = lightPositions[i];
+		//	m_PbrShader->SetVec3("lightPositions[" + std::to_string(i) + "]", newPos);
+		//	m_PbrShader->SetVec3("lightColors[" + std::to_string(i) + "]", lightColors[i]);
+		//
+		//	model = glm::mat4(1.0f);
+		//	model = glm::translate(model, newPos);
+		//	model = glm::scale(model, glm::vec3(0.5f));
+		//	m_PbrShader->SetMat4("model", model);
+		//	m_Sphere->BindVAO();
+		//	m_Sphere->Draw();
+		//
+		//}
+
+		// render skybox (render as last to prevent overdraw)
+		m_Scene->RenderSkybox();
+		Scene::EndScene();
+		//m_BackgroundShader->BindShaderProgram();
+		//m_BackgroundShader->SetMat4("view", view);
+		//m_BackgroundShader->SetMat4("projection", projection);
+		//manager::TextureManager::BindTexture(cubemap.GetTexture(), 0, graphics::TexType::ENVCUBEMAP);
+		//irradianceMap.BindTexture(0);
+		//prefilter.BindTexture(0);
 		
-		
-		graphics::RenderScene::SceneEnd();
-		
-		
-		/***************************default framebuffer*******************************/
-		framebuffer->UnbindFrameBuffer();
-		
-		//hdr->EnableHDRProgram(framebuffer->GetRendered());
-		//hdr->EnableHDR(0.9f);
-		//cubemap->RenderSkybox(m_CamPair);
-		
-		
-		
-		imgui->Begin();
-		
-		//imgui setting window
-		imguisetwindow->BeginSetWindow();
-		
-		imguisetwindow->GraphicsSettingWindow();
-		imguisetwindow->CameraSetting(m_CamPair, *renderLayer, WinData);
-		imguisetwindow->Setting(WinData, m_CamPair, *renderLayer);
-		
-		//renderLayer->MultiLight(camera);
-		
-		imguisetwindow->EndSetWindow();
-		//movement
-		//imgui draw window
-		m_SceneWindow->BeginSceneWindow();
-		m_SceneWindow->SceneWindow(WinData, framebuffer->GetRendered());
-		m_SceneWindow->EndSceneWindow();
-		//keyboard movement
-		//imgui log window
-		imguiLog->BeginLog();
-		imguiLog->Log();
-		imguiLog->EndLog();
-		
-		imgui->End();		
-		
-		//m_WindowResized_flag = false;
-		//framebuffer->UnbindFrameBuffer();
-		//m_Window->Clear();
-		//m_Window->ClearColor();
-		
-		//renderLayer->RenderSkybox(WinData, m_CamPair);
-		//renderLayer->RenderFlatboard(WinData, camera, basicLight);
-		//renderLayer->RenderObjects(WinData, camera);
-		//renderLayer->LightModel(basicLight, camera);
-		
-		
-		//sphere->Draw(WinData);
-		
-		//env->Use(m_CamPair); 
-		//imgui->Begin();
-		////
-		//imguisetwindow->BeginSetWindow();
-		////
-		//imguisetwindow->GraphicsSettingWindow();
-		//imguisetwindow->CameraSetting(m_CamPair, *renderLayer, WinData);
-		//imguisetwindow->Setting(WinData, m_CamPair, *renderLayer);
-		////						
-		//imguisetwindow->EndSetWindow();
-		////
-		//imgui->End();
+		//m_Block->BindVAO();
+		//m_Block->Draw();
+
+		// render BRDF map to screen
+		//brdfShader.Use();
+		//renderQuad();
 
 
+		//processinput
+		m_Camera->EnableObject();
 
+		//render ui
+		m_Imgui->UIBegin();
+		//graphics setting window
+		m_SetWin->Begin();
+		m_SetWin->End();
+		//m_SetWin->Demo();
+		m_SetWin->RendererWindow();
+		m_SetWin->AttribWindow(m_Camera);
+		//m_SetWin->Test();
+
+		//imgui FPS window
+		m_SetWin->FPSWindow(timer.GetMilliseconds());
+
+		m_Imgui->UIEnd();
+
+		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+		// -------------------------------------------------------------------------------
 		m_Window->OnUpdate();
-	}
-	imgui->OnDetach();
-	glfwTerminate();
-}
-
-
-
-void Application::OnEvent(events::Event& e)
-{
-	bool handled = false;
-	events::EventDispatcher dispatcher(e);
-
-	if (e.IsInCategory(events::RX_EVENT_CATEGORY_WINDOW))
-	{
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::WindowResizedEvent>(BIND_EVENT(Application::OnWindowResizedEvent));
-			EVENT_LOG(events::WindowResizedEvent, "Window resized!");
-		}
-
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::WindowClosedEvent>(BIND_EVENT(Application::OnWindowClosedEvent));
-			EVENT_LOG(events::WindowClosedEvent, "Window colsed!");
-		}
-
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::WindowMovedEvent>(BIND_EVENT(Application::OnWindowMovedEvent));
-			EVENT_LOG(events::WindowMovedEvent, "Window moved!");
-		}
-	}
-
-	else if(e.IsInCategory(events::RX_EVENT_CATEGORY_KEYBOARD))
-	{
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::KeyPressedEvent>(BIND_EVENT(Application::OnKeyPressedEvent));
-			EVENT_LOG(events::KeyPressedEvent, "KeyPressed!");
-		}
-
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::KeyReleasedEvent>(BIND_EVENT(Application::OnKeyReleasedEvent));
-			EVENT_LOG(events::KeyPressedEvent, "KeyReleased!");
-		}
-
-	}
-
-	else if (e.IsInCategory(events::RX_EVENT_CATEGORY_MOUSE))
-	{
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::MouseMovedEvent>(BIND_EVENT(Application::OnMouseMovedEvent));
-		}
 		
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::MousePressedEvent>(BIND_EVENT(Application::OnMouseButtonPressed));
-		}
-
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::MouseRelasedEvent>(BIND_EVENT(Application::OnMouseButtonReleased));
-		}
-
-		if (!handled)
-		{
-			handled = dispatcher.Dispatch<events::MouseScrollEvent>(BIND_EVENT(Application::OnMouseScrollEvent));
-		}
 	}
+
+	
+
+	//while (m_Running)
+	//
+	//{
+	//	m_Window->Clear();
+	//	m_Window->ClearColor();
+	//
+	//	shader->BindShaderProgram();
+	//	m_Sphere->BindVAO();
+	//	m_Sphere->Draw();
+	//	m_Sphere->SetMVP([&]()
+	//	{
+	//		view = m_Camera->GetViewMatrix();
+	//		projection = glm::perspective(glm::radians(45.0f), (float)m_Window->GetWinWidth() / m_Window->GetWinHeight(), 0.1f, 100.0f);
+	//	
+	//		shader->SetMat4("model", model);
+	//		shader->SetMat4("projection", projection);
+	//		shader->SetMat4("view", view);
+	//	});
+	//	
+	//	//m_Sphere->BindVAO();
+	//	//m_Sphere->draw();
+	//	m_Camera->EnableObject();
+	//	m_Window->OnUpdate();
+	//}
+
+	
+
 }
-
-bool Application::OnWindowResizedEvent(events::WindowResizedEvent& e)
-{
-	m_Window->OnWindowResized();
-	EVENT_LOG(events::WindowResizedEvent, "Window resized");
-	m_WindowResized_flag = true;
-	return true;
-}
-
-bool Application::OnWindowClosedEvent(events::WindowClosedEvent& e)
-{
-	m_Running = false;
-	EVENT_LOG(events::WindowClosedEvent, "Window closed");
-	return true;
-}
-
-bool Application::OnWindowMovedEvent(events::WindowMovedEvent& e)
-{
-	EVENT_LOG(events::WindowMovedEvent, "Window moved");
-	return true;
-}
-
-bool Application::OnMouseButtonPressed(events::MousePressedEvent& e)
-{
-	utils::Mouse::GetMouseInstance()->OnEvent(e);
-	EVENT_LOG(events::MousePressedEvent, "Mouse Pressed!");
-	return true;
-}
-
-bool Application::OnMouseButtonReleased(events::MouseRelasedEvent& e)
-{
-	utils::Mouse::GetMouseInstance()->OnEvent(e);
-	EVENT_LOG(events::MouseRelasedEvent, "Mouse Released!");
-	return true;
-}
-
-bool Application::OnMouseMovedEvent(events::MouseMovedEvent& e)
-{
-	utils::Mouse::GetMouseInstance()->OnEvent(e);
-	return true;
-}
-
-bool Application::OnMouseScrollEvent(events::MouseScrollEvent& e)
-{
-	utils::Mouse::GetMouseInstance()->OnEvent(e);
-	EVENT_LOG(events::MouseScrollEvent, "Mouse Scroll moved!");
-	return true;
-}
-
-bool Application::OnKeyPressedEvent(events::KeyPressedEvent& e)
-{
-	utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
-	return true;
-}
-
-bool Application::OnKeyReleasedEvent(events::KeyReleasedEvent& e)
-{
-	utils::Keyboard::GetKeyboardInstance()->OnEvent(e);
-	return true;
-}
-
-
-
-
-
-
-
-
-
-

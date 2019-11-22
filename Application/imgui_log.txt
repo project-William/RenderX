@@ -1,0 +1,283 @@
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Quad  
+Add Q Del Q Count:1
+Block 
+Add B Del B Count:1
+Sphere
+Add S Del S Count:1
+Model 
+Add M Del M Count:0
+--------------------------------
+> Renderer List
+    [ ]
+    Quad1
+    [ ]
+    Sphere1
+    [ ]
+    Block1
+> Color/Picker
+    Color picker:
+    [x]
+    With Alpha
+    [x]
+    With Alpha Bar
+    [x]
+    With Side Preview [ ]
+    With Ref Color
+    Auto/Current Display Mode
+    Auto/Current Picker Mode
+    MyColor
+    R:128 G:  0 B:  0 A:255
+    H:  0 S:255 V:128 A:255
+    #800000FF
+yes
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Quad  
+Add Q Del Q Count:1
+Block 
+Add B Del B Count:1
+Sphere
+Add S Del S Count:1
+Model 
+Add M Del M Count:0
+--------------------------------
+> Renderer List
+    [ ]
+    Quad1
+    [ ]
+    Sphere1
+    [ ]
+    Block1
+> Color/Picker
+    Color picker:
+    [x]
+    With Alpha
+    [x]
+    With Alpha Bar
+    [x]
+    With Side Preview [ ]
+    With Ref Color
+    Auto/Current Display Mode
+    Auto/Current Picker Mode
+    MyColor
+    R:128 G:  0 B:  0 A:255
+    H:  0 S:255 V:128 A:255
+    #800000FF
+yes
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Quad  
+Add Q Del Q Count:1
+Block 
+Add B Del B Count:1
+Sphere
+Add S Del S Count:1
+Model 
+Add M Del M Count:0
+--------------------------------
+> Renderer List
+    [ ]
+    Quad1
+    [ ]
+    Sphere1
+    [ ]
+    Block1
+> Color/Picker
+    Color picker:
+    [x]
+    With Alpha
+    [x]
+    With Alpha Bar
+    [x]
+    With Side Preview [ ]
+    With Ref Color
+    Auto/Current Display Mode
+    Auto/Current Picker Mode
+    MyColor
+    R:128 G:  0 B:  0 A:255
+    H:  0 S:255 V:128 A:255
+    #800000FF
+yes
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Quad  
+Add Q Del Q Count:1
+Block 
+Add B Del B Count:1
+Sphere
+Add S Del S Count:1
+Model 
+Add M Del M Count:0
+--------------------------------
+> Renderer List
+    [ ]
+    Quad1
+    [ ]
+    Sphere1
+    [ ]
+    Block1
+> Color/Picker
+    Color picker:
+    [x]
+    With Alpha
+    [x]
+    With Alpha Bar
+    [x]
+    With Side Preview [ ]
+    With Ref Color
+    Auto/Current Display Mode
+    Auto/Current Picker Mode
+    MyColor
+    R:128 G:  0 B:  0 A:255
+    H:  0 S:255 V:128 A:255
+    #800000FF
+yes
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ## Quad  
+Add Q Del Q Count:1
+Block 
+Add B Del B Count:1
+Sphere
+Add S Del S Count:1
+Model 
+Add M Del M Count:0
+--------------------------------
+> Renderer List
+    [ ]
+    Quad1
+    [ ]
+    Sphere1
+    [ ]
+    Block1
+> Color/Picker
+    Color picker:
+    [x]
+    With Alpha
+    [x]
+    With Alpha Bar
+    [x]
+    With Side Preview [ ]
+    With Ref Color
+    Auto/Current Display Mode
+    Auto/Current Picker Mode
+    MyColor
+    R:128 G:  0 B:  0 A:255
+    H:  0 S:255 V:128 A:255
+    #800000FF
+yes
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ##
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ##
+You can also call ImGui::LogText() to output directly to the log without a visual output.
+Copy "Hello, world!" to clipboard
+
+## Window options ##
+
+## Widgets ##
+
+## Layout ##
+
+## Popups & Modal windows ##
+
+## Columns ##
+
+## Filtering ##
+
+## Inputs, Navigation & Focus ##

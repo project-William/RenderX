@@ -2,14 +2,8 @@
 
 namespace renderx {
 	namespace graphics {
-		VertexBuffer::VertexBuffer()
-			:m_VertexBuffer(0)
-		{
 
-		}
-
-
-		VertexBuffer::VertexBuffer(unsigned int size, const void* data)
+		VertexBuffer::VertexBuffer(size_t size, const void* data)
 			:m_VertexBuffer(0)
 		{
 			glGenBuffers(1, &m_VertexBuffer);

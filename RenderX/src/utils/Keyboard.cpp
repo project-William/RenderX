@@ -1,17 +1,18 @@
 #include "utils/Keyboard.h"
 
-namespace renderx {
-	namespace utils {
+namespace renderx 
+{
+	namespace utils 
+	{
+		std::shared_ptr<Keyboard> Keyboard::ms_Keyboard;
 
-		std::shared_ptr<Keyboard> Keyboard::ms_Keyboard = nullptr;
-		
 		Keyboard::Keyboard()
 			:m_Keys(nullptr)
 		{
-			int keyNums = Keys::RX_KEY_LAST;
+			int32_t keyNums = Keys::RX_KEY_LAST;
 			m_Keys = new std::vector<bool>(keyNums);
 		}
-		
+
 		Keyboard::~Keyboard()
 		{
 			delete m_Keys;

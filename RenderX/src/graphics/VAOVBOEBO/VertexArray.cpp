@@ -1,20 +1,14 @@
 #include "graphics/VAOVBOEBO/VertexArray.h"
-#pragma warning(disable:4099)
 
-namespace renderx {
-	namespace graphics {
-
-		VertexArray::VertexArray()
-			:m_Vertexbuffer(nullptr),m_VertexArray(0),m_IndexBuffer(0)
-		{
-
-		}
+namespace renderx 
+{
+	namespace graphics 
+	{
 
 		VertexArray::VertexArray(size_t size, const void* data)
-			:m_VertexArray(0),
-			 m_Vertexbuffer(new VertexBuffer(size, data)),
-			 m_IndexBuffer(new IndexBuffer())
+			:m_VertexArray(0)
 		{
+			m_VertexBuffer = std::unique_ptr<VertexBuffer>(new VertexBuffer(size, data));
 			glGenVertexArrays(1, &m_VertexArray);
 			glBindVertexArray(m_VertexArray);
 		}
@@ -22,22 +16,21 @@ namespace renderx {
 		VertexArray::~VertexArray()
 		{
 			glDeleteVertexArrays(1, &m_VertexArray);
-			delete m_Vertexbuffer;
-			delete m_IndexBuffer;
 		}
 
-		void VertexArray::AddEbo(unsigned int indices_size, const void* indices_data)
+		void VertexArray::CreateEBO(size_t indices_size, const void* indices_data)
 		{
-			delete m_IndexBuffer;
-			m_IndexBuffer = new IndexBuffer(indices_size, indices_data);
+			m_IndexBuffer = std::unique_ptr<IndexBuffer>(new IndexBuffer(indices_size, indices_data));
 		}
 
 		void VertexArray::AddBufferLayout(const BufferLayout& layout)
 		{
 			BindVertexArray();
-			m_Vertexbuffer->Bind();
-			m_IndexBuffer->Bind();
-
+			m_VertexBuffer->Bind();
+			if (m_IndexBuffer)
+			{
+				m_IndexBuffer->Bind();
+			}
 			GLuint index = 0;
 			GLuint offset = 0;
 			auto& elements = layout.GetBufferElements();
@@ -45,14 +38,13 @@ namespace renderx {
 			for (auto& element : elements)
 			{
 				glEnableVertexAttribArray(index);
-				glVertexAttribPointer(index, element.GetElementCount(), 
-					GL_FLOAT, GL_FALSE, 
+				glVertexAttribPointer(index, element.GetElementCount(),
+					GL_FLOAT, GL_FALSE,
 					layout.GetStride(),
 					(const void*)offset);
 				offset += element.GetElementSize();
 				index++;
 			}
-
 		}
 
 		void VertexArray::BindVertexArray()const
@@ -63,9 +55,8 @@ namespace renderx {
 		void VertexArray::UnbindVertexArray()const
 		{
 			glBindVertexArray(0);
-			m_Vertexbuffer->Unbind();
+			m_VertexBuffer->Unbind();
 			m_IndexBuffer->Unbind();
 		}
-
 	}
 }

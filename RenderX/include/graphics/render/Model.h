@@ -1,16 +1,16 @@
 #pragma once
-#include "..//..//..//Core.h"
+#include "..//..//..//Common.h"
+#include "Renderer.h"
 
-namespace renderx {
-	namespace graphics {
-
-		class REN_API Model
+namespace renderx
+{
+	namespace graphics
+	{
+		class REN_API Model:public Renderer
 		{
 		public:
-			Model();
-			~Model();
-
+			Model(const std::string& filepath) {}
+			~Model() {}
 		};
-
 	}
 }

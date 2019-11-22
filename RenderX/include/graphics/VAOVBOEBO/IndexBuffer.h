@@ -1,23 +1,19 @@
 #pragma once
-#include "..//Buffer.h"
-
+#include "..//..//..//Common.h"
 
 namespace renderx {
 	namespace graphics {
 
-		class REN_API IndexBuffer:public Buffer
+		class REN_API IndexBuffer 
 		{
 		private:
 			GLuint m_IndexBuffer;
 		public:
-			IndexBuffer();
-			IndexBuffer(unsigned int size ,const void* data);
+			IndexBuffer(size_t size, const void* data);
 			~IndexBuffer();
 
 			void Bind()const;
 			void Unbind()const;
-
 		};
-
 	}
 }

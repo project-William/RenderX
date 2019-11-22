@@ -9,15 +9,13 @@ namespace renderx {
 		class REN_API VertexArray
 		{
 		private:
+			std::unique_ptr<VertexBuffer> m_VertexBuffer;
+			std::unique_ptr<IndexBuffer> m_IndexBuffer;
 			GLuint m_VertexArray;
-			VertexBuffer* m_Vertexbuffer;
-			BufferLayout m_Layout;
-			IndexBuffer* m_IndexBuffer;
 		public:
-			VertexArray();
 			VertexArray(size_t size, const void* data);
 			~VertexArray();
-			void AddEbo(unsigned int indices_size, const void* indices_data);
+			void CreateEBO(size_t indices_size, const void* indices_data);
 
 			void AddBufferLayout(const BufferLayout& layout);
 
@@ -25,6 +23,6 @@ namespace renderx {
 			void UnbindVertexArray()const;
 
 		};
-		
+
 	}
 }

@@ -1,56 +1,16 @@
 #pragma once
-#pragma once
-#include "..//..//Core.h"
+#include "..//..//Common.h"
 
-namespace renderx {
-	namespace entity {
-
-		
-		//camera movement
-		enum REN_API CameraMovement
-		{
-			NONE = 0,
-			CAMERA_MOVEMENT_LEFT,
-			CAMERA_MOVEMENT_RIGHT,
-			CAMERA_MOVEMENT_FORWARD,
-			CAMERA_MOVEMENT_BACKWARD
-		};
-
-		//camera attributes
-		struct REN_API CameraAttributes
-		{
-			glm::vec3 Position;
-			glm::vec3 Front;
-			glm::vec3 Up;
-			glm::vec3 Right;
-			glm::vec3 WorldUp;
-			glm::vec3 View ;
-			float Euler_Yaw = 0;
-			float Euler_Pitch = 0;
-
-			float MovementSpeed =0;
-			float MouseSensivitity =0;
-
-			float Zoom =0;
-			float Fov = 0;
-		};
-
-
+namespace renderx
+{
+	namespace entity
+	{
 
 		class REN_API Entity
 		{
 		public:
-
-			Entity() {}
-
-			virtual ~Entity() {}
-
-			virtual void OnUpdate() = 0;
-
-			virtual void EnableObject() = 0;
-
-			virtual void DisableObject() = 0;
+			Entity(){}
+			virtual ~Entity(){}
 		};
 	}
 }
-

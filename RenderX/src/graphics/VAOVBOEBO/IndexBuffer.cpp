@@ -1,16 +1,11 @@
 #include "graphics/VAOVBOEBO/IndexBuffer.h"
 
-
 namespace renderx {
 	namespace graphics {
 
-		IndexBuffer::IndexBuffer()
-			:m_IndexBuffer(0)
-		{
 
-		}
 
-		IndexBuffer::IndexBuffer(unsigned int size, const void* data)
+		IndexBuffer::IndexBuffer(size_t size, const void* data)
 			: m_IndexBuffer(0)
 		{
 			glGenBuffers(1, &m_IndexBuffer);
@@ -27,7 +22,7 @@ namespace renderx {
 		{
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
 		}
-		
+
 		void IndexBuffer::Unbind()const
 		{
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

@@ -1,18 +1,18 @@
+#include "Window.h"
 #include "utils/Mouse.h"
 
-namespace renderx {
-	namespace utils {
+namespace renderx 
+{
+	namespace utils 
+	{
 
-		std::shared_ptr<Mouse> Mouse::ms_Mouse = nullptr;
+		std::shared_ptr<Mouse> Mouse::ms_Mouse;
 
 		Mouse::Mouse()
-		{
-		}
+		{ }
 
 		Mouse::~Mouse()
-		{
-
-		}
+		{ }
 
 		std::shared_ptr<Mouse> Mouse::Create()
 		{

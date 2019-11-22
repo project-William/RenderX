@@ -1,22 +1,20 @@
 #pragma once
-#include "..//Buffer.h"
 
-#include "BufferLayout.h"
+#include "..//..//..//Common.h"
 
 namespace renderx {
 	namespace graphics {
 
-		class REN_API VertexBuffer :public Buffer
+		class REN_API VertexBuffer
 		{
 		private:
 			GLuint m_VertexBuffer;
 		public:
-			VertexBuffer();
-			VertexBuffer(unsigned int size, const void* data);
+			VertexBuffer(size_t size, const void* data);
 			~VertexBuffer();
 
-			void Bind()const override;
-			void Unbind()const override;
+			void Bind()const;
+			void Unbind()const;
 		};
 	}
 }

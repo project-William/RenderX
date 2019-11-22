@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\modelAssimp;$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\modelAssimp\assimp\lib;$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\modelAssimp;$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;E:\Dependence\glm;E:\Dependence\glad\include;E:\Dependence\glfw-3.3.bin.WIN32\glfw-3.3.bin.WIN32\include;$(IncludePath);$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\modelAssimp\assimp\lib;$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\modelAssimp;$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\modelAssimp\assimp\lib;$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
-    <LibraryPath>$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)vendor\modelAssimp;$(SolutionDir)vendor\imgui\include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(ProjectDir)vendor\glm\</IncludePath>
+    <LibraryPath>$(SolutionDir)vendor\modelAssimp\assimp\lib;$(SolutionDir)vendor\imgui\lib;$(SolutionDir)vendor\glfw-3.3.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;assimp.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,7 +120,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;assimp.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,7 +139,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;assimp.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,103 +158,78 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ImGui.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ImGui.lib;assimp.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Core.h" />
-    <ClInclude Include="include\entity\HDRCubemap.h" />
-    <ClInclude Include="include\entity\MayaCamera.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="include\entity\Camera.h" />
     <ClInclude Include="include\entity\Entity.h" />
-    <ClInclude Include="include\entity\Flatboard.h" />
-    <ClInclude Include="include\entity\FPSCamera.h" />
-    <ClInclude Include="include\events\WindowEvent.h" />
-    <ClInclude Include="include\events\KeyboardEvent.h" />
-    <ClInclude Include="include\events\MouseEvent.h" />
-    <ClInclude Include="include\graphics\EntityLayer.h" />
-    <ClInclude Include="include\graphics\EnvFramebuffer.h" />
-    <ClInclude Include="include\graphics\HDR.h" />
-    <ClInclude Include="include\graphics\imgui\ImguiFileBrowser.h" />
-    <ClInclude Include="include\graphics\imgui\ImguiLayer.h" />
-    <ClInclude Include="include\graphics\imgui\ImguiLog.h" />
-    <ClInclude Include="include\graphics\imgui\ImguiSceneWindow.h" />
-    <ClInclude Include="include\graphics\imgui\ImguiSetWindow.h" />
-    <ClInclude Include="include\graphics\LayerList.h" />
+    <ClInclude Include="include\event\Event.h" />
+    <ClInclude Include="include\event\KeyboardEvent.h" />
+    <ClInclude Include="include\event\MouseEvent.h" />
+    <ClInclude Include="include\event\WindowEvent.h" />
+    <ClInclude Include="include\graphics\Framebuffer.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
-    <ClInclude Include="include\graphics\RenderBuffer.h" />
-    <ClInclude Include="include\graphics\Renderers.h" />
-    <ClInclude Include="include\graphics\RenderLayer.h" />
-    <ClInclude Include="include\graphics\RenderScene.h" />
-    <ClInclude Include="include\graphics\render\BasicLight.h" />
+    <ClInclude Include="include\graphics\render\Block.h" />
     <ClInclude Include="include\graphics\render\Mesh.h" />
     <ClInclude Include="include\graphics\render\Model.h" />
-    <ClInclude Include="include\graphics\render\RenderCube.h" />
-    <ClInclude Include="include\graphics\render\RenderLight.h" />
-    <ClInclude Include="include\graphics\render\RenderModel.h" />
-    <ClInclude Include="include\graphics\render\RenderObject.h" />
-    <ClInclude Include="include\entity\RenderSkybox.h" />
-    <ClInclude Include="include\graphics\render\RenderSphere.h" />
-    <ClInclude Include="include\graphics\shader\Shader.h" />
-    <ClInclude Include="include\graphics\Buffer.h" />
-    <ClInclude Include="include\graphics\texture\CubemapTexture.h" />
-    <ClInclude Include="include\graphics\texture\HDRTexture.h" />
-    <ClInclude Include="include\graphics\texture\stb_image.h" />
+    <ClInclude Include="include\graphics\render\Quad.h" />
+    <ClInclude Include="include\graphics\render\Renderer.h" />
+    <ClInclude Include="include\graphics\render\Sphere.h" />
+    <ClInclude Include="include\graphics\Shader.h" />
+    <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\graphics\texture\Texture.h" />
+    <ClInclude Include="include\graphics\texture\Texture2D.h" />
+    <ClInclude Include="include\graphics\texture\Texture3D.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\BufferLayout.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\IndexBuffer.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\VertexArray.h" />
     <ClInclude Include="include\graphics\VAOVBOEBO\VertexBuffer.h" />
-    <ClInclude Include="include\graphics\Window.h" />
+    <ClInclude Include="include\imgui\ImguiWindow.h" />
+    <ClInclude Include="include\imgui\SceneWindow.h" />
+    <ClInclude Include="include\imgui\SettingWindow.h" />
+    <ClInclude Include="include\manager\RendererManager.h" />
+    <ClInclude Include="include\manager\ShaderManager.h" />
+    <ClInclude Include="include\manager\TextureManager.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\test.h" />
     <ClInclude Include="include\utils\FileUtils.h" />
-    <ClInclude Include="include\utils\Input.h" />
     <ClInclude Include="include\utils\Keyboard.h" />
-    <ClInclude Include="include\utils\Log.h" />
     <ClInclude Include="include\utils\Mouse.h" />
+    <ClInclude Include="include\utils\Thread.h" />
+    <ClInclude Include="include\utils\Timer.h" />
+    <ClInclude Include="include\Window.h" />
     <ClInclude Include="RenderX.h" />
-    <ClInclude Include="include\graphics\Layer.h" />
-    <ClInclude Include="include\graphics\FrameBuffer.h" />
-    <ClInclude Include="include\events\Event.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
-    <ClCompile Include="src\entity\HDRCubemap.cpp" />
-    <ClCompile Include="src\entity\MayaCamera.cpp" />
-    <ClCompile Include="src\entity\Flatboard.cpp" />
-    <ClCompile Include="src\entity\FPSCamera.cpp" />
-    <ClCompile Include="src\graphics\EntityLayer.cpp" />
-    <ClCompile Include="src\graphics\EnvFramebuffer.cpp" />
-    <ClCompile Include="src\graphics\FrameBuffer.cpp" />
-    <ClCompile Include="src\graphics\HDR.cpp" />
-    <ClCompile Include="src\graphics\imgui\ImguiFileBrowser.cpp" />
-    <ClCompile Include="src\graphics\imgui\ImguiLayer.cpp" />
-    <ClCompile Include="src\graphics\imgui\ImguiLog.cpp" />
-    <ClCompile Include="src\graphics\imgui\ImguiSceneWindow.cpp" />
-    <ClCompile Include="src\graphics\imgui\ImguiSetWindow.cpp" />
-    <ClCompile Include="src\graphics\Layer.cpp" />
-    <ClCompile Include="src\graphics\LayerList.cpp" />
-    <ClCompile Include="src\graphics\RenderBuffer.cpp" />
-    <ClCompile Include="src\graphics\RenderLayer.cpp" />
-    <ClCompile Include="src\graphics\RenderScene.cpp" />
-    <ClCompile Include="src\graphics\render\BasicLight.cpp" />
+    <ClCompile Include="src\entity\Camera.cpp" />
+    <ClCompile Include="src\graphics\Framebuffer.cpp" />
+    <ClCompile Include="src\graphics\render\Block.cpp" />
     <ClCompile Include="src\graphics\render\Mesh.cpp" />
     <ClCompile Include="src\graphics\render\Model.cpp" />
-    <ClCompile Include="src\graphics\render\RenderCube.cpp" />
-    <ClCompile Include="src\graphics\render\RenderModel.cpp" />
-    <ClCompile Include="src\entity\RenderSkybox.cpp" />
-    <ClCompile Include="src\graphics\render\RenderSphere.cpp" />
-    <ClCompile Include="src\graphics\shader\Shader.cpp" />
-    <ClCompile Include="src\graphics\texture\CubemapTexture.cpp" />
-    <ClCompile Include="src\graphics\texture\HDRTexture.cpp" />
-    <ClCompile Include="src\graphics\texture\Texture.cpp" />
+    <ClCompile Include="src\graphics\render\Quad.cpp" />
+    <ClCompile Include="src\graphics\render\Sphere.cpp" />
+    <ClCompile Include="src\graphics\Shader.cpp" />
+    <ClCompile Include="src\graphics\Texture.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\BufferLayout.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\IndexBuffer.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexArray.cpp" />
     <ClCompile Include="src\graphics\VAOVBOEBO\VertexBuffer.cpp" />
-    <ClCompile Include="src\graphics\Window.cpp" />
+    <ClCompile Include="src\imgui\ImguiWindow.cpp" />
+    <ClCompile Include="src\imgui\SceneWindow.cpp" />
+    <ClCompile Include="src\imgui\SettingWindow.cpp" />
+    <ClCompile Include="src\manager\RendererManager.cpp" />
+    <ClCompile Include="src\manager\ShaderManager.cpp" />
+    <ClCompile Include="src\manager\TextureManager.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\test.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />
-    <ClCompile Include="src\utils\Input.cpp" />
     <ClCompile Include="src\utils\Keyboard.cpp" />
     <ClCompile Include="src\utils\Mouse.cpp" />
+    <ClCompile Include="src\utils\Timer.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">

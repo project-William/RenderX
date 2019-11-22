@@ -1,10 +1,9 @@
 #include "utils/FileUtils.h"
 
-
 namespace renderx {
 	namespace utils {
 
-		std::optional<std::string> FileUtils::ReadShader(const std::string& filepath)
+		const std::string FileUtils::ReadFile(const std::string& filepath)
 		{
 			std::ifstream infile(filepath);
 			if (infile)
@@ -14,7 +13,7 @@ namespace renderx {
 				std::string result = strstream.str();
 				return result;
 			}
-			return std::nullopt;
+			return "";
 		}
 
 
