@@ -155,8 +155,8 @@ namespace renderx
 			glm::vec3 up(glm::vec3(0.0f, 1.0f, 0.0f));
 			glm::vec3 right = glm::normalize(glm::cross(forward, up));
 
-			ImGui::Text("Movement");
-
+			//renderer movement
+			ImGui::Text("Basic");
 			for (auto& iter : m_TempScene->GetRenderListRef())
 			{
 				if (iter.m_IsChoose)
@@ -188,7 +188,27 @@ namespace renderx
 				}
 			}
 
-			if (ImGui::TreeNode("Color/Picker"))
+			static float f0 = 0.0f;
+			static int f1 = 0;
+			static bool UseScale = false;
+			static bool UseCRota = false;
+			static bool UseSRota = false;
+			ImGui::Checkbox("Use Scale", &UseScale); ImGui::SameLine(); ImGui::InputFloat("Renderer Scale", &f0, 0.1f, 100.0f, "%.3f");
+			ImGui::Checkbox("Use CRota", &UseCRota); ImGui::SameLine(); ImGui::InputFloat("Constant Rotate", &f0, 0.0f, 45.0f, "%.3f");
+			ImGui::Checkbox("Use SRota", &UseSRota); ImGui::SameLine(); ImGui::SliderInt("Static Rotate", &f1, -180.0f, 180.0f);
+			
+
+			for (auto& iter : m_TempScene->GetRenderListRef())
+			{
+				if (iter.m_IsChoose)
+				{
+					iter.m_ModelMat = glm::rotate(iter.m_ModelMat, glm::radians(f0), glm::vec3(0.0f, 1.0f, 0.0f));
+				}
+			}
+
+
+			ImGui::Separator();
+			if (ImGui::CollapsingHeader("Color/Picker"))
 			{
 				static bool alpha_preview = true;
 				static bool alpha_half_preview = false;
@@ -199,6 +219,7 @@ namespace renderx
 
 
 				ImGui::Text("Color picker:");
+				ImGui::Checkbox("Use Color?", &m_UseColor);
 				static bool alpha = true;
 				static bool alpha_bar = true;
 				static bool side_preview = true;
@@ -227,12 +248,16 @@ namespace renderx
 				if (display_mode == 3) flags |= ImGuiColorEditFlags_DisplayHSV;
 				if (display_mode == 4) flags |= ImGuiColorEditFlags_DisplayHex;
 				
+				
+				ImGui::ColorPicker4("MyColor##4", (float*)&temp_Albedo, flags, ref_color ? &ref_color_v.x : NULL);
+
 				for (auto& iter : m_TempScene->GetRenderListRef())
 				{
-					if(iter.m_IsChoose)
-						ImGui::ColorPicker4("MyColor##4", (float*)&iter.m_Albedo, flags, ref_color ? &ref_color_v.x : NULL);
+					if (iter.m_IsChoose && m_UseColor)
+					{
+						iter.m_Albedo = temp_Albedo;
+					}
 				}
-				ImGui::TreePop();
 			}
 
 			ImGui::End();
@@ -242,8 +267,19 @@ namespace renderx
 		{
 		}
 
-		void SettingWindow::EnvirPart()
+		void SettingWindow::EnvirWindow()
 		{
+			bool isopen = true;
+			ImGui::Begin("Environment", &isopen);
+			ImGui::RadioButton("cubemap", isopen);
+			ImGui::RadioButton("prefiltermap", isopen);
+			
+			static float f1 = 0.123f, f2 = 0.0f;
+			ImGui::SliderFloat("GAMA", &f1, 0.0f, 5.0f, "ratio = %.3f");
+
+
+
+			ImGui::End();
 		}
 
 

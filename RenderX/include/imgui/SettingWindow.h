@@ -21,6 +21,7 @@ namespace renderx
 
 			void RendererWindow();
 			void AttribWindow(std::shared_ptr<entity::Camera> cam);
+			void EnvirWindow();
 			void TexturePart();
 			void EnvirPart();
 
@@ -49,7 +50,9 @@ namespace renderx
 
 			std::shared_ptr<Scene> m_TempScene;
 
+			glm::vec4 temp_Albedo;
 
+			bool m_UseColor = true;
 		};
 	}
 }

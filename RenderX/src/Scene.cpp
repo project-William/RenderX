@@ -221,7 +221,7 @@ namespace renderx
 		m_QuadRenderCount++;
 		UpdateRendererRenderCount();
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f * (s_RenderCount) , 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.0f * (s_RenderCount) , 0.0f, 0.0f));
 		m_RenderList.push_back({ "Quad"+ std::to_string(m_QuadRenderCount),0.0f,0.0f,glm::vec4(1.0f), model ,false});
 	}
 
@@ -230,7 +230,7 @@ namespace renderx
 		m_BlockRenderCount++;
 		UpdateRendererRenderCount();
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f * (s_RenderCount), 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.0f * (s_RenderCount), 0.0f, 0.0f));
 		m_RenderList.push_back({ "Block" + std::to_string(m_BlockRenderCount),0.0f,0.0f,glm::vec4(1.0f), model, false });
 	}
 
@@ -239,7 +239,7 @@ namespace renderx
 		m_SphereRenderCount++;
 		UpdateRendererRenderCount();
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f * (s_RenderCount), 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.0f * (s_RenderCount), 0.0f, 0.0f));
 		m_RenderList.push_back({ "Sphere" + std::to_string(m_SphereRenderCount),0.0f,0.0f,glm::vec4(1.0f),model, false });
 	}
 
@@ -248,7 +248,7 @@ namespace renderx
 		m_ModelRenderCount++;
 		UpdateRendererRenderCount();
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f * (s_RenderCount), 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.0f * (s_RenderCount), 0.0f, 0.0f));
 		m_RenderList.push_back({ "Model" + std::to_string(m_ModelRenderCount),0.0f,0.0f,glm::vec4(1.0f),model, false });
 	}
 
@@ -265,30 +265,42 @@ namespace renderx
 
 	void Scene::DelQuadRenderCount()
 	{
-		m_QuadRenderCount--;
-		UpdateRendererRenderCount();
-		DelSpciRenderInList("Quad");
+		if (m_QuadRenderCount > 0)
+		{
+			m_QuadRenderCount--;
+			UpdateRendererRenderCount();
+			DelSpciRenderInList("Quad");
+		}
 	}
 
 	void Scene::DelBlockRenderCount()
 	{
-		m_BlockRenderCount--;
-		UpdateRendererRenderCount();
-		DelSpciRenderInList("Block");
+		if (m_BlockRenderCount > 0)
+		{
+			m_BlockRenderCount--;
+			UpdateRendererRenderCount();
+			DelSpciRenderInList("Block");
+		}
 	}
 
 	void Scene::DelSphereRenderCount()
 	{
-		m_SphereRenderCount--;
-		UpdateRendererRenderCount();
-		DelSpciRenderInList("Sphere");
+		if (m_SphereRenderCount > 0)
+		{
+			m_SphereRenderCount--;
+			UpdateRendererRenderCount();
+			DelSpciRenderInList("Sphere");
+		}
 	}
 
 	void Scene::DelModelRenderCount()
 	{
-		m_ModelRenderCount--;
-		UpdateRendererRenderCount();
-		DelSpciRenderInList("Model");
+		if (m_ModelRenderCount > 0)
+		{
+			m_ModelRenderCount--;
+			UpdateRendererRenderCount();
+			DelSpciRenderInList("Model");
+		}
 	}
 
 	void Scene::UpdateRendererRenderCount()
