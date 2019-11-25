@@ -34,8 +34,8 @@ Open it in vs2019 then set Application as startup project
 
  Feature    | Introduction    |Implemented
  :---------:|:---------:|:-----------:
- ~~Phong Model~~|$I=I_ak_a+ \sum{(I_dk_dcosi+I_sk_scos^n\theta)}$|YES
- IBL        |$L_{ω_0} = \frac {1}{cos(\theta_i)}\int_\Omega L(ω_0,ω_n)G_1(ω_0,ω_n)(ω_0*ω_n)D(ω_n)d_{ω_n} $|YES
+ ~~Phong Model~~|<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/phong.png"></div>|YES
+ IBL        |<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/IBL.png"></div>|YES
  Shadow     |           |NO
  Bloom      |           |NO
 
