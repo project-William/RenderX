@@ -55,6 +55,9 @@ void Application::Run()
 	m_Imgui = std::shared_ptr<ui::ImguiWindow>(new ui::ImguiWindow());
 	m_SetWin = std::shared_ptr<ui::SettingWindow>(new ui::SettingWindow());
 	
+	
+
+
 	while (!m_Window->Closed())
 	{
 		utils::Timer timer;
@@ -158,7 +161,7 @@ void Application::Run()
 		//graphics setting window
 		m_SetWin->Begin();
 		m_SetWin->End();
-		m_SetWin->Demo();
+		//m_SetWin->Demo();
 		m_SetWin->RendererWindow();
 		m_SetWin->AttribWindow(m_Camera);
 		m_SetWin->EnvirWindow();

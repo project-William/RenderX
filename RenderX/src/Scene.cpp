@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Window.h"
+#include "graphics/render/Block.h"
 
 namespace renderx
 {

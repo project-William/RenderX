@@ -161,6 +161,7 @@ namespace renderx {
 		glDepthFunc(GL_LEQUAL);
 		// enable seamless cubemap sampling for lower mip levels in the pre-filter map.
 		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+
 		return true;
 	}
 

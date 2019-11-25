@@ -74,10 +74,11 @@ void main()
     vec3 V = normalize(camPos - WorldPos);
     vec3 R = reflect(-V, N); 
 
+	vec3 realAlbedo=albedo.rgb;
     // calculate reflectance at normal incidence; if dia-electric (like plastic) use F0 
     // of 0.04 and if it's a metal, use the albedo color as F0 (metallic workflow)    
     vec3 F0 = vec3(0.04); 
-    F0 = mix(F0, vec3(albedo), metallic);
+    F0 = mix(F0, vec3(realAlbedo), metallic);
 
     // reflectance equation
     vec3 Lo = vec3(0.0);
@@ -114,7 +115,7 @@ void main()
         float NdotL = max(dot(N, L), 0.0);        
 
         // add to outgoing radiance Lo
-        Lo += (kD * albedo.rgb / PI + specular) * radiance * NdotL; // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
+        Lo += (kD * realAlbedo.rgb / PI + specular) * radiance * NdotL; // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }   
     
     // ambient lighting (we now use IBL as the ambient term)
@@ -125,7 +126,7 @@ void main()
     kD *= 1.0 - metallic;	  
     
     vec3 irradiance = texture(irradianceMap, N).rgb;
-    vec3 diffuse      = irradiance * albedo.rgb;
+    vec3 diffuse      = irradiance * realAlbedo.rgb;
     
     // sample both the pre-filter map and the BRDF lut and combine them together as per the Split-Sum approximation to get the IBL specular part.
     const float MAX_REFLECTION_LOD = 4.0;
@@ -142,5 +143,5 @@ void main()
     // gamma correct
     color = pow(color, vec3(1.0/2.2)); 
 
-    FragColor = vec4(color , 0.0f);
+    FragColor = vec4(color.rgb , 1.0f);
 }

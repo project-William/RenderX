@@ -190,20 +190,50 @@ namespace renderx
 
 			static float f0 = 0.0f;
 			static int f1 = 0;
+			static float metallic = 0.0f;
+			static float roughness = 0.0f;
 			static bool UseScale = false;
 			static bool UseCRota = false;
 			static bool UseSRota = false;
+			static bool UseMetal = false;
+			static bool UseRough = false;
+			static bool x_axis = false;
+			static bool y_axis = false;
+			static bool z_axis = false;
+			ImGui::Checkbox("X-Axis", &x_axis); ImGui::SameLine();
+			ImGui::Checkbox("y-Axis", &y_axis); ImGui::SameLine();
+			ImGui::Checkbox("z-Axis", &z_axis); 
+
 			ImGui::Checkbox("Use Scale", &UseScale); ImGui::SameLine(); ImGui::InputFloat("Renderer Scale", &f0, 0.1f, 100.0f, "%.3f");
 			ImGui::Checkbox("Use CRota", &UseCRota); ImGui::SameLine(); ImGui::InputFloat("Constant Rotate", &f0, 0.0f, 45.0f, "%.3f");
 			ImGui::Checkbox("Use SRota", &UseSRota); ImGui::SameLine(); ImGui::SliderInt("Static Rotate", &f1, -180.0f, 180.0f);
+			ImGui::Checkbox("use Metal", &UseRough); ImGui::SameLine(); ImGui::SliderFloat("metal value", &roughness, 0.0f, 1.0f, "%.3f");
+			ImGui::Checkbox("use Rough", &UseMetal); ImGui::SameLine(); ImGui::SliderFloat("Rough value", &metallic, 0.0f, 1.0f, "%.3f");
 			
-
-			for (auto& iter : m_TempScene->GetRenderListRef())
+			if (UseCRota)
 			{
-				if (iter.m_IsChoose)
-				{
-					iter.m_ModelMat = glm::rotate(iter.m_ModelMat, glm::radians(f0), glm::vec3(0.0f, 1.0f, 0.0f));
-				}
+				for (auto& iter : m_TempScene->GetRenderListRef())
+					if (iter.m_IsChoose)
+					{
+						iter.m_ModelMat = glm::rotate(iter.m_ModelMat, glm::radians(f0),
+							glm::vec3(
+								0.0f * static_cast<int>(x_axis),
+								0.0f * static_cast<int>(y_axis),
+								0.0f * static_cast<int>(z_axis)));
+					}
+			}
+
+
+			if (UseMetal)
+			{
+				for (auto& iter : m_TempScene->GetRenderListRef())
+					if (iter.m_IsChoose) iter.m_Metallic = metallic;
+			}
+
+			if (UseRough)
+			{
+				for (auto& iter : m_TempScene->GetRenderListRef())
+					if (iter.m_IsChoose) iter.m_Roughness = roughness;
 			}
 
 
