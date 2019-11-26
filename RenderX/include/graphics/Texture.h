@@ -13,6 +13,7 @@ namespace renderx
 			IRRADIANCEMAP,
 			PREFILTERMAP,
 			BRDFLUT_TEXTURE,
+			TEXTURE2D
 		};   
 
 
@@ -34,7 +35,7 @@ namespace renderx
 
 			//static void BindTexture(uint32_t texture, uint8_t slot, TexType type);
 			void GenerateMipmap(){ glGenerateMipmap(GL_TEXTURE_CUBE_MAP); }
-
+			static unsigned int TextureFromFile(const char* path, const std::string& directory , bool gamma = false);
 			static glm::mat4 captureProjection;
 			static glm::mat4 captureViews[6];
 		private:

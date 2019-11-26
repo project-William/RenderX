@@ -52,3 +52,5 @@
 #define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
 
 #define ASPECT_IN_RANGE(x) isnan(x) == true ? 1.0f : x
+
+

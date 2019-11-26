@@ -27,8 +27,8 @@ namespace renderx
 
 		void RendererManager::AddModel(const std::string& filepath)
 		{
-			std::shared_ptr<graphics::Model> model(new graphics::Model(filepath));
-			SubmitRenderer(model);
+			//std::shared_ptr<graphics::Model> model(new graphics::Model(filepath));
+			//SubmitRenderer(model);
 		}
 		
 

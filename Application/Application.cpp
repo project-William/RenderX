@@ -56,7 +56,9 @@ void Application::Run()
 	m_SetWin = std::shared_ptr<ui::SettingWindow>(new ui::SettingWindow());
 	
 	
+	graphics::Model ourModel("resources/objects/nanosuit/nanosuit.obj");
 
+	std::shared_ptr<graphics::Shader> sshader(new graphics::Shader("shader/basic.vert", "shader/basic.frag", graphics::ShaderType::BASIC));
 
 	while (!m_Window->Closed())
 	{
@@ -111,10 +113,21 @@ void Application::Run()
 		//}
 
 		Scene::BeginScene();
-
+		
 		m_Scene->SetCameraViewport(m_Camera);
 		m_Scene->BindPreComputedIBL();
 		m_Scene->RenderScene();
+
+		sshader->BindShaderProgram();
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+		glm::mat4 view = m_Camera->GetViewMatrix();
+		glm::mat4 projection = m_Camera->GetProjectionMatrix(45.0f);
+		sshader->SetMat4("model", model);
+		sshader->SetMat4("view", view);
+		sshader->SetMat4("projection", projection);
+		ourModel.Draw(sshader);
 		
 		// render light source (simply re-render sphere at light positions)
 		// this looks a bit off as we use the same shader, but it'll make their positions obvious and 
