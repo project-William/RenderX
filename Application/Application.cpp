@@ -118,16 +118,16 @@ void Application::Run()
 		m_Scene->BindPreComputedIBL();
 		m_Scene->RenderScene();
 
-		sshader->BindShaderProgram();
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
-		glm::mat4 view = m_Camera->GetViewMatrix();
-		glm::mat4 projection = m_Camera->GetProjectionMatrix(45.0f);
-		sshader->SetMat4("model", model);
-		sshader->SetMat4("view", view);
-		sshader->SetMat4("projection", projection);
-		ourModel.Draw(sshader);
+		//sshader->BindShaderProgram();
+		//glm::mat4 model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+		//glm::mat4 view = m_Camera->GetViewMatrix();
+		//glm::mat4 projection = m_Camera->GetProjectionMatrix(45.0f);
+		//sshader->SetMat4("model", model);
+		//sshader->SetMat4("view", view);
+		//sshader->SetMat4("projection", projection);
+		//ourModel.Draw(sshader);
 		
 		// render light source (simply re-render sphere at light positions)
 		// this looks a bit off as we use the same shader, but it'll make their positions obvious and 
