@@ -5,7 +5,7 @@
 
 namespace renderx {
 
-	std::shared_ptr<Window> Window::m_Instance;
+	std::shared_ptr<Window> Window::m_Instance = nullptr;
 
 	std::shared_ptr<Window> Window::Create()
 	{

@@ -1,6 +1,6 @@
 #pragma once
 #include "..//..//..//Common.h"
-#include "..//VAOVBOEBO/VertexArray.h"
+#include "..//OpenGL/VertexArray.h"
 
 namespace renderx::graphics
 {

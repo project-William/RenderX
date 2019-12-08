@@ -56,9 +56,9 @@ void Application::Run()
 	m_SetWin = std::shared_ptr<ui::SettingWindow>(new ui::SettingWindow());
 	
 	
-	graphics::Model ourModel("resources/objects/nanosuit/nanosuit.obj");
+	//graphics::Model ourModel("resources/objects/nanosuit/nanosuit.obj");
 
-	std::shared_ptr<graphics::Shader> sshader(new graphics::Shader("shader/basic.vert", "shader/basic.frag", graphics::ShaderType::BASIC));
+	//std::shared_ptr<graphics::Shader> sshader(new graphics::Shader("shader/basic.vert", "shader/basic.frag", graphics::ShaderType::BASIC));
 
 	while (!m_Window->Closed())
 	{
@@ -124,6 +124,9 @@ void Application::Run()
 		//model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
 		//glm::mat4 view = m_Camera->GetViewMatrix();
 		//glm::mat4 projection = m_Camera->GetProjectionMatrix(45.0f);
+		//sshader->SetVec4("albedo", glm::vec4(1.0f));
+		//sshader->SetFloat("metallic", 0.0f);
+		//sshader->SetFloat("roughness", 0.0f);
 		//sshader->SetMat4("model", model);
 		//sshader->SetMat4("view", view);
 		//sshader->SetMat4("projection", projection);

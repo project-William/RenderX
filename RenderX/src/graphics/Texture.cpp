@@ -31,7 +31,7 @@ namespace renderx::graphics
 		if (type == TexType::HDR_TEXTURE)
 		{
 			stbi_set_flip_vertically_on_load(true);
-			float* data = stbi_loadf("resources/textures/hdr/newport_loft.hdr", &m_Width, &m_Height, &m_Channels, 0);
+			float* data = stbi_loadf("resources/textures/hdr/room.jpg", &m_Width, &m_Height, &m_Channels, 0);
 			if (data)
 			{
 				glGenTextures(1, &m_Texture);

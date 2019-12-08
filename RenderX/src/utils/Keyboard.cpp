@@ -2,7 +2,7 @@
 
 namespace renderx::utils
 {
-	std::shared_ptr<Keyboard> Keyboard::ms_Keyboard;
+	std::shared_ptr<Keyboard> Keyboard::ms_Keyboard = nullptr;
 
 	Keyboard::Keyboard()
 		:m_Keys(nullptr)

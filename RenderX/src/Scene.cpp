@@ -4,7 +4,7 @@
 
 namespace renderx
 {
-	std::shared_ptr<Scene> Scene::m_Instance;
+	std::shared_ptr<Scene> Scene::m_Instance = nullptr;
 
 	uint32_t Scene::s_RenderCount = 0;
 
@@ -69,7 +69,7 @@ namespace renderx
 	{
 		size_t rendererIndex = 3;
 
-		for (auto iter : m_RenderList)
+		for (auto& iter : m_RenderList)
 		{
 			m_ShaderManager.GetPBRShaderRef()->SetMat4("model", iter.m_ModelMat);
 			m_ShaderManager.GetPBRShaderRef()->SetVec4("albedo", iter.m_Albedo);

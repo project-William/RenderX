@@ -4,7 +4,7 @@
 namespace renderx::utils
 {
 
-	std::shared_ptr<Mouse> Mouse::ms_Mouse;
+	std::shared_ptr<Mouse> Mouse::ms_Mouse = nullptr;
 
 	Mouse::Mouse()
 	{ }
