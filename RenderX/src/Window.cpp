@@ -154,14 +154,7 @@ namespace renderx {
 		}
 		else
 			std::cout << "success" << std::endl;
-		// configure global opengl state
-	   // -----------------------------
-		glEnable(GL_DEPTH_TEST);
-		// set depth function to less than AND equal for skybox depth trick.
-		glDepthFunc(GL_LEQUAL);
-		// enable seamless cubemap sampling for lower mip levels in the pre-filter map.
-		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
-
+		
 		return true;
 	}
 

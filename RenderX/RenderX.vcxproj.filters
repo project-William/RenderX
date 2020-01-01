@@ -69,9 +69,6 @@
     <ClInclude Include="include\test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\Framebuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\texture\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -132,6 +129,21 @@
     <ClInclude Include="include\graphics\OpenGL\VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\utils\OpenGLUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\OpenGL\UniformBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\OpenGL\Framebuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -162,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Framebuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\Texture.cpp">
@@ -213,6 +222,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\OpenGL\VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\OpenGLUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\OpenGL\UniformBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\OpenGL\Framebuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

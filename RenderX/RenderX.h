@@ -2,6 +2,7 @@
 
 #include "include/test.h"
 #include "include/Scene.h"
+#include "include/Configuration.h"
 
 //entity
 #include "include/entity/Camera.h"
@@ -18,7 +19,7 @@
 #include "include/graphics/render/Sphere.h"
 #include "include/graphics/Shader.h"
 #include "include/graphics/Texture.h"
-#include "include/graphics/Framebuffer.h"
+#include "include/graphics/OpenGL/Framebuffer.h"
 #include "include/graphics/render/Quad.h"
 #include "include/graphics/render/Mesh.h"
 #include "include/graphics/render/Model.h"
@@ -28,6 +29,7 @@
 #include "include/utils/Keyboard.h"
 #include "include/utils/Mouse.h"
 #include "include/utils/Timer.h"
+#include "include/utils/OpenGLUtils.h"
 
 //imgui
 #include "include/imgui/SettingWindow.h"

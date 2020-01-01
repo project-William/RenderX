@@ -25,7 +25,7 @@ namespace renderx::entity
 		Camera(const glm::vec3& position);
 		~Camera();
 
-		void EnableObject();
+		void EnableInputEvent();
 		void OnUpdate();
 
 		glm::mat4 GetProjectionMatrix(float zoom);

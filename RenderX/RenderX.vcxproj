@@ -163,14 +163,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="include\Configuration.h" />
     <ClInclude Include="include\entity\Camera.h" />
     <ClInclude Include="include\entity\Entity.h" />
     <ClInclude Include="include\event\Event.h" />
     <ClInclude Include="include\event\KeyboardEvent.h" />
     <ClInclude Include="include\event\MouseEvent.h" />
     <ClInclude Include="include\event\WindowEvent.h" />
-    <ClInclude Include="include\graphics\Framebuffer.h" />
+    <ClInclude Include="include\graphics\OpenGL\Framebuffer.h" />
     <ClInclude Include="include\graphics\LayerStack.h" />
+    <ClInclude Include="include\graphics\Material.h" />
+    <ClInclude Include="include\graphics\OpenGL\UniformBuffer.h" />
     <ClInclude Include="include\graphics\render\Block.h" />
     <ClInclude Include="include\graphics\render\Mesh.h" />
     <ClInclude Include="include\graphics\render\Model.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="include\utils\FileUtils.h" />
     <ClInclude Include="include\utils\Keyboard.h" />
     <ClInclude Include="include\utils\Mouse.h" />
+    <ClInclude Include="include\utils\OpenGLUtils.h" />
     <ClInclude Include="include\utils\Thread.h" />
     <ClInclude Include="include\utils\Timer.h" />
     <ClInclude Include="include\Window.h" />
@@ -204,8 +208,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="src\Configuration.cpp" />
     <ClCompile Include="src\entity\Camera.cpp" />
-    <ClCompile Include="src\graphics\Framebuffer.cpp" />
+    <ClCompile Include="src\graphics\OpenGL\Framebuffer.cpp" />
+    <ClCompile Include="src\graphics\OpenGL\UniformBuffer.cpp" />
     <ClCompile Include="src\graphics\render\Block.cpp" />
     <ClCompile Include="src\graphics\render\Mesh.cpp" />
     <ClCompile Include="src\graphics\render\Model.cpp" />
@@ -228,6 +234,7 @@
     <ClCompile Include="src\utils\FileUtils.cpp" />
     <ClCompile Include="src\utils\Keyboard.cpp" />
     <ClCompile Include="src\utils\Mouse.cpp" />
+    <ClCompile Include="src\utils\OpenGLUtils.cpp" />
     <ClCompile Include="src\utils\Timer.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>

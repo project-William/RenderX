@@ -1,4 +1,4 @@
-#include "graphics/VAOVBOEBO/VertexArray.h"
+#include "graphics/OpenGL/VertexArray.h"
 
 namespace renderx::graphics
 {

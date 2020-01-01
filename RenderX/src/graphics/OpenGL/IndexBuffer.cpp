@@ -1,4 +1,4 @@
-#include "graphics/VAOVBOEBO/IndexBuffer.h"
+#include "graphics/OpenGL/IndexBuffer.h"
 
 namespace renderx::graphics
 {

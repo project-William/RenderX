@@ -200,27 +200,11 @@ namespace renderx::ui
 		static bool z_axis = false;
 		ImGui::Checkbox("X-Axis", &x_axis); ImGui::SameLine();
 		ImGui::Checkbox("y-Axis", &y_axis); ImGui::SameLine();
-		ImGui::Checkbox("z-Axis", &z_axis);
+		ImGui::Checkbox("Z-Axis", &z_axis);
 
 		ImGui::Checkbox("Use Scale", &UseScale); ImGui::SameLine(); ImGui::InputFloat("Renderer Scale", &f0, 0.1f, 100.0f, "%.3f");
-		ImGui::Checkbox("Use CRota", &UseCRota); ImGui::SameLine(); ImGui::InputFloat("Constant Rotate", &f0, 0.0f, 45.0f, "%.3f");
-		ImGui::Checkbox("Use SRota", &UseSRota); ImGui::SameLine(); ImGui::SliderInt("Static Rotate", &f1, -180.0f, 180.0f);
 		ImGui::Checkbox("use Metal", &UseRough); ImGui::SameLine(); ImGui::SliderFloat("metal value", &roughness, 0.0f, 1.0f, "%.3f");
 		ImGui::Checkbox("use Rough", &UseMetal); ImGui::SameLine(); ImGui::SliderFloat("Rough value", &metallic, 0.0f, 1.0f, "%.3f");
-
-		if (UseCRota)
-		{
-			for (auto& iter : m_TempScene->GetRenderListRef())
-				if (iter.m_IsChoose)
-				{
-					iter.m_ModelMat = glm::rotate(iter.m_ModelMat, glm::radians(f0),
-						glm::vec3(
-							0.0f * static_cast<int>(x_axis),
-							0.0f * static_cast<int>(y_axis),
-							0.0f * static_cast<int>(z_axis)));
-				}
-		}
-
 
 		if (UseMetal)
 		{

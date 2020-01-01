@@ -4,7 +4,7 @@
 #include "manager/ShaderManager.h"
 #include "manager/RendererManager.h"
 #include "entity/Camera.h"
-#include "graphics/Framebuffer.h"
+#include "graphics/OpenGL/Framebuffer.h"
 
 namespace renderx
 {

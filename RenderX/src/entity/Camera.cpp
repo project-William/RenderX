@@ -139,7 +139,7 @@ namespace renderx::entity
 		return glm::perspective(glm::radians(zoom), ASPECT_IN_RANGE(aspect), 0.1f, 100.0f);
 	}
 
-	void Camera::EnableObject()
+	void Camera::EnableInputEvent()
 	{
 		ProcessMouseScrollInput();
 		ProcessMouseInput();

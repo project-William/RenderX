@@ -4,6 +4,64 @@
 Application::Application()
 {
 	m_Test = Test::Create();
+	m_Camera = std::shared_ptr<entity::Camera>(new entity::Camera(glm::vec3(0.0f, 0.0f, 10.0f)));
+
+	m_Quad = std::shared_ptr<graphics::Quad>(new graphics::Quad());
+	m_Block = std::shared_ptr<graphics::Block>(new graphics::Block());
+	m_Sphere = std::shared_ptr<graphics::Sphere>(new graphics::Sphere());
+
+
+	m_PbrShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/pbr.vert", "shader/pbr.frag", graphics::ShaderType::PBRSHADER));
+	m_EquirectangularToCubemapShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/cubemap.vert", "shader/equirectangular_to_cubemap.frag", graphics::ShaderType::CUBEMAPSHADER));
+	m_IrradianceShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/cubemap.vert", "shader/irradiance_convolution.frag", graphics::ShaderType::IRRDIANCESHADER));
+	m_PrefilterShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/cubemap.vert", "shader/prefilter.frag", graphics::ShaderType::PREFILTERSHADER));
+	m_BrdfShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/brdf.vert", "shader/brdf.frag", graphics::ShaderType::BRDFSHADER));
+	m_BackgroundShader = std::shared_ptr<graphics::Shader>(new graphics::Shader("shader/background.vert", "shader/background.frag", graphics::ShaderType::BACKGROUNDSHADER));
+
+
+
+	m_Framebuffer = std::shared_ptr<graphics::Framebuffer>(new graphics::Framebuffer());
+
+	// lights
+	// ------
+	glm::vec3 lightPositions[] = {
+		glm::vec3(-10.0f,  10.0f, 10.0f),
+		glm::vec3(10.0f,  10.0f, 10.0f),
+		glm::vec3(-10.0f, -10.0f, 10.0f),
+		glm::vec3(10.0f, -10.0f, 10.0f),
+	};
+	glm::vec3 lightColors[] = {
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f),
+		glm::vec3(300.0f, 300.0f, 300.0f)
+	};
+	int nrRows = 7;
+	int nrColumns = 7;
+	float spacing = 2.5;
+
+
+
+
+	hdrtexture.LoadTexture(graphics::TexType::HDR_TEXTURE, "");
+	cubemap.LoadTexture(graphics::TexType::ENVCUBEMAP, "");
+	irradianceMap.LoadTexture(graphics::TexType::IRRADIANCEMAP, "");
+	prefilter.LoadTexture(graphics::TexType::PREFILTERMAP, "");
+	brdftexture.LoadTexture(graphics::TexType::BRDFLUT_TEXTURE, "");
+
+	m_PbrShader->BindShaderProgram();
+	m_PbrShader->SetInt("irradianceMap", 0);
+	m_PbrShader->SetInt("prefilterMap", 1);
+	m_PbrShader->SetInt("brdfLUT", 2);
+
+
+	albedoColor = ImVec4(0.5f, 0.0f, 0.0f, 1.0f);
+	m_PbrShader->SetVec4("albedo", albedoColor.x, albedoColor.y, albedoColor.z, albedoColor.w);
+	m_PbrShader->SetFloat("ao", 1.0f);
+
+	m_BackgroundShader->BindShaderProgram();
+	m_BackgroundShader->SetInt("environmentMap", 0);
+
 
 
 	
@@ -54,7 +112,13 @@ void Application::Run()
 	//before loop, for gui
 	m_Imgui = std::shared_ptr<ui::ImguiWindow>(new ui::ImguiWindow());
 	m_SetWin = std::shared_ptr<ui::SettingWindow>(new ui::SettingWindow());
-	
+
+
+	utils::OpenGLUtils::OpenGLDepthFunc();
+	// set depth function to less than AND equal for skybox depth trick.
+	utils::OpenGLUtils::OpenGLEnableDepth();
+	// enable seamless cubemap sampling for lower mip levels in the pre-filter map.
+	utils::OpenGLUtils::OpenGLEnableSeamlessCubemap();
 	
 	//graphics::Model ourModel("resources/objects/nanosuit/nanosuit.obj");
 
@@ -170,7 +234,7 @@ void Application::Run()
 
 
 		//processinput
-		m_Camera->EnableObject();
+		m_Camera->EnableInputEvent();
 
 		//render ui
 		m_Imgui->UIBegin();

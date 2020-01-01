@@ -1,9 +1,9 @@
 #pragma once
-#include "..//Common.h"
+#include "..//..//Common.h"
 
 namespace renderx::utils
 {
-	struct OpenGLUtils
+	struct REN_API OpenGLUtils
 	{
 		static void OpenGLEnableDepth();
 

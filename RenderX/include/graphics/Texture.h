@@ -32,7 +32,7 @@ namespace renderx::graphics
 		uint32_t GetTexture()const { return m_Texture; }
 
 		//static void BindTexture(uint32_t texture, uint8_t slot, TexType type);
-		void GenerateMipmap() { glGenerateMipmap(GL_TEXTURE_CUBE_MAP); }
+		//void GenerateMipmap() { glGenerateMipmap(GL_TEXTURE_CUBE_MAP); }
 		static unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma = false);
 		static glm::mat4 captureProjection;
 		static glm::mat4 captureViews[6];
