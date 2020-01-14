@@ -16,4 +16,9 @@ namespace renderx::utils
 	{
 		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	}
+
+	void OpenGLUtils::OpenGLLinePolygonMode()
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
 }

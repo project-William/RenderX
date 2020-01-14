@@ -11,5 +11,6 @@ namespace renderx::utils
 
 		static void OpenGLEnableSeamlessCubemap();
 
+		static void OpenGLLinePolygonMode();
 	};
 }

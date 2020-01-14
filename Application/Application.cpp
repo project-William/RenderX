@@ -120,6 +120,7 @@ void Application::Run()
 	// enable seamless cubemap sampling for lower mip levels in the pre-filter map.
 	utils::OpenGLUtils::OpenGLEnableSeamlessCubemap();
 	
+	utils::OpenGLUtils::OpenGLLinePolygonMode();
 	//graphics::Model ourModel("resources/objects/nanosuit/nanosuit.obj");
 
 	//std::shared_ptr<graphics::Shader> sshader(new graphics::Shader("shader/basic.vert", "shader/basic.frag", graphics::ShaderType::BASIC));

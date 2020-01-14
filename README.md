@@ -40,7 +40,7 @@ Open it in vs2019 then set Application as startup project
  Bloom      |           |NO
 
 
-## Plane
+## Plan
 
 Core plan for RenderX is to create a 3D engine(or rendering lab platform).
 

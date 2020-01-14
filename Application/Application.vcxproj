@@ -165,7 +165,6 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="src\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture\pbr\gold\albedo.png" />
@@ -183,7 +182,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Sandbox.h" />
     <ClInclude Include="Application.h" />
   </ItemGroup>
   <ItemGroup>
