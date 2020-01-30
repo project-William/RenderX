@@ -22,6 +22,8 @@ namespace renderx::ui
 		void EnvirWindow();
 		void TexturePart();
 		void EnvirPart();
+		void OpenGLUtils();
+
 
 		void OnUpdate();
 

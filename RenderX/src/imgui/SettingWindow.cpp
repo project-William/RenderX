@@ -1,6 +1,7 @@
 #include "imgui/SettingWindow.h"
 #include "Window.h"
 #include "utils/Keyboard.h"
+#include "utils/OpenGLUtils.h"
 
 namespace renderx::ui
 {
@@ -277,6 +278,16 @@ namespace renderx::ui
 
 	void SettingWindow::TexturePart()
 	{
+
+	}
+
+	void SettingWindow::OpenGLUtils()
+	{
+		static bool lineModeOpen = false;
+		
+		ImGui::Checkbox("Front And Back LineMode", &lineModeOpen);
+		lineModeOpen == true ? utils::OpenGLUtils::OpenGLLinePolygonMode() : utils::OpenGLUtils::OpenGLFillPolygonMode();
+
 	}
 
 	void SettingWindow::EnvirWindow()

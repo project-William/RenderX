@@ -21,4 +21,9 @@ namespace renderx::utils
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
+
+	void OpenGLUtils::OpenGLFillPolygonMode()
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
 }
