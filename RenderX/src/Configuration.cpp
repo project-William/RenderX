@@ -53,6 +53,7 @@ namespace renderx
 
 		else if (e.IsInCategory(events::RX_EVENT_CATEGORY_MOUSE))
 		{
+			std::cout << "moouse part" << std::endl;
 			if (!handled)
 			{
 				handled = dispatcher.Dispatch<events::MouseMovedEvent>(BIND_EVENT(Configuration::OnMouseMovedEvent));

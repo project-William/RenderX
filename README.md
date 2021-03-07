@@ -29,28 +29,6 @@ Open it in vs2019 then set Application as startup project
 
  ----
 
- ## Core Features
-
-
- Feature    | Introduction    |Implemented
- :---------:|:---------:|:-----------:
- ~~Phong Model~~|<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/phong.png"></div>|YES
- IBL        |<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/IBL.png"></div>|YES
- Shadow     |           |NO
- Bloom      |           |NO
-
-
-## Plan
-
-Core plan for RenderX is to create a 3D engine(or rendering lab platform).
-
-### more features will be done
-- Native rendering API support (DirectX? Vulkan?)
-- 3D random terrain generation
-- Volumetric cloud
-- Volumetric lighting
-- Ray tracer (real-time + off-line)
-
 
 
 
