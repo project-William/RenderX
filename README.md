@@ -10,7 +10,7 @@ RenderX is an early-stage toy rendering engine for Windows which mainly built by
 
 ## ScreenShot
 
-<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/Screen.jpg" width= "800" height="480"></div>
+<div align=center><img src="https://github.com/project-William/RenderX/blob/master/Gallery/Screen.png" width= "800" height="480"></div>
 
 ## Get Started
 Dependencies:
@@ -19,6 +19,7 @@ Dependencies:
  + [[Imgui]](https://github.com/ocornut/imgui):UI system
  + [[glm]](https://github.com/Groovounet/glm-deprecated):OpenGL math function
  + [[stb]](https://github.com/nothings/stb):Image loader
+ + [[ImGuizmo]](https://github.com/CedricGuillemet/ImGuizmo):manipulate 4x4 float matrices
 
 IDE : Visual Studio 2019 is recommended,now RenderX is untested on other development platforms.
 
