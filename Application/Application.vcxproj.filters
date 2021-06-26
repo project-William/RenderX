@@ -1,64 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="RenderX">
+      <UniqueIdentifier>{BD347F9F-2914-FE3A-322C-89119E8A649C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="RenderX\dependencies">
+      <UniqueIdentifier>{93E76DF2-7F76-F7BB-2895-0BB714030862}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="RenderX\dependencies\glad">
+      <UniqueIdentifier>{7A6EA9B0-E630-DD3A-2FE1-6BC79BE2B518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\dependencies\glad\src">
+      <UniqueIdentifier>{91D96BAC-FDF1-52D6-C69E-E26F3276E76F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="texture\pbr\gold\albedo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="texture\pbr\gold\ao.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="texture\pbr\gold\metallic.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="texture\pbr\gold\normal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="texture\pbr\gold\roughness.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Application.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\basic.vert" />
-    <None Include="shader\basic.frag" />
-    <None Include="shader\background.vert" />
-    <None Include="shader\background.frag" />
-    <None Include="shader\brdf.frag" />
-    <None Include="shader\brdf.vert" />
-    <None Include="shader\cubemap.vert" />
-    <None Include="shader\equirectangular_to_cubemap.frag" />
-    <None Include="shader\irradiance_convolution.frag" />
-    <None Include="shader\pbr.frag" />
-    <None Include="shader\pbr.vert" />
-    <None Include="shader\prefilter.frag" />
+    <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaderSource\hdr.vert" />
+    <None Include="shaderSource\hdr.frag" />
+    <None Include="shaderSource\test.vert" />
+    <None Include="shaderSource\test.frag" />
+    <None Include="shaderSource\bloom.vert" />
+    <None Include="shaderSource\bloom.frag" />
+    <None Include="shaderSource\light_box.frag" />
+    <None Include="shaderSource\blur.vert" />
+    <None Include="shaderSource\blur.frag" />
+    <None Include="shaderSource\PbrCopy.frag" />
+    <None Include="shaderSource\bloomFinal.vert" />
+    <None Include="shaderSource\bloomFinal.frag" />
   </ItemGroup>
 </Project>

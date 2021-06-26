@@ -1,240 +1,246 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="RenderX">
+      <UniqueIdentifier>{BD347F9F-2914-FE3A-322C-89119E8A649C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="RenderX\Base">
+      <UniqueIdentifier>{670F772F-5372-06D4-FCF7-3E8AE839D256}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="RenderX\Base\Event">
+      <UniqueIdentifier>{F841BAC1-E425-7B17-4D86-756A39896599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\BasicRenderer">
+      <UniqueIdentifier>{A5CF14F4-113C-D0EE-DA2F-684C465BF256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\Core">
+      <UniqueIdentifier>{35D7772F-213A-07D4-CABF-3F8AB601D356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\Editor">
+      <UniqueIdentifier>{531BA9F0-3FE9-9CF6-287D-0D1D14EA785B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\ImGui">
+      <UniqueIdentifier>{A783DD1E-1344-5955-DC7E-A2D248FE9D31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\Utils">
+      <UniqueIdentifier>{DD0FBB1F-49D0-3656-120B-80D37E8A7B32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderX\Vendor">
+      <UniqueIdentifier>{5A606518-462E-591E-2FC2-C9441B2F3583}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RenderX.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX.h" />
+    <ClInclude Include="src\RenderX\Base\BasicConfig.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\LayerStack.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Camera.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\Window.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Event\Event.h">
+      <Filter>RenderX\Base\Event</Filter>
     </ClInclude>
-    <ClInclude Include="include\event\Event.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Event\KeyEvent.h">
+      <Filter>RenderX\Base\Event</Filter>
     </ClInclude>
-    <ClInclude Include="include\event\KeyboardEvent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Event\MouseEvent.h">
+      <Filter>RenderX\Base\Event</Filter>
     </ClInclude>
-    <ClInclude Include="include\event\MouseEvent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Event\WindowEvent.h">
+      <Filter>RenderX\Base\Event</Filter>
     </ClInclude>
-    <ClInclude Include="include\event\WindowEvent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Input.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\utils\Keyboard.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Keyboard.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\utils\Mouse.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Mouse.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\utils\FileUtils.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Base\Window.h">
+      <Filter>RenderX\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Sphere.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\BasicRenderer\BasicRenderer.h">
+      <Filter>RenderX\BasicRenderer</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Renderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\AABB.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Block.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Framebuffer.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\IBL.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\Shader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Indexbuffer.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\Entity.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Material.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\Camera.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Mesh.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\test.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Model.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\texture\Texture.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\RenderScene.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\texture\Texture2D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Shader.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\texture\Texture3D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\ShadowMap.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\Texture.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Skybox.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\manager\RendererManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Texture.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\manager\ShaderManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\VertexArray.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\manager\TextureManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Core\Vertexbuffer.h">
+      <Filter>RenderX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Quad.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\EnvironmentEditor.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Model.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\MaterialEditor.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\render\Mesh.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\Menubar.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\utils\Timer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\RendererPropEditor.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\imgui\ImguiWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\SceneHierarchyPanel.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\imgui\SettingWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Editor\ViewportWindow.h">
+      <Filter>RenderX\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="include\utils\Thread.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\ImGui\Imgui.h">
+      <Filter>RenderX\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="include\Scene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Utils\FileDialogs.h">
+      <Filter>RenderX\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="include\imgui\SceneWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\RenderX\Vendor\stb_image.h">
+      <Filter>RenderX\Vendor</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\BufferLayout.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\IndexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\VertexArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\VertexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utils\OpenGLUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\UniformBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Configuration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\OpenGL\Framebuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\RenderX\Core\Hdr.h" />
+    <ClInclude Include="src\RenderX\Core\Bloom.h" />
+    <ClInclude Include="src\RenderX\Editor\ContentBrowser.h" />
+    <ClInclude Include="src\RenderX\Core\GBuffer.h" />
+    <ClInclude Include="src\RenderX\Core\SSAO.h" />
+    <ClInclude Include="dependencies\ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="dependencies\ImGuizmo\ImCurveEdit.h" />
+    <ClInclude Include="dependencies\ImGuizmo\ImGradient.h" />
+    <ClInclude Include="dependencies\ImGuizmo\ImSequencer.h" />
+    <ClInclude Include="dependencies\ImGuizmo\ImZoomSlider.h" />
+    <ClInclude Include="src\RenderX\Core\Transform.h" />
+    <ClInclude Include="src\RenderX\Physics\Phycics.h" />
+    <ClInclude Include="src\RenderX\Physics\Collision.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\BasicConfig.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\Camera.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\FileUtils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\Input.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Keyboard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\Keyboard.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Mouse.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\Mouse.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Sphere.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Base\Window.cpp">
+      <Filter>RenderX\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Block.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\BasicRenderer\BasicRenderer.cpp">
+      <Filter>RenderX\BasicRenderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\Shader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Framebuffer.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\Camera.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\IBL.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\test.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Indexbuffer.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\Texture.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Mesh.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\manager\ShaderManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Model.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\manager\RendererManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\RenderScene.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\manager\TextureManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Shader.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Quad.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\ShadowMap.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Mesh.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Skybox.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\Timer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Texture.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\imgui\SettingWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\VertexArray.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\imgui\ImguiWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Core\Vertexbuffer.cpp">
+      <Filter>RenderX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\EnvironmentEditor.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\imgui\SceneWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\MaterialEditor.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\render\Model.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\Menubar.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\BufferLayout.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\RendererPropEditor.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\IndexBuffer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\SceneHierarchyPanel.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\VertexArray.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Editor\ViewportWindow.cpp">
+      <Filter>RenderX\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\ImGui\Imgui.cpp">
+      <Filter>RenderX\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\OpenGLUtils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\RenderX\Utils\FileDialogs.cpp">
+      <Filter>RenderX\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\UniformBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Configuration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\OpenGL\Framebuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\RenderX\Core\Hdr.cpp" />
+    <ClCompile Include="src\RenderX\Core\Bloom.cpp" />
+    <ClCompile Include="src\RenderX\Editor\ContentBrowser.cpp" />
+    <ClCompile Include="src\RenderX\Core\GBuffer.cpp" />
+    <ClCompile Include="src\RenderX\Core\SSAO.cpp" />
+    <ClCompile Include="dependencies\ImGuizmo\ImCurveEdit.cpp" />
+    <ClCompile Include="dependencies\ImGuizmo\ImGradient.cpp" />
+    <ClCompile Include="dependencies\ImGuizmo\ImGuizmo.cpp" />
+    <ClCompile Include="dependencies\ImGuizmo\ImSequencer.cpp" />
+    <ClCompile Include="src\RenderX\Physics\Physics.cpp" />
+    <ClCompile Include="src\RenderX\Physics\Collision.cpp" />
   </ItemGroup>
 </Project>
