@@ -1,0 +1,6 @@
+[submodule "RenderX/vendor/spdlog"]
+	path = RenderX/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "RenderX/dependencies/GLFW"]
+	path = RenderX/dependencies/GLFW
+	url = https://github.com/glfw/glfw
